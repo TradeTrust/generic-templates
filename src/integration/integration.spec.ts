@@ -1,9 +1,9 @@
 import { Selector } from "testcafe";
-import { customTemplateCertificate } from "../templates/coveringLetter/sample";
+import { coveringLetter } from "../templates/coveringLetter/sample";
 import percySnapshot from "@percy/testcafe";
 
 // assign certificate to a variable otherwise there is an error ... ReferenceError: sample_1 is not defined
-const document = { ...customTemplateCertificate, $template: { ...customTemplateCertificate, name: "red" } };
+const document = { ...coveringLetter, $template: { ...coveringLetter, name: "red" } };
 fixture("Custom Red Certificate Template").page`http://localhost:3000`;
 
 const CustomTemplate = Selector("#custom-template");
