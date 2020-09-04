@@ -8,6 +8,11 @@ export interface CoveringLetter extends Document {
   titleColor?: string;
   backgroundColor?: string;
   descriptionColor?: string;
+  links?: {
+    self: {
+      href: string;
+    };
+  };
 }
 
 export const coveringLetter: CoveringLetter = {
