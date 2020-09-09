@@ -8,20 +8,22 @@ import { CoveringLetter } from "./sample";
 const container = css`
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
   color: #4e4e50;
-  text-align: center;
   width: 100%;
   height: 100vh;
   max-height: 1000px;
   max-width: 980px;
   position: relative;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 `;
 
 export const CoveringLetterTemplate: FunctionComponent<TemplateProps<CoveringLetter> & { className?: string }> = ({
   document,
   className = ""
 }) => {
-  const { logo, title, description, backgroundColor, titleColor, descriptionColor } = document;
+  const { logo, title, remarks, backgroundColor, titleColor, remarksColor } = document;
   const qrCodeUrl = document?.links?.self.href;
 
   return (
@@ -33,13 +35,34 @@ export const CoveringLetterTemplate: FunctionComponent<TemplateProps<CoveringLet
         style={{ backgroundColor, textAlign: "center", padding: 20 }}
       >
         <PrintWatermark />
-        {logo ? (
-          <img src={logo} style={{ maxWidth: 600, width: "100%", paddingTop: 50, paddingBottom: 50 }} />
-        ) : (
-          <div style={{ height: 300 }} />
+        {logo ? <img src={logo} style={{ maxWidth: 250, width: "100%" }} /> : <div style={{ height: 300 }} />}
+        {title && <h1 style={{ color: titleColor, display: "flex", alignItems: "flex-start" }}>{title}</h1>}
+        {remarks && (
+          <div>
+            <div
+              style={{
+                color: remarksColor,
+                fontWeight: "bold",
+                textAlign: "left",
+                marginTop: 16,
+                marginBottom: 16
+              }}
+            >
+              Remarks:
+            </div>
+            <div
+              style={{
+                color: remarksColor,
+                whiteSpace: "pre-wrap",
+                display: "flex",
+                alignItems: "flex-start",
+                textAlign: "left"
+              }}
+            >
+              {remarks}
+            </div>
+          </div>
         )}
-        {title && <h1 style={{ color: titleColor }}>{title}</h1>}
-        {description && <div style={{ color: descriptionColor, whiteSpace: "pre-wrap" }}>{description}</div>}
       </div>
       {qrCodeUrl && <DocumentQrCode url={qrCodeUrl} />}
     </div>
