@@ -19,5 +19,10 @@ export const coveringLetter: CoveringLetter = {
   name: "Covering Letter",
   logo: "https://www.aretese.com/images/govtech-animated-logo.gif",
   title: "Documents Bundle",
-  remarks: `Some very important documents in here for some submission.\n\nAnd it supports multiline!`
+  remarks: `Some very important documents in here for some submission.\n\nAnd it supports multiline!`,
+  $template: {
+    name: "COVERING_LETTER",
+    type: "EMBEDDED_RENDERER",
+    url: "http://localhost:3000"
+  }
 };
