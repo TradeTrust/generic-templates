@@ -1,8 +1,9 @@
 # generic-template
 
 <!-- TODO: update this link to tradetrust cirleci once ci integrated -->
-<!-- [![CircleCI](https://circleci.com/gh/Open-Attestation/decentralized-renderer-react-template.svg?style=svg)](https://circleci.com/gh/Open-Attestation/decentralized-renderer-react-template) -->
 
+[![CircleCI](https://circleci.com/gh/Open-Attestation/decentralized-renderer-react-template.svg?style=svg)](https://circleci.com/gh/Open-Attestation/decentralized-renderer-react-template)
+![GithubActions](https://github.com/TradeTrust/generic-templates/workflows/GenericTemplateCI/badge.svg)
 Generic templates for TradeTrust
 
 ## Install
