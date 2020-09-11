@@ -1,9 +1,9 @@
-import React, { FunctionComponent } from "react";
-import { TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
-import { CoveringLetter } from "./sample";
-import { PrintWatermark } from "../../core/PrintWatermark";
 import { css } from "@emotion/core";
+import { TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
+import React, { FunctionComponent } from "react";
 import { DocumentQrCode } from "../../core/DocumentQrCode";
+import { PrintWatermark } from "../../core/PrintWatermark";
+import { CoveringLetter } from "./sample";
 
 const container = css`
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
@@ -17,7 +17,7 @@ const container = css`
   margin: 0 auto;
 `;
 
-export const CustomTemplate: FunctionComponent<TemplateProps<CoveringLetter> & { className?: string }> = ({
+export const CoveringLetterTemplate: FunctionComponent<TemplateProps<CoveringLetter> & { className?: string }> = ({
   document,
   className = ""
 }) => {
@@ -29,7 +29,7 @@ export const CustomTemplate: FunctionComponent<TemplateProps<CoveringLetter> & {
       <div
         css={container}
         className={className}
-        id="custom-template"
+        id="covering-letter-template"
         style={{ backgroundColor, textAlign: "center", padding: 20 }}
       >
         <PrintWatermark />

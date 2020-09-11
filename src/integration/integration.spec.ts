@@ -1,14 +1,14 @@
+import percySnapshot from "@percy/testcafe";
 import { Selector } from "testcafe";
 import { coveringLetter } from "../templates/coveringLetter/sample";
-import percySnapshot from "@percy/testcafe";
 
 // assign certificate to a variable otherwise there is an error ... ReferenceError: sample_1 is not defined
 const document = { ...coveringLetter, $template: { ...coveringLetter, name: "red" } };
-fixture("Custom Red Certificate Template").page`http://localhost:3000`;
+fixture("Generic Templates").page`http://localhost:3000`;
 
-const CustomTemplate = Selector("#custom-template");
+const CustomTemplate = Selector("#covering-letter-template");
 
-test("Custom certificate is rendered correctly", async test => {
+test("Generic template is rendered correctly", async test => {
   await test.eval(
     () => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
@@ -31,5 +31,5 @@ test("Custom certificate is rendered correctly", async test => {
   await test.expect(CustomTemplate.textContent).contains("Bar is awesome");
 
   // take a snapshot
-  await percySnapshot(test, "Rendered custom template");
+  await percySnapshot(test, "Rendered generic template");
 });

@@ -1,5 +1,5 @@
-import React, { FunctionComponent } from "react";
 import QRCode from "qrcode.react";
+import React, { FunctionComponent } from "react";
 import "./style.css";
 
 interface DocumentQrCode {

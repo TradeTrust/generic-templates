@@ -1,9 +1,9 @@
-import { CustomTemplate } from "./customTemplate";
+import { CoveringLetterTemplate } from "./CoveringLetter";
 
 export const templates = [
   {
-    id: "custom",
-    label: "Custom",
-    template: CustomTemplate
+    id: "covering-letter-template",
+    label: "Covering Letter Template",
+    template: CoveringLetterTemplate
   }
 ];
