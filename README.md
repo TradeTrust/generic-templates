@@ -1,10 +1,18 @@
 # generic-template
 
-<!-- TODO: update this link to tradetrust cirleci once ci integrated -->
-
-[![CircleCI](https://circleci.com/gh/Open-Attestation/decentralized-renderer-react-template.svg?style=svg)](https://circleci.com/gh/Open-Attestation/decentralized-renderer-react-template)
 ![GithubActions](https://github.com/TradeTrust/generic-templates/workflows/GenericTemplateCI/badge.svg)
-Generic templates for TradeTrust
+
+Generic templates for TradeTrust, where users can use any of these available templates to render their document.
+
+_Note: These are just some rendering templates that are made available for users to use, the configurations to use these templates are in the [documentation](https://docs.tradetrust.io/document-creator) of TradeTrust document creator._
+
+| Available Templates | url |
+| :-----------------: | :-: |
+|   Covering Letter   |     |
+
+_Note: To use these available templates, please ensure that you have the correct schema in the configuration file._
+
+---
 
 ## Install
 
@@ -68,9 +76,3 @@ To setup `Percy`, you will need a token that you can find on Percy's dashboard(p
 GPL-3.0
 
 ---
-
-## Generic Templates
-
-|    Templates    | url |
-| :-------------: | :-: |
-| Covering Letter |     |
