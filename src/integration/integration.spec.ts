@@ -1,34 +1,16 @@
 import percySnapshot from "@percy/testcafe";
 import { Selector } from "testcafe";
-import { coveringLetter } from "../templates/coveringLetter/sample";
 
-// assign certificate to a variable otherwise there is an error ... ReferenceError: sample_1 is not defined
-const document = { ...coveringLetter, $template: { ...coveringLetter, name: "red" } };
-fixture("Generic Templates").page`http://localhost:3000`;
+fixture("Generic Templates").page`http://localhost:3010`;
 
 const CustomTemplate = Selector("#covering-letter-template");
 
 test("Generic template is rendered correctly", async test => {
-  await test.eval(
-    () => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore can't find a way to have thos working on test cafe
-      window.openAttestation({
-        type: "RENDER_DOCUMENT",
-        payload: {
-          document
-        }
-      });
-    },
-    {
-      dependencies: {
-        document
-      }
-    }
-  );
   // test the title is displayed
+  await test.click(Selector("[data-testid='COVERING_LETTER']"));
+  await test.switchToIframe("#iframe");
   await test.expect(CustomTemplate.visible).ok();
-  await test.expect(CustomTemplate.textContent).contains("Bar is awesome");
+  await test.expect(CustomTemplate.textContent).contains("Documents Bundle");
 
   // take a snapshot
   await percySnapshot(test, "Rendered generic template");
