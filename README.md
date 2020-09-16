@@ -10,7 +10,7 @@ _Note: These are just some rendering templates that are made available for users
 | :-----------------: | :-------------------------------------: |
 |   Covering Letter   | https://generic-templates.tradetrust.io |
 
-Use these urls in the "\$template" section of the configuration file.
+Use any one of these urls in the `forms[0].defaults.$template.url` field of the configuration file.
 
 _Note: To use these available templates, please ensure that you have the correct schema in the configuration file._
 
