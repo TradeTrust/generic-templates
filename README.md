@@ -6,9 +6,11 @@ Generic templates for TradeTrust, where users can use any of these available tem
 
 _Note: These are just some rendering templates that are made available for users to use, the configurations to use these templates are in the [documentation](https://docs.tradetrust.io/document-creator) of TradeTrust document creator._
 
-| Available Templates | url |
-| :-----------------: | :-: |
-|   Covering Letter   |     |
+| Available Templates |                   url                   |
+| :-----------------: | :-------------------------------------: |
+|   Covering Letter   | https://generic-templates.tradetrust.io |
+
+Use these urls in the "\$template" section of the configuration file.
 
 _Note: To use these available templates, please ensure that you have the correct schema in the configuration file._
 
