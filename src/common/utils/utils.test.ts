@@ -1,7 +1,7 @@
 import { getDimensions } from "./index";
 
 describe("getDimensions", () => {
-  it("getDimensions should return proportionate width and height values, capped at maxWidth, when landscape", () => {
+  it("should return proportionate width and height values, capped at maxWidth, when landscape", () => {
     const width = 400;
     const height = 300;
     const size = getDimensions({ width: width, height: height, maxWidth: 100, maxHeight: 100 });
@@ -15,7 +15,7 @@ describe("getDimensions", () => {
     expect(size2.height).toBe((height2 / width2) * 100);
   });
 
-  it("getDimensions should return proportionate width and height values, capped at maxHeight, when portrait", () => {
+  it("should return proportionate width and height values, capped at maxHeight, when portrait", () => {
     const width = 300;
     const height = 600;
     const size = getDimensions({ width: width, height: height, maxWidth: 100, maxHeight: 100 });
