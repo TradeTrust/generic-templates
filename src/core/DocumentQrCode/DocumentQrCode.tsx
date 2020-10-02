@@ -1,28 +1,12 @@
 import QRCode, { ImageSettings } from "qrcode.react";
 import React, { FunctionComponent, useState } from "react";
 import "./style.css";
+import { getDimensions } from "./../../common/utils";
 
 interface DocumentQrCode {
   url: string;
   logo?: string;
 }
-
-// https://stackoverflow.com/questions/3971841/how-to-resize-images-proportionally-keeping-the-aspect-ratio
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const getDimensions = ({
-  width,
-  height,
-  maxWidth,
-  maxHeight
-}: {
-  width: number;
-  height: number;
-  maxWidth: number;
-  maxHeight: number;
-}) => {
-  const ratio = Math.min(maxWidth / width, maxHeight / height);
-  return { width: Math.round(width * ratio), height: Math.round(height * ratio) };
-};
 
 export const DocumentQrCode: FunctionComponent<DocumentQrCode> = ({ url, logo }) => {
   const [imageSettings, setImageSettings] = useState<ImageSettings>();
@@ -37,8 +21,8 @@ export const DocumentQrCode: FunctionComponent<DocumentQrCode> = ({ url, logo })
         src: logo,
         x: undefined,
         y: undefined,
-        height: logoSize.height,
-        width: logoSize.width,
+        height: Math.round(logoSize.height),
+        width: Math.round(logoSize.width),
         excavate: true
       });
     };
