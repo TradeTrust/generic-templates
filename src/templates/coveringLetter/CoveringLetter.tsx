@@ -64,7 +64,7 @@ export const CoveringLetterTemplate: FunctionComponent<TemplateProps<CoveringLet
           </div>
         )}
       </div>
-      {qrCodeUrl && <DocumentQrCode url={qrCodeUrl} />}
+      {qrCodeUrl && <DocumentQrCode url={qrCodeUrl} logo={logo} />}
     </div>
   );
 };
