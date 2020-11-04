@@ -42,5 +42,10 @@ export const invoice: Invoice = {
       unitPrice: 50,
       amount: 50
     }
-  ]
+  ],
+  $template: {
+    name: "INVOICE",
+    type: "EMBEDDED_RENDERER",
+    url: "https://deploy-preview-6--generic-templates.netlify.app/"
+  }
 };

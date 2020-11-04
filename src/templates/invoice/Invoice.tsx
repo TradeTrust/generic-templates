@@ -47,8 +47,10 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<Invoice> & { class
             </tr>
           </thead>
           <tbody>
-            <td>{id}</td>
-            {date && <td>{format(new Date(date), "d MMM yyyy")}</td>}
+            <tr>
+              <td>{id}</td>
+              {date && <td>{format(new Date(date), "d MMM yyyy")}</td>}
+            </tr>
           </tbody>
         </table>
         <table
@@ -62,8 +64,10 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<Invoice> & { class
             </tr>
           </thead>
           <tbody>
-            <td>{customerId}</td>
-            <td>{terms}</td>
+            <tr>
+              <td>{customerId}</td>
+              <td>{terms}</td>
+            </tr>
           </tbody>
         </table>
         <table className="table" style={{ width: "40%", left: "0", top: "120px", position: "relative" }}>
@@ -73,16 +77,28 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<Invoice> & { class
             </tr>
           </thead>
           <tbody>
-            <tr>{billTo?.name}</tr>
-            <tr>{billTo?.company.companyName}</tr>
-            <tr>{billTo?.company.streetAddress}</tr>
             <tr>
-              {billTo?.company.city},{billTo?.company.postalCode}
+              <td>{billTo?.name}</td>
             </tr>
             <tr>
-              {billTo?.company.city},{billTo?.company.phoneNumber}
+              <td>{billTo?.company.companyName}</td>
             </tr>
-            <tr>{billTo?.email}</tr>
+            <tr>
+              <td>{billTo?.company.streetAddress}</td>
+            </tr>
+            <tr>
+              <td>
+                {billTo?.company.city},{billTo?.company.postalCode}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                {billTo?.company.city},{billTo?.company.phoneNumber}
+              </td>
+            </tr>
+            <tr>
+              <td>{billTo?.email}</td>
+            </tr>
           </tbody>
         </table>
         <table className="table" style={{ position: "relative", top: "150px" }}>
@@ -95,9 +111,9 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<Invoice> & { class
             </tr>
           </thead>
           <tbody>
-            {invoiceItems?.map(item => {
+            {invoiceItems?.map((item, index) => {
               return (
-                <tr>
+                <tr key={index}>
                   <td style={{ borderStyle: "none none solid solid", borderColor: "black", borderWidth: "2px" }}>
                     {item.description}
                   </td>
@@ -137,7 +153,6 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<Invoice> & { class
           </tbody>
         </table>
       </div>
-      {}
     </div>
   );
 };

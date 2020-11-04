@@ -3,7 +3,7 @@ import { TemplateProps } from "@govtechsg/decentralized-renderer-react-component
 import React, { FunctionComponent } from "react";
 import { DocumentQrCode } from "../../core/DocumentQrCode";
 import { PrintWatermark } from "../../core/PrintWatermark";
-import { CoveringLetter } from "./sample";
+import { CoveringLetter } from "./types";
 
 const container = css`
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
