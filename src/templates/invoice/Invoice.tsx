@@ -27,17 +27,20 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<Invoice> & { class
   return (
     <div>
       <div css={container} className={className}>
-        <h1 style={{ color: "#30509b", textAlign: "right" }}>INVOICE</h1>
-        <div className="m-0">
-          <h1 style={{ color: "#30509b", textAlign: "left" }}>{billFrom?.companyName}</h1>
+        <h1 style={{ color: "#4172AF", textAlign: "right" }}>INVOICE</h1>
+        <div className="m-0" style={{ position: "absolute", top: "0" }}>
+          <h1 style={{ color: "#4172AF", textAlign: "left" }}>{billFrom?.companyName}</h1>
           <h3 style={{ textAlign: "left" }}>{billFrom?.streetAddress}</h3>
           <h3 style={{ textAlign: "left" }}>
             {billFrom?.city} {billFrom?.postalCode}
           </h3>
           <h3 style={{ textAlign: "left" }}>{billFrom?.phoneNumber}</h3>
         </div>
-        <table className="table" style={{ width: "40%", right: "0", top: "100px", position: "absolute" }}>
-          <thead style={{ backgroundColor: "#30509b", color: "white" }}>
+        <table
+          className="table"
+          style={{ width: "40%", right: "0", top: "100px", position: "absolute", textAlign: "center" }}
+        >
+          <thead style={{ backgroundColor: "#4172AF", color: "white" }}>
             <tr>
               <th scope="col">INVOICE #</th>
               <th scope="col">DATE</th>
@@ -48,8 +51,11 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<Invoice> & { class
             {date && <td>{format(new Date(date), "d MMM yyyy")}</td>}
           </tbody>
         </table>
-        <table className="table" style={{ width: "40%", right: "0", top: "180px", position: "absolute" }}>
-          <thead style={{ backgroundColor: "#30509b", color: "white" }}>
+        <table
+          className="table"
+          style={{ width: "40%", right: "0", top: "180px", position: "absolute", textAlign: "center" }}
+        >
+          <thead style={{ backgroundColor: "#4172AF", color: "white" }}>
             <tr>
               <th scope="col">CUSTOMER ID</th>
               <th scope="col">TERMS</th>
@@ -60,8 +66,8 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<Invoice> & { class
             <td>{terms}</td>
           </tbody>
         </table>
-        <table className="table" style={{ width: "40%", left: "0", top: "250px" }}>
-          <thead style={{ backgroundColor: "#30509b", color: "white" }}>
+        <table className="table" style={{ width: "40%", left: "0", top: "120px", position: "relative" }}>
+          <thead style={{ backgroundColor: "#4172AF", color: "white" }}>
             <tr>
               <th scope="col">BILL TO</th>
             </tr>
@@ -79,8 +85,8 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<Invoice> & { class
             <tr>{billTo?.email}</tr>
           </tbody>
         </table>
-        <table className="table">
-          <thead style={{ backgroundColor: "#30509b", color: "white" }}>
+        <table className="table" style={{ position: "relative", top: "150px" }}>
+          <thead style={{ backgroundColor: "#4172AF", color: "white" }}>
             <tr>
               <th scope="col">DESCRIPTION</th>
               <th scope="col">QTY</th>
@@ -95,13 +101,34 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<Invoice> & { class
                   <td style={{ borderStyle: "none none solid solid", borderColor: "black", borderWidth: "2px" }}>
                     {item.description}
                   </td>
-                  <td style={{ borderStyle: "none none solid solid", borderColor: "black", borderWidth: "2px" }}>
+                  <td
+                    style={{
+                      borderStyle: "none none solid solid",
+                      borderColor: "black",
+                      borderWidth: "2px",
+                      textAlign: "center"
+                    }}
+                  >
                     {item.quantity}
                   </td>
-                  <td style={{ borderStyle: "none none solid solid", borderColor: "black", borderWidth: "2px" }}>
+                  <td
+                    style={{
+                      borderStyle: "none none solid solid",
+                      borderColor: "black",
+                      borderWidth: "2px",
+                      textAlign: "right"
+                    }}
+                  >
                     {item.unitPrice}
                   </td>
-                  <td style={{ borderStyle: "none solid solid solid", borderColor: "black", borderWidth: "2px" }}>
+                  <td
+                    style={{
+                      borderStyle: "none solid solid solid",
+                      borderColor: "black",
+                      borderWidth: "2px",
+                      textAlign: "right"
+                    }}
+                  >
                     {item.amount}
                   </td>
                 </tr>
