@@ -32,7 +32,9 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<Invoice> & { class
           <h1 style={{ color: "#4172AF", textAlign: "left" }}>{billFrom?.companyName}</h1>
           <h3 style={{ textAlign: "left" }}>{billFrom?.streetAddress}</h3>
           <h3 style={{ textAlign: "left" }}>
-            {billFrom?.city} {billFrom?.postalCode}
+            {billFrom?.city}
+            {`, `}
+            {billFrom?.postalCode}
           </h3>
           <h3 style={{ textAlign: "left" }}>{billFrom?.phoneNumber}</h3>
         </div>
@@ -88,13 +90,13 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<Invoice> & { class
             </tr>
             <tr>
               <td>
-                {billTo?.company.city},{billTo?.company.postalCode}
+                {billTo?.company.city}
+                {`, `}
+                {billTo?.company.postalCode}
               </td>
             </tr>
             <tr>
-              <td>
-                {billTo?.company.city},{billTo?.company.phoneNumber}
-              </td>
+              <td>{billTo?.company.phoneNumber}</td>
             </tr>
             <tr>
               <td>{billTo?.email}</td>
