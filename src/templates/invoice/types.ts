@@ -1,7 +1,7 @@
 import { Document } from "@govtechsg/decentralized-renderer-react-components";
 
 export interface CompanyInfo {
-  companyName: string;
+  name: string;
   streetAddress: string;
   city: string;
   postalCode: string;
@@ -21,13 +21,17 @@ export interface Invoice extends Document {
   terms?: string;
   billFrom?: CompanyInfo;
   billTo?: BillingAddress;
-  invoiceItems?: InvoiceItem[];
+  billableItems?: InvoiceItem[];
+  subtotal?: string | number;
+  tax?: string | number;
+  taxTotal?: string | number;
+  total?: string | number;
   links?: { self: { href: string } };
 }
 
 export interface InvoiceItem {
   description: string;
-  quantity: number;
-  unitPrice: number;
-  amount: number;
+  quantity: number | string;
+  unitPrice: number | string;
+  amount: number | string;
 }

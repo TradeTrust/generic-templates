@@ -6,7 +6,7 @@ export const invoice: Invoice = {
   customerId: "564",
   terms: "Due Upon Receipt",
   billFrom: {
-    companyName: "ABC Company",
+    name: "ABC Company",
     streetAddress: "Level 1, Industry Offices",
     city: "Singapore",
     postalCode: "123456",
@@ -14,7 +14,7 @@ export const invoice: Invoice = {
   },
   billTo: {
     company: {
-      companyName: "DEF Company",
+      name: "DEF Company",
       streetAddress: "Level 2, Industry Offices",
       city: "Singapore",
       postalCode: "612345",
@@ -23,7 +23,7 @@ export const invoice: Invoice = {
     name: "James Lee",
     email: "def@company.com"
   },
-  invoiceItems: [
+  billableItems: [
     {
       description: "Service Fee",
       quantity: 1,
@@ -43,6 +43,10 @@ export const invoice: Invoice = {
       amount: 50
     }
   ],
+  subtotal: 625,
+  tax: 0,
+  taxTotal: 0,
+  total: 625,
   $template: {
     name: "INVOICE",
     type: "EMBEDDED_RENDERER",
