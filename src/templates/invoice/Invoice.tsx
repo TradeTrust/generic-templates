@@ -33,54 +33,13 @@ const Container = styled.div`
     background-color: #4172af;
     color: white;
   }
-
-  /*
-
-
-  .table-right {
-    width: 40%;
-    right: 0;
-    top: 100px;
-    position: absolute;
-    text-align: center;
-  }
-
-  .table-left {
-    width: 40%;
-    left: 0;
-    top: 120px;
-    position: relative;
-  }
-
-  .table-full {
-    position: relative;
-    top: 150px;
-  }
-
-  .border {
-    border-style: none none solid solid;
-    border-color: black;
-    border-width: 2px;
-  }
-
-  .total {
-    font-weight: 700;
-    text-align: left;
-    width: 40%;
-    line-height: 10px;
-  }
-
-  .amount {
-    width: 10%;
-    margin-left: 700px;
-  } */
 `;
 
 export const InvoiceTemplate: FunctionComponent<TemplateProps<Invoice>> = ({ document }) => {
   const { id, date, customerId, terms, billFrom, billTo, billableItems, subtotal, tax, taxTotal, total } = document;
 
   return (
-    <Container className="p-4 container">
+    <Container className="p-4 mx-auto container">
       <div className="flex flex-wrap">
         <div className="w-full md:w-5/12 md:ml-auto md:order-2">
           <h1 className="text-right">INVOICE</h1>
@@ -120,7 +79,7 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<Invoice>> = ({ doc
           <h3>{billFrom?.streetAddress}</h3>
           <h3>
             {billFrom?.city}
-            {`, ${billFrom?.postalCode}`}
+            {billFrom?.postalCode && `, ${billFrom?.postalCode}`}
           </h3>
           <h3>{billFrom?.phoneNumber}</h3>
           <div className="flex flex-wrap bg-blue">
@@ -135,7 +94,7 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<Invoice>> = ({ doc
               <p>{billTo?.company.streetAddress}</p>
               <p>
                 {billTo?.company.city}
-                {`, ${billTo?.company.postalCode}`}
+                {billTo?.company.postalCode && `, ${billTo?.company.postalCode}`}
               </p>
               <p>{billTo?.company.phoneNumber}</p>
               <p>{billTo?.email}</p>
@@ -169,13 +128,13 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<Invoice>> = ({ doc
       <div className="w-full md:w-5/12 md:ml-auto mt-2 flex text-right">
         <div className="w-full md:w-1/2 border-bottom">
           <h4>SUBTOTAL</h4>
-          <h4>{`TAX (${tax}%)`}</h4>
+          <h4>{tax && `TAX (${tax}%)`}</h4>
           <hr />
           <h4>BALANCE DUE</h4>
         </div>
         <div className="w-full md:w-1/2">
           <p>{subtotal}</p>
-          <p>{taxTotal}</p>
+          <p>{taxTotal && taxTotal}</p>
           <hr />
           <p className="font-bold">{total}</p>
         </div>

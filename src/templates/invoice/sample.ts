@@ -50,6 +50,6 @@ export const invoice: Invoice = {
   $template: {
     name: "INVOICE",
     type: "EMBEDDED_RENDERER",
-    url: "https://deploy-preview-6--generic-templates.netlify.app/"
+    url: "http://localhost:3000"
   }
 };
