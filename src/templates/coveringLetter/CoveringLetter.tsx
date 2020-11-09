@@ -25,7 +25,7 @@ export const CoveringLetterTemplate: FunctionComponent<TemplateProps<CoveringLet
   const qrCodeUrl = document?.links?.self.href;
 
   return (
-    <div style={{ backgroundColor }}>
+    <div style={{ backgroundColor }} data-testid="covering-letter-template">
       <Container className="p-4 mx-auto container">
         <PrintWatermark />
         {logo && <img className="logo my-4" src={logo} />}
