@@ -26,27 +26,27 @@ export const invoice: Invoice = {
   billableItems: [
     {
       description: "Service Fee",
-      quantity: 1,
-      unitPrice: 200,
-      amount: 200
+      quantity: "1",
+      unitPrice: "200",
+      amount: "200"
     },
     {
       description: "Labor: 5 hours at $75/hr",
-      quantity: 5,
-      unitPrice: 75,
-      amount: 375
+      quantity: "5",
+      unitPrice: "75",
+      amount: "375"
     },
     {
       description: "New client discount",
-      quantity: 1,
-      unitPrice: 50,
-      amount: 50
+      quantity: "1",
+      unitPrice: "50",
+      amount: "50"
     }
   ],
-  subtotal: 625,
-  tax: 0,
-  taxTotal: 0,
-  total: 625,
+  subtotal: "625",
+  tax: "0",
+  taxTotal: "0",
+  total: "625",
   $template: {
     name: "INVOICE",
     type: "EMBEDDED_RENDERER",
