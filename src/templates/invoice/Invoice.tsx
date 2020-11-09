@@ -36,7 +36,19 @@ const Container = styled.div`
 `;
 
 export const InvoiceTemplate: FunctionComponent<TemplateProps<Invoice>> = ({ document }) => {
-  const { id, date, customerId, terms, billFrom, billTo, billableItems, subtotal, tax, taxTotal, total } = document;
+  const {
+    id,
+    date,
+    customerId,
+    terms,
+    billFrom,
+    billTo,
+    billableItems,
+    subtotal = 0,
+    tax = 0,
+    taxTotal = 0,
+    total = 0
+  } = document;
 
   return (
     <Container className="p-4 mx-auto container">
@@ -128,7 +140,7 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<Invoice>> = ({ doc
       <div className="w-full md:w-5/12 md:ml-auto mt-2 flex text-right">
         <div className="w-full md:w-1/2 border-bottom">
           <h4>SUBTOTAL</h4>
-          <h4>{tax && `TAX (${tax}%)`}</h4>
+          <h4>TAX (${tax}%)</h4>
           <hr />
           <h4>BALANCE DUE</h4>
         </div>
