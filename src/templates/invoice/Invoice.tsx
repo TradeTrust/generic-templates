@@ -33,6 +33,11 @@ const Container = styled.div`
     background-color: #4172af;
     color: white;
   }
+
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 `;
 
 export const InvoiceTemplate: FunctionComponent<TemplateProps<Invoice>> = ({ document }) => {
