@@ -51,7 +51,7 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<Invoice>> = ({ doc
   } = document;
 
   return (
-    <Container className="p-4 mx-auto container">
+    <Container className="p-4 mx-auto container" data-testid="invoice-template">
       <div className="flex flex-wrap">
         <div className="w-full md:w-5/12 md:ml-auto md:order-2">
           <h1 className="text-right">INVOICE</h1>
