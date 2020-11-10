@@ -2,7 +2,7 @@ import { Invoice } from "./types";
 
 export const invoice: Invoice = {
   id: "2034",
-  date: "2018-2-21",
+  date: "2018-02-21",
   customerId: "564",
   terms: "Due Upon Receipt",
   billFrom: {

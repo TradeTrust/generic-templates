@@ -115,7 +115,7 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<Invoice>> = ({ doc
         </div>
       </div>
       <div className="flex flex-wrap text-center mb-4 md:mb-0" />
-      <table className="table-auto w-full">
+      <table className="table-auto w-full table-responsive">
         <thead>
           <tr>
             <th className="px-4 py-2">DESCRIPTION</th>
