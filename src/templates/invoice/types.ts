@@ -22,16 +22,16 @@ export interface Invoice extends Document {
   billFrom?: CompanyInfo;
   billTo?: BillingAddress;
   billableItems?: InvoiceItem[];
-  subtotal?: string | number; //to cater for: SGD $2 or $2
-  tax?: string | number; //to cater for: GST - 7% or 7
-  taxTotal?: string | number; //to cater for: SGD $2 or $2
-  total?: string | number; //to cater for: SGD $2 or $2
+  subtotal?: string;
+  tax?: string;
+  taxTotal?: string;
+  total?: string;
   links?: { self: { href: string } };
 }
 
 export interface InvoiceItem {
   description: string;
-  quantity: number | string; //to cater for: 1 pair or 2
-  unitPrice: number | string; //to cater for: SGD $2 or $2
-  amount: number | string; //to cater for: SGD $2 or $2
+  quantity: string;
+  unitPrice: string;
+  amount: string;
 }
