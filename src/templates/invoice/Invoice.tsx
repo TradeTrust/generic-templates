@@ -3,6 +3,7 @@ import React, { FunctionComponent } from "react";
 import { Invoice } from "./types";
 import { format } from "date-fns";
 import styled from "@emotion/styled";
+import { DocumentQrCode } from "../../core/DocumentQrCode";
 
 const Container = styled.div`
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
@@ -54,6 +55,7 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<Invoice>> = ({ doc
     taxTotal = 0,
     total = 0
   } = document;
+  const qrCodeUrl = document?.links?.self.href;
 
   return (
     <Container className="p-4 mx-auto container" data-testid="invoice-template">
@@ -160,6 +162,7 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<Invoice>> = ({ doc
           <p className="font-bold">{total}</p>
         </div>
       </div>
+      {qrCodeUrl && <DocumentQrCode url={qrCodeUrl} />}
     </Container>
   );
 };
