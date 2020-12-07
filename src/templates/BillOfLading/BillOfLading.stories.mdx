@@ -1,0 +1,22 @@
+import { Meta, Preview, Props, Description, Story } from "@storybook/addon-docs/blocks";
+import { object } from "@storybook/addon-knobs";
+import { BillOfLadingTemplate } from "./billOfLadingTemplate";
+import { BillOfLadingSample } from "./samples";
+
+<Meta title="MDX|BillOfLadingTemplate" component={BillOfLadingTemplate} />
+
+# BillOfLadingTemplate component
+
+<Description of={BillOfLadingTemplate} />
+
+# Props
+
+<Props of={BillOfLadingTemplate} />
+
+# Usage
+
+<Preview>
+  <Story name="basic sample">
+    <BillOfLadingTemplate document={object("BL Document", BillOfLadingSample)} />
+  </Story>
+</Preview>
