@@ -1,6 +1,6 @@
 import { Document } from "@govtechsg/decentralized-renderer-react-components";
 
-export interface CompanyInfo {
+export interface CompanyInfoI {
   name: string;
   streetAddress: string;
   city: string;
@@ -8,19 +8,19 @@ export interface CompanyInfo {
   phoneNumber: string;
 }
 
-export interface BillingAddress {
+export interface BillingAddressI {
   name: string;
-  company: CompanyInfo;
+  company: CompanyInfoI;
   email: string;
 }
 
-export interface Invoice extends Document {
+export interface InvoiceI extends Document {
   id?: string;
   date?: string;
   customerId?: string;
   terms?: string;
-  billFrom?: CompanyInfo;
-  billTo?: BillingAddress;
+  billFrom?: CompanyInfoI;
+  billTo?: BillingAddressI;
   billableItems?: InvoiceItem[];
   subtotal?: string;
   tax?: string;

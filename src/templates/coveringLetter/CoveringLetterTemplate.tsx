@@ -1,9 +1,9 @@
+import styled from "@emotion/styled";
 import { TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
 import React, { FunctionComponent } from "react";
 import { DocumentQrCode } from "../../core/DocumentQrCode";
 import { PrintWatermark } from "../../core/PrintWatermark";
-import { CoveringLetter } from "./types";
-import styled from "@emotion/styled";
+import { CoveringLetterI } from "./types";
 
 const Container = styled.div`
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
@@ -20,7 +20,7 @@ const Container = styled.div`
   }
 `;
 
-export const CoveringLetterTemplate: FunctionComponent<TemplateProps<CoveringLetter>> = ({ document }) => {
+export const CoveringLetterTemplate: FunctionComponent<TemplateProps<CoveringLetterI>> = ({ document }) => {
   const { logo, title, remarks, backgroundColor, titleColor, remarksColor } = document;
   const qrCodeUrl = document?.links?.self.href;
 

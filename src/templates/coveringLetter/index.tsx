@@ -1,6 +1,6 @@
-import { CoveringLetterTemplate } from "./CoveringLetter";
+import { CoveringLetterTemplate } from "./CoveringLetterTemplate";
 
-export const templates = [
+export const CoveringLetterTemplates = [
   {
     id: "covering-letter-template",
     label: "Covering Letter Template",
