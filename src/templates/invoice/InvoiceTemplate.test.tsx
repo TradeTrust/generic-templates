@@ -3,6 +3,7 @@ import { render } from "@testing-library/react";
 import React from "react";
 import { InvoiceTemplate } from "./InvoiceTemplate";
 import { InvoiceSample } from "./sample";
+jest.spyOn(HTMLCanvasElement.prototype, "getContext").mockImplementation();
 
 describe("invoice", () => {
   it("should render the invoice correctly", () => {
