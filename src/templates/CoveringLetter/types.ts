@@ -1,6 +1,6 @@
 import { Document } from "@govtechsg/decentralized-renderer-react-components";
 
-export interface CoveringLetterI extends Document {
+export interface CoveringLetter extends Document {
   name: string;
   logo?: string;
   title?: string;

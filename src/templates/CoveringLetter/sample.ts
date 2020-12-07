@@ -1,6 +1,6 @@
-import { CoveringLetterI } from "./types";
+import { CoveringLetter } from "./types";
 
-export const CoveringLetterSample: CoveringLetterI = {
+export const CoveringLetterSample: CoveringLetter = {
   $template: {
     name: "COVERING_LETTER",
     type: "EMBEDDED_RENDERER",

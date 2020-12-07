@@ -3,7 +3,7 @@ import { TemplateProps } from "@govtechsg/decentralized-renderer-react-component
 import React, { FunctionComponent } from "react";
 import { DocumentQrCode } from "../../core/DocumentQrCode";
 import { PrintWatermark } from "../../core/PrintWatermark";
-import { CoveringLetterI } from "./types";
+import { CoveringLetter } from "./types";
 
 const Container = styled.div`
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
@@ -20,7 +20,7 @@ const Container = styled.div`
   }
 `;
 
-export const CoveringLetterTemplate: FunctionComponent<TemplateProps<CoveringLetterI>> = ({ document }) => {
+export const CoveringLetterTemplate: FunctionComponent<TemplateProps<CoveringLetter>> = ({ document }) => {
   const { logo, title, remarks, backgroundColor, titleColor, remarksColor } = document;
   const qrCodeUrl = document?.links?.self.href;
 

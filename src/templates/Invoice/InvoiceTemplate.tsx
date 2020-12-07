@@ -3,7 +3,7 @@ import { TemplateProps } from "@govtechsg/decentralized-renderer-react-component
 import { format } from "date-fns";
 import React, { FunctionComponent } from "react";
 import { DocumentQrCode } from "../../core/DocumentQrCode";
-import { InvoiceI } from "./types";
+import { Invoice } from "./types";
 
 const Container = styled.div`
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
@@ -41,7 +41,7 @@ const Container = styled.div`
   }
 `;
 
-export const InvoiceTemplate: FunctionComponent<TemplateProps<InvoiceI>> = ({ document }) => {
+export const InvoiceTemplate: FunctionComponent<TemplateProps<Invoice>> = ({ document }) => {
   const {
     id,
     date,

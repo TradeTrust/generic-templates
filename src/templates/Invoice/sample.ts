@@ -1,6 +1,6 @@
-import { InvoiceI } from "./types";
+import { Invoice } from "./types";
 
-export const InvoiceSample: InvoiceI = {
+export const InvoiceSample: Invoice = {
   $template: {
     name: "INVOICE",
     type: "EMBEDDED_RENDERER",
