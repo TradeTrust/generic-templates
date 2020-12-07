@@ -1,12 +1,13 @@
+import "@testing-library/jest-dom";
 import { render } from "@testing-library/react";
 import React from "react";
-import { InvoiceTemplate } from "./Invoice";
-import { invoice } from "./sample";
-import "@testing-library/jest-dom";
+import { InvoiceTemplate } from "./InvoiceTemplate";
+import { InvoiceSample } from "./sample";
+jest.spyOn(HTMLCanvasElement.prototype, "getContext").mockImplementation();
 
-describe("covering Letter", () => {
-  it("should render the cover letter correctly", () => {
-    const { getByText } = render(<InvoiceTemplate document={invoice} handleObfuscation={() => {}} />);
+describe("invoice", () => {
+  it("should render the invoice correctly", () => {
+    const { getByText } = render(<InvoiceTemplate document={InvoiceSample} handleObfuscation={() => {}} />);
     //static texts
     expect(getByText("INVOICE")).toBeInTheDocument();
     expect(getByText("INVOICE #")).toBeInTheDocument();

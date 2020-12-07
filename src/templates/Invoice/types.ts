@@ -14,6 +14,13 @@ export interface BillingAddress {
   email: string;
 }
 
+export interface InvoiceItem {
+  description: string;
+  quantity: string;
+  unitPrice: string;
+  amount: string;
+}
+
 export interface Invoice extends Document {
   id?: string;
   date?: string;
@@ -27,11 +34,4 @@ export interface Invoice extends Document {
   taxTotal?: string;
   total?: string;
   links?: { self: { href: string } };
-}
-
-export interface InvoiceItem {
-  description: string;
-  quantity: string;
-  unitPrice: string;
-  amount: string;
 }

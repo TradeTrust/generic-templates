@@ -1,9 +1,9 @@
+import styled from "@emotion/styled";
 import { TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
 import React, { FunctionComponent } from "react";
 import { DocumentQrCode } from "../../core/DocumentQrCode";
 import { PrintWatermark } from "../../core/PrintWatermark";
 import { CoveringLetter } from "./types";
-import styled from "@emotion/styled";
 
 const Container = styled.div`
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;

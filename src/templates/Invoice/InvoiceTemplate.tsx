@@ -1,9 +1,9 @@
-import { TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
-import React, { FunctionComponent } from "react";
-import { Invoice } from "./types";
-import { format } from "date-fns";
 import styled from "@emotion/styled";
+import { TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
+import { format } from "date-fns";
+import React, { FunctionComponent } from "react";
 import { DocumentQrCode } from "../../core/DocumentQrCode";
+import { Invoice } from "./types";
 
 const Container = styled.div`
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
@@ -96,12 +96,12 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<Invoice>> = ({ doc
         <div className="w-full md:w-5/12 md:order-1">
           <div className="mb-4">
             <h2>{billFrom?.name}</h2>
-            <h3>{billFrom?.streetAddress}</h3>
-            <h3>
+            <p>{billFrom?.streetAddress}</p>
+            <p>
               {billFrom?.city}
               {billFrom?.postalCode && `, ${billFrom?.postalCode}`}
-            </h3>
-            <h3>{billFrom?.phoneNumber}</h3>
+            </p>
+            <p>{billFrom?.phoneNumber}</p>
           </div>
           <div className="flex flex-wrap bg-blue">
             <div className="pl-2">

@@ -1,15 +1,15 @@
 import { CoveringLetter } from "./types";
 
-export const coveringLetter: CoveringLetter = {
-  name: "Covering Letter",
-  logo: "https://www.aretese.com/images/govtech-animated-logo.gif",
-  title: "Documents Bundle",
-  remarks: `Some very important documents in here for some submission.\n\nAnd it supports multiline!`,
+export const CoveringLetterSample: CoveringLetter = {
   $template: {
     name: "COVERING_LETTER",
     type: "EMBEDDED_RENDERER",
     url: "http://localhost:3000"
   },
+  name: "Covering Letter",
+  logo: "https://www.aretese.com/images/govtech-animated-logo.gif",
+  title: "Documents Bundle",
+  remarks: `Some very important documents in here for some submission.\n\nAnd it supports multiline!`,
   links: {
     self: {
       href:

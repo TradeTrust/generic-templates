@@ -1,8 +1,8 @@
 import { TemplateRegistry } from "@govtechsg/decentralized-renderer-react-components";
-import { templates } from "./coveringLetter";
-import { invoiceTemplate } from "./invoice";
+import { CoveringLetterTemplates } from "./CoveringLetter";
+import { InvoiceTemplates } from "./Invoice";
 
 export const registry: TemplateRegistry<any> = {
-  COVERING_LETTER: templates,
-  INVOICE: invoiceTemplate
+  COVERING_LETTER: CoveringLetterTemplates,
+  INVOICE: InvoiceTemplates
 };

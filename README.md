@@ -9,6 +9,7 @@ _Note: These are just some rendering templates that are made available for users
 | Available Templates |                   url                   |
 | :-----------------: | :-------------------------------------: |
 |   Covering Letter   | https://generic-templates.tradetrust.io |
+|       Invoice       | https://generic-templates.tradetrust.io |
 
 Use any one of these urls in the `forms[0].defaults.$template.url` field of the configuration file.
 

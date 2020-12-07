@@ -1,6 +1,6 @@
-import { InvoiceTemplate } from "./Invoice";
+import { InvoiceTemplate } from "./InvoiceTemplate";
 
-export const invoiceTemplate = [
+export const InvoiceTemplates = [
   {
     id: "invoice-template",
     label: "Invoice Template",

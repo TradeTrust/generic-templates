@@ -1,6 +1,11 @@
 import { Invoice } from "./types";
 
-export const invoice: Invoice = {
+export const InvoiceSample: Invoice = {
+  $template: {
+    name: "INVOICE",
+    type: "EMBEDDED_RENDERER",
+    url: "http://localhost:3000"
+  },
   id: "2034",
   date: "2018-02-21",
   customerId: "564",
@@ -47,11 +52,6 @@ export const invoice: Invoice = {
   tax: "0",
   taxTotal: "0",
   total: "625",
-  $template: {
-    name: "INVOICE",
-    type: "EMBEDDED_RENDERER",
-    url: "http://localhost:3000"
-  },
   links: {
     self: {
       href:
