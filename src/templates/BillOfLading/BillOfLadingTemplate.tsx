@@ -252,7 +252,7 @@ const Section1 = (document: BillOfLading): JSX.Element => {
 export const BillOfLadingTemplate: FunctionComponent<TemplateProps<BillOfLading>> = ({ document }) => {
   const qrCodeUrl = document?.links?.self.href;
   return (
-    <Wrapper>
+    <Wrapper data-testid="bill-of-lading-template">
       <div className="mb-8">{Section1(document)}</div>
       <div className="text-center">
         <strong>PARTICULARS FURNISHED BY SHIPPER</strong>
