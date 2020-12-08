@@ -1,4 +1,4 @@
-import { BillOfLadingTemplate } from "./BillOfLading";
+import { BillOfLadingTemplate } from "./BillOfLadingTemplate";
 
 export const BillOfLadingTemplates = [
   {

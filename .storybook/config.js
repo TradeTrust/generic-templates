@@ -1,5 +1,5 @@
-import { configure, addDecorator } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
+import { addDecorator, configure } from "@storybook/react";
 
-configure(require.context("../src", true, /\.stories\.(js|mdx)$/), module);
+configure(require.context("../src", true, /\.stories\.(tsx|js|mdx)$/), module);
 addDecorator(withKnobs);

@@ -21,10 +21,6 @@ const Container = styled.div`
     font-weight: 700;
   }
 
-  h4 {
-    font-weight: 700;
-  }
-
   .bg-blue {
     background-color: #4172af;
     color: #fff;
@@ -149,11 +145,11 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<Invoice>> = ({ doc
         </table>
       </div>
       <div className="w-full md:w-5/12 md:ml-auto mt-2 flex text-right">
-        <div className="w-full md:w-1/2 border-bottom">
-          <h4>SUBTOTAL</h4>
-          <h4>TAX (${tax}%)</h4>
+        <div className="w-full md:w-1/2">
+          <p className="font-bold">SUBTOTAL</p>
+          <p className="font-bold">TAX (${tax}%)</p>
           <hr />
-          <h4>BALANCE DUE</h4>
+          <p className="font-bold">BALANCE DUE</p>
         </div>
         <div className="w-full md:w-1/2">
           <p>{subtotal}</p>
