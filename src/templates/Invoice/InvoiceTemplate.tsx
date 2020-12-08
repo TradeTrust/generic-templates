@@ -3,9 +3,10 @@ import { TemplateProps } from "@govtechsg/decentralized-renderer-react-component
 import { format } from "date-fns";
 import React, { FunctionComponent } from "react";
 import { DocumentQrCode } from "../../core/DocumentQrCode";
+import { Wrapper } from "../../core/Wrapper";
 import { Invoice } from "./types";
 
-const Container = styled.div`
+const Container = styled(Wrapper)`
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
   position: relative;
 
@@ -54,7 +55,7 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<Invoice>> = ({ doc
   const qrCodeUrl = document?.links?.self.href;
 
   return (
-    <Container className="p-4 mx-auto container" data-testid="invoice-template">
+    <Container data-testid="invoice-template">
       <div className="flex flex-wrap">
         <div className="w-full md:w-5/12 mb-4 md:mb-0 md:ml-auto md:order-2">
           <h1 className="md:text-right leading-none mb-6">INVOICE</h1>

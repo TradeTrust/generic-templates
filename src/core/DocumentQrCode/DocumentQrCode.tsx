@@ -6,9 +6,9 @@ const Print = styled.div`
   display: none;
 
   @media print {
+    page-break-before: always;
     position: relative;
     display: flex;
-    page-break-before: always;
     align-items: center;
     justify-content: center;
     border: 1px solid #000000;

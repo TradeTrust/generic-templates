@@ -236,8 +236,6 @@ export const App: React.FunctionComponent<AppProps> = ({ documents }): React.Rea
                 border: 0;
                 width: 100%;
                 height: ${height}px;
-                padding: 1rem;
-                padding-top: 0.5rem;
               `}
             />
           </div>

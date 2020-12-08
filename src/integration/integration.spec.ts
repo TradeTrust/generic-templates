@@ -2,20 +2,28 @@ import { Selector } from "testcafe";
 
 fixture("Generic Templates").page`http://localhost:3010`;
 
-const CustomTemplate = Selector("[data-testid='covering-letter-template']");
+const CoveringLetterTemplate = Selector("[data-testid='covering-letter-template']");
 const InvoiceTemplate = Selector("[data-testid='invoice-template']");
 
-test("Generic template is rendered correctly", async test => {
-  // test the title is displayed
-  await test.click(Selector("[data-testid='COVERING_LETTER']"));
-  await test.switchToIframe("#iframe");
-  await test.expect(CustomTemplate.visible).ok();
-  await test.expect(CustomTemplate.textContent).contains("Documents Bundle");
+test("Covering Letter (GovTech) is rendered correctly", async t => {
+  await t.click(Selector("[data-testid='COVERING_LETTER']").withText("Covering Letter (GovTech)"));
+  await t.switchToIframe("#iframe");
+  await t.expect(CoveringLetterTemplate.visible).ok();
+  await t.expect(CoveringLetterTemplate.textContent).contains("Documents Bundle");
+  await t.expect(Selector('img[src="https://www.aretese.com/images/govtech-animated-logo.gif"]')).ok();
 });
-test("Invoice template is rendered correctly", async test => {
-  // test the title is displayed
-  await test.click(Selector("[data-testid='INVOICE']"));
-  await test.switchToIframe("#iframe");
-  await test.expect(InvoiceTemplate.visible).ok();
-  await test.expect(InvoiceTemplate.textContent).contains("INVOICE");
+
+test("Covering Letter (DBS) is rendered correctly", async t => {
+  await t.click(Selector("[data-testid='COVERING_LETTER']").withText("Covering Letter (DBS)"));
+  await t.switchToIframe("#iframe");
+  await t.expect(CoveringLetterTemplate.visible).ok();
+  await t.expect(CoveringLetterTemplate.textContent).contains("Documents Bundle");
+  await t.expect(Selector('img[src="/static/images/logo-dbs.png"]')).ok();
+});
+
+test("Invoice is rendered correctly", async t => {
+  await t.click(Selector("[data-testid='INVOICE']"));
+  await t.switchToIframe("#iframe");
+  await t.expect(InvoiceTemplate.visible).ok();
+  await t.expect(InvoiceTemplate.textContent).contains("INVOICE");
 });

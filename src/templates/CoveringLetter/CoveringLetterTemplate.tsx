@@ -2,10 +2,10 @@ import styled from "@emotion/styled";
 import { TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
 import React, { FunctionComponent } from "react";
 import { DocumentQrCode } from "../../core/DocumentQrCode";
-import { PrintWatermark } from "../../core/PrintWatermark";
+import { Wrapper } from "../../core/Wrapper";
 import { CoveringLetter } from "./types";
 
-const Container = styled.div`
+const Container = styled(Wrapper)`
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
   width: 100%;
   color: #4e4e50;
@@ -25,10 +25,9 @@ export const CoveringLetterTemplate: FunctionComponent<TemplateProps<CoveringLet
   const qrCodeUrl = document?.links?.self.href;
 
   return (
-    <div style={{ backgroundColor }} data-testid="covering-letter-template">
-      <Container className="p-4 mx-auto container">
-        <PrintWatermark />
-        {logo && <img className="logo my-4" src={logo} />}
+    <Container data-testid="covering-letter-template">
+      <div className="p-4" style={{ backgroundColor }}>
+        {logo && <img className="logo mb-8" src={logo} />}
         {title && (
           <h1 className="font-bold" style={{ color: titleColor }}>
             {title}
@@ -53,8 +52,8 @@ export const CoveringLetterTemplate: FunctionComponent<TemplateProps<CoveringLet
             </div>
           </div>
         )}
-        {qrCodeUrl && <DocumentQrCode url={qrCodeUrl} />}
-      </Container>
-    </div>
+      </div>
+      {qrCodeUrl && <DocumentQrCode url={qrCodeUrl} />}
+    </Container>
   );
 };

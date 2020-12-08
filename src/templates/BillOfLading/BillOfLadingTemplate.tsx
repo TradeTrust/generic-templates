@@ -1,13 +1,8 @@
 import { TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
 import React, { FunctionComponent } from "react";
 import { DocumentQrCode } from "../../core/DocumentQrCode";
+import { Wrapper } from "../../core/Wrapper";
 import { BillOfLading } from "./types";
-
-const borderStyle = {
-  borderStyle: "solid",
-  borderWidth: 0.5,
-  borderColor: "#000"
-};
 
 const smallText = (text: string): JSX.Element => <div style={{ fontSize: "0.8em" }}>{text}</div>;
 
@@ -257,16 +252,14 @@ const Section1 = (document: BillOfLading): JSX.Element => {
 export const BillOfLadingTemplate: FunctionComponent<TemplateProps<BillOfLading>> = ({ document }) => {
   const qrCodeUrl = document?.links?.self.href;
   return (
-    <>
-      <div className="container">
-        <div className="mb-8">{Section1(document)}</div>
-        <div className="text-center">
-          <strong>PARTICULARS FURNISHED BY SHIPPER</strong>
-        </div>
-        <div className="mb-8">{Section2(document)}</div>
-        {Section3()}
+    <Wrapper>
+      <div className="mb-8">{Section1(document)}</div>
+      <div className="text-center">
+        <strong>PARTICULARS FURNISHED BY SHIPPER</strong>
       </div>
+      <div className="mb-8">{Section2(document)}</div>
+      {Section3()}
       {qrCodeUrl && <DocumentQrCode url={qrCodeUrl} />}
-    </>
+    </Wrapper>
   );
 };
