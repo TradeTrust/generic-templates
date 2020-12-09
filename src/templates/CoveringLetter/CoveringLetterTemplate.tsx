@@ -5,7 +5,7 @@ import { DocumentQrCode } from "../../core/DocumentQrCode";
 import { Wrapper } from "../../core/Wrapper";
 import { CoveringLetter } from "./types";
 
-const Container = styled(Wrapper)`
+const CustomStyles = styled.div`
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
   width: 100%;
   color: #4e4e50;
@@ -25,35 +25,37 @@ export const CoveringLetterTemplate: FunctionComponent<TemplateProps<CoveringLet
   const qrCodeUrl = document?.links?.self.href;
 
   return (
-    <Container data-testid="covering-letter-template">
-      <div className="p-4" style={{ backgroundColor }}>
-        {logo && <img data-testid="logo" className="logo mb-8" src={logo} />}
-        {title && (
-          <h1 className="font-bold" style={{ color: titleColor }}>
-            {title}
-          </h1>
-        )}
-        {remarks && (
-          <div className="my-4">
-            <div
-              className="font-bold"
-              style={{
-                color: remarksColor
-              }}
-            >
-              Remarks:
+    <Wrapper data-testid="covering-letter-template">
+      <CustomStyles>
+        <div className="p-4" style={{ backgroundColor }}>
+          {logo && <img data-testid="logo" className="logo mb-8" src={logo} />}
+          {title && (
+            <h1 className="font-bold" style={{ color: titleColor }}>
+              {title}
+            </h1>
+          )}
+          {remarks && (
+            <div className="my-4">
+              <div
+                className="font-bold"
+                style={{
+                  color: remarksColor
+                }}
+              >
+                Remarks:
+              </div>
+              <div
+                style={{
+                  color: remarksColor
+                }}
+              >
+                {remarks}
+              </div>
             </div>
-            <div
-              style={{
-                color: remarksColor
-              }}
-            >
-              {remarks}
-            </div>
-          </div>
-        )}
-      </div>
-      {qrCodeUrl && <DocumentQrCode url={qrCodeUrl} />}
-    </Container>
+          )}
+        </div>
+        {qrCodeUrl && <DocumentQrCode url={qrCodeUrl} />}
+      </CustomStyles>
+    </Wrapper>
   );
 };
