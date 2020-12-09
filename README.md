@@ -6,10 +6,12 @@ Generic templates for TradeTrust, where users can use any of these available tem
 
 _Note: These are just some rendering templates that are made available for users to use, the configurations to use these templates are in the [documentation](https://docs.tradetrust.io/document-creator) of TradeTrust document creator._
 
-| Available Templates |                   url                   |
-| :-----------------: | :-------------------------------------: |
-|   Covering Letter   | https://generic-templates.tradetrust.io |
-|       Invoice       | https://generic-templates.tradetrust.io |
+| Available Templates |       type        |      name       |                   url                   |
+| :-----------------: | :---------------: | :-------------: | :-------------------------------------: |
+|   Bill of Lading    | EMBEDDED_RENDERER | BILL_OF_LADING  | https://generic-templates.tradetrust.io |
+|     Chafta COO      | EMBEDDED_RENDERER |   CHAFTA_COO    | https://generic-templates.tradetrust.io |
+|   Covering Letter   | EMBEDDED_RENDERER | COVERING_LETTER | https://generic-templates.tradetrust.io |
+|       Invoice       | EMBEDDED_RENDERER |     INVOICE     | https://generic-templates.tradetrust.io |
 
 Use any one of these urls in the `forms[0].defaults.$template.url` field of the configuration file.
 

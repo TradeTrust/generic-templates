@@ -5,10 +5,14 @@ import { ChaftaCooTemplate } from "./ChaftaCooTemplate";
 import { ChaftaCooSample } from "./sample";
 jest.spyOn(HTMLCanvasElement.prototype, "getContext").mockImplementation();
 
-describe("bill of lading", () => {
-  it("should render chafta coo template correctly", () => {
+describe("chafta coo", () => {
+  it("should render titles correctly", () => {
     render(<ChaftaCooTemplate document={ChaftaCooSample} handleObfuscation={() => {}} />);
-
     expect(screen.getAllByText("CERTIFICATE OF ORIGIN")).toHaveLength(2);
+  });
+
+  it("should render a signature", () => {
+    render(<ChaftaCooTemplate document={ChaftaCooSample} handleObfuscation={() => {}} />);
+    expect(screen.getByTestId("signature")).toBeInTheDocument();
   });
 });

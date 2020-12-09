@@ -304,7 +304,9 @@ export const DeclarationSection: FunctionComponent<TemplateProps<ChaftaCooDocume
           {supplyChainConsignment?.loadingBaseportLocation?.name},{" "}
           {printDate(firstSignatoryAuthentication?.actualDateTime)}
         </div>
-        <img className="w-1/2 mx-auto" src={firstSignatoryAuthentication?.signature} />
+        <div className="w-1/2 mx-auto">
+          <img data-testid="signature" src={firstSignatoryAuthentication?.signature} />
+        </div>
         <div>Place, date and signature of authorised person</div>
       </div>
     </div>

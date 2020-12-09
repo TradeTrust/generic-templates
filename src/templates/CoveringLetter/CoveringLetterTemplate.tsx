@@ -27,7 +27,7 @@ export const CoveringLetterTemplate: FunctionComponent<TemplateProps<CoveringLet
   return (
     <Container data-testid="covering-letter-template">
       <div className="p-4" style={{ backgroundColor }}>
-        {logo && <img className="logo mb-8" src={logo} />}
+        {logo && <img data-testid="logo" className="logo mb-8" src={logo} />}
         {title && (
           <h1 className="font-bold" style={{ color: titleColor }}>
             {title}
