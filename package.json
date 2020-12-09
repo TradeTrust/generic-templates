@@ -30,7 +30,7 @@
     "integration:concurrently:headless": "concurrently -k -s first \"npm:dev\" \"npm:integration:headless\"",
     "lint": "eslint . --ext .ts,.tsx,.mdx --max-warnings 0",
     "lint:fix": "npm run lint -- --fix",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -s ./ -p 6006",
     "storybook:build": "build-storybook -o docs",
     "test": "jest --ci",
     "test:coverage": "npm run test -- --coverage",
@@ -209,7 +209,10 @@
     "moduleNameMapper": {
       "\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.(css|less)$": "<rootDir>/__mocks__/fileMock.js"
-    }
+    },
+    "setupFilesAfterEnv": [
+      "./jest.setup.ts"
+    ]
   },
   "prettier": {
     "printWidth": 120

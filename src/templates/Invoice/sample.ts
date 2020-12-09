@@ -6,6 +6,12 @@ export const InvoiceSample: Invoice = {
     type: "EMBEDDED_RENDERER",
     url: "http://localhost:3000"
   },
+  links: {
+    self: {
+      href:
+        "https://action.openattestation.com/?q=%7B%22type%22:%22DOCUMENT%22,%22payload%22:%7B%22uri%22:%22https://gallery.openattestation.com/static/documents/invoice-ropsten.json%22,%22permittedActions%22:%5B%22VIEW%22%5D,%22redirect%22:%22https://dev.tradetrust.io%22%7D%7D"
+    }
+  },
   id: "2034",
   date: "2018-02-21",
   customerId: "564",
@@ -51,11 +57,5 @@ export const InvoiceSample: Invoice = {
   subtotal: "625",
   tax: "0",
   taxTotal: "0",
-  total: "625",
-  links: {
-    self: {
-      href:
-        "https://action.openattestation.com/?q=%7B%22type%22:%22DOCUMENT%22,%22payload%22:%7B%22uri%22:%22https://gallery.openattestation.com/static/documents/invoice-ropsten.json%22,%22permittedActions%22:%5B%22VIEW%22%5D,%22redirect%22:%22https://dev.tradetrust.io%22%7D%7D"
-    }
-  }
+  total: "625"
 };
