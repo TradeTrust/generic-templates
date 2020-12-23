@@ -75,7 +75,7 @@ const Section3 = (): JSX.Element => (
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sagittis id consectetur purus ut faucibus. Diam quam nulla porttitor massa. Eu tincidunt tortor aliquam nulla facilisi cras fermentum. Amet mauris commodo quis imperdiet massa tincidunt. Luctus accumsan tortor posuere ac ut. Eu volutpat odio facilisis mauris sit amet massa vitae tortor. Eros donec ac odio tempor orci dapibus. Varius morbi enim nunc faucibus a pellentesque sit amet. Velit aliquet sagittis id consectetur purus ut. Porta non pulvinar neque laoreet suspendisse interdum consectetur libero. Odio ut sem nulla pharetra diam sit. Nunc sed augue lacus viverra vitae congue eu consequat ac. Eros in cursus turpis massa tincidunt dui ut ornare lectus."
           )}
           <div className="text-center mt-4 mb-16">
-            <strong>{smallText("Signed for the Carrier A.P. Moller - Maersk A/S trading as Maersk Line")}</strong>
+            <strong>{smallText("Signed for the Carrier A.P. Moller")}</strong>
           </div>
           <hr />
           <div className="text-center mt-2">
