@@ -157,7 +157,7 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<Invoice>> = ({ doc
             <p>{subtotal}</p>
             <p>{taxTotal && taxTotal}</p>
             <hr />
-            <p className="font-bold">{total}</p>
+            <p className="font-bold">{total} 123</p>
           </div>
         </div>
         {qrCodeUrl && <DocumentQrCode url={qrCodeUrl} />}
