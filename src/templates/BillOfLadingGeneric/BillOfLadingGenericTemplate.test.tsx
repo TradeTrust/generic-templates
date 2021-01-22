@@ -1,0 +1,18 @@
+import { screen } from "@testing-library/dom";
+import { render } from "@testing-library/react";
+import React from "react";
+import { BillOfLadingGenericTemplate } from "./BillOfLadingGenericTemplate";
+import { BillOfLadingGenericSample } from "./sample";
+jest.spyOn(HTMLCanvasElement.prototype, "getContext").mockImplementation();
+
+describe("bill of lading", () => {
+  it("should render B/L number correctly", () => {
+    render(<BillOfLadingGenericTemplate document={BillOfLadingGenericSample} handleObfuscation={() => {}} />);
+    expect(screen.getAllByText("SGCNM21566325")).toHaveLength(1);
+  });
+
+  it("should render company logo", () => {
+    render(<BillOfLadingGenericTemplate document={BillOfLadingGenericSample} handleObfuscation={() => {}} />);
+    expect(screen.getByTestId("logo")).toHaveAttribute("src", "/static/images/logo-tradetrust.svg");
+  });
+});
