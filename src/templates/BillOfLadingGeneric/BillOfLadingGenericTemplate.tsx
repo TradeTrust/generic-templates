@@ -18,10 +18,10 @@ export const BillOfLadingGenericTemplate: FunctionComponent<TemplateProps<BillOf
             <div className="w-1/2 border-black border">
               <div className="p-2">
                 B/L No <strong className="break-all">{blNumber}</strong>
-              </div>           
+              </div>
             </div>
           </div>
-        </div>  
+        </div>
       </div>
     </Wrapper>
   );

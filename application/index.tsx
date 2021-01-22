@@ -13,7 +13,7 @@ ReactDOM.render(
   <App
     documents={[
       { name: "Bill of Lading", document: BillOfLadingSample },
-      { name: "Bill of Lading (Generic)", document: BillOfLadingGenericSample},
+      { name: "Bill of Lading (Generic)", document: BillOfLadingGenericSample },
       { name: "Chafta COO", document: ChaftaCooSample },
       { name: "Covering Letter (GovTech)", document: CoveringLetterSample },
       { name: "Covering Letter (DBS)", document: CoveringLetterSample2 },

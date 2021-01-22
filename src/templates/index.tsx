@@ -3,7 +3,7 @@ import { BillOfLadingTemplates } from "./BillOfLading";
 import { ChaftaCooTemplates } from "./ChaftaCoo";
 import { CoveringLetterTemplates } from "./CoveringLetter";
 import { InvoiceTemplates } from "./Invoice";
-import { BillOfLadingGenericTemplates } from "./BillOfLadingGeneric"
+import { BillOfLadingGenericTemplates } from "./BillOfLadingGeneric";
 
 export const registry: TemplateRegistry<any> = {
   BILL_OF_LADING: BillOfLadingTemplates,
