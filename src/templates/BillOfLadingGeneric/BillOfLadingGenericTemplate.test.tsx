@@ -15,4 +15,9 @@ describe("bill of lading", () => {
     render(<BillOfLadingGenericTemplate document={BillOfLadingGenericSample} handleObfuscation={() => {}} />);
     expect(screen.getByTestId("logo")).toHaveAttribute("src", "/static/images/logo-tradetrust.svg");
   });
+
+  it("should render fields 1-9 content correctly", () => {
+    render(<BillOfLadingGenericTemplate document={BillOfLadingGenericSample} handleObfuscation={() => {}} />);
+    expect(screen.getAllByText("Hello")).toHaveLength(9);
+  });
 });
