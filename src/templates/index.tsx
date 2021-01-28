@@ -4,11 +4,13 @@ import { ChaftaCooTemplates } from "./ChaftaCoo";
 import { CoveringLetterTemplates } from "./CoveringLetter";
 import { InvoiceTemplates } from "./Invoice";
 import { BillOfLadingGenericTemplates } from "./BillOfLadingGeneric";
+import { XMLRendererTemplate } from "./XmlRenderer";
 
 export const registry: TemplateRegistry<any> = {
   BILL_OF_LADING: BillOfLadingTemplates,
   BILL_OF_LADING_GENERIC: BillOfLadingGenericTemplates,
   CHAFTA_COO: ChaftaCooTemplates,
   COVERING_LETTER: CoveringLetterTemplates,
-  INVOICE: InvoiceTemplates
+  INVOICE: InvoiceTemplates,
+  XML_RENDERER: XMLRendererTemplate
 };
