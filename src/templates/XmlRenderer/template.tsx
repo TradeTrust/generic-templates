@@ -1,9 +1,10 @@
 import React, { FunctionComponent } from "react";
 import { TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
 import styled from "@emotion/styled";
-import { XmlRendererFileInterface } from "./types_file";
-import { XmlRendererInterface } from "./types_data";
-import { processors } from "xml2js";
+import { XmlRendererFileInterface } from "./typesFile";
+import { XmlRendererInterface } from "./typesData";
+import { Parser, processors } from "xml2js";
+import { htmlUnescape } from "escape-goat";
 
 const TemplateContainer = styled.div`
   .template-container {
@@ -64,18 +65,12 @@ const TemplateContainer = styled.div`
   }
 `;
 
-export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterface> & {
-  classNameName?: string;
-}> = ({ document }) => {
+export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterface>> = ({ document }) => {
   // Decode html entities and remove byte order mark
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const entitiesDecoder = require("html-entities-decoder");
-  const output = entitiesDecoder(document.xmlData).replace("\\ufeff", "");
+  const output = htmlUnescape(document.xmlData).replace("\\ufeff", "");
 
   // Parse XML to Json
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const xml2js = require("xml2js");
-  const parser = new xml2js.Parser({
+  const parser = new Parser({
     trim: true,
     normalize: true,
     explicitArray: false,
@@ -86,7 +81,7 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
   // Placeholder data field
   let jsonDocument = {} as XmlRendererInterface;
 
-  // C
+  // Convert XML string to Json
   parser.parseString(output, function(err: string, result: XmlRendererInterface) {
     if (!err) {
       jsonDocument = result;
@@ -103,39 +98,39 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
                 <div className="divTableBody">
                   <div className="divTableRow">
                     <div className="divTableHead">UBLVersionID</div>
-                    <div className="divTableCell">{jsonDocument.Invoice.UBLVersionID}</div>
+                    <div className="divTableCell">{jsonDocument?.Invoice?.UBLVersionID || ""}</div>
                   </div>
                   <div className="divTableRow">
                     <div className="divTableHead">CustomizationID</div>
-                    <div className="divTableCell">{jsonDocument.Invoice.CustomizationID}</div>
+                    <div className="divTableCell">{jsonDocument?.Invoice?.CustomizationID || ""}</div>
                   </div>
                   <div className="divTableRow">
                     <div className="divTableHead">ProfileID</div>
-                    <div className="divTableCell"> {jsonDocument.Invoice.ProfileID}</div>
+                    <div className="divTableCell"> {jsonDocument?.Invoice?.ProfileID || ""}</div>
                   </div>
                   <div className="divTableRow">
                     <div className="divTableHead">ID</div>
-                    <div className="divTableCell">{jsonDocument.Invoice.ID}</div>
+                    <div className="divTableCell">{jsonDocument?.Invoice?.ID || ""}</div>
                   </div>
                   <div className="divTableRow">
                     <div className="divTableHead">IssueDate</div>
-                    <div className="divTableCell">{jsonDocument.Invoice.IssueDate}</div>
+                    <div className="divTableCell">{jsonDocument?.Invoice?.IssueDate || ""}</div>
                   </div>
                   <div className="divTableRow">
                     <div className="divTableHead">DueDate</div>
-                    <div className="divTableCell">{jsonDocument.Invoice.DueDate}</div>
+                    <div className="divTableCell">{jsonDocument?.Invoice?.DueDate || ""}</div>
                   </div>
                   <div className="divTableRow">
                     <div className="divTableHead">InvoiceTypeCode</div>
-                    <div className="divTableCell">{jsonDocument.Invoice.InvoiceTypeCode}</div>
+                    <div className="divTableCell">{jsonDocument?.Invoice?.InvoiceTypeCode || ""}</div>
                   </div>
                   <div className="divTableRow">
                     <div className="divTableHead">DocumentCurrencyCode</div>
-                    <div className="divTableCell">{jsonDocument.Invoice.DocumentCurrencyCode}</div>
+                    <div className="divTableCell">{jsonDocument?.Invoice?.DocumentCurrencyCode || ""}</div>
                   </div>
                   <div className="divTableRow">
                     <div className="divTableHead">BuyerReference</div>
-                    <div className="divTableCell">{jsonDocument.Invoice.BuyerReference}</div>
+                    <div className="divTableCell">{jsonDocument?.Invoice?.BuyerReference || ""}</div>
                   </div>
                   <div className="divTableRow">
                     <div className="divTableHead">AccountingSupplierParty</div>
@@ -155,7 +150,7 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
                                           <div className="divTableRow">
                                             <div className="divTableHead">#text</div>
                                             <div className="divTableCell">
-                                              {jsonDocument.Invoice.AccountingSupplierParty.Party.EndpointID}
+                                              {jsonDocument?.Invoice?.AccountingSupplierParty?.Party?.EndpointID || ""}
                                             </div>
                                           </div>
                                           <div className="divTableRow">
@@ -174,10 +169,8 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
                                           <div className="divTableRow">
                                             <div className="divTableHead">ID</div>
                                             <div className="divTableCell">
-                                              {
-                                                jsonDocument.Invoice.AccountingSupplierParty.Party.PartyIdentification
-                                                  .ID
-                                              }
+                                              {jsonDocument?.Invoice?.AccountingSupplierParty?.Party
+                                                ?.PartyIdentification?.ID || ""}
                                             </div>
                                           </div>
                                         </div>
@@ -192,46 +185,36 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
                                           <div className="divTableRow">
                                             <div className="divTableHead">StreetName</div>
                                             <div className="divTableCell">
-                                              {
-                                                jsonDocument.Invoice.AccountingSupplierParty.Party.PostalAddress
-                                                  .StreetName
-                                              }
+                                              {jsonDocument?.Invoice?.AccountingSupplierParty?.Party?.PostalAddress
+                                                ?.StreetName || ""}
                                             </div>
                                           </div>
                                           <div className="divTableRow">
                                             <div className="divTableHead">AdditionalStreetName</div>
                                             <div className="divTableCell">
-                                              {
-                                                jsonDocument.Invoice.AccountingSupplierParty.Party.PostalAddress
-                                                  .AdditionalStreetName
-                                              }
+                                              {jsonDocument?.Invoice?.AccountingSupplierParty?.Party?.PostalAddress
+                                                ?.AdditionalStreetName || ""}
                                             </div>
                                           </div>
                                           <div className="divTableRow">
                                             <div className="divTableHead">CityName</div>
                                             <div className="divTableCell">
-                                              {
-                                                jsonDocument.Invoice.AccountingSupplierParty.Party.PostalAddress
-                                                  .CityName
-                                              }
+                                              {jsonDocument?.Invoice?.AccountingSupplierParty?.Party?.PostalAddress
+                                                ?.CityName || ""}
                                             </div>
                                           </div>
                                           <div className="divTableRow">
                                             <div className="divTableHead">PostalZone</div>
                                             <div className="divTableCell">
-                                              {
-                                                jsonDocument.Invoice.AccountingSupplierParty.Party.PostalAddress
-                                                  .PostalZone
-                                              }
+                                              {jsonDocument?.Invoice?.AccountingSupplierParty?.Party?.PostalAddress
+                                                ?.PostalZone || ""}
                                             </div>
                                           </div>
                                           <div className="divTableRow">
                                             <div className="divTableHead">CountrySubentity</div>
                                             <div className="divTableCell">
-                                              {
-                                                jsonDocument.Invoice.AccountingSupplierParty.Party.PostalAddress
-                                                  .CountrySubentity
-                                              }
+                                              {jsonDocument?.Invoice?.AccountingSupplierParty?.Party?.PostalAddress
+                                                ?.CountrySubentity || ""}
                                             </div>
                                           </div>
                                           <div className="divTableRow">
@@ -242,10 +225,8 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
                                                   <div className="divTableRow">
                                                     <div className="divTableHead">IdentificationCode</div>
                                                     <div className="divTableCell">
-                                                      {
-                                                        jsonDocument.Invoice.AccountingSupplierParty.Party.PostalAddress
-                                                          .Country.IdentificationCode
-                                                      }
+                                                      {jsonDocument?.Invoice?.AccountingSupplierParty?.Party
+                                                        ?.PostalAddress?.Country?.IdentificationCode || ""}
                                                     </div>
                                                   </div>
                                                 </div>
@@ -264,7 +245,7 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
                                           <div className="divTableRow">
                                             <div className="divTableHead">CompanyID</div>
                                             <div className="divTableCell">
-                                              {jsonDocument.Invoice.AccountingSupplierParty.Party.PartyTaxScheme
+                                              {jsonDocument?.Invoice?.AccountingSupplierParty?.Party?.PartyTaxScheme
                                                 ?.CompanyID || ""}
                                             </div>
                                           </div>
@@ -276,8 +257,8 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
                                                   <div className="divTableRow">
                                                     <div className="divTableHead">ID</div>
                                                     <div className="divTableCell">
-                                                      {jsonDocument.Invoice.AccountingSupplierParty.Party.PartyTaxScheme
-                                                        ?.TaxScheme.ID || ""}
+                                                      {jsonDocument?.Invoice?.AccountingSupplierParty?.Party
+                                                        ?.PartyTaxScheme?.TaxScheme.ID || ""}
                                                     </div>
                                                   </div>
                                                 </div>
@@ -296,10 +277,8 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
                                           <div className="divTableRow">
                                             <div className="divTableHead">RegistrationName</div>
                                             <div className="divTableCell">
-                                              {
-                                                jsonDocument.Invoice.AccountingSupplierParty.Party.PartyLegalEntity
-                                                  .RegistrationName
-                                              }
+                                              {jsonDocument?.Invoice?.AccountingSupplierParty?.Party?.PartyLegalEntity
+                                                ?.RegistrationName || ""}
                                             </div>
                                           </div>
                                         </div>
@@ -332,7 +311,7 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
                                           <div className="divTableRow">
                                             <div className="divTableHead">#text</div>
                                             <div className="divTableCell">
-                                              {jsonDocument.Invoice.AccountingCustomerParty.Party.EndpointID}
+                                              {jsonDocument?.Invoice?.AccountingCustomerParty?.Party?.EndpointID || ""}
                                             </div>
                                           </div>
                                           <div className="divTableRow">
@@ -356,10 +335,8 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
                                                   <div className="divTableRow">
                                                     <div className="divTableHead">#text</div>
                                                     <div className="divTableCell">
-                                                      {
-                                                        jsonDocument.Invoice.AccountingCustomerParty.Party
-                                                          .PartyIdentification.ID
-                                                      }
+                                                      {jsonDocument?.Invoice?.AccountingCustomerParty?.Party
+                                                        ?.PartyIdentification.ID || ""}
                                                     </div>
                                                   </div>
                                                   <div className="divTableRow">
@@ -382,46 +359,36 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
                                           <div className="divTableRow">
                                             <div className="divTableHead">StreetName</div>
                                             <div className="divTableCell">
-                                              {
-                                                jsonDocument.Invoice.AccountingCustomerParty.Party.PostalAddress
-                                                  .StreetName
-                                              }
+                                              {jsonDocument?.Invoice?.AccountingCustomerParty?.Party?.PostalAddress
+                                                ?.StreetName || ""}
                                             </div>
                                           </div>
                                           <div className="divTableRow">
                                             <div className="divTableHead">AdditionalStreetName</div>
                                             <div className="divTableCell">
-                                              {
-                                                jsonDocument.Invoice.AccountingCustomerParty.Party.PostalAddress
-                                                  .AdditionalStreetName
-                                              }
+                                              {jsonDocument?.Invoice?.AccountingCustomerParty?.Party?.PostalAddress
+                                                ?.AdditionalStreetName || ""}
                                             </div>
                                           </div>
                                           <div className="divTableRow">
                                             <div className="divTableHead">CityName</div>
                                             <div className="divTableCell">
-                                              {
-                                                jsonDocument.Invoice.AccountingCustomerParty.Party.PostalAddress
-                                                  .CityName
-                                              }
+                                              {jsonDocument?.Invoice?.AccountingCustomerParty?.Party?.PostalAddress
+                                                ?.CityName || ""}
                                             </div>
                                           </div>
                                           <div className="divTableRow">
                                             <div className="divTableHead">PostalZone</div>
                                             <div className="divTableCell">
-                                              {
-                                                jsonDocument.Invoice.AccountingCustomerParty.Party.PostalAddress
-                                                  .PostalZone
-                                              }
+                                              {jsonDocument?.Invoice?.AccountingCustomerParty?.Party?.PostalAddress
+                                                ?.PostalZone || ""}
                                             </div>
                                           </div>
                                           <div className="divTableRow">
                                             <div className="divTableHead">CountrySubentity</div>
                                             <div className="divTableCell">
-                                              {
-                                                jsonDocument.Invoice.AccountingCustomerParty.Party.PostalAddress
-                                                  .CountrySubentity
-                                              }
+                                              {jsonDocument?.Invoice?.AccountingCustomerParty?.Party?.PostalAddress
+                                                ?.CountrySubentity || ""}
                                             </div>
                                           </div>
                                           <div className="divTableRow">
@@ -432,10 +399,8 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
                                                   <div className="divTableRow">
                                                     <div className="divTableHead">IdentificationCode</div>
                                                     <div className="divTableCell">
-                                                      {
-                                                        jsonDocument.Invoice.AccountingCustomerParty.Party.PostalAddress
-                                                          .Country.IdentificationCode
-                                                      }
+                                                      {jsonDocument?.Invoice?.AccountingCustomerParty?.Party
+                                                        ?.PostalAddress?.Country?.IdentificationCode || ""}
                                                     </div>
                                                   </div>
                                                 </div>
@@ -454,10 +419,8 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
                                           <div className="divTableRow">
                                             <div className="divTableHead">RegistrationName</div>
                                             <div className="divTableCell">
-                                              {
-                                                jsonDocument.Invoice.AccountingCustomerParty.Party.PartyLegalEntity
-                                                  .RegistrationName
-                                              }
+                                              {jsonDocument?.Invoice?.AccountingCustomerParty?.Party?.PartyLegalEntity
+                                                ?.RegistrationName || ""}
                                             </div>
                                           </div>
                                         </div>
@@ -485,7 +448,7 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
                                   <div className="divTableRow">
                                     <div className="divTableHead">#text</div>
                                     <div className="divTableCell">
-                                      {jsonDocument.Invoice.PaymentMeans.PaymentMeansCode}
+                                      {jsonDocument?.Invoice?.PaymentMeans?.PaymentMeansCode || ""}
                                     </div>
                                   </div>
                                   <div className="divTableRow">
@@ -498,7 +461,7 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
                           </div>
                           <div className="divTableRow">
                             <div className="divTableHead">PaymentID</div>
-                            <div className="divTableCell">{jsonDocument.Invoice.PaymentMeans.PaymentID}</div>
+                            <div className="divTableCell">{jsonDocument?.Invoice?.PaymentMeans?.PaymentID || ""}</div>
                           </div>
                           <div className="divTableRow">
                             <div className="divTableHead">PayeeFinancialAccount</div>
@@ -508,13 +471,13 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
                                   <div className="divTableRow">
                                     <div className="divTableHead">ID</div>
                                     <div className="divTableCell">
-                                      {jsonDocument.Invoice.PaymentMeans.PayeeFinancialAccount.ID}
+                                      {jsonDocument?.Invoice?.PaymentMeans?.PayeeFinancialAccount?.ID || ""}
                                     </div>
                                   </div>
                                   <div className="divTableRow">
                                     <div className="divTableHead">Name</div>
                                     <div className="divTableCell">
-                                      {jsonDocument.Invoice.PaymentMeans.PayeeFinancialAccount.Name}
+                                      {jsonDocument?.Invoice?.PaymentMeans?.PayeeFinancialAccount?.Name || ""}
                                     </div>
                                   </div>
                                   <div className="divTableRow">
@@ -525,10 +488,8 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
                                           <div className="divTableRow">
                                             <div className="divTableHead">ID</div>
                                             <div className="divTableCell">
-                                              {
-                                                jsonDocument.Invoice.PaymentMeans.PayeeFinancialAccount
-                                                  .FinancialInstitutionBranch.ID
-                                              }
+                                              {jsonDocument?.Invoice?.PaymentMeans?.PayeeFinancialAccount
+                                                ?.FinancialInstitutionBranch?.ID || ""}
                                             </div>
                                           </div>
                                         </div>
@@ -550,7 +511,7 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
                         <div className="divTableBody">
                           <div className="divTableRow">
                             <div className="divTableHead">Note</div>
-                            <div className="divTableCell">{jsonDocument.Invoice.PaymentTerms.Note}</div>
+                            <div className="divTableCell">{jsonDocument?.Invoice?.PaymentTerms?.Note || ""}</div>
                           </div>
                         </div>
                       </div>
@@ -568,7 +529,9 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
                                 <div className="divTableBody">
                                   <div className="divTableRow">
                                     <div className="divTableHead">#text</div>
-                                    <div className="divTableCell">{jsonDocument.Invoice.TaxTotal.TaxAmount}</div>
+                                    <div className="divTableCell">
+                                      {jsonDocument?.Invoice?.TaxTotal?.TaxAmount || ""}
+                                    </div>
                                   </div>
                                   <div className="divTableRow">
                                     <div className="divTableHead">@_currencyID</div>
@@ -586,20 +549,18 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
                                   <div className="divTableRow">
                                     <div className="divTableHead">TaxableAmount</div>
                                     <div className="divTableHead">TaxAmount</div>
-                                    <div className="divTableHead">
-                                      TaxCategory {jsonDocument.Invoice.TaxTotal.TaxSubtotal.length}
-                                    </div>
+                                    <div className="divTableHead">TaxCategory</div>
                                   </div>
                                 </div>
                                 <div className="divTableBody">
-                                  {jsonDocument.Invoice.TaxTotal.TaxSubtotal.map((data, index) => (
+                                  {jsonDocument?.Invoice?.TaxTotal?.TaxSubtotal?.map((data, index) => (
                                     <div className="divTableRow" key={index}>
                                       <div className="divTableCell">
                                         <div className="divTable">
                                           <div className="divTableBody">
                                             <div className="divTableRow">
                                               <div className="divTableHead">#text</div>
-                                              <div className="divTableCell">{data.TaxableAmount}</div>
+                                              <div className="divTableCell">{data?.TaxableAmount || ""}</div>
                                             </div>
                                             <div className="divTableRow">
                                               <div className="divTableHead">@_currencyID</div>
@@ -614,7 +575,7 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
                                           <div className="divTableBody">
                                             <div className="divTableRow">
                                               <div className="divTableHead">#text</div>
-                                              <div className="divTableCell">{data.TaxAmount}</div>
+                                              <div className="divTableCell">{data?.TaxAmount || ""}</div>
                                             </div>
                                             <div className="divTableRow">
                                               <div className="divTableHead">@_currencyID</div>
@@ -628,11 +589,11 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
                                           <div className="divTableBody">
                                             <div className="divTableRow">
                                               <div className="divTableHead">ID</div>
-                                              <div className="divTableCell">{data.TaxCategory.ID}</div>
+                                              <div className="divTableCell">{data?.TaxCategory.ID || ""}</div>
                                             </div>
                                             <div className="divTableRow">
                                               <div className="divTableHead">Percent</div>
-                                              <div className="divTableCell">{data.TaxCategory.Percent}</div>
+                                              <div className="divTableCell">{data?.TaxCategory?.Percent || ""}</div>
                                             </div>
                                             <div className="divTableRow">
                                               <div className="divTableHead">TaxScheme</div>
@@ -642,7 +603,7 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
                                                     <div className="divTableRow">
                                                       <div className="divTableHead">ID</div>
                                                       <div className="divTableCell">
-                                                        {data.TaxCategory.TaxScheme.ID}
+                                                        {data?.TaxCategory?.TaxScheme?.ID || ""}
                                                       </div>
                                                     </div>
                                                   </div>
@@ -675,7 +636,7 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
                                   <div className="divTableRow">
                                     <div className="divTableHead">#text</div>
                                     <div className="divTableCell">
-                                      {jsonDocument.Invoice.LegalMonetaryTotal.LineExtensionAmount}
+                                      {jsonDocument?.Invoice?.LegalMonetaryTotal?.LineExtensionAmount || ""}
                                     </div>
                                   </div>
                                   <div className="divTableRow">
@@ -694,7 +655,7 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
                                   <div className="divTableRow">
                                     <div className="divTableHead">#text</div>
                                     <div className="divTableCell">
-                                      {jsonDocument.Invoice.LegalMonetaryTotal.TaxExclusiveAmount}
+                                      {jsonDocument?.Invoice?.LegalMonetaryTotal?.TaxExclusiveAmount || ""}
                                     </div>
                                   </div>
                                   <div className="divTableRow">
@@ -713,7 +674,7 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
                                   <div className="divTableRow">
                                     <div className="divTableHead">#text</div>
                                     <div className="divTableCell">
-                                      {jsonDocument.Invoice.LegalMonetaryTotal.TaxInclusiveAmount}
+                                      {jsonDocument?.Invoice?.LegalMonetaryTotal?.TaxInclusiveAmount || ""}
                                     </div>
                                   </div>
                                   <div className="divTableRow">
@@ -732,7 +693,7 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
                                   <div className="divTableRow">
                                     <div className="divTableHead">#text</div>
                                     <div className="divTableCell">
-                                      {jsonDocument.Invoice.LegalMonetaryTotal.PayableAmount}
+                                      {jsonDocument?.Invoice?.LegalMonetaryTotal?.PayableAmount || ""}
                                     </div>
                                   </div>
                                   <div className="divTableRow">
@@ -762,7 +723,7 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
                           </div>
                         </div>
                         <div className="divTableBody">
-                          {jsonDocument.Invoice.InvoiceLine.map((data, index) => (
+                          {jsonDocument?.Invoice?.InvoiceLine?.map((data, index) => (
                             <div className="divTableRow" key={index}>
                               <div className="divTableCell">{index}</div>
                               <div className="divTableCell">
@@ -770,7 +731,7 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
                                   <div className="divTableBody">
                                     <div className="divTableRow">
                                       <div className="divTableHead">#text</div>
-                                      <div className="divTableCell">{data.InvoicedQuantity}</div>
+                                      <div className="divTableCell">{data?.InvoicedQuantity || ""}</div>
                                     </div>
                                     <div className="divTableRow">
                                       <div className="divTableHead">@_unitCode</div>
@@ -784,7 +745,7 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
                                   <div className="divTableBody">
                                     <div className="divTableRow">
                                       <div className="divTableHead">#text</div>
-                                      <div className="divTableCell">{data.LineExtensionAmount}</div>
+                                      <div className="divTableCell">{data?.LineExtensionAmount || ""}</div>
                                     </div>
                                     <div className="divTableRow">
                                       <div className="divTableHead">@_currencyID</div>
@@ -798,21 +759,25 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
                                   <div className="divTableBody">
                                     <div className="divTableRow">
                                       <div className="divTableHead">ChargeIndicator</div>
-                                      <div className="divTableCell">{data.AllowanceCharge.ChargeIndicator}</div>
+                                      <div className="divTableCell">{data?.AllowanceCharge?.ChargeIndicator || ""}</div>
                                     </div>
                                     <div className="divTableRow">
                                       <div className="divTableHead">AllowanceChargeReasonCode</div>
                                       <div className="divTableCell">
-                                        {data.AllowanceCharge.AllowanceChargeReasonCode}
+                                        {data?.AllowanceCharge?.AllowanceChargeReasonCode || ""}
                                       </div>
                                     </div>
                                     <div className="divTableRow">
                                       <div className="divTableHead">AllowanceChargeReason</div>
-                                      <div className="divTableCell">{data.AllowanceCharge.AllowanceChargeReason}</div>
+                                      <div className="divTableCell">
+                                        {data?.AllowanceCharge?.AllowanceChargeReason || ""}
+                                      </div>
                                     </div>
                                     <div className="divTableRow">
                                       <div className="divTableHead">MultiplierFactorNumeric</div>
-                                      <div className="divTableCell">{data.AllowanceCharge.MultiplierFactorNumeric}</div>
+                                      <div className="divTableCell">
+                                        {data?.AllowanceCharge?.MultiplierFactorNumeric || ""}
+                                      </div>
                                     </div>
                                     <div className="divTableRow">
                                       <div className="divTableHead">Amount</div>
@@ -821,7 +786,7 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
                                           <div className="divTableBody">
                                             <div className="divTableRow">
                                               <div className="divTableHead">#text</div>
-                                              <div className="divTableCell">{data.AllowanceCharge.Amount}</div>
+                                              <div className="divTableCell">{data?.AllowanceCharge?.Amount || ""}</div>
                                             </div>
                                             <div className="divTableRow">
                                               <div className="divTableHead">@_currencyID</div>
@@ -838,7 +803,9 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
                                           <div className="divTableBody">
                                             <div className="divTableRow">
                                               <div className="divTableHead">#text</div>
-                                              <div className="divTableCell">{data.AllowanceCharge.BaseAmount}</div>
+                                              <div className="divTableCell">
+                                                {data?.AllowanceCharge?.BaseAmount || ""}
+                                              </div>
                                             </div>
                                             <div className="divTableRow">
                                               <div className="divTableHead">@_currencyID</div>
@@ -856,7 +823,7 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
                                   <div className="divTableBody">
                                     <div className="divTableRow">
                                       <div className="divTableHead">Name</div>
-                                      <div className="divTableCell">{data.Item.Name}</div>
+                                      <div className="divTableCell">{data?.Item?.Name || ""}</div>
                                     </div>
                                     <div className="divTableRow">
                                       <div className="divTableHead">SellersItemIdentification</div>
@@ -866,7 +833,7 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
                                             <div className="divTableRow">
                                               <div className="divTableHead">ID</div>
                                               <div className="divTableCell">
-                                                {data.Item.SellersItemIdentification.ID}
+                                                {data?.Item?.SellersItemIdentification?.ID || ""}
                                               </div>
                                             </div>
                                           </div>
@@ -880,12 +847,14 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
                                           <div className="divTableBody">
                                             <div className="divTableRow">
                                               <div className="divTableHead">ID</div>
-                                              <div className="divTableCell">{data.Item.ClassifiedTaxCategory.ID}</div>
+                                              <div className="divTableCell">
+                                                {data?.Item?.ClassifiedTaxCategory?.ID || ""}
+                                              </div>
                                             </div>
                                             <div className="divTableRow">
                                               <div className="divTableHead">Percent</div>
                                               <div className="divTableCell">
-                                                {data.Item.ClassifiedTaxCategory.Percent}
+                                                {data?.Item?.ClassifiedTaxCategory?.Percent || ""}
                                               </div>
                                             </div>
                                             <div className="divTableRow">
@@ -896,7 +865,7 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
                                                     <div className="divTableRow">
                                                       <div className="divTableHead">ID</div>
                                                       <div className="divTableCell">
-                                                        {data.Item.ClassifiedTaxCategory.TaxScheme.ID}
+                                                        {data?.Item?.ClassifiedTaxCategory?.TaxScheme?.ID || ""}
                                                       </div>
                                                     </div>
                                                   </div>
@@ -920,7 +889,7 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
                                           <div className="divTableBody">
                                             <div className="divTableRow">
                                               <div className="divTableHead">#text</div>
-                                              <div className="divTableCell">{data.Price.PriceAmount}</div>
+                                              <div className="divTableCell">{data?.Price?.PriceAmount || ""}</div>
                                             </div>
                                             <div className="divTableRow">
                                               <div className="divTableHead">@_currencyID</div>
@@ -937,7 +906,7 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
                                           <div className="divTableBody">
                                             <div className="divTableRow">
                                               <div className="divTableHead">#text</div>
-                                              <div className="divTableCell">{data.Price.BaseQuantity}</div>
+                                              <div className="divTableCell">{data?.Price?.BaseQuantity || ""}</div>
                                             </div>
                                             <div className="divTableRow">
                                               <div className="divTableHead">@_unitCode</div>
