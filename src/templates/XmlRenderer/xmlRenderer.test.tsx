@@ -4,6 +4,11 @@ import { render } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import React from "react";
 
+const emptySample = {
+  XMLRendererSampleData,
+  xmlData: ""
+};
+
 describe("xml renderer", () => {
   it("should render with data", () => {
     const { getByText } = render(<XMLRenderer document={XMLRendererSampleData} handleObfuscation={() => void 0} />);
@@ -36,5 +41,14 @@ describe("xml renderer", () => {
     expect(getByText("855.00")).toBeInTheDocument();
     expect(getByText("19000.00")).toBeInTheDocument();
     expect(getByText("8360.00")).toBeInTheDocument();
+  });
+
+  it("fields should be empty if no xmlData", () => {
+    const { queryByText } = render(<XMLRenderer document={emptySample} handleObfuscation={() => void 0} />);
+    expect(
+      queryByText("urn:cen.eu:en16931:2017#conformant#urn:fdc:peppol.eu:2017:poacc:billing:international:sg:3.0")
+    ).not.toBeInTheDocument();
+    expect(queryByText("000166000001")).not.toBeInTheDocument();
+    expect(queryByText("8360.00")).not.toBeInTheDocument();
   });
 });
