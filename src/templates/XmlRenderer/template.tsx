@@ -65,18 +65,18 @@ const TemplateContainer = styled.div`
   }
 `;
 
+// Parse XML to Json
+const parser = new Parser({
+  trim: true,
+  normalize: true,
+  explicitArray: false,
+  ignoreAttrs: true,
+  tagNameProcessors: [processors.stripPrefix]
+});
+
 export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterface>> = ({ document }) => {
   // Decode html entities and remove byte order mark
   const output = htmlUnescape(document.xmlData).replace("\\ufeff", "");
-
-  // Parse XML to Json
-  const parser = new Parser({
-    trim: true,
-    normalize: true,
-    explicitArray: false,
-    ignoreAttrs: true,
-    tagNameProcessors: [processors.stripPrefix]
-  });
 
   // Placeholder data field
   let jsonDocument = {} as XmlRendererInterface;
