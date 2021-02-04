@@ -244,49 +244,57 @@ export const TradeLineItemsSection: FunctionComponent<TemplateProps<ChaftaCooDoc
   });
 
   return (
-    <table className="text-left">
-      <thead>
-        <tr>
-          <th className="p-2 font-normal border-t border-r-2 border-b-2 border-l" style={{ width: `${10}%` }}>
-            6. Item number (max. 20)
-          </th>
-          <th className="p-2 font-normal border-t border-r-2 border-b-2" style={{ width: `${20}%` }}>
-            7. Marks and numbers on packages (optional)
-          </th>
-          <th className="p-2 font-normal border-t border-r-2 border-b-2" style={{ width: `${20}%` }}>
-            8. Number and kind of packages; description of goods
-          </th>
-          <th className="p-2 font-normal border-t border-r-2 border-b-2">9. HS code (6 digit code)</th>
-          <th className="p-2 font-normal border-t border-r-2 border-b-2">10. Origin criterion</th>
-          <th className="p-2 font-normal border-t border-r-2 border-b-2">
-            11. Gross or net weight or other quantity (e.g. Quantity Unit, litres, m³.)
-          </th>
-          <th className="p-2 font-normal border-t border-r border-b-2">12. Invoice number and date</th>
-        </tr>
-      </thead>
-      <tbody>
-        {lineItems.map((line, index) => (
-          <tr key={index}>
-            <td className="p-2 border-r-2 border-l" style={{ width: `${10}%` }}>
-              {line.sn}
-            </td>
-            <td className="p-2 border-r-2" style={{ width: `${20}%` }}>
-              {line.marks}
-            </td>
-            <td className="p-2 border-r-2" style={{ width: `${20}%` }}>
-              {line.description}
-            </td>
-            <td className="p-2 border-r-2">{line.code}</td>
-            <td className="p-2 border-r-2">{line.origin}</td>
-            <td className="p-2 border-r-2">{line.quantity}</td>
-            <td className="p-2 border-r">
-              <div>{line.invoiceNo}</div>
-              <div>{line.invoiceDate}</div>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <div className="border-t border-b">
+      <div className="flex flex-nowrap justify-center">
+        <div style={{ width: "10%" }} className="p-2 border-l border-r border-b-2">
+          6. Item number (max. 20)
+        </div>
+        <div style={{ width: "20%" }} className="p-2 border-l border-r border-b-2">
+          7. Marks and numbers on packages (optional)
+        </div>
+        <div style={{ width: "20%" }} className="p-2 border-l border-r border-b-2">
+          8. Number and kind of packages; description of goods
+        </div>
+        <div style={{ width: "10%" }} className="p-2 border-l border-r border-b-2">
+          9. HS code (6 digit code)
+        </div>
+        <div style={{ width: "10%" }} className="p-2 border-l border-r border-b-2">
+          10. Origin criterion
+        </div>
+        <div style={{ width: "15%" }} className="p-2 border-l border-r border-b-2">
+          11. Gross or net weight or odiver quantity (e.g. Quantity Unit, litres, m³.)
+        </div>
+        <div style={{ width: "15%" }} className="p-2 border-l border-r border-b-2">
+          12. Invoice number and date
+        </div>
+      </div>
+      {lineItems.map((line, index) => (
+        <div key={index} className="flex flex-nowrap justify-center">
+          <div style={{ width: "10%" }} className="p-2 border-l border-r">
+            {line.sn}
+          </div>
+          <div style={{ width: "20%" }} className="p-2 border-l border-r">
+            {line.marks}
+          </div>
+          <div style={{ width: "20%" }} className="p-2 border-l border-r">
+            {line.description}
+          </div>
+          <div style={{ width: "10%" }} className="p-2 border-l border-r">
+            {line.code}
+          </div>
+          <div style={{ width: "10%" }} className="p-2 border-l border-r">
+            {line.origin}
+          </div>
+          <div style={{ width: "15%" }} className="p-2 border-l border-r">
+            {line.quantity}
+          </div>
+          <div style={{ width: "15%" }} className="p-2 border-l border-r">
+            <div>{line.invoiceNo}</div>
+            <div>{line.invoiceDate}</div>
+          </div>
+        </div>
+      ))}
+    </div>
   );
 };
 
