@@ -163,7 +163,7 @@ export const RemarksSection: FunctionComponent<TemplateProps<ChaftaCooDocument> 
   const supplyChainConsignment = document.supplyChainConsignment;
   const consignmentItems = supplyChainConsignment?.includedConsignmentItems;
   return (
-    <div className="border p-2">
+    <div className="border p-2 h-full">
       <div>5. Remarks:</div>
       <div>Consignment Ref: {getValue(supplyChainConsignment?.iD)}</div>
       <div>{supplyChainConsignment?.information}</div>
@@ -247,11 +247,13 @@ export const TradeLineItemsSection: FunctionComponent<TemplateProps<ChaftaCooDoc
     <table className="text-left">
       <thead>
         <tr>
-          <th className="p-2 font-normal border-t border-r-2 border-b-2 border-l">6. Item number (max. 20)</th>
-          <th className="p-2 font-normal border-t border-r-2 border-b-2">
+          <th className="p-2 font-normal border-t border-r-2 border-b-2 border-l" style={{ width: `${10}%` }}>
+            6. Item number (max. 20)
+          </th>
+          <th className="p-2 font-normal border-t border-r-2 border-b-2" style={{ width: `${20}%` }}>
             7. Marks and numbers on packages (optional)
           </th>
-          <th className="p-2 font-normal border-t border-r-2 border-b-2">
+          <th className="p-2 font-normal border-t border-r-2 border-b-2" style={{ width: `${20}%` }}>
             8. Number and kind of packages; description of goods
           </th>
           <th className="p-2 font-normal border-t border-r-2 border-b-2">9. HS code (6 digit code)</th>
@@ -294,7 +296,7 @@ export const DeclarationSection: FunctionComponent<TemplateProps<ChaftaCooDocume
   const importer = document.supplyChainConsignment?.importer;
   const { firstSignatoryAuthentication, supplyChainConsignment } = document;
   return (
-    <div className="border border-t-2 h-full">
+    <div className="border h-full">
       <div className="p-2">
         13. Declaration by the exporter or producer The undersigned hereby declares that the above-stated information is
         correct and that the goods exported to
@@ -328,7 +330,7 @@ export const CertificationSection: FunctionComponent<TemplateProps<ChaftaCooDocu
 }) => {
   const { secondSignatoryAuthentication } = document;
   return (
-    <div className="border border-t-2 p-2 h-full">
+    <div className="border p-2 h-full">
       <div className="flex flex-col h-full">
         <div>14. Certification</div>
         <div className="flex-grow">
