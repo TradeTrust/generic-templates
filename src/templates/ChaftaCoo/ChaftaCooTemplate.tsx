@@ -163,7 +163,7 @@ export const RemarksSection: FunctionComponent<TemplateProps<ChaftaCooDocument> 
   const supplyChainConsignment = document.supplyChainConsignment;
   const consignmentItems = supplyChainConsignment?.includedConsignmentItems;
   return (
-    <div className="border p-2">
+    <div className="border p-2 h-full">
       <div>5. Remarks:</div>
       <div>Consignment Ref: {getValue(supplyChainConsignment?.iD)}</div>
       <div>{supplyChainConsignment?.information}</div>
@@ -244,36 +244,56 @@ export const TradeLineItemsSection: FunctionComponent<TemplateProps<ChaftaCooDoc
   });
 
   return (
-    <div className="border p-2">
-      <table className="text-left">
-        <thead>
-          <tr>
-            <th>6. Item number (max. 20)</th>
-            <th>7. Marks and numbers on packages (optional)</th>
-            <th>8. Number and kind of packages; description of goods</th>
-            <th>9. HS code (6 digit code)</th>
-            <th>10. Origin criterion</th>
-            <th>11. Gross or net weight or other quantity (e.g. Quantity Unit, litres, m³.)</th>
-            <th>12. Invoice number and date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {lineItems.map((line, index) => (
-            <tr key={index}>
-              <td>{line.sn}</td>
-              <td>{line.marks}</td>
-              <td>{line.description}</td>
-              <td>{line.code}</td>
-              <td>{line.origin}</td>
-              <td>{line.quantity}</td>
-              <td>
-                <div>{line.invoiceNo}</div>
-                <div>{line.invoiceDate}</div>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="border-t border-b">
+      <div className="flex flex-nowrap justify-center">
+        <div style={{ width: "10%" }} className="p-2 border-l border-r border-b-2">
+          6. Item number (max. 20)
+        </div>
+        <div style={{ width: "20%" }} className="p-2 border-l border-r border-b-2">
+          7. Marks and numbers on packages (optional)
+        </div>
+        <div style={{ width: "20%" }} className="p-2 border-l border-r border-b-2">
+          8. Number and kind of packages; description of goods
+        </div>
+        <div style={{ width: "10%" }} className="p-2 border-l border-r border-b-2">
+          9. HS code (6 digit code)
+        </div>
+        <div style={{ width: "10%" }} className="p-2 border-l border-r border-b-2">
+          10. Origin criterion
+        </div>
+        <div style={{ width: "15%" }} className="p-2 border-l border-r border-b-2">
+          11. Gross or net weight or odiver quantity (e.g. Quantity Unit, litres, m³.)
+        </div>
+        <div style={{ width: "15%" }} className="p-2 border-l border-r border-b-2">
+          12. Invoice number and date
+        </div>
+      </div>
+      {lineItems.map((line, index) => (
+        <div key={index} className="flex flex-nowrap justify-center">
+          <div style={{ width: "10%" }} className="p-2 border-l border-r">
+            {line.sn}
+          </div>
+          <div style={{ width: "20%" }} className="p-2 border-l border-r">
+            {line.marks}
+          </div>
+          <div style={{ width: "20%" }} className="p-2 border-l border-r">
+            {line.description}
+          </div>
+          <div style={{ width: "10%" }} className="p-2 border-l border-r">
+            {line.code}
+          </div>
+          <div style={{ width: "10%" }} className="p-2 border-l border-r">
+            {line.origin}
+          </div>
+          <div style={{ width: "15%" }} className="p-2 border-l border-r">
+            {line.quantity}
+          </div>
+          <div style={{ width: "15%" }} className="p-2 border-l border-r">
+            <div>{line.invoiceNo}</div>
+            <div>{line.invoiceDate}</div>
+          </div>
+        </div>
+      ))}
     </div>
   );
 };
@@ -292,7 +312,7 @@ export const DeclarationSection: FunctionComponent<TemplateProps<ChaftaCooDocume
 
       <div className="text-center my-4">
         <div>{importer?.name}</div>
-        <hr />
+        <div className="border-b-2" />
         <div>(Importing Party)</div>
       </div>
 
@@ -324,6 +344,7 @@ export const CertificationSection: FunctionComponent<TemplateProps<ChaftaCooDocu
         <div className="flex-grow">
           <img className="w-1/2 mx-auto" src={secondSignatoryAuthentication?.signature} />
         </div>
+        <div className="border-t border-dashed mb-2" />
         <div>Place, date and signature of authorised person</div>
       </div>
     </div>
@@ -337,27 +358,27 @@ export const ChaftaCooTemplate: FunctionComponent<TemplateProps<ChaftaCooDocumen
 
   return (
     <Wrapper data-testid="chafta-coo-template">
-      <div style={{ fontSize: "0.8em" }}>
-        <div className="p-2">
-          <div className="flex items-center">
-            <div className="w-auto mr-2">
-              <input
-                className="align-middle"
-                type="checkbox"
-                id="privacySwitch"
-                checked={isPrivacyOn}
-                onChange={e => setIsPrivacyOn(e.target.checked)}
-              />
-            </div>
-            <div className="w-auto">
-              <label htmlFor="privacySwitch">Privacy Filter</label>
-            </div>
+      <div style={{ fontSize: "0.8em", width: "210mm" }} className="mx-auto">
+        <div className="flex items-center">
+          <div className="w-auto mr-2">
+            <input
+              className="align-middle"
+              type="checkbox"
+              id="privacySwitch"
+              checked={isPrivacyOn}
+              onChange={e => setIsPrivacyOn(e.target.checked)}
+            />
+          </div>
+          <div className="w-auto">
+            <label htmlFor="privacySwitch">Privacy Filter</label>
           </div>
         </div>
         <div className="text-center mt-4">
-          <h1 style={{ fontSize: "0.9em", fontWeight: "bolder" }}>CERTIFICATE OF ORIGIN</h1>
+          <h1 style={{ fontSize: "0.9em" }} className="font-bold mb-4">
+            CERTIFICATE OF ORIGIN
+          </h1>
         </div>
-        <div className="border m-2">
+        <div className="border">
           <div className="flex">
             <div className="w-1/2">
               <ExporterSection {...props} isPrivacyOn={isPrivacyOn} />
