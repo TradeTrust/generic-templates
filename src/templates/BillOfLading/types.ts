@@ -1,11 +1,13 @@
 import { Document } from "@govtechsg/decentralized-renderer-react-components";
 
 export interface BillOfLading extends Document {
+  scac: string;
   blNumber: string;
   vessel: string;
   voyageNo: string;
   portOfLoading: string;
   portOfDischarge: string;
+  carrierName?: string;
   packages?: {
     description: string;
     weight: string;
