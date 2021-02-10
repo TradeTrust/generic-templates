@@ -6,86 +6,89 @@ import { BillOfLading } from "./types";
 
 const smallText = (text: string): JSX.Element => <div style={{ fontSize: "0.8em" }}>{text}</div>;
 
-const Section3 = (): JSX.Element => (
-  <div className="border-black border">
-    <div className="flex">
-      <div className="w-1/4 border-black border">
-        <div className="p-2 h-24">{smallText("Freight & Charges")}</div>
+const Section3 = (document: BillOfLading): JSX.Element => {
+  const carrierName = document.carrierName;
+  return (
+    <div className="border-black border">
+      <div className="flex">
+        <div className="w-1/4 border-black border">
+          <div className="p-2 h-24">{smallText("Freight & Charges")}</div>
+        </div>
+        <div className="flex-grow border-black border">
+          <div className="p-2 h-24">{smallText("Rule")}</div>
+        </div>
+        <div className="flex-grow border-black border">
+          <div className="p-2 h-24">{smallText("Unit")}</div>
+        </div>
+        <div className="flex-grow border-black border">
+          <div className="p-2 h-24">{smallText("Currency")}</div>
+        </div>
+        <div className="w-1/5 border-black border">
+          <div className="p-2 h-24">{smallText("Prepaid")}</div>
+        </div>
+        <div className="w-1/5 border-black border">
+          <div className="p-2 h-24">{smallText("Collect")}</div>
+        </div>
       </div>
-      <div className="flex-grow border-black border">
-        <div className="p-2 h-24">{smallText("Rule")}</div>
-      </div>
-      <div className="flex-grow border-black border">
-        <div className="p-2 h-24">{smallText("Unit")}</div>
-      </div>
-      <div className="flex-grow border-black border">
-        <div className="p-2 h-24">{smallText("Currency")}</div>
-      </div>
-      <div className="w-1/5 border-black border">
-        <div className="p-2 h-24">{smallText("Prepaid")}</div>
-      </div>
-      <div className="w-1/5 border-black border">
-        <div className="p-2 h-24">{smallText("Collect")}</div>
-      </div>
-    </div>
 
-    <div className="flex">
-      <div className="w-1/2">
-        <div className="flex flex-col h-full">
-          <div className="flex flex-1">
-            <div className="w-1/2 border-black border">
-              <div className="p-2">
-                {smallText(
-                  "Carrier's Receipt (see clause 1 and 14). Total number of containers or packages received by Carrier."
-                )}
-                <div>1 container</div>
+      <div className="flex">
+        <div className="w-1/2">
+          <div className="flex flex-col h-full">
+            <div className="flex flex-1">
+              <div className="w-1/2 border-black border">
+                <div className="p-2">
+                  {smallText(
+                    "Carrier's Receipt (see clause 1 and 14). Total number of containers or packages received by Carrier."
+                  )}
+                  <div>1 container</div>
+                </div>
+              </div>
+              <div className="w-1/2 border-black border">
+                <div className="p-2">{smallText("Place of Issue of B/L")}</div>
               </div>
             </div>
-            <div className="w-1/2 border-black border">
-              <div className="p-2">{smallText("Place of Issue of B/L")}</div>
-            </div>
-          </div>
 
-          <div className="flex flex-1">
-            <div className="w-1/2 border-black border">
-              <div className="p-2">
-                {smallText("Number & Sequence of Original B(s)/L")}
-                THREE/3
+            <div className="flex flex-1">
+              <div className="w-1/2 border-black border">
+                <div className="p-2">
+                  {smallText("Number & Sequence of Original B(s)/L")}
+                  THREE/3
+                </div>
+              </div>
+              <div className="w-1/2 border-black border">
+                <div className="p-2">{smallText("Date of Issue of B/L")}</div>
               </div>
             </div>
-            <div className="w-1/2 border-black border">
-              <div className="p-2">{smallText("Date of Issue of B/L")}</div>
+
+            <div className="flex flex-1">
+              <div className="w-1/2 border-black border">
+                <div className="p-2">{smallText("Declared Value (see clause 7.3)")}</div>
+              </div>
+              <div className="w-1/2 border-black border">
+                <div className="p-2">{smallText("Shipped on Board Date (Local Time)")}</div>
+              </div>
             </div>
           </div>
+        </div>
 
-          <div className="flex flex-1">
-            <div className="w-1/2 border-black border">
-              <div className="p-2">{smallText("Declared Value (see clause 7.3)")}</div>
+        <div className="w-1/2 border-black border">
+          <div className="p-2">
+            {smallText(
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sagittis id consectetur purus ut faucibus. Diam quam nulla porttitor massa. Eu tincidunt tortor aliquam nulla facilisi cras fermentum. Amet mauris commodo quis imperdiet massa tincidunt. Luctus accumsan tortor posuere ac ut. Eu volutpat odio facilisis mauris sit amet massa vitae tortor. Eros donec ac odio tempor orci dapibus. Varius morbi enim nunc faucibus a pellentesque sit amet. Velit aliquet sagittis id consectetur purus ut. Porta non pulvinar neque laoreet suspendisse interdum consectetur libero. Odio ut sem nulla pharetra diam sit. Nunc sed augue lacus viverra vitae congue eu consequat ac. Eros in cursus turpis massa tincidunt dui ut ornare lectus."
+            )}
+            <div className="text-center mt-4 mb-16">
+              <strong>{smallText(`Signed for the Carrier ${carrierName || ""}`)}</strong>
             </div>
-            <div className="w-1/2 border-black border">
-              <div className="p-2">{smallText("Shipped on Board Date (Local Time)")}</div>
+            <hr />
+            <div className="text-center mt-2">
+              <strong>{smallText("As Agent(s) for the Carrier")}</strong>
             </div>
           </div>
         </div>
       </div>
-
-      <div className="w-1/2 border-black border">
-        <div className="p-2">
-          {smallText(
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sagittis id consectetur purus ut faucibus. Diam quam nulla porttitor massa. Eu tincidunt tortor aliquam nulla facilisi cras fermentum. Amet mauris commodo quis imperdiet massa tincidunt. Luctus accumsan tortor posuere ac ut. Eu volutpat odio facilisis mauris sit amet massa vitae tortor. Eros donec ac odio tempor orci dapibus. Varius morbi enim nunc faucibus a pellentesque sit amet. Velit aliquet sagittis id consectetur purus ut. Porta non pulvinar neque laoreet suspendisse interdum consectetur libero. Odio ut sem nulla pharetra diam sit. Nunc sed augue lacus viverra vitae congue eu consequat ac. Eros in cursus turpis massa tincidunt dui ut ornare lectus."
-          )}
-          <div className="text-center mt-4 mb-16">
-            <strong>{smallText("Signed for the Carrier A.P. Moller")}</strong>
-          </div>
-          <hr />
-          <div className="text-center mt-2">
-            <strong>{smallText("As Agent(s) for the Carrier")}</strong>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const Section2 = (document: BillOfLading): JSX.Element => {
   const packages = document.packages || [];
@@ -126,7 +129,7 @@ const Section2 = (document: BillOfLading): JSX.Element => {
 };
 
 const Section1 = (document: BillOfLading): JSX.Element => {
-  const { shipper = {}, blNumber, consignee = {}, notifyParty = {} } = document;
+  const { shipper = {}, scac, blNumber, consignee = {}, notifyParty = {} } = document;
   return (
     <div className="border-black border">
       <div className="flex">
@@ -144,7 +147,7 @@ const Section1 = (document: BillOfLading): JSX.Element => {
             </div>
             <div className="w-1/3 border-black border">
               <div className="p-2 border-black border-b-2">
-                SCAC <strong>MAEU</strong>
+                SCAC <strong>{scac}</strong>
               </div>
               <div className="p-2">
                 B/L No <strong className="break-all">{blNumber}</strong>
@@ -258,7 +261,7 @@ export const BillOfLadingTemplate: FunctionComponent<TemplateProps<BillOfLading>
         <strong>PARTICULARS FURNISHED BY SHIPPER</strong>
       </div>
       <div className="mb-8">{Section2(document)}</div>
-      {Section3()}
+      {Section3(document)}
       {qrCodeUrl && <DocumentQrCode url={qrCodeUrl} />}
     </Wrapper>
   );
