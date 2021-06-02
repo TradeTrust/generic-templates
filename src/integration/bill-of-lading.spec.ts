@@ -4,7 +4,7 @@ fixture("Bill of Lading").page`http://localhost:3010`;
 
 const BillOfLadingTemplate = Selector("[data-testid='bill-of-lading-template']");
 
-test("Bill of Lading is rendered correctly", async t => {
+test("Bill of Lading is rendered correctly", async (t) => {
   await t.click(Selector("[data-testid='BILL_OF_LADING']"));
   await t.switchToIframe("#iframe");
   await t.expect(BillOfLadingTemplate.visible).ok();

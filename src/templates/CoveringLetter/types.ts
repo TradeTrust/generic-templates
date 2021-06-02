@@ -1,6 +1,6 @@
-import { Document } from "@govtechsg/decentralized-renderer-react-components";
+import { v2 } from "@govtechsg/open-attestation";
 
-export interface CoveringLetter extends Document {
+export interface CoveringLetter extends v2.OpenAttestationDocument {
   name: string;
   logo?: string;
   title?: string;

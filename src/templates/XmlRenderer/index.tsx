@@ -4,6 +4,6 @@ export const XMLRendererTemplate = [
   {
     id: "XML_RENDERER",
     label: "XML Renderer",
-    template: XMLRenderer
-  }
+    template: XMLRenderer,
+  },
 ];

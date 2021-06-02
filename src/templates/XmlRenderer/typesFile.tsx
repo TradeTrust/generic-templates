@@ -1,5 +1,5 @@
-import { Document } from "@govtechsg/decentralized-renderer-react-components";
+import { v2 } from "@govtechsg/open-attestation";
 
-export interface XmlRendererFileInterface extends Document {
+export interface XmlRendererFileInterface extends v2.OpenAttestationDocument {
   xmlData: string;
 }

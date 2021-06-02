@@ -50,7 +50,7 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<Invoice>> = ({ doc
     subtotal = 0,
     tax = 0,
     taxTotal = 0,
-    total = 0
+    total = 0,
   } = document;
   const qrCodeUrl = document?.links?.self.href;
 

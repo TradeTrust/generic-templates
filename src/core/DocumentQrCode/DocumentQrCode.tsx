@@ -33,7 +33,7 @@ export const DocumentQrCode: FunctionComponent<DocumentQrCode> = ({ url }) => {
     src: `/static/images/logo-qrcode.png`,
     height: 90,
     width: 100,
-    excavate: true
+    excavate: true,
   };
 
   return (

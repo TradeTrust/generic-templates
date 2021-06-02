@@ -1,4 +1,4 @@
-import { Document } from "@govtechsg/decentralized-renderer-react-components";
+import { v2 } from "@govtechsg/open-attestation";
 
 export interface CompanyInfo {
   name: string;
@@ -21,7 +21,7 @@ export interface InvoiceItem {
   amount: string;
 }
 
-export interface Invoice extends Document {
+export interface Invoice extends v2.OpenAttestationDocument {
   id?: string;
   date?: string;
   customerId?: string;

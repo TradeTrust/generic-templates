@@ -12,5 +12,5 @@ export const registry: TemplateRegistry<any> = {
   CHAFTA_COO: ChaftaCooTemplates,
   COVERING_LETTER: CoveringLetterTemplates,
   INVOICE: InvoiceTemplates,
-  XML_RENDERER: XMLRendererTemplate
+  XML_RENDERER: XMLRendererTemplate,
 };

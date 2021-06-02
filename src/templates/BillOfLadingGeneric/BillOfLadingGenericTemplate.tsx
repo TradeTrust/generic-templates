@@ -4,20 +4,8 @@ import { Wrapper } from "../../core/Wrapper";
 import { BillOfLadingGeneric } from "./types";
 
 export const BillOfLadingGenericTemplate: FunctionComponent<TemplateProps<BillOfLadingGeneric>> = ({ document }) => {
-  const {
-    blNumber,
-    logo,
-    companyName,
-    field1,
-    field2,
-    field3,
-    field4,
-    field5,
-    field6,
-    field7,
-    field8,
-    field9
-  } = document;
+  const { blNumber, logo, companyName, field1, field2, field3, field4, field5, field6, field7, field8, field9 } =
+    document;
   return (
     <Wrapper data-testid="bill-of-lading-generic-template">
       <div className="mb-8">
