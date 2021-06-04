@@ -1,4 +1,4 @@
-/** @jsxImportSource @emotion/react */
+/// <reference types="@emotion/react/types/css-prop" />
 
 import React, { FunctionComponent } from "react";
 import { css } from "@emotion/react";

@@ -20,6 +20,7 @@
     "integration:concurrently:headless": "concurrently -k -s first \"npm:dev\" \"npm:integration:headless\"",
     "lint": "eslint . --ext .ts,.tsx --max-warnings 0",
     "lint:fix": "npm run lint -- --fix",
+    "prep": "npm run lint:fix && npm run check-types && npm run test",
     "storybook": "start-storybook -s ./ -p 6006",
     "storybook:build": "build-storybook -o docs",
     "test": "jest --ci",
@@ -41,7 +42,8 @@
         }
       ],
       "@babel/preset-typescript",
-      "@babel/preset-react"
+      "@babel/preset-react",
+      "@emotion/babel-preset-css-prop"
     ]
   },
   "browserslist": [
@@ -130,9 +132,9 @@
           "*.spec.tsx"
         ],
         "plugins": [
-          "testcafe"
+          "testcafe-community"
         ],
-        "extends": "plugin:testcafe/recommended"
+        "extends": "plugin:testcafe-community/recommended"
       }
     ]
   },
@@ -154,10 +156,6 @@
     "@govtechsg/decentralized-renderer-react-components": "^3.5.0",
     "@govtechsg/open-attestation": "^5.3.2",
     "@hot-loader/react-dom": "^17.0.1",
-    "@types/node": "^15.12.0",
-    "@types/qrcode.react": "^1.0.1",
-    "@types/react-dom": "^17.0.6",
-    "@types/xml2js": "^0.4.8",
     "date-fns": "^2.22.1",
     "debug": "^4.3.1",
     "escape-goat": "^3.0.0",
@@ -171,6 +169,7 @@
     "@babel/preset-env": "^7.14.4",
     "@babel/preset-react": "^7.13.13",
     "@babel/preset-typescript": "^7.13.0",
+    "@emotion/babel-preset-css-prop": "^11.2.0",
     "@storybook/addon-essentials": "^6.2.9",
     "@storybook/react": "^6.2.9",
     "@testing-library/dom": "^7.31.2",
@@ -178,12 +177,16 @@
     "@testing-library/react": "^11.2.7",
     "@types/debug": "^4.1.5",
     "@types/jest": "^26.0.23",
+    "@types/node": "^15.12.0",
+    "@types/qrcode.react": "^1.0.1",
     "@types/react": "^17.0.9",
+    "@types/react-dom": "^17.0.6",
+    "@types/xml2js": "^0.4.8",
     "@typescript-eslint/eslint-plugin": "^4.26.0",
     "@typescript-eslint/parser": "^4.26.0",
     "babel-jest": "^27.0.2",
     "babel-loader": "^8.2.2",
-    "brotli-webpack-plugin": "1.1.0",
+    "brotli-webpack-plugin": "^1.1.0",
     "compression-webpack-plugin": "^6.1.1",
     "concurrently": "^6.2.0",
     "copy-webpack-plugin": "^6.4.1",
@@ -195,6 +198,7 @@
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-testcafe": "^0.2.1",
+    "eslint-plugin-testcafe-community": "^1.1.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^4.5.2",
     "jest": "^27.0.4",

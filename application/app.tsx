@@ -1,3 +1,5 @@
+/// <reference types="@emotion/react/types/css-prop" />
+
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { FrameActions, FrameConnector, HostActionsHandler } from "@govtechsg/decentralized-renderer-react-components";
@@ -28,9 +30,10 @@ const ActionsContainer = styled.div`
     background-color: #4299e1;
     cursor: pointer;
     border: 0;
-  }
-  button: hover {
-    background-color: #2b6cb0;
+
+    &:hover {
+      background-color: #2b6cb0;
+    }
   }
 `;
 
