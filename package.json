@@ -27,8 +27,8 @@
     "check-types": "tsc --sourceMap false --noEmit",
     "dev": "cross-env NODE_ENV=development webpack-dev-server",
     "example:application": "webpack-dev-server --config application/webpack.config.js",
-    "integration": "testcafe chrome src/**/*.spec.ts --app \"npm run example:application\"",
-    "integration:headless": "testcafe chrome:headless src/**/*.spec.ts --app \"npm run example:application\"",
+    "integration": "testcafe chrome src/**/*.spec.ts --ts-config-path ./tsconfig.json --app \"npm run example:application\"",
+    "integration:headless": "testcafe chrome:headless src/**/*.spec.ts --ts-config-path ./tsconfig.json --app \"npm run example:application\"",
     "integration:concurrently": "concurrently -k -s first \"npm:dev\" \"npm:integration\"",
     "integration:concurrently:headless": "concurrently -k -s first \"npm:dev\" \"npm:integration:headless\"",
     "lint": "eslint . --ext .ts,.tsx --max-warnings 0",
@@ -41,12 +41,9 @@
   },
   "devDependencies": {
     "@babel/core": "^7.14.3",
-    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.14.2",
-    "@babel/plugin-proposal-optional-chaining": "^7.14.2",
     "@babel/preset-env": "^7.14.4",
     "@babel/preset-react": "^7.13.13",
     "@babel/preset-typescript": "^7.13.0",
-    "@emotion/babel-preset-css-prop": "^11.2.0",
     "@storybook/addon-essentials": "^6.2.9",
     "@storybook/react": "^6.2.9",
     "@testing-library/dom": "^7.31.0",
@@ -94,8 +91,7 @@
         }
       ],
       "@babel/preset-typescript",
-      "@babel/preset-react",
-      "@emotion/babel-preset-css-prop"
+      "@babel/preset-react"
     ],
     "plugins": [
       "@babel/plugin-proposal-nullish-coalescing-operator",
