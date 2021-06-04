@@ -35,7 +35,7 @@
     "lint:fix": "npm run lint -- --fix",
     "storybook": "start-storybook -s ./ -p 6006",
     "storybook:build": "build-storybook -o docs",
-    "test": "jest",
+    "test": "jest --ci",
     "test:coverage": "npm run test -- --coverage",
     "test:watch": "npm run test -- --watch"
   },
@@ -146,12 +146,12 @@
         }
       ],
       "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-empty-function": "off",
       "react/prop-types": "off",
       "react/self-closing-comp": "error",
       "array-callback-return": "error",
       "react-hooks/rules-of-hooks": "error",
-      "react-hooks/exhaustive-deps": "error",
-      "@typescript-eslint/no-empty-function": "off"
+      "react-hooks/exhaustive-deps": "error"
     },
     "overrides": [
       {
