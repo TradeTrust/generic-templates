@@ -1,10 +1,8 @@
-import { screen } from "@testing-library/dom";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import React from "react";
 import { CoveringLetterTemplate } from "./CoveringLetterTemplate";
 import { CoveringLetterSample } from "./sample";
 import { CoveringLetterSample2 } from "./sample2";
-jest.spyOn(HTMLCanvasElement.prototype, "getContext").mockImplementation();
 
 describe("covering Letter", () => {
   it("should render the cover letter (govtech) correctly", () => {

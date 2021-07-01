@@ -7,7 +7,7 @@ Generic templates for TradeTrust, where users can use any of these available tem
 _Note: These are just some rendering templates that are made available for users to use, the configurations to use these templates are in the [documentation](https://docs.tradetrust.io/document-creator) of TradeTrust document creator._
 
 | Available Templates      | type              | name                   | url                                     |
-|--------------------------|-------------------|------------------------|-----------------------------------------|
+| ------------------------ | ----------------- | ---------------------- | --------------------------------------- |
 | Bill of Lading           | EMBEDDED_RENDERER | BILL_OF_LADING         | https://generic-templates.tradetrust.io |
 | Bill of Lading (Generic) | EMBEDDED_RENDERER | BILL_OF_LADING_GENERIC | https://generic-templates.tradetrust.io |
 | Chafta COO               | EMBEDDED_RENDERER | CHAFTA_COO             | https://generic-templates.tradetrust.io |
@@ -53,12 +53,9 @@ This template provides a simple application that is able to render documents bui
 
 ## End-to-end and visualisation test
 
-This repository has been configured to run end-to-end tests using `Testcafe`. Visualisation testing is also configured through `Percy` and tests are ran through `Testcafe`.
+This repository has been configured to run end-to-end tests using `Testcafe`.
 
-To setup `Percy`, you will need a token that you can find on Percy's dashboard(percy.io):
-
-- For local development, type `export PERCY_TOKEN=<PERCY_TOKEN>` into command line before running `npm run integration`.
-- For [**CircleCI**](https://docs.percy.io/docs/circleci), add an environment variable `PERCY_TOKEN` with the token value.
+- concurrently run `npm run dev` + `npm run integration`
 
 ## Features
 
@@ -69,7 +66,6 @@ To setup `Percy`, you will need a token that you can find on Percy's dashboard(p
 - [**Babel**](https://babeljs.io/) - Write next generation JavaScript today.
 - [**Jest**](https://facebook.github.io/jest) - JavaScript testing framework used by Facebook.
 - [**Testcafe**](https://devexpress.github.io/testcafe/) - A node.js tool to automate end-to-end web testing.
-- [**Percy**](http://percy.io/) - Visualisation testing tool.
 - [**ESLint**](http://eslint.org/) - Make sure you are writing a quality code.
 - [**Prettier**](https://prettier.io/) - Enforces a consistent style by parsing your code and re-printing it.
 - [**Typescript**](https://www.typescriptlang.org/) - JavaScript superset, providing optional static typing

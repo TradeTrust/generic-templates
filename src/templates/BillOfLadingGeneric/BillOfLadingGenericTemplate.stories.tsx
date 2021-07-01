@@ -6,8 +6,8 @@ export default {
   title: "BillOfLadingGeneric",
   component: BillOfLadingGenericTemplate,
   parameters: {
-    componentSubtitle: "Bill of Lading Generic Template."
-  }
+    componentSubtitle: "Bill of Lading Generic Template.",
+  },
 };
 
 export const Default: FunctionComponent = () => {

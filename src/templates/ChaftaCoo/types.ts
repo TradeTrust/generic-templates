@@ -1,4 +1,4 @@
-import { Document } from "@govtechsg/decentralized-renderer-react-components";
+import { v2 } from "@govtechsg/open-attestation";
 
 export interface SignatoryAuthentication {
   signature?: string;
@@ -15,7 +15,7 @@ export interface PostalAddress {
   countryCode?: string;
 }
 
-export interface ChaftaCooDocument extends Document {
+export interface ChaftaCooDocument extends v2.OpenAttestationDocument {
   iD?: string;
   issueDateTime?: string;
   name?: string;

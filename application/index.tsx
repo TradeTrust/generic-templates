@@ -20,7 +20,7 @@ ReactDOM.render(
       { name: "Covering Letter (DBS)", document: CoveringLetterSample2 },
       { name: "Covering Letter (Malformed)", document: CoveringLetterSample3 },
       { name: "Invoice", document: InvoiceSample },
-      { name: "XML Renderer", document: XMLRendererSampleData }
+      { name: "XML Renderer", document: XMLRendererSampleData },
     ]}
   />,
   document.getElementById("root")

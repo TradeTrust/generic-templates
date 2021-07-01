@@ -71,7 +71,7 @@ const parser = new Parser({
   normalize: true,
   explicitArray: false,
   ignoreAttrs: true,
-  tagNameProcessors: [processors.stripPrefix]
+  tagNameProcessors: [processors.stripPrefix],
 });
 
 export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterface>> = ({ document }) => {
@@ -82,7 +82,7 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
   let jsonDocument = {} as XmlRendererInterface;
 
   // Convert XML string to Json
-  parser.parseString(output, function(err: string, result: XmlRendererInterface) {
+  parser.parseString(output, function (err: string, result: XmlRendererInterface) {
     if (!err) {
       jsonDocument = result;
     }

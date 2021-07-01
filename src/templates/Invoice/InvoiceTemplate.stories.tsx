@@ -6,8 +6,8 @@ export default {
   title: "Invoice",
   component: InvoiceTemplate,
   parameters: {
-    componentSubtitle: "Invoice template."
-  }
+    componentSubtitle: "Invoice template.",
+  },
 };
 
 export const Default: FunctionComponent = () => {

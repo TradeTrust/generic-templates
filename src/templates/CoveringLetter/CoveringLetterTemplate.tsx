@@ -39,14 +39,14 @@ export const CoveringLetterTemplate: FunctionComponent<TemplateProps<CoveringLet
               <div
                 className="font-bold"
                 style={{
-                  color: remarksColor
+                  color: remarksColor,
                 }}
               >
                 Remarks:
               </div>
               <div
                 style={{
-                  color: remarksColor
+                  color: remarksColor,
                 }}
               >
                 {remarks}

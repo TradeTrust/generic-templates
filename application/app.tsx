@@ -1,4 +1,6 @@
-import { css } from "@emotion/core";
+/// <reference types="@emotion/react/types/css-prop" />
+
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { FrameActions, FrameConnector, HostActionsHandler } from "@govtechsg/decentralized-renderer-react-components";
 import React, { useCallback, useEffect, useState } from "react";
@@ -28,9 +30,10 @@ const ActionsContainer = styled.div`
     background-color: #4299e1;
     cursor: pointer;
     border: 0;
-  }
-  button: hover {
-    background-color: #2b6cb0;
+
+    &:hover {
+      background-color: #2b6cb0;
+    }
   }
 `;
 
@@ -77,15 +80,15 @@ export const App: React.FunctionComponent<AppProps> = ({ documents }): React.Rea
     }
   };
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  window.renderDocument = document => {
+  window.renderDocument = (document) => {
     if (toFrame && document) {
       toFrame({
         type: "RENDER_DOCUMENT",
         payload: {
-          document
-        }
+          document,
+        },
       });
     }
   };
@@ -94,8 +97,8 @@ export const App: React.FunctionComponent<AppProps> = ({ documents }): React.Rea
       toFrame({
         type: "RENDER_DOCUMENT",
         payload: {
-          document: document.document
-        }
+          document: document.document,
+        },
       });
     }
   }, [toFrame, document]);
@@ -103,7 +106,7 @@ export const App: React.FunctionComponent<AppProps> = ({ documents }): React.Rea
     if (toFrame && selectedTemplate) {
       toFrame({
         type: "SELECT_TEMPLATE",
-        payload: selectedTemplate
+        payload: selectedTemplate,
       });
     }
   }, [selectedTemplate, toFrame]);
@@ -115,7 +118,7 @@ export const App: React.FunctionComponent<AppProps> = ({ documents }): React.Rea
           onClick={() => {
             if (toFrame) {
               toFrame({
-                type: "PRINT"
+                type: "PRINT",
               });
             }
           }}
@@ -207,7 +210,7 @@ export const App: React.FunctionComponent<AppProps> = ({ documents }): React.Rea
                 }
               `}
             >
-              {templates.map(template => (
+              {templates.map((template) => (
                 <li
                   key={template.id}
                   className={`tab ${selectedTemplate === template.id ? "selected" : ""}`}

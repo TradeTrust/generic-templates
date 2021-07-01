@@ -6,8 +6,8 @@ export default {
   title: "ChaftaCoo",
   component: ChaftaCooTemplate,
   parameters: {
-    componentSubtitle: "Chafta COO template."
-  }
+    componentSubtitle: "Chafta COO template.",
+  },
 };
 
 export const Default: FunctionComponent = () => {

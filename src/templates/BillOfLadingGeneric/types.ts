@@ -1,6 +1,6 @@
-import { Document } from "@govtechsg/decentralized-renderer-react-components";
+import { v2 } from "@govtechsg/open-attestation";
 
-export interface BillOfLadingGeneric extends Document {
+export interface BillOfLadingGeneric extends v2.OpenAttestationDocument {
   blNumber: string;
   logo: string;
   companyName: string;

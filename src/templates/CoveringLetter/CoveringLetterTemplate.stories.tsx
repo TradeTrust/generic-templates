@@ -7,8 +7,8 @@ export default {
   title: "CoveringLetter",
   component: CoveringLetterTemplate,
   parameters: {
-    componentSubtitle: "Covering letter template."
-  }
+    componentSubtitle: "Covering letter template.",
+  },
 };
 
 export const Default: FunctionComponent = () => {

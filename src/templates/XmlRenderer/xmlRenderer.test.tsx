@@ -1,12 +1,12 @@
 import { XMLRenderer } from "./template";
 import { XMLRendererSampleData } from "./sample";
 import { render } from "@testing-library/react";
-import "@testing-library/jest-dom";
 import React from "react";
 
 const emptySample = {
   XMLRendererSampleData,
-  xmlData: ""
+  xmlData: "",
+  issuers: [],
 };
 
 describe("xml renderer", () => {

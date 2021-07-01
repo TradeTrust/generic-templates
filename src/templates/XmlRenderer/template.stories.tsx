@@ -6,8 +6,8 @@ export default {
   title: "XML Renderer",
   component: XMLRenderer,
   parameters: {
-    componentSubtitle: "XML Renderer Template."
-  }
+    componentSubtitle: "XML Renderer Template.",
+  },
 };
 
 export const Default: FunctionComponent = () => {
