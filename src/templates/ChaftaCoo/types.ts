@@ -1,21 +1,8 @@
-import { v2 } from "@govtechsg/open-attestation";
+import { OpenAttestationDocument } from "@govtechsg/open-attestation";
 
-export interface SignatoryAuthentication {
-  signature?: string;
-  actualDateTime?: string;
-  statement?: string;
-}
+export type ChaftaCooDocument = ChaftaCooDocumentSchema & OpenAttestationDocument;
 
-export interface PostalAddress {
-  line1?: string;
-  line2?: string;
-  cityName?: string;
-  postcode?: string;
-  countrySubDivisionName?: string;
-  countryCode?: string;
-}
-
-export interface ChaftaCooDocument extends v2.OpenAttestationDocument {
+interface ChaftaCooDocumentSchema {
   iD?: string;
   issueDateTime?: string;
   name?: string;
@@ -31,6 +18,21 @@ export interface ChaftaCooDocument extends v2.OpenAttestationDocument {
   freeTradeAgreement?: string;
   supplyChainConsignment?: Consignment;
   links?: { self: { href: string } };
+}
+
+export interface SignatoryAuthentication {
+  signature?: string;
+  actualDateTime?: string;
+  statement?: string;
+}
+
+export interface PostalAddress {
+  line1?: string;
+  line2?: string;
+  cityName?: string;
+  postcode?: string;
+  countrySubDivisionName?: string;
+  countryCode?: string;
 }
 
 export interface Entity {
@@ -52,6 +54,7 @@ export interface ConsignmentItem {
   manufacturer: Entity;
   tradeLineItems: TradeLineItem[];
 }
+
 export interface TradeLineItem {
   sequenceNumber?: number;
   invoiceReference?: {

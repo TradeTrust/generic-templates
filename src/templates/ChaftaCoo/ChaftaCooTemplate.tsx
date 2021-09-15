@@ -1,4 +1,5 @@
 import { TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
+import { utils } from "@govtechsg/open-attestation";
 import { format } from "date-fns";
 import React, { FunctionComponent, useState } from "react";
 import { DocumentQrCode } from "../../core/DocumentQrCode";
@@ -55,7 +56,8 @@ export const ExporterSection: FunctionComponent<TemplateProps<ChaftaCooDocument>
   handleObfuscation,
   isPrivacyOn,
 }) => {
-  const exporter = document.supplyChainConsignment?.exporter;
+  const documentData = utils.isRawV3Document(document) ? (document.credentialSubject as ChaftaCooDocument) : document;
+  const exporter = documentData.supplyChainConsignment?.exporter;
   const postalAddress = exporter?.postalAddress;
 
   const privacyPath = ["supplyChainConsignment.exporter"];
@@ -83,7 +85,8 @@ export const ProducerSection: FunctionComponent<TemplateProps<ChaftaCooDocument>
   isPrivacyOn,
   handleObfuscation,
 }) => {
-  const consignmentItem = document.supplyChainConsignment?.includedConsignmentItems;
+  const documentData = utils.isRawV3Document(document) ? (document.credentialSubject as ChaftaCooDocument) : document;
+  const consignmentItem = documentData.supplyChainConsignment?.includedConsignmentItems;
   const firstConsignmentItem = consignmentItem ? consignmentItem[0] : undefined;
   const manufacturer = firstConsignmentItem?.manufacturer;
   const postalAddress = manufacturer?.postalAddress;
@@ -112,9 +115,10 @@ export const ProducerSection: FunctionComponent<TemplateProps<ChaftaCooDocument>
 export const SummarySection: FunctionComponent<TemplateProps<ChaftaCooDocument> & HasPrivacyToggle> = ({
   document,
 }) => {
+  const documentData = utils.isRawV3Document(document) ? (document.credentialSubject as ChaftaCooDocument) : document;
   return (
     <div className="border p-2 h-full text-center">
-      <div>Certificate No.: {getValue(document.iD)}</div>
+      <div>Certificate No.: {getValue(documentData.iD)}</div>
       <div className="p-2">
         <div>CERTIFICATE OF ORIGIN</div>
         <div>Form for China-Australia Free Trade Agreement</div>
@@ -137,7 +141,8 @@ export const ImporterSection: FunctionComponent<TemplateProps<ChaftaCooDocument>
   isPrivacyOn,
   handleObfuscation,
 }) => {
-  const importer = document.supplyChainConsignment?.importer;
+  const documentData = utils.isRawV3Document(document) ? (document.credentialSubject as ChaftaCooDocument) : document;
+  const importer = documentData.supplyChainConsignment?.importer;
   const postalAddress = importer?.postalAddress;
   const privacyPath = ["supplyChainConsignment.importer"];
   return (
@@ -160,7 +165,8 @@ export const ImporterSection: FunctionComponent<TemplateProps<ChaftaCooDocument>
 export const RemarksSection: FunctionComponent<TemplateProps<ChaftaCooDocument> & HasPrivacyToggle> = ({
   document,
 }) => {
-  const supplyChainConsignment = document.supplyChainConsignment;
+  const documentData = utils.isRawV3Document(document) ? (document.credentialSubject as ChaftaCooDocument) : document;
+  const supplyChainConsignment = documentData.supplyChainConsignment;
   const consignmentItems = supplyChainConsignment?.includedConsignmentItems;
   return (
     <div className="border p-2 h-full">
@@ -179,7 +185,8 @@ export const TransportSection: FunctionComponent<TemplateProps<ChaftaCooDocument
   isPrivacyOn,
   handleObfuscation,
 }) => {
-  const supplyChainConsignment = document.supplyChainConsignment;
+  const documentData = utils.isRawV3Document(document) ? (document.credentialSubject as ChaftaCooDocument) : document;
+  const supplyChainConsignment = documentData.supplyChainConsignment;
   const loadingPortLocation = supplyChainConsignment?.loadingBaseportLocation;
   const transportMovement = supplyChainConsignment?.mainCarriageTransportMovement;
   const departureEvent = transportMovement?.departureEvent;
@@ -214,7 +221,8 @@ interface TradeLineItemData {
 export const TradeLineItemsSection: FunctionComponent<TemplateProps<ChaftaCooDocument> & HasPrivacyToggle> = ({
   document,
 }) => {
-  const supplyChainConsignment = document.supplyChainConsignment;
+  const documentData = utils.isRawV3Document(document) ? (document.credentialSubject as ChaftaCooDocument) : document;
+  const supplyChainConsignment = documentData.supplyChainConsignment;
   const consignmentItems = supplyChainConsignment?.includedConsignmentItems;
 
   const lineItems: TradeLineItemData[] = [];
@@ -301,8 +309,9 @@ export const TradeLineItemsSection: FunctionComponent<TemplateProps<ChaftaCooDoc
 export const DeclarationSection: FunctionComponent<TemplateProps<ChaftaCooDocument> & HasPrivacyToggle> = ({
   document,
 }) => {
-  const importer = document.supplyChainConsignment?.importer;
-  const { firstSignatoryAuthentication, supplyChainConsignment } = document;
+  const documentData = utils.isRawV3Document(document) ? (document.credentialSubject as ChaftaCooDocument) : document;
+  const importer = documentData.supplyChainConsignment?.importer;
+  const { firstSignatoryAuthentication, supplyChainConsignment } = documentData;
   return (
     <div className="border h-full">
       <div className="p-2">
@@ -336,7 +345,8 @@ export const DeclarationSection: FunctionComponent<TemplateProps<ChaftaCooDocume
 export const CertificationSection: FunctionComponent<TemplateProps<ChaftaCooDocument> & HasPrivacyToggle> = ({
   document,
 }) => {
-  const { secondSignatoryAuthentication } = document;
+  const documentData = utils.isRawV3Document(document) ? (document.credentialSubject as ChaftaCooDocument) : document;
+  const { secondSignatoryAuthentication } = documentData;
   return (
     <div className="border p-2 h-full">
       <div className="flex flex-col h-full">
@@ -354,8 +364,9 @@ export const CertificationSection: FunctionComponent<TemplateProps<ChaftaCooDocu
 export const ChaftaCooTemplate: FunctionComponent<TemplateProps<ChaftaCooDocument> & HasPrivacyToggle> = (props) => {
   const [isPrivacyOn, setIsPrivacyOn] = useState(false);
   const { document } = props;
-  const qrCodeUrl = document?.links?.self.href;
+  const documentData = utils.isRawV3Document(document) ? (document.credentialSubject as ChaftaCooDocument) : document;
 
+  const qrCodeUrl = documentData.links?.self.href;
   return (
     <Wrapper data-testid="chafta-coo-template">
       <div style={{ fontSize: "0.8em", width: "210mm" }} className="mx-auto">
