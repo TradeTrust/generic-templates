@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { BillOfLadingSample } from "../src/templates/BillOfLading/sample";
 import { BillOfLadingGenericSample } from "../src/templates/BillOfLadingGeneric/sample";
 import { ChaftaCooSample } from "../src/templates/ChaftaCoo/sample";
+import { ChaftaCooSampleV3 } from "../src/templates/ChaftaCoo/sampleV3";
 import { CoveringLetterSample } from "../src/templates/CoveringLetter/sample";
 import { CoveringLetterSample2 } from "../src/templates/CoveringLetter/sample2";
 import { CoveringLetterSample3 } from "../src/templates/CoveringLetter/sample3";
@@ -16,6 +17,7 @@ ReactDOM.render(
       { name: "Bill of Lading", document: BillOfLadingSample },
       { name: "Bill of Lading (Generic)", document: BillOfLadingGenericSample },
       { name: "Chafta COO", document: ChaftaCooSample },
+      { name: "Chafta COO V3", document: ChaftaCooSampleV3 },
       { name: "Covering Letter (GovTech)", document: CoveringLetterSample },
       { name: "Covering Letter (DBS)", document: CoveringLetterSample2 },
       { name: "Covering Letter (Malformed)", document: CoveringLetterSample3 },

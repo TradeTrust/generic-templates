@@ -138,11 +138,10 @@ export const App: React.FunctionComponent<AppProps> = ({ documents }): React.Rea
           </div>
           {documents.length === 0 && <div>Please configure the application and provide at least one document</div>}
           {documents.map((d, index) => {
-            console.log("D", d.document.$template.name);
             return (
               <div
                 key={index}
-                data-testid={d.document.$template.name || ""}
+                data-testid={d.document.$template?.name || d.document.openAttestationMetadata?.template.name || ""}
                 className={`document ${document === d ? "active" : ""}`}
                 onClick={() => setDocument(d)}
               >
