@@ -56,7 +56,7 @@ export const ChaftaCooSampleV3: ChaftaCooDocument = {
     template: {
       type: v3.TemplateType.EmbeddedRenderer,
       name: "CHAFTA_COO",
-      url: "https://generic-templates.tradetrust.io",
+      url: "http://localhost:3000",
     },
     proof: {
       type: v3.ProofType.OpenAttestationProofMethod,

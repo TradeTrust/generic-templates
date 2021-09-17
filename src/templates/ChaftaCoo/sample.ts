@@ -11,6 +11,10 @@ export const ChaftaCooSample: ChaftaCooDocument = {
     {
       name: "abc",
       documentStore: "0x1245e5B64D785b25057f7438F715f4aA5D965733",
+      identityProof: {
+        type: v2.IdentityProofType.DNSTxt,
+        location: "few-green-cat.sandbox.openattestation.com",
+      },
     },
   ],
   links: {
