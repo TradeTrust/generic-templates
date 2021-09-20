@@ -141,7 +141,7 @@ export const App: React.FunctionComponent<AppProps> = ({ documents }): React.Rea
             return (
               <div
                 key={index}
-                data-testid={d.document.$template?.name || d.document.openAttestationMetadata?.template.name || ""}
+                data-testid={`document-${index}`}
                 className={`document ${document === d ? "active" : ""}`}
                 onClick={() => setDocument(d)}
               >
