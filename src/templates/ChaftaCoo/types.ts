@@ -1,12 +1,14 @@
 import { v2, v3 } from "@govtechsg/open-attestation";
 
-export type ChaftaCooDocumentSchemaV2 = v2.OpenAttestationDocument & ChaftaCooDocumentSchema;
+export type ChaftaCooDocumentSchemaV2 = v2.OpenAttestationDocument & ChaftaCooDocument;
 
 export type ChaftaCooDocumentSchemaV3 = v3.OpenAttestationDocument & {
-  credentialSubject: ChaftaCooDocumentSchema;
+  credentialSubject: ChaftaCooDocument;
 };
 
-export interface ChaftaCooDocumentSchema {
+export type ChaftaCooDocumentSchema = ChaftaCooDocumentSchemaV2 | ChaftaCooDocumentSchemaV3;
+
+export interface ChaftaCooDocument {
   iD?: string;
   issueDateTime?: string;
   name?: string;

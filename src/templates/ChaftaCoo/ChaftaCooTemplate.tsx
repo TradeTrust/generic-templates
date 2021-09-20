@@ -1,10 +1,9 @@
 import { TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
-import { OpenAttestationDocument } from "@govtechsg/open-attestation";
 import { format } from "date-fns";
 import React, { FunctionComponent, useState } from "react";
 import { DocumentQrCode } from "../../core/DocumentQrCode";
 import { Wrapper } from "../../core/Wrapper";
-import { ChaftaCooDocumentSchema } from "./types";
+import { ChaftaCooDocumentSchema, ChaftaCooDocument } from "./types";
 import { getDocumentData } from "./../../utils";
 
 const getValue = (id?: string): string | undefined => {
@@ -29,9 +28,8 @@ type ObfuscationHandling = {
   isPrivacyOn: boolean;
 };
 
-type ChaftaCooDocument = ChaftaCooDocumentSchema & OpenAttestationDocument;
-type ChaftaCooDocumentWithObfuscation = ChaftaCooDocumentSchema & ObfuscationHandling;
-type ChaftaCooTemplateProps = TemplateProps<ChaftaCooDocument>;
+type ChaftaCooDocumentWithObfuscation = ChaftaCooDocument & ObfuscationHandling;
+type ChaftaCooTemplateProps = TemplateProps<ChaftaCooDocumentSchema>;
 
 export const PrivacyButton: FunctionComponent<PrivacyButtonProps> = ({
   isPrivacyOn,
