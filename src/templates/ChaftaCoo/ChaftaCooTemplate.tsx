@@ -1,38 +1,37 @@
 import { TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
-import { utils } from "@govtechsg/open-attestation";
+import { OpenAttestationDocument } from "@govtechsg/open-attestation";
 import { format } from "date-fns";
 import React, { FunctionComponent, useState } from "react";
 import { DocumentQrCode } from "../../core/DocumentQrCode";
 import { Wrapper } from "../../core/Wrapper";
-import { ChaftaCooDocument, ChaftaCooDocumentSchema } from "./types";
+import { ChaftaCooDocumentSchema } from "./types";
+import { getDocumentData } from "./../../utils";
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const getValue = (id?: string) => {
+const getValue = (id?: string): string | undefined => {
   if (!id) return undefined;
   const values = id.split(":");
   return values[values.length - 1];
 };
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const printDate = (date?: string) => {
+const printDate = (date?: string): string | undefined => {
   if (!date) return undefined;
   return format(new Date(date), "yyyy-MM-dd");
 };
 
-interface HasPrivacyToggle {
-  isPrivacyOn?: boolean;
-}
-
 interface PrivacyButtonProps {
-  isPrivacyOn?: boolean;
   handleObfuscation: (path: string) => void;
+  isPrivacyOn?: boolean;
   paths?: string[];
 }
 
-type ChaftCooDocumentData = TemplateProps<ChaftaCooDocument> &
-  HasPrivacyToggle & {
-    fieldsData: ChaftaCooDocumentSchema;
-  };
+type ObfuscationHandling = {
+  handleObfuscation: (path: string) => void;
+  isPrivacyOn: boolean;
+};
+
+type ChaftaCooDocument = ChaftaCooDocumentSchema & OpenAttestationDocument;
+type ChaftaCooDocumentWithObfuscation = ChaftaCooDocumentSchema & ObfuscationHandling;
+type ChaftaCooTemplateProps = TemplateProps<ChaftaCooDocument>;
 
 export const PrivacyButton: FunctionComponent<PrivacyButtonProps> = ({
   isPrivacyOn,
@@ -43,6 +42,7 @@ export const PrivacyButton: FunctionComponent<PrivacyButtonProps> = ({
   const hideSection: VoidFunction = () => {
     paths.forEach((path) => handleObfuscation(path));
   };
+
   return (
     <div className="inline-block align-middle">
       <div
@@ -56,14 +56,13 @@ export const PrivacyButton: FunctionComponent<PrivacyButtonProps> = ({
   );
 };
 
-export const ExporterSection: FunctionComponent<ChaftCooDocumentData> = ({
-  fieldsData,
+export const ExporterSection: FunctionComponent<ChaftaCooDocumentWithObfuscation> = ({
+  supplyChainConsignment,
   handleObfuscation,
   isPrivacyOn,
 }) => {
-  const exporter = fieldsData.supplyChainConsignment?.exporter;
+  const exporter = supplyChainConsignment?.exporter;
   const postalAddress = exporter?.postalAddress;
-
   const privacyPath = ["supplyChainConsignment.exporter"];
 
   return (
@@ -84,18 +83,19 @@ export const ExporterSection: FunctionComponent<ChaftCooDocumentData> = ({
   );
 };
 
-export const ProducerSection: FunctionComponent<ChaftCooDocumentData> = ({
-  fieldsData,
-  isPrivacyOn,
+export const ProducerSection: FunctionComponent<ChaftaCooDocumentWithObfuscation> = ({
+  supplyChainConsignment,
   handleObfuscation,
+  isPrivacyOn,
 }) => {
-  const consignmentItem = fieldsData.supplyChainConsignment?.includedConsignmentItems;
+  const consignmentItem = supplyChainConsignment?.includedConsignmentItems;
   const firstConsignmentItem = consignmentItem ? consignmentItem[0] : undefined;
   const manufacturer = firstConsignmentItem?.manufacturer;
   const postalAddress = manufacturer?.postalAddress;
   const privacyPath = consignmentItem?.map(
     (_item, index) => `supplyChainConsignment.includedConsignmentItems[${index}].manufacturer`
   );
+
   return (
     <div className="border p-2">
       <div>
@@ -115,10 +115,10 @@ export const ProducerSection: FunctionComponent<ChaftCooDocumentData> = ({
   );
 };
 
-export const SummarySection: FunctionComponent<ChaftCooDocumentData> = ({ fieldsData }) => {
+export const SummarySection: FunctionComponent<ChaftaCooDocument> = ({ iD }) => {
   return (
     <div className="border p-2 h-full text-center">
-      <div>Certificate No.: {getValue(fieldsData.iD)}</div>
+      <div>Certificate No.: {getValue(iD)}</div>
       <div className="p-2">
         <div>CERTIFICATE OF ORIGIN</div>
         <div>Form for China-Australia Free Trade Agreement</div>
@@ -128,7 +128,7 @@ export const SummarySection: FunctionComponent<ChaftCooDocumentData> = ({ fields
   );
 };
 
-export const OfficialUseSection: FunctionComponent<ChaftCooDocumentData> = () => {
+export const OfficialUseSection: FunctionComponent = () => {
   return (
     <div className="border p-2 h-full">
       <div>For official use only:</div>
@@ -136,14 +136,15 @@ export const OfficialUseSection: FunctionComponent<ChaftCooDocumentData> = () =>
   );
 };
 
-export const ImporterSection: FunctionComponent<ChaftCooDocumentData> = ({
-  fieldsData,
-  isPrivacyOn,
+export const ImporterSection: FunctionComponent<ChaftaCooDocumentWithObfuscation> = ({
+  supplyChainConsignment,
   handleObfuscation,
+  isPrivacyOn,
 }) => {
-  const importer = fieldsData.supplyChainConsignment?.importer;
+  const importer = supplyChainConsignment?.importer;
   const postalAddress = importer?.postalAddress;
   const privacyPath = ["supplyChainConsignment.importer"];
+
   return (
     <div className="border p-2">
       <div>
@@ -161,9 +162,9 @@ export const ImporterSection: FunctionComponent<ChaftCooDocumentData> = ({
   );
 };
 
-export const RemarksSection: FunctionComponent<ChaftCooDocumentData> = ({ fieldsData }) => {
-  const supplyChainConsignment = fieldsData.supplyChainConsignment;
+export const RemarksSection: FunctionComponent<ChaftaCooDocument> = ({ supplyChainConsignment }) => {
   const consignmentItems = supplyChainConsignment?.includedConsignmentItems;
+
   return (
     <div className="border p-2 h-full">
       <div>5. Remarks:</div>
@@ -176,12 +177,11 @@ export const RemarksSection: FunctionComponent<ChaftCooDocumentData> = ({ fields
   );
 };
 
-export const TransportSection: FunctionComponent<ChaftCooDocumentData> = ({
-  fieldsData,
-  isPrivacyOn,
+export const TransportSection: FunctionComponent<ChaftaCooDocumentWithObfuscation> = ({
+  supplyChainConsignment,
   handleObfuscation,
+  isPrivacyOn,
 }) => {
-  const supplyChainConsignment = fieldsData.supplyChainConsignment;
   const loadingPortLocation = supplyChainConsignment?.loadingBaseportLocation;
   const transportMovement = supplyChainConsignment?.mainCarriageTransportMovement;
   const departureEvent = transportMovement?.departureEvent;
@@ -189,6 +189,7 @@ export const TransportSection: FunctionComponent<ChaftCooDocumentData> = ({
     "supplyChainConsignment.loadingBaseportLocation",
     "supplyChainConsignment.mainCarriageTransportMovement",
   ];
+
   return (
     <div className="border p-2 h-full">
       <div>
@@ -213,10 +214,8 @@ interface TradeLineItemData {
   invoiceDate?: string;
 }
 
-export const TradeLineItemsSection: FunctionComponent<ChaftCooDocumentData> = ({ fieldsData }) => {
-  const supplyChainConsignment = fieldsData.supplyChainConsignment;
+export const TradeLineItemsSection: FunctionComponent<ChaftaCooDocument> = ({ supplyChainConsignment }) => {
   const consignmentItems = supplyChainConsignment?.includedConsignmentItems;
-
   const lineItems: TradeLineItemData[] = [];
 
   consignmentItems?.forEach((consignmentItem) => {
@@ -298,9 +297,12 @@ export const TradeLineItemsSection: FunctionComponent<ChaftCooDocumentData> = ({
   );
 };
 
-export const DeclarationSection: FunctionComponent<ChaftCooDocumentData> = ({ fieldsData }) => {
-  const importer = fieldsData.supplyChainConsignment?.importer;
-  const { firstSignatoryAuthentication, supplyChainConsignment } = fieldsData;
+export const DeclarationSection: FunctionComponent<ChaftaCooDocument> = ({
+  supplyChainConsignment,
+  firstSignatoryAuthentication,
+}) => {
+  const importer = supplyChainConsignment?.importer;
+
   return (
     <div className="border h-full">
       <div className="p-2">
@@ -331,8 +333,7 @@ export const DeclarationSection: FunctionComponent<ChaftCooDocumentData> = ({ fi
   );
 };
 
-export const CertificationSection: FunctionComponent<ChaftCooDocumentData> = ({ fieldsData }) => {
-  const { secondSignatoryAuthentication } = fieldsData;
+export const CertificationSection: FunctionComponent<ChaftaCooDocument> = ({ secondSignatoryAuthentication }) => {
   return (
     <div className="border p-2 h-full">
       <div className="flex flex-col h-full">
@@ -347,16 +348,12 @@ export const CertificationSection: FunctionComponent<ChaftCooDocumentData> = ({ 
   );
 };
 
-export const ChaftaCooTemplate: FunctionComponent<TemplateProps<ChaftaCooDocument>> = (props) => {
+export const ChaftaCooTemplate: FunctionComponent<ChaftaCooTemplateProps> = (props) => {
   const [isPrivacyOn, setIsPrivacyOn] = useState(false);
-  const { document } = props;
+  const { document, handleObfuscation } = props;
+  const documentData = getDocumentData(document);
+  const qrCodeUrl = documentData.links?.self.href;
 
-  const documentData: ChaftCooDocumentData = {
-    ...props,
-    fieldsData: utils.isRawV3Document(document) ? document.credentialSubject : document,
-  };
-
-  const qrCodeUrl = documentData.fieldsData.links?.self.href;
   return (
     <Wrapper data-testid="chafta-coo-template">
       <div style={{ fontSize: "0.8em", width: "210mm" }} className="mx-auto">
@@ -382,38 +379,38 @@ export const ChaftaCooTemplate: FunctionComponent<TemplateProps<ChaftaCooDocumen
         <div className="border">
           <div className="flex">
             <div className="w-1/2">
-              <ExporterSection {...documentData} isPrivacyOn={isPrivacyOn} />
-              <ProducerSection {...documentData} isPrivacyOn={isPrivacyOn} />
+              <ExporterSection {...documentData} handleObfuscation={handleObfuscation} isPrivacyOn={isPrivacyOn} />
+              <ProducerSection {...documentData} handleObfuscation={handleObfuscation} isPrivacyOn={isPrivacyOn} />
             </div>
             <div className="w-1/2">
-              <SummarySection {...documentData} isPrivacyOn={isPrivacyOn} />
-            </div>
-          </div>
-          <div className="flex">
-            <div className="w-1/2">
-              <ImporterSection {...documentData} isPrivacyOn={isPrivacyOn} />
-            </div>
-            <div className="w-1/2">
-              <OfficialUseSection {...documentData} isPrivacyOn={isPrivacyOn} />
+              <SummarySection {...documentData} />
             </div>
           </div>
           <div className="flex">
             <div className="w-1/2">
-              <TransportSection {...documentData} isPrivacyOn={isPrivacyOn} />
+              <ImporterSection {...documentData} handleObfuscation={handleObfuscation} isPrivacyOn={isPrivacyOn} />
             </div>
             <div className="w-1/2">
-              <RemarksSection {...documentData} isPrivacyOn={isPrivacyOn} />
+              <OfficialUseSection />
+            </div>
+          </div>
+          <div className="flex">
+            <div className="w-1/2">
+              <TransportSection {...documentData} handleObfuscation={handleObfuscation} isPrivacyOn={isPrivacyOn} />
+            </div>
+            <div className="w-1/2">
+              <RemarksSection {...documentData} />
             </div>
           </div>
           <div>
-            <TradeLineItemsSection {...documentData} isPrivacyOn={isPrivacyOn} />
+            <TradeLineItemsSection {...documentData} />
           </div>
           <div className="flex">
             <div className="w-1/2">
-              <DeclarationSection {...documentData} isPrivacyOn={isPrivacyOn} />
+              <DeclarationSection {...documentData} />
             </div>
             <div className="w-1/2">
-              <CertificationSection {...documentData} isPrivacyOn={isPrivacyOn} />
+              <CertificationSection {...documentData} />
             </div>
           </div>
         </div>
