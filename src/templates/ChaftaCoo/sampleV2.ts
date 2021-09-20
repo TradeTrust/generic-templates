@@ -1,7 +1,7 @@
 import { v2 } from "@govtechsg/open-attestation";
-import { ChaftaCooDocumentSchema } from "./types";
+import { ChaftaCooDocumentSchemaV2 } from "./types";
 
-export const ChaftaCooSampleV2: ChaftaCooDocumentSchema & v2.OpenAttestationDocument = {
+export const ChaftaCooSampleV2: ChaftaCooDocumentSchemaV2 = {
   $template: {
     type: v2.TemplateType.EmbeddedRenderer,
     name: "CHAFTA_COO",
@@ -17,11 +17,6 @@ export const ChaftaCooSampleV2: ChaftaCooDocumentSchema & v2.OpenAttestationDocu
       },
     },
   ],
-  links: {
-    self: {
-      href: "https://action.openattestation.com/?q=%7B%22type%22%3A%22DOCUMENT%22%2C%22payload%22%3A%7B%22uri%22%3A%22https%3A%2F%2Fapi-ropsten.tradetrust.io%2Fstorage%2F1ba3d4f7-2721-4c07-ae33-21396fed8e0f%22%2C%22key%22%3A%22363a3b5aebe84b2b5e32cfec92dfb5270f58e399b1c90243a1b8afde082a125c%22%2C%22permittedActions%22%3A%5B%22STORE%22%5D%2C%22redirect%22%3A%22https%3A%2F%2Fdev.tradetrust.io%2F%22%7D%7D",
-    },
-  },
   iD: "wfa.org.au:coo:WBC208897",
   issueDateTime: "2020-06-03T00:46:34Z",
   name: "CHAFTA Certificate of Origin",

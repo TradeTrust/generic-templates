@@ -1,7 +1,7 @@
 import { v3 } from "@govtechsg/open-attestation";
-import { ChaftaCooDocumentSchema } from "./types";
+import { ChaftaCooDocumentSchemaV3 } from "./types";
 
-export const ChaftaCooSampleV3: ChaftaCooDocumentSchema & v3.OpenAttestationDocument = {
+export const ChaftaCooSampleV3: ChaftaCooDocumentSchemaV3 = {
   "@context": [
     "https://www.w3.org/2018/credentials/v1",
     "https://schemata.openattestation.com/io/tradetrust/certificate-of-origin/1.0/CertificateOfOrigin.v3.json",
