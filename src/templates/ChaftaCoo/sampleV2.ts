@@ -1,7 +1,7 @@
 import { v2 } from "@govtechsg/open-attestation";
-import { ChaftaCooDocument } from "./types";
+import { ChaftaCooDocumentSchema } from "./types";
 
-export const ChaftaCooSample: ChaftaCooDocument = {
+export const ChaftaCooSampleV2: ChaftaCooDocumentSchema & v2.OpenAttestationDocument = {
   $template: {
     type: v2.TemplateType.EmbeddedRenderer,
     name: "CHAFTA_COO",

@@ -1,7 +1,3 @@
-import { OpenAttestationDocument } from "@govtechsg/open-attestation";
-
-export type ChaftaCooDocument = ChaftaCooDocumentSchema & OpenAttestationDocument;
-
 export interface ChaftaCooDocumentSchema {
   iD?: string;
   issueDateTime?: string;
@@ -20,13 +16,13 @@ export interface ChaftaCooDocumentSchema {
   links?: { self: { href: string } };
 }
 
-export interface SignatoryAuthentication {
+interface SignatoryAuthentication {
   signature?: string;
   actualDateTime?: string;
   statement?: string;
 }
 
-export interface PostalAddress {
+interface PostalAddress {
   line1?: string;
   line2?: string;
   cityName?: string;
@@ -35,17 +31,17 @@ export interface PostalAddress {
   countryCode?: string;
 }
 
-export interface Entity {
+interface Entity {
   iD?: string;
   name?: string;
   postalAddress?: PostalAddress;
 }
 
-export interface Country {
+interface Country {
   code?: string;
 }
 
-export interface ConsignmentItem {
+interface ConsignmentItem {
   iD: string;
   information: string;
   crossBorderRegulatoryProcedure: {
@@ -55,7 +51,7 @@ export interface ConsignmentItem {
   tradeLineItems: TradeLineItem[];
 }
 
-export interface TradeLineItem {
+interface TradeLineItem {
   sequenceNumber?: number;
   invoiceReference?: {
     iD?: string;
@@ -76,7 +72,7 @@ export interface TradeLineItem {
   transportPackages?: TransportPackage[];
 }
 
-export interface Consignment {
+interface Consignment {
   iD?: string;
   information?: string;
   exportCountry?: Country;
@@ -106,7 +102,7 @@ export interface Consignment {
   };
 }
 
-export interface TransportPackage {
+interface TransportPackage {
   iD?: string;
   grossVolume?: string;
   grossWeight?: string;

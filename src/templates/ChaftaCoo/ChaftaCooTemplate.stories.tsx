@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from "react";
 import { ChaftaCooTemplate } from "./ChaftaCooTemplate";
-import { ChaftaCooSample } from "./sample";
+import { ChaftaCooSampleV2 } from "./sampleV2";
 import { ChaftaCooSampleV3 } from "./sampleV3";
 
 export default {
@@ -12,7 +12,7 @@ export default {
 };
 
 export const ChaftaCooV2: FunctionComponent = () => {
-  return <ChaftaCooTemplate document={ChaftaCooSample} handleObfuscation={() => {}} />;
+  return <ChaftaCooTemplate document={ChaftaCooSampleV2} handleObfuscation={() => {}} />;
 };
 
 export const ChaftaCooV3: FunctionComponent = () => {
