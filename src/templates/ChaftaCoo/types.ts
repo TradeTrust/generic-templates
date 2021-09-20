@@ -2,7 +2,7 @@ import { OpenAttestationDocument } from "@govtechsg/open-attestation";
 
 export type ChaftaCooDocument = ChaftaCooDocumentSchema & OpenAttestationDocument;
 
-interface ChaftaCooDocumentSchema {
+export interface ChaftaCooDocumentSchema {
   iD?: string;
   issueDateTime?: string;
   name?: string;
