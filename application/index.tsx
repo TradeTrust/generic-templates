@@ -7,7 +7,8 @@ import { ChaftaCooSampleV3 } from "../src/templates/ChaftaCoo/sampleV3";
 import { CoveringLetterSample } from "../src/templates/CoveringLetter/sample";
 import { CoveringLetterSample2 } from "../src/templates/CoveringLetter/sample2";
 import { CoveringLetterSample3 } from "../src/templates/CoveringLetter/sample3";
-import { InvoiceSample } from "../src/templates/Invoice/sample";
+import { InvoiceSampleV2 } from "../src/templates/Invoice/sampleV2";
+import { InvoiceSampleV3 } from "../src/templates/Invoice/sampleV3";
 import { XMLRendererSampleData } from "../src/templates/XmlRenderer/sample";
 import { App } from "./app";
 
@@ -21,7 +22,8 @@ ReactDOM.render(
       { name: "Covering Letter (GovTech)", document: CoveringLetterSample },
       { name: "Covering Letter (DBS)", document: CoveringLetterSample2 },
       { name: "Covering Letter (Malformed)", document: CoveringLetterSample3 },
-      { name: "Invoice", document: InvoiceSample },
+      { name: "InvoiceV2", document: InvoiceSampleV2 },
+      { name: "InvoiceV3", document: InvoiceSampleV3 },
       { name: "XML Renderer", document: XMLRendererSampleData },
     ]}
   />,

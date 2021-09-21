@@ -1,4 +1,27 @@
-import { v2 } from "@govtechsg/open-attestation";
+import { v2, v3 } from "@govtechsg/open-attestation";
+
+export type InvoiceDocumentSchemaV2 = v2.OpenAttestationDocument & InvoiceDocument;
+
+export type InvoiceDocumentSchemaV3 = v3.OpenAttestationDocument & {
+  credentialSubject: InvoiceDocument;
+};
+
+export type InvoiceDocumentSchema = InvoiceDocumentSchemaV2 | InvoiceDocumentSchemaV3;
+
+export interface InvoiceDocument {
+  id?: string;
+  date?: string;
+  customerId?: string;
+  terms?: string;
+  billFrom?: CompanyInfo;
+  billTo?: BillingAddress;
+  billableItems?: InvoiceItem[];
+  subtotal?: string;
+  tax?: string;
+  taxTotal?: string;
+  total?: string;
+  links?: { self: { href: string } };
+}
 
 export interface CompanyInfo {
   name: string;
@@ -19,19 +42,4 @@ export interface InvoiceItem {
   quantity: string;
   unitPrice: string;
   amount: string;
-}
-
-export interface Invoice extends v2.OpenAttestationDocument {
-  id?: string;
-  date?: string;
-  customerId?: string;
-  terms?: string;
-  billFrom?: CompanyInfo;
-  billTo?: BillingAddress;
-  billableItems?: InvoiceItem[];
-  subtotal?: string;
-  tax?: string;
-  taxTotal?: string;
-  total?: string;
-  links?: { self: { href: string } };
 }

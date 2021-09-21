@@ -4,7 +4,8 @@ import { format } from "date-fns";
 import React, { FunctionComponent } from "react";
 import { DocumentQrCode } from "../../core/DocumentQrCode";
 import { Wrapper } from "../../core/Wrapper";
-import { Invoice } from "./types";
+import { getDocumentData } from "../../utils";
+import { InvoiceDocument, InvoiceDocumentSchema } from "./types";
 
 const CustomStyles = styled.div`
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
@@ -38,7 +39,9 @@ const CustomStyles = styled.div`
   }
 `;
 
-export const InvoiceTemplate: FunctionComponent<TemplateProps<Invoice>> = ({ document }) => {
+export const InvoiceTemplate: FunctionComponent<TemplateProps<InvoiceDocumentSchema>> = ({ document }) => {
+  const documentData = getDocumentData(document) as InvoiceDocument;
+  console.log(documentData);
   const {
     id,
     date,
@@ -51,8 +54,8 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<Invoice>> = ({ doc
     tax = 0,
     taxTotal = 0,
     total = 0,
-  } = document;
-  const qrCodeUrl = document?.links?.self.href;
+  } = documentData;
+  const qrCodeUrl = documentData?.links?.self.href;
 
   return (
     <Wrapper data-testid="invoice-template">
