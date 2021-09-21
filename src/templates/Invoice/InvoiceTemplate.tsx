@@ -41,7 +41,6 @@ const CustomStyles = styled.div`
 
 export const InvoiceTemplate: FunctionComponent<TemplateProps<InvoiceDocumentSchema>> = ({ document }) => {
   const documentData = getDocumentData(document) as InvoiceDocument;
-  console.log(documentData);
   const {
     id,
     date,
