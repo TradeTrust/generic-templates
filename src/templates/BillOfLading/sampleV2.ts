@@ -1,7 +1,7 @@
 import { v2 } from "@govtechsg/open-attestation";
-import { BillOfLading } from "./types";
+import { BillOfLadingSchemaV2 } from "./types";
 
-export const BillOfLadingSample: BillOfLading = {
+export const BillOfLadingSampleV2: BillOfLadingSchemaV2 = {
   $template: {
     type: v2.TemplateType.EmbeddedRenderer,
     name: "BILL_OF_LADING",

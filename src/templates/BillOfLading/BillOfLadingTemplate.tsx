@@ -2,11 +2,12 @@ import { TemplateProps } from "@govtechsg/decentralized-renderer-react-component
 import React, { FunctionComponent } from "react";
 import { DocumentQrCode } from "../../core/DocumentQrCode";
 import { Wrapper } from "../../core/Wrapper";
-import { BillOfLading } from "./types";
+import { getDocumentData } from "../../utils";
+import { BillOfLadingDocument, BillOfLadingSchema } from "./types";
 
 const smallText = (text: string): JSX.Element => <div style={{ fontSize: "0.8em" }}>{text}</div>;
 
-const Section3 = (document: BillOfLading): JSX.Element => {
+const Section3 = (document: BillOfLadingDocument): JSX.Element => {
   const carrierName = document.carrierName;
   return (
     <div className="border-black border">
@@ -90,7 +91,7 @@ const Section3 = (document: BillOfLading): JSX.Element => {
   );
 };
 
-const Section2 = (document: BillOfLading): JSX.Element => {
+const Section2 = (document: BillOfLadingDocument): JSX.Element => {
   const packages = document.packages || [];
   const renderedKindOfPackage = packages.map((pkg, index) => <div key={index}>{pkg.description}</div>);
   const renderedWeight = packages.map((pkg, index) => <div key={index}>{pkg.weight}</div>);
@@ -128,7 +129,7 @@ const Section2 = (document: BillOfLading): JSX.Element => {
   );
 };
 
-const Section1 = (document: BillOfLading): JSX.Element => {
+const Section1 = (document: BillOfLadingDocument): JSX.Element => {
   const { shipper = {}, scac, blNumber, consignee = {}, notifyParty = {} } = document;
   return (
     <div className="border-black border">
@@ -252,16 +253,17 @@ const Section1 = (document: BillOfLading): JSX.Element => {
   );
 };
 
-export const BillOfLadingTemplate: FunctionComponent<TemplateProps<BillOfLading>> = ({ document }) => {
-  const qrCodeUrl = document?.links?.self.href;
+export const BillOfLadingTemplate: FunctionComponent<TemplateProps<BillOfLadingSchema>> = ({ document }) => {
+  const documentData = getDocumentData(document);
+  const qrCodeUrl = documentData?.links?.self.href;
   return (
     <Wrapper data-testid="bill-of-lading-template">
-      <div className="mb-8">{Section1(document)}</div>
+      <div className="mb-8">{Section1(documentData)}</div>
       <div className="text-center">
         <strong>PARTICULARS FURNISHED BY SHIPPER</strong>
       </div>
-      <div className="mb-8">{Section2(document)}</div>
-      {Section3(document)}
+      <div className="mb-8">{Section2(documentData)}</div>
+      {Section3(documentData)}
       {qrCodeUrl && <DocumentQrCode url={qrCodeUrl} />}
     </Wrapper>
   );
