@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from "react";
 import { BillOfLadingTemplate } from "./BillOfLadingTemplate";
-import { BillOfLadingSample } from "./sample";
+import { BillOfLadingSampleV2 } from "./sampleV2";
+import { BillOfLadingSampleV3 } from "./sampleV3";
 
 export default {
   title: "BillOfLading",
@@ -10,6 +11,10 @@ export default {
   },
 };
 
-export const Default: FunctionComponent = () => {
-  return <BillOfLadingTemplate document={BillOfLadingSample} handleObfuscation={() => {}} />;
+export const BillOfLadingV2: FunctionComponent = () => {
+  return <BillOfLadingTemplate document={BillOfLadingSampleV2} handleObfuscation={() => {}} />;
+};
+
+export const BillOfLadingV3: FunctionComponent = () => {
+  return <BillOfLadingTemplate document={BillOfLadingSampleV3} handleObfuscation={() => {}} />;
 };
