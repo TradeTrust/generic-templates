@@ -1,21 +1,14 @@
-import { v2 } from "@govtechsg/open-attestation";
+import { v2, v3 } from "@govtechsg/open-attestation";
 
-export interface SignatoryAuthentication {
-  signature?: string;
-  actualDateTime?: string;
-  statement?: string;
-}
+export type ChaftaCooDocumentSchemaV2 = v2.OpenAttestationDocument & ChaftaCooDocument;
 
-export interface PostalAddress {
-  line1?: string;
-  line2?: string;
-  cityName?: string;
-  postcode?: string;
-  countrySubDivisionName?: string;
-  countryCode?: string;
-}
+export type ChaftaCooDocumentSchemaV3 = v3.OpenAttestationDocument & {
+  credentialSubject: ChaftaCooDocument;
+};
 
-export interface ChaftaCooDocument extends v2.OpenAttestationDocument {
+export type ChaftaCooDocumentSchema = ChaftaCooDocumentSchemaV2 | ChaftaCooDocumentSchemaV3;
+
+export interface ChaftaCooDocument {
   iD?: string;
   issueDateTime?: string;
   name?: string;
@@ -33,17 +26,32 @@ export interface ChaftaCooDocument extends v2.OpenAttestationDocument {
   links?: { self: { href: string } };
 }
 
-export interface Entity {
+interface SignatoryAuthentication {
+  signature?: string;
+  actualDateTime?: string;
+  statement?: string;
+}
+
+interface PostalAddress {
+  line1?: string;
+  line2?: string;
+  cityName?: string;
+  postcode?: string;
+  countrySubDivisionName?: string;
+  countryCode?: string;
+}
+
+interface Entity {
   iD?: string;
   name?: string;
   postalAddress?: PostalAddress;
 }
 
-export interface Country {
+interface Country {
   code?: string;
 }
 
-export interface ConsignmentItem {
+interface ConsignmentItem {
   iD: string;
   information: string;
   crossBorderRegulatoryProcedure: {
@@ -52,7 +60,8 @@ export interface ConsignmentItem {
   manufacturer: Entity;
   tradeLineItems: TradeLineItem[];
 }
-export interface TradeLineItem {
+
+interface TradeLineItem {
   sequenceNumber?: number;
   invoiceReference?: {
     iD?: string;
@@ -73,7 +82,7 @@ export interface TradeLineItem {
   transportPackages?: TransportPackage[];
 }
 
-export interface Consignment {
+interface Consignment {
   iD?: string;
   information?: string;
   exportCountry?: Country;
@@ -103,7 +112,7 @@ export interface Consignment {
   };
 }
 
-export interface TransportPackage {
+interface TransportPackage {
   iD?: string;
   grossVolume?: string;
   grossWeight?: string;
