@@ -1,7 +1,7 @@
 import { v2 } from "@govtechsg/open-attestation";
-import { Invoice } from "./types";
+import { InvoiceDocumentSchemaV2 } from "./types";
 
-export const InvoiceSample: Invoice = {
+export const InvoiceSampleV2: InvoiceDocumentSchemaV2 = {
   $template: {
     type: v2.TemplateType.EmbeddedRenderer,
     name: "INVOICE",
