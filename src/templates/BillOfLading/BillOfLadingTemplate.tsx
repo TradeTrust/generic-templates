@@ -223,7 +223,12 @@ const Section1 = (document: BillOfLadingDocument): JSX.Element => {
         </div>
         <div className="w-1/2 border-black border">
           <div className="p-2" style={{ fontSize: "0.8em" }}>
-            Place of Receipt. Applicable only when document used as Multimodal Transport B/L (see clause 1)
+            Place of Receipt.
+            {document.placeOfReceipt ? (
+              <div className="break-all">{document.placeOfReceipt}</div>
+            ) : (
+              " Applicable only when document used as Multimodal Transport B/L (see clause 1)"
+            )}
           </div>
         </div>
       </div>
@@ -244,7 +249,12 @@ const Section1 = (document: BillOfLadingDocument): JSX.Element => {
         <div className="w-1/2 border-black border">
           <div className="p-2">
             <div style={{ fontSize: "0.8em" }}>
-              Place of Delivery. Applicable only when document used as Multimodal Transport B/L (see clause 1)
+              Place of Delivery.
+              {document.placeOfDelivery ? (
+                <div className="break-all">{document.placeOfDelivery}</div>
+              ) : (
+                " Applicable only when document used as Multimodal Transport B/L (see clause 1)"
+              )}
             </div>
           </div>
         </div>
@@ -254,7 +264,7 @@ const Section1 = (document: BillOfLadingDocument): JSX.Element => {
 };
 
 export const BillOfLadingTemplate: FunctionComponent<TemplateProps<BillOfLadingSchema>> = ({ document }) => {
-  const documentData = getDocumentData(document);
+  const documentData = getDocumentData(document) as BillOfLadingDocument;
   const qrCodeUrl = documentData?.links?.self.href;
   return (
     <Wrapper data-testid="bill-of-lading-template">
