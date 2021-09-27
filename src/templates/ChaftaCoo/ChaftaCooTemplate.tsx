@@ -67,7 +67,7 @@ export const ExporterSection: FunctionComponent<ChaftaCooDocumentWithObfuscation
 
   return (
     <div className="border p-2 flex-1">
-      <h5>
+      <h5 className="mb-2">
         1. Exporter’s name, address and country:{" "}
         <PrivacyButton isPrivacyOn={isPrivacyOn} handleObfuscation={handleObfuscation} paths={privacyPath} />
       </h5>
@@ -98,7 +98,7 @@ export const ProducerSection: FunctionComponent<ChaftaCooDocumentWithObfuscation
 
   return (
     <div className="border p-2 flex-1">
-      <h5>
+      <h5 className="mb-2">
         2. Producer’s name and address (if known):{" "}
         <PrivacyButton isPrivacyOn={isPrivacyOn} handleObfuscation={handleObfuscation} paths={privacyPath} />
       </h5>
@@ -118,7 +118,7 @@ export const ProducerSection: FunctionComponent<ChaftaCooDocumentWithObfuscation
 export const SummarySection: FunctionComponent<ChaftaCooDocument> = ({ iD }) => {
   return (
     <div className="border p-2 h-full">
-      <h5>Certificate No.: {getValue(iD)}</h5>
+      <h5 className="mb-2">Certificate No.: {getValue(iD)}</h5>
       <div className="text-center">
         <div className="py-4">
           <p className="font-bold">CERTIFICATE OF ORIGIN</p>
@@ -135,7 +135,7 @@ export const SummarySection: FunctionComponent<ChaftaCooDocument> = ({ iD }) => 
 export const OfficialUseSection: FunctionComponent = () => {
   return (
     <div className="border p-2 h-full">
-      <h5>For official use only:</h5>
+      <h5 className="mb-2">For official use only:</h5>
       <div style={{ minHeight: "80px" }} />
     </div>
   );
@@ -152,7 +152,7 @@ export const ImporterSection: FunctionComponent<ChaftaCooDocumentWithObfuscation
 
   return (
     <div className="border p-2 h-full">
-      <h5>
+      <h5 className="mb-2">
         3. Importer’s name, address and country (if known):{" "}
         <PrivacyButton isPrivacyOn={isPrivacyOn} handleObfuscation={handleObfuscation} paths={privacyPath} />
       </h5>
@@ -172,7 +172,7 @@ export const RemarksSection: FunctionComponent<ChaftaCooDocument> = ({ supplyCha
 
   return (
     <div className="border p-2 h-full">
-      <h5>5. Remarks:</h5>
+      <h5 className="mb-2">5. Remarks:</h5>
       {supplyChainConsignment?.iD && <p>Consignment Ref: {getValue(supplyChainConsignment?.iD)}</p>}
       <p>{supplyChainConsignment?.information}</p>
       {consignmentItems && consignmentItems?.length > 0 && (
@@ -196,6 +196,7 @@ export const TransportSection: FunctionComponent<ChaftaCooDocumentWithObfuscatio
   isPrivacyOn,
 }) => {
   const loadingPortLocation = supplyChainConsignment?.loadingBaseportLocation;
+  const unloadingBaseportLocation = supplyChainConsignment?.unloadingBaseportLocation;
   const transportMovement = supplyChainConsignment?.mainCarriageTransportMovement;
   const departureEvent = transportMovement?.departureEvent;
   const privacyPath = [
@@ -205,15 +206,14 @@ export const TransportSection: FunctionComponent<ChaftaCooDocumentWithObfuscatio
 
   return (
     <div className="border p-2 h-full">
-      <h5>
+      <h5 className="mb-2">
         4. Means of transport and route (if known):{" "}
         <PrivacyButton isPrivacyOn={isPrivacyOn} handleObfuscation={handleObfuscation} paths={privacyPath} />
       </h5>
-      {departureEvent?.departureDateTime && <p>Departure Date: {printDate(departureEvent?.departureDateTime)}</p>}
-      {transportMovement?.usedTransportMeans?.iD && (
-        <p>Vessel/Flight/Train/Vehicle No.: {getValue(transportMovement?.usedTransportMeans?.iD)}</p>
-      )}
-      {loadingPortLocation?.iD && <p>Port of loading: {getValue(loadingPortLocation?.iD)}</p>}
+      <p>Departure Date: {printDate(departureEvent?.departureDateTime)}</p>
+      <p>Vessel/Flight/Train/Vehicle No.: {getValue(transportMovement?.usedTransportMeans?.iD)}</p>
+      <p>Port of loading: {getValue(loadingPortLocation?.iD)}</p>
+      <p>Port of discharge: {getValue(unloadingBaseportLocation?.iD)}</p>
     </div>
   );
 };
@@ -320,16 +320,14 @@ export const DeclarationSection: FunctionComponent<ChaftaCooDocument> = ({
 
   return (
     <div className="border p-2 h-full">
-      <h5>
-        13. Declaration by the exporter or producer The undersigned hereby declares that the above-stated information is
-        correct and that the goods exported to
-      </h5>
+      <h5 className="mb-2">13. Declaration by the exporter or producer</h5>
+      <p>The undersigned hereby declares that the above-stated information is correct and that the goods exported to</p>
       <div className="my-8 text-center">
         <p>{importer?.name}</p>
         <UnderlineDashed />
         <p>(Importing Party)</p>
       </div>
-      <p>comply with the origin requirements specified in the ChinaAustralia Free Trade Agreement.</p>
+      <p>comply with the origin requirements specified in the China-Australia Free Trade Agreement.</p>
       <div className="my-4">
         <p>
           {supplyChainConsignment?.loadingBaseportLocation?.name}
@@ -352,7 +350,11 @@ export const CertificationSection: FunctionComponent<ChaftaCooDocument> = ({ sec
   return (
     <div className="border p-2 h-full">
       <div className="flex flex-col h-full">
-        <h5>14. Certification</h5>
+        <h5 className="mb-2">14. Certification</h5>
+        <p>
+          On the basis of the control carried out, it is hereby certified that the information herein is correct and
+          that the described goods comply with the origin requirements of the China-Australia Free Trade Agreement.
+        </p>
         <div className="flex-grow">
           <img className="w-1/2 mx-auto" src={secondSignatoryAuthentication?.signature} />
         </div>
