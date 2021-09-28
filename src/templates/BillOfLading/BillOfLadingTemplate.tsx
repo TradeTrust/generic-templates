@@ -157,7 +157,7 @@ const Section1 = (document: BillOfLadingDocument): JSX.Element => {
               </div>
               <div className="p-2">
                 B/L No
-                <p>
+                <p data-testid="blNumber">
                   <strong className="break-all">{blNumber}</strong>
                 </p>
               </div>
