@@ -26,8 +26,7 @@ export const SimpleCooSample: SimpleCooDocumentSchema = {
   },
   credentialSubject: {
     documentName: "Form for Free Trade Agreement",
-    issueDate: "21 September 2021",
-    issueTime: "3:05pm",
+    issueDateAndTime: "21 September 2021, 3:05pm",
     issueIn: "IMDA Singapore",
     cooId: "IMDA0001",
     exporterDetails: {
