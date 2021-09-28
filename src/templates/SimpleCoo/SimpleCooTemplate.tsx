@@ -12,9 +12,8 @@ export const SimpleCooTemplate: FunctionComponent<TemplateProps<SimpleCooDocumen
     importerDetails,
     descriptionOfGoods,
     cooId,
-    issueDate,
+    issueDateAndTime,
     issueIn,
-    issueTime,
     firstSignatoryAuthentication,
     secondSignatoryAuthentication,
   } = credentialSubject;
@@ -153,7 +152,7 @@ export const SimpleCooTemplate: FunctionComponent<TemplateProps<SimpleCooDocumen
             <ImporterSection />
           </div>
           <div className="w-1/3 p-3">
-            <StandardSection label="Time and Date Issued" value={`${issueTime}, ${issueDate}`} />
+            <StandardSection label="Time and Date Issued" value={`${issueDateAndTime}`} />
           </div>
         </div>
 

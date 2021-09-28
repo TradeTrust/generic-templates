@@ -7,8 +7,7 @@ export type SimpleCooDocumentSchema = v3.OpenAttestationDocument & {
 export interface SimpleCooDocument {
   documentName: string;
   issueIn?: string;
-  issueDate?: string;
-  issueTime?: string;
+  issueDateAndTime?: string;
   cooId?: string;
   exporterDetails: ExporterDetails;
   importerDetails: ImporterDetails;
