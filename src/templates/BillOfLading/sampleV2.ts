@@ -45,4 +45,6 @@ export const BillOfLadingSampleV2: BillOfLadingSchemaV2 = {
   portOfDischarge: "Paris",
   portOfLoading: "Singapore",
   carrierName: "A.P. Moller",
+  placeOfDelivery: "Singapore",
+  placeOfReceipt: "Singapore",
 };

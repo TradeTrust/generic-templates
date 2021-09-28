@@ -5,7 +5,12 @@ import { Wrapper } from "../../core/Wrapper";
 import { getDocumentData } from "../../utils";
 import { BillOfLadingDocument, BillOfLadingSchema } from "./types";
 
-const smallText = (text: string): JSX.Element => <div style={{ fontSize: "0.8em" }}>{text}</div>;
+const smallText = (text: string): JSX.Element => <p style={{ fontSize: "0.8em" }}>{text}</p>;
+const smallStrongText = (text: string): JSX.Element => (
+  <p style={{ fontSize: "0.8em" }}>
+    <strong>{text}</strong>
+  </p>
+);
 
 const Section3 = (document: BillOfLadingDocument): JSX.Element => {
   const carrierName = document.carrierName;
@@ -41,7 +46,7 @@ const Section3 = (document: BillOfLadingDocument): JSX.Element => {
                   {smallText(
                     "Carrier's Receipt (see clause 1 and 14). Total number of containers or packages received by Carrier."
                   )}
-                  <div>1 container</div>
+                  <p>1 container</p>
                 </div>
               </div>
               <div className="w-1/2 border-black border">
@@ -53,7 +58,7 @@ const Section3 = (document: BillOfLadingDocument): JSX.Element => {
               <div className="w-1/2 border-black border">
                 <div className="p-2">
                   {smallText("Number & Sequence of Original B(s)/L")}
-                  THREE/3
+                  <p>THREE/3</p>
                 </div>
               </div>
               <div className="w-1/2 border-black border">
@@ -78,12 +83,10 @@ const Section3 = (document: BillOfLadingDocument): JSX.Element => {
               "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sagittis id consectetur purus ut faucibus. Diam quam nulla porttitor massa. Eu tincidunt tortor aliquam nulla facilisi cras fermentum. Amet mauris commodo quis imperdiet massa tincidunt. Luctus accumsan tortor posuere ac ut. Eu volutpat odio facilisis mauris sit amet massa vitae tortor. Eros donec ac odio tempor orci dapibus. Varius morbi enim nunc faucibus a pellentesque sit amet. Velit aliquet sagittis id consectetur purus ut. Porta non pulvinar neque laoreet suspendisse interdum consectetur libero. Odio ut sem nulla pharetra diam sit. Nunc sed augue lacus viverra vitae congue eu consequat ac. Eros in cursus turpis massa tincidunt dui ut ornare lectus."
             )}
             <div className="text-center mt-4 mb-16">
-              <strong>{smallText(`Signed for the Carrier ${carrierName || ""}`)}</strong>
+              {smallStrongText(`Signed for the Carrier ${carrierName || ""}`)}
             </div>
             <hr />
-            <div className="text-center mt-2">
-              <strong>{smallText("As Agent(s) for the Carrier")}</strong>
-            </div>
+            <div className="text-center mt-2">{smallStrongText("As Agent(s) for the Carrier")}</div>
           </div>
         </div>
       </div>
@@ -102,26 +105,24 @@ const Section2 = (document: BillOfLadingDocument): JSX.Element => {
       <div className="flex">
         <div className="w-3/5 border-black border">
           <div className="p-2">
-            <div style={{ fontSize: "0.8em" }}>
-              Kind of Packages: Description of goods, Marks and Numbers: Container No./Serial No.
-            </div>
-            {renderedKindOfPackage}
-            <div style={{ fontSize: "0.8em" }} className="mt-2">
+            {smallText("Kind of Packages: Description of goods, Marks and Numbers: Container No./Serial No.")}
+            <p>{renderedKindOfPackage}</p>
+            <p style={{ fontSize: "0.8em" }} className="mt-2">
               Above particulars as declared by Shipper, but without responsibility of our representation by Carrier (see
               clause 14)
-            </div>
+            </p>
           </div>
         </div>
         <div className="w-1/5 border-black border">
           <div className="p-2">
-            <div style={{ fontSize: "0.8em" }}>Weight</div>
-            {renderedWeight}
+            {smallText("Weight")}
+            <p>{renderedWeight}</p>
           </div>
         </div>
         <div className="w-1/5 border-black border">
           <div className="p-2">
-            <div style={{ fontSize: "0.8em" }}>Measurement</div>
-            {renderedMeasurement}
+            {smallText("Measurement")}
+            <p>{renderedMeasurement}</p>
           </div>
         </div>
       </div>
@@ -143,15 +144,22 @@ const Section1 = (document: BillOfLadingDocument): JSX.Element => {
           <div className="flex">
             <div className="w-2/3 border-black border">
               <div className="p-2">
-                <strong>BILL OF LADING FOR OCEAN TRANSPORT OR MULTIMODAL TRANSPORT</strong>
+                <p>
+                  <strong>BILL OF LADING FOR OCEAN TRANSPORT OR MULTIMODAL TRANSPORT</strong>
+                </p>
               </div>
             </div>
             <div className="w-1/3 border-black border">
               <div className="p-2 border-black border-b-2">
-                SCAC <strong>{scac}</strong>
+                <p>
+                  SCAC <strong>{scac}</strong>
+                </p>
               </div>
               <div className="p-2">
-                B/L No <strong className="break-all">{blNumber}</strong>
+                B/L No
+                <p data-testid="blNumber">
+                  <strong className="break-all">{blNumber}</strong>
+                </p>
               </div>
             </div>
           </div>
@@ -163,24 +171,22 @@ const Section1 = (document: BillOfLadingDocument): JSX.Element => {
           <div className="p-2">
             <div style={{ fontSize: "0.8em" }}>Shipper</div>
             <div className="p-4">
-              <div>{shipper.name || ""}</div>
-              <div>{(shipper.address && shipper.address.street) || ""}</div>
-              <div>{(shipper.address && shipper.address.country) || ""}</div>
+              <p>{shipper.name || ""}</p>
+              <p>{(shipper.address && shipper.address.street) || ""}</p>
+              <p>{(shipper.address && shipper.address.country) || ""}</p>
             </div>
           </div>
         </div>
         <div className="w-1/2 border-black border">
           <div className="p-2 border-black border-b-2">
-            <div style={{ fontSize: "0.8em" }}>Booking No</div>
-            <div>{blNumber}</div>
+            {smallText("Booking No")}
+            <p>{blNumber}</p>
           </div>
-          <div className="p-2 border-black border-b-2">
-            <div style={{ fontSize: "0.8em" }}>Export references</div>
-          </div>
+          <div className="p-2 border-black border-b-2">{smallText("Export references")}</div>
           <div className="p-2">
-            <div style={{ fontSize: "0.8em" }}>
-              Onward inland routing (Not part of Carriage as defined in clasuse 1. For account and risk of Merchant)
-            </div>
+            {smallText(
+              "Onward inland routing (Not part of Carriage as defined in clasuse 1. For account and risk of Merchant)"
+            )}
           </div>
         </div>
       </div>
@@ -188,22 +194,18 @@ const Section1 = (document: BillOfLadingDocument): JSX.Element => {
       <div className="flex">
         <div className="w-1/2 border-black border">
           <div className="p-2">
-            <div style={{ fontSize: "0.8em" }}>
-              Consignee (negotiable is consiged &quot;to order&quot;, &quot;to order of&quot; a named Person or &quot;to
-              order of bearer&quot;)
-            </div>
+            {smallText(`Consignee (negotiable is consiged \"to order\", \"to order of\" a named Person or \"to
+              order of bearer\")`)}
             <div className="p-4">
-              <div>TO THE ORDER OF</div>
-              <div>{consignee.name || ""}</div>
+              <p>TO THE ORDER OF</p>
+              <p>{consignee.name || ""}</p>
             </div>
           </div>
         </div>
         <div className="w-1/2 border-black border">
           <div className="p-2">
-            <div style={{ fontSize: "0.8em" }}>Notify Party (see clause 22)</div>
-            <div className="p-4">
-              <div>{notifyParty.name || ""}</div>
-            </div>
+            {smallText(`Notify Party (see clause 22)`)}
+            <p className="p-4">{notifyParty.name || ""}</p>
           </div>
         </div>
       </div>
@@ -211,19 +213,23 @@ const Section1 = (document: BillOfLadingDocument): JSX.Element => {
       <div className="flex">
         <div className="w-1/4 border-black border">
           <div className="p-2">
-            <div style={{ fontSize: "0.8em" }}>Vessel (see clause 1 + 19)</div>
-            <div className="break-words">{document.vessel || ""}</div>
+            {smallText(`Vessel (see clause 1 + 19)`)}
+            <p className="break-words">{document.vessel || ""}</p>
           </div>
         </div>
         <div className="w-1/4 border-black border">
           <div className="p-2">
-            <div style={{ fontSize: "0.8em" }}>Voyage No.</div>
-            <div className="break-all">{document.voyageNo || ""}</div>
+            {smallText(`Voyage No.`)}
+            <p className="break-all">{document.voyageNo || ""}</p>
           </div>
         </div>
         <div className="w-1/2 border-black border">
-          <div className="p-2" style={{ fontSize: "0.8em" }}>
-            Place of Receipt. Applicable only when document used as Multimodal Transport B/L (see clause 1)
+          <div className="p-2">
+            {smallText(
+              `  Place of Receipt. Applicable only when document used as Multimodal Transport B/L (see clause 1)`
+            )}
+
+            <p className="break-all">{document.placeOfReceipt || ""}</p>
           </div>
         </div>
       </div>
@@ -231,21 +237,22 @@ const Section1 = (document: BillOfLadingDocument): JSX.Element => {
       <div className="flex">
         <div className="w-1/4 border-black border">
           <div className="p-2">
-            <div style={{ fontSize: "0.8em" }}>Port of Loading</div>
-            <div className="break-words">{document.portOfLoading || ""}</div>
+            {smallText(`Port of Loading`)}
+            <p className="break-words">{document.portOfLoading || ""}</p>
           </div>
         </div>
         <div className="w-1/4 border-black border">
           <div className="p-2">
-            <div style={{ fontSize: "0.8em" }}>Port of Discharge</div>
-            <div className="break-words">{document.portOfDischarge || ""}</div>
+            {smallText(`Port of Discharge`)}
+            <p className="break-words">{document.portOfDischarge || ""}</p>
           </div>
         </div>
         <div className="w-1/2 border-black border">
           <div className="p-2">
-            <div style={{ fontSize: "0.8em" }}>
-              Place of Delivery. Applicable only when document used as Multimodal Transport B/L (see clause 1)
-            </div>
+            {smallText(
+              `Place of Delivery. Applicable only when document used as Multimodal Transport B/L (see clause 1)`
+            )}
+            <p className="break-all">{document.placeOfDelivery || ""}</p>
           </div>
         </div>
       </div>
@@ -254,13 +261,15 @@ const Section1 = (document: BillOfLadingDocument): JSX.Element => {
 };
 
 export const BillOfLadingTemplate: FunctionComponent<TemplateProps<BillOfLadingSchema>> = ({ document }) => {
-  const documentData = getDocumentData(document);
+  const documentData = getDocumentData(document) as BillOfLadingDocument;
   const qrCodeUrl = documentData?.links?.self.href;
   return (
     <Wrapper data-testid="bill-of-lading-template">
       <div className="mb-8">{Section1(documentData)}</div>
       <div className="text-center">
-        <strong>PARTICULARS FURNISHED BY SHIPPER</strong>
+        <p>
+          <strong>PARTICULARS FURNISHED BY SHIPPER</strong>
+        </p>
       </div>
       <div className="mb-8">{Section2(documentData)}</div>
       {Section3(documentData)}

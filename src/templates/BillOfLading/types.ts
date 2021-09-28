@@ -29,6 +29,8 @@ export interface BillOfLadingDocument {
   };
   consignee?: { name?: string };
   notifyParty?: { name?: string };
+  placeOfReceipt?: string;
+  placeOfDelivery?: string;
   links?: {
     self: {
       href: string;

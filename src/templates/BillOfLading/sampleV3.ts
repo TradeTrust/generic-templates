@@ -57,5 +57,7 @@ export const BillOfLadingSampleV3: BillOfLadingSchemaV3 = {
     notifyParty: {
       name: "Notify Party Name",
     },
+    placeOfDelivery: "Singapore",
+    placeOfReceipt: "Singapore",
   },
 };
