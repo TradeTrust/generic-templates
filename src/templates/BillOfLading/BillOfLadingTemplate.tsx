@@ -222,13 +222,11 @@ const Section1 = (document: BillOfLadingDocument): JSX.Element => {
           </div>
         </div>
         <div className="w-1/2 border-black border">
-          <div className="p-2" style={{ fontSize: "0.8em" }}>
-            Place of Receipt.
-            {document.placeOfReceipt ? (
-              <div className="break-all">{document.placeOfReceipt}</div>
-            ) : (
-              " Applicable only when document used as Multimodal Transport B/L (see clause 1)"
-            )}
+          <div className="p-2">
+            <div style={{ fontSize: "0.8em" }}>
+              Place of Receipt. Applicable only when document used as Multimodal Transport B/L (see clause 1)
+            </div>
+            <div className="break-all">{document.placeOfReceipt || ""}</div>
           </div>
         </div>
       </div>
@@ -249,13 +247,9 @@ const Section1 = (document: BillOfLadingDocument): JSX.Element => {
         <div className="w-1/2 border-black border">
           <div className="p-2">
             <div style={{ fontSize: "0.8em" }}>
-              Place of Delivery.
-              {document.placeOfDelivery ? (
-                <div className="break-all">{document.placeOfDelivery}</div>
-              ) : (
-                " Applicable only when document used as Multimodal Transport B/L (see clause 1)"
-              )}
+              Place of Delivery. Applicable only when document used as Multimodal Transport B/L (see clause 1)
             </div>
+            <div className="break-all">{document.placeOfDelivery || ""}</div>
           </div>
         </div>
       </div>
