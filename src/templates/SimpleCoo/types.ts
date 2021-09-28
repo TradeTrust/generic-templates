@@ -5,7 +5,8 @@ export type SimpleCooDocumentSchema = v3.OpenAttestationDocument & {
 };
 
 export interface SimpleCooDocument {
-  iD?: string;
+  documentName: string;
+  issueIn?: string;
   issueDate?: string;
   issueTime?: string;
   cooId?: string;
@@ -38,8 +39,8 @@ interface DescriptionOfGoods {
   includedConsignments: string;
   importerNameMarksAndNumber: string;
   numberAndKindOfPackage: string;
-  hs: string;
-  numberOfInvoice: string;
+  hsCode: string;
+  invoiceNumber: string;
   dateOfInvoice: string;
   loadingBaseportLocationName: string;
   mainCarriageTransportMovementId: string;

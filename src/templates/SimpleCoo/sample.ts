@@ -25,10 +25,11 @@ export const SimpleCooSample: SimpleCooDocumentSchema = {
     identityProof: { type: v3.IdentityProofType.DNSDid, identifier: "demo-tradetrust.openattestation.com" },
   },
   credentialSubject: {
-    iD: "WBC 208897",
+    documentName: "Form for Free Trade Agreement",
     issueDate: "21 September 2021",
     issueTime: "3:05pm",
-    cooId: "WBC 208897",
+    issueIn: "IMDA Singapore",
+    cooId: "IMDA0001",
     exporterDetails: {
       exportCountry: "AU",
       exporterName: "TREASURY WINE ESTATES VINTNERS LIMITED",
@@ -43,24 +44,24 @@ export const SimpleCooSample: SimpleCooDocumentSchema = {
       importerName: "Singapore Wines Pte Ltd",
       importerAddress: {
         line1: "10 Pasir Panjang Road",
-        line2: "#03-01, Mapletree Business City, Singapore",
-        postalCode: "117438",
+        line2: "#03-01, Mapletree Business City",
+        postalCode: "Singapore 117438",
       },
     },
     descriptionOfGoods: {
       includedConsignments: "SG",
       importerNameMarksAndNumber: "SSCC: 59312345670002345",
       numberAndKindOfPackage: "Bin 23 Pinot Noir 201",
-      hs: "2204.21",
-      numberOfInvoice: "1122345",
-      dateOfInvoice: "Mon 5 July 2021",
+      hsCode: "2204.21",
+      invoiceNumber: "1122345",
+      dateOfInvoice: "5 July 2021",
       loadingBaseportLocationName: "AUMEL",
       mainCarriageTransportMovementId: "IMO 9367815",
     },
     firstSignatoryAuthentication: {
-      actualDate: "2020-05-29",
+      actualDate: "21 September 2021",
       statement:
-        "The undersigned hereby declares that the above-stated information is correct and that the goods exported to [importer] comply with the origin requirements specified in the China-Australia Free Trade Agreement.",
+        "The undersigned hereby declares that the above-stated information is correct and that the goods exported to",
       signature: firstSignature,
     },
     secondSignatoryAuthentication: {
