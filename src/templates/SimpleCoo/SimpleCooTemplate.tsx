@@ -2,9 +2,10 @@ import { TemplateProps } from "@govtechsg/decentralized-renderer-react-component
 import React, { FunctionComponent } from "react";
 import { Wrapper } from "../../core/Wrapper";
 import { SimpleCooDocumentSchema } from "./types";
+import { getDocumentData } from "./../../utils";
 
 export const SimpleCooTemplate: FunctionComponent<TemplateProps<SimpleCooDocumentSchema>> = ({ document }) => {
-  const { credentialSubject } = document;
+  const documentData = getDocumentData(document);
 
   const {
     documentName,
@@ -16,31 +17,18 @@ export const SimpleCooTemplate: FunctionComponent<TemplateProps<SimpleCooDocumen
     issueIn,
     firstSignatoryAuthentication,
     secondSignatoryAuthentication,
-  } = credentialSubject;
-
-  const { exporterAddress, exportCountry, exporterName } = exporterDetails;
-  const { importerAddress, importCountry, importerName } = importerDetails;
-  const {
-    includedConsignments,
-    importerNameMarksAndNumber,
-    hsCode,
-    invoiceNumber,
-    dateOfInvoice,
-    loadingBaseportLocationName,
-    mainCarriageTransportMovementId,
-    numberAndKindOfPackage,
-  } = descriptionOfGoods;
+  } = documentData;
 
   const ExporterSection: FunctionComponent = () => {
     return (
       <>
         <h5 className="font-bold mb-4">Exporter&apos;s Name Address and Country</h5>
-        <p>{exporterName}</p>
-        <p>{exporterAddress.line1}</p>
+        <p>{exporterDetails?.exporterName}</p>
+        <p>{exporterDetails?.exporterAddress.line1}</p>
         <p>
-          {exporterAddress.line2} {exporterAddress.postalCode}
+          {exporterDetails?.exporterAddress.line2} {exporterDetails?.exporterAddress.postalCode}
         </p>
-        <p>{exportCountry}</p>
+        <p>{exporterDetails?.exportCountry}</p>
       </>
     );
   };
@@ -49,11 +37,11 @@ export const SimpleCooTemplate: FunctionComponent<TemplateProps<SimpleCooDocumen
     return (
       <>
         <h5 className="font-bold mb-4">Importer&apos;s Name Address and Country</h5>
-        <p>{importerName}</p>
-        <p>{importerAddress.line1}</p>
-        <p>{importerAddress.line2}</p>
-        <p>{importerAddress.postalCode}</p>
-        <p>{importCountry}</p>
+        <p>{importerDetails?.importerName}</p>
+        <p>{importerDetails?.importerAddress.line1}</p>
+        <p>{importerDetails?.importerAddress.line2}</p>
+        <p>{importerDetails?.importerAddress.postalCode}</p>
+        <p>{importerDetails?.importCountry}</p>
       </>
     );
   };
@@ -77,11 +65,11 @@ export const SimpleCooTemplate: FunctionComponent<TemplateProps<SimpleCooDocumen
     );
   };
 
-  const StandardSection: FunctionComponent<{ label: string; value: string }> = ({ label, value }) => {
+  const StandardSection: FunctionComponent<{ label: string; value?: string }> = ({ label, value }) => {
     return (
       <>
         <h5 className="mb-4 font-bold">{label}</h5>
-        <p>{value}</p>
+        {value && <p>{value}</p>}
       </>
     );
   };
@@ -89,11 +77,12 @@ export const SimpleCooTemplate: FunctionComponent<TemplateProps<SimpleCooDocumen
   const DeclarationSection: FunctionComponent = () => {
     return (
       <>
-        <h5 className="mb-4 font-bold">
-          Declaration by the exporter or producer {firstSignatoryAuthentication?.statement}
-        </h5>
-        <p className="text-center border-b">{importerName}</p>
-        <p className="mb-6 text-center">(Importing Party)</p>
+        <h5 className="mb-4 font-bold">Declaration by the exporter or producer</h5>
+        <h5 className="mb-4 font-bold">{firstSignatoryAuthentication?.statement}</h5>
+        <div className="text-center py-8">
+          <p className="border-b border-dashed">{importerDetails?.importerName}</p>
+          <p className="mb-6 text-center">(Importing Party)</p>
+        </div>
       </>
     );
   };
@@ -101,13 +90,14 @@ export const SimpleCooTemplate: FunctionComponent<TemplateProps<SimpleCooDocumen
   const FirstSignatureSection: FunctionComponent = () => {
     return (
       <>
-        <p className="mb-4">
-          comply with the origin requirements specified in the
-          <br />
-          {documentName}.<br />
-          {loadingBaseportLocationName}, {firstSignatoryAuthentication?.actualDate}
+        {documentName && <p className="mb-4">comply with the origin requirements specified in the {documentName}.</p>}
+        <p>
+          {descriptionOfGoods?.loadingBaseportLocationName && `${descriptionOfGoods?.loadingBaseportLocationName}, `}{" "}
+          {firstSignatoryAuthentication?.actualDate}
         </p>
-        <img className="w-1/2 mx-auto" src={firstSignatoryAuthentication?.signature} />
+        {firstSignatoryAuthentication && (
+          <img data-testid="signature-first" className="w-1/2 mx-auto" src={firstSignatoryAuthentication?.signature} />
+        )}
         <SignatureLine />
       </>
     );
@@ -117,7 +107,13 @@ export const SimpleCooTemplate: FunctionComponent<TemplateProps<SimpleCooDocumen
     return (
       <div className="flex flex-col justify-between h-full">
         <h5 className="mb-4 font-bold">Certification</h5>
-        <img className="w-1/2 mx-auto" src={secondSignatoryAuthentication?.signature} />
+        {secondSignatoryAuthentication && (
+          <img
+            data-testid="signature-second"
+            className="w-1/2 mx-auto"
+            src={secondSignatoryAuthentication?.signature}
+          />
+        )}
         <div>
           <SignatureLine />
         </div>
@@ -152,36 +148,48 @@ export const SimpleCooTemplate: FunctionComponent<TemplateProps<SimpleCooDocumen
             <ImporterSection />
           </div>
           <div className="w-1/3 p-3">
-            <StandardSection label="Time and Date Issued" value={`${issueDateAndTime}`} />
+            <StandardSection label="Time and Date Issued" value={issueDateAndTime} />
           </div>
         </div>
 
         <div className="flex border-b">
           <div className="w-1/3 p-3 border-r">
-            <StandardSection label="Included Consignments" value={includedConsignments} />
+            <StandardSection label="Included Consignments" value={descriptionOfGoods?.includedConsignments} />
           </div>
           <div className="w-1/3 p-3 border-r">
-            <StandardSection label="Importer Name Marks and Number" value={importerNameMarksAndNumber} />
+            <StandardSection
+              label="Importer Name Marks and Number"
+              value={descriptionOfGoods?.importerNameMarksAndNumber}
+            />
           </div>
           <div className="w-1/3 p-3">
-            <StandardSection label="H.S. Code" value={hsCode} />
+            <StandardSection label="H.S. Code" value={descriptionOfGoods?.hsCode} />
           </div>
         </div>
         <div className="p-3 border-b">
-          <StandardSection label="Number and Kind of package; Description of Goods" value={numberAndKindOfPackage} />
+          <StandardSection
+            label="Number and Kind of package; Description of Goods"
+            value={descriptionOfGoods?.numberAndKindOfPackage}
+          />
         </div>
         <div className="flex border-b">
           <div className="w-1/4 p-3 border-r">
-            <StandardSection label="Invoice Number" value={invoiceNumber} />
+            <StandardSection label="Invoice Number" value={descriptionOfGoods?.invoiceNumber} />
           </div>
           <div className="w-1/4 p-3 border-r">
-            <StandardSection label="Date of Invoice" value={dateOfInvoice} />
+            <StandardSection label="Date of Invoice" value={descriptionOfGoods?.dateOfInvoice} />
           </div>
           <div className="w-1/4 p-3 border-r">
-            <StandardSection label="Loading Baseport Location Name" value={loadingBaseportLocationName} />
+            <StandardSection
+              label="Loading Baseport Location Name"
+              value={descriptionOfGoods?.loadingBaseportLocationName}
+            />
           </div>
           <div className="w-1/4 p-3">
-            <StandardSection label="Main Carriage Transport Movement ID" value={mainCarriageTransportMovementId} />
+            <StandardSection
+              label="Main Carriage Transport Movement ID"
+              value={descriptionOfGoods?.mainCarriageTransportMovementId}
+            />
           </div>
         </div>
         <div className="flex">

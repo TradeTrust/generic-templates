@@ -1,9 +1,12 @@
-import { v3 } from "@govtechsg/open-attestation";
+import { v2, v3 } from "@govtechsg/open-attestation";
 
-export type SimpleCooDocumentSchema = v3.OpenAttestationDocument & {
+export type SimpleCooDocumentSchemaV2 = v2.OpenAttestationDocument & SimpleCooDocument;
+
+export type SimpleCooDocumentSchemaV3 = v3.OpenAttestationDocument & {
   credentialSubject: SimpleCooDocument;
 };
 
+export type SimpleCooDocumentSchema = SimpleCooDocumentSchemaV2 | SimpleCooDocumentSchemaV3;
 export interface SimpleCooDocument {
   documentName: string;
   issueIn?: string;

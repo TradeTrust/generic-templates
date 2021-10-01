@@ -1,12 +1,12 @@
 import { v3 } from "@govtechsg/open-attestation";
 import { firstSignature, secondSignature } from "./signatures";
-import { SimpleCooDocumentSchema } from "./types";
+import { SimpleCooDocumentSchemaV3 } from "./types";
 
-export const SimpleCooSample: SimpleCooDocumentSchema = {
+export const SimpleCooSampleV3: SimpleCooDocumentSchemaV3 = {
   "@context": [
     "https://www.w3.org/2018/credentials/v1",
-    "https://schemata.openattestation.com/io/tradetrust/certificate-of-origin/1.0/CertificateOfOrigin.v3.json",
     "https://schemata.openattestation.com/com/openattestation/1.0/OpenAttestation.v3.json",
+    // TODO: simple coo has no v3 schema defined at schemata yet -> https://schemata.openattestation.com
   ],
   type: ["VerifiableCredential", "OpenAttestationCredential"],
   issuanceDate: "2010-01-01T19:23:24Z",
