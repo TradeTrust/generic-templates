@@ -23,16 +23,12 @@ export const SimpleCooTemplate: FunctionComponent<TemplateProps<SimpleCooDocumen
     return (
       <>
         <h5 className="font-bold mb-4">Exporter&apos;s Name Address and Country</h5>
-        {exporterDetails && (
-          <>
-            <p>{exporterDetails.exporterName}</p>
-            <p>{exporterDetails.exporterAddress.line1}</p>
-            <p>
-              {exporterDetails.exporterAddress.line2} {exporterDetails.exporterAddress.postalCode}
-            </p>
-            <p>{exporterDetails.exportCountry}</p>
-          </>
-        )}
+        <p>{exporterDetails?.exporterName}</p>
+        <p>{exporterDetails?.exporterAddress.line1}</p>
+        <p>
+          {exporterDetails?.exporterAddress.line2} {exporterDetails?.exporterAddress.postalCode}
+        </p>
+        <p>{exporterDetails?.exportCountry}</p>
       </>
     );
   };
@@ -41,15 +37,11 @@ export const SimpleCooTemplate: FunctionComponent<TemplateProps<SimpleCooDocumen
     return (
       <>
         <h5 className="font-bold mb-4">Importer&apos;s Name Address and Country</h5>
-        {importerDetails && (
-          <>
-            <p>{importerDetails.importerName}</p>
-            <p>{importerDetails.importerAddress.line1}</p>
-            <p>{importerDetails.importerAddress.line2}</p>
-            <p>{importerDetails.importerAddress.postalCode}</p>
-            <p>{importerDetails.importCountry}</p>
-          </>
-        )}
+        <p>{importerDetails?.importerName}</p>
+        <p>{importerDetails?.importerAddress.line1}</p>
+        <p>{importerDetails?.importerAddress.line2}</p>
+        <p>{importerDetails?.importerAddress.postalCode}</p>
+        <p>{importerDetails?.importCountry}</p>
       </>
     );
   };
