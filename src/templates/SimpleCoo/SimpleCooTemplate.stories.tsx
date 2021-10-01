@@ -11,14 +11,14 @@ export default {
   },
 };
 
-export const ChaftaCooEmpty: FunctionComponent = () => {
+export const SimpleCooEmpty: FunctionComponent = () => {
   return <SimpleCooTemplate document={{} as any} handleObfuscation={() => {}} />;
 };
 
-export const ChaftaCooV2: FunctionComponent = () => {
+export const SimpleCooV2: FunctionComponent = () => {
   return <SimpleCooTemplate document={SimpleCooSampleV2} handleObfuscation={() => {}} />;
 };
 
-export const ChaftaCooV3: FunctionComponent = () => {
+export const SimpleCooV3: FunctionComponent = () => {
   return <SimpleCooTemplate document={SimpleCooSampleV3} handleObfuscation={() => {}} />;
 };
