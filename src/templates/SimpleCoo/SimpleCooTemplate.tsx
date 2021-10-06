@@ -3,6 +3,7 @@ import React, { FunctionComponent } from "react";
 import { Wrapper } from "../../core/Wrapper";
 import { SimpleCooDocumentSchema } from "./types";
 import { getDocumentData } from "./../../utils";
+import { secondSignatoryAuthentication } from "../../core/Signatures";
 
 export const SimpleCooTemplate: FunctionComponent<TemplateProps<SimpleCooDocumentSchema>> = ({ document }) => {
   const documentData = getDocumentData(document);
@@ -16,7 +17,6 @@ export const SimpleCooTemplate: FunctionComponent<TemplateProps<SimpleCooDocumen
     issueDateAndTime,
     issueIn,
     firstSignatoryAuthentication,
-    secondSignatoryAuthentication,
   } = documentData;
 
   const ExporterSection: FunctionComponent = () => {
@@ -107,13 +107,7 @@ export const SimpleCooTemplate: FunctionComponent<TemplateProps<SimpleCooDocumen
     return (
       <div className="flex flex-col justify-between h-full">
         <h5 className="mb-4 font-bold">Certification</h5>
-        {secondSignatoryAuthentication && (
-          <img
-            data-testid="signature-second"
-            className="w-1/2 mx-auto"
-            src={secondSignatoryAuthentication?.signature}
-          />
-        )}
+        <img data-testid="signature-second" className="w-1/2 mx-auto" src={secondSignatoryAuthentication} />
         <div>
           <SignatureLine />
         </div>
