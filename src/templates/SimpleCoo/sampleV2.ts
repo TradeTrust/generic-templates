@@ -1,5 +1,5 @@
 import { v2 } from "@govtechsg/open-attestation";
-import { firstSignature, secondSignature } from "./signatures";
+import { firstSignatoryAuthentication, secondSignatoryAuthentication } from "../../core/Signatures";
 import { SimpleCooDocumentSchemaV2 } from "./types";
 
 export const SimpleCooSampleV2: SimpleCooDocumentSchemaV2 = {
@@ -54,11 +54,11 @@ export const SimpleCooSampleV2: SimpleCooDocumentSchemaV2 = {
     actualDate: "21 September 2021",
     statement:
       "The undersigned hereby declares that the above-stated information is correct and that the goods exported to",
-    signature: firstSignature,
+    signature: firstSignatoryAuthentication,
   },
   secondSignatoryAuthentication: {
     actualDate: "",
     statement: "",
-    signature: secondSignature,
+    signature: secondSignatoryAuthentication,
   },
 };

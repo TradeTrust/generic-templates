@@ -5,6 +5,7 @@ import { DocumentQrCode } from "../../core/DocumentQrCode";
 import { Wrapper } from "../../core/Wrapper";
 import { ChaftaCooDocumentSchema, ChaftaCooDocument } from "./types";
 import { getDocumentData } from "./../../utils";
+import { secondSignatoryAuthentication } from "../../core/Signatures";
 
 const getValue = (id?: string): string | undefined => {
   if (!id) return undefined;
@@ -346,7 +347,7 @@ export const DeclarationSection: FunctionComponent<ChaftaCooDocument> = ({
   );
 };
 
-export const CertificationSection: FunctionComponent<ChaftaCooDocument> = ({ secondSignatoryAuthentication }) => {
+export const CertificationSection: FunctionComponent<ChaftaCooDocument> = () => {
   return (
     <div className="border p-2 h-full">
       <div className="flex flex-col h-full">
@@ -356,7 +357,7 @@ export const CertificationSection: FunctionComponent<ChaftaCooDocument> = ({ sec
           that the described goods comply with the origin requirements of the China-Australia Free Trade Agreement.
         </p>
         <div className="flex-grow">
-          <img className="w-1/2 mx-auto" src={secondSignatoryAuthentication?.signature} />
+          <img className="w-1/2 mx-auto" src={secondSignatoryAuthentication} />
         </div>
         <UnderlineDashed />
         <p>Place, date and signature of authorised person</p>
@@ -429,7 +430,7 @@ export const ChaftaCooTemplate: FunctionComponent<ChaftaCooTemplateProps> = (pro
               <DeclarationSection {...documentData} />
             </div>
             <div className="w-1/2">
-              <CertificationSection {...documentData} />
+              <CertificationSection />
             </div>
           </div>
         </div>
