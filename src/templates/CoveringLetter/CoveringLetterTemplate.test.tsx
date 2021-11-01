@@ -17,6 +17,6 @@ describe("covering Letter", () => {
   it("should render the cover letter (dbs) correctly", () => {
     render(<CoveringLetterTemplate document={CoveringLetterSample2} handleObfuscation={() => {}} />);
     expect(screen.getByText("Documents Bundle")).toBeInTheDocument();
-    expect(screen.getByTestId("logo")).toHaveAttribute("src", "/static/images/logo-dbs.png");
+    expect(screen.getByTestId("logo")).toHaveAttribute("src", "test-file-stub");
   });
 });

@@ -1,4 +1,4 @@
-# generic-template
+# Generic Templates
 
 ![GithubActions](https://github.com/TradeTrust/generic-templates/workflows/GenericTemplateCI/badge.svg)
 
@@ -15,9 +15,13 @@ _Note: These are just some rendering templates that are made available for users
 | Invoice                  | EMBEDDED_RENDERER | INVOICE                | https://generic-templates.tradetrust.io | &check;       |
 | Simple COO               | EMBEDDED_RENDERER | SIMPLE_COO             | https://generic-templates.tradetrust.io | &check;       |
 
-Use any one of these urls in the `forms[0].defaults.$template.url` field of the configuration file.
+In the `forms[0].defaults.$template` field of the configuration file, refer to the above for the `type`, `name`, and `url` values.
 
-_Note: To use these available templates, please ensure that you have the correct schema in the configuration file._
+> Note: To use these available templates, please ensure that you have the correct schema in the configuration file.
+
+## Storybook
+
+- https://storybook.generic-templates.tradetrust.io
 
 ---
 

@@ -1,5 +1,6 @@
 import { v2 } from "@govtechsg/open-attestation";
 import { BillOfLadingGeneric } from "./types";
+import logo from "/static/images/logo-tradetrust.svg";
 
 export const BillOfLadingGenericSample: BillOfLadingGeneric = {
   $template: {
@@ -14,7 +15,7 @@ export const BillOfLadingGenericSample: BillOfLadingGeneric = {
     },
   ],
   blNumber: "SGCNM21566325",
-  logo: "/static/images/logo-tradetrust.svg",
+  logo,
   companyName: "GovTech SG",
   field1: "Hello",
   field2: "Hello",

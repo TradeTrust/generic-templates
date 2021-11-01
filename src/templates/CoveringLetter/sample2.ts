@@ -1,5 +1,6 @@
 import { v2 } from "@govtechsg/open-attestation";
 import { CoveringLetter } from "./types";
+import logo from "/static/images/logo-dbs.png";
 
 export const CoveringLetterSample2: CoveringLetter = {
   $template: {
@@ -19,7 +20,7 @@ export const CoveringLetterSample2: CoveringLetter = {
     },
   },
   name: "Covering Letter (DBS)",
-  logo: "/static/images/logo-dbs.png",
+  logo,
   backgroundColor: "black",
   titleColor: "white",
   remarksColor: "white",

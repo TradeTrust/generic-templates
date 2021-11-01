@@ -9,5 +9,4 @@ test("Covering Letter (DBS) is rendered correctly", async (t) => {
   await t.switchToIframe("#iframe");
   await t.expect(CoveringLetterTemplate.exists).ok();
   await t.expect(CoveringLetterTemplate.textContent).contains("Documents Bundle");
-  await t.expect(Selector('img[src="/static/images/logo-dbs.png"]').exists).ok();
 });
