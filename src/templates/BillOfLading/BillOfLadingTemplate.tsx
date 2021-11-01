@@ -97,9 +97,9 @@ const Section3 = (document: BillOfLadingDocument): JSX.Element => {
 
 const Section2 = (document: BillOfLadingDocument): JSX.Element => {
   const packages = document.packages || [];
-  const renderedKindOfPackage = packages.map((pkg, index) => <div key={index}>{pkg.description}</div>);
-  const renderedWeight = packages.map((pkg, index) => <div key={index}>{pkg.weight}</div>);
-  const renderedMeasurement = packages.map((pkg, index) => <div key={index}>{pkg.measurement}</div>);
+  const renderedKindOfPackage = packages.map((pkg, index) => <p key={index}>{pkg.description}</p>);
+  const renderedWeight = packages.map((pkg, index) => <p key={index}>{pkg.weight}</p>);
+  const renderedMeasurement = packages.map((pkg, index) => <p key={index}>{pkg.measurement}</p>);
 
   return (
     <div className="border-black border">
