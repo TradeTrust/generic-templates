@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import ErrorBoundary from "../../errorBoundary";
+import { ErrorBoundary } from "../ErrorBoundary";
 
 // `container mx-auto px-4` <- this is in line with tt and creator's tw config, so containers can align
 export const Wrapper: FunctionComponent = ({ children, ...props }) => {

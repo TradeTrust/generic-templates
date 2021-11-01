@@ -9,7 +9,7 @@ interface ErrorBoundaryState {
   error: { message: string; stack: string };
 }
 
-class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
+export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
   constructor(props: ErrorBoundaryProps) {
     super(props);
     this.state = { hasError: false, error: { message: "", stack: "" } };
@@ -25,7 +25,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
       // You can render any custom fallback UI
       return (
         <div>
-          <h1 className="text-xl font-bold mb-2">Document could not be rendered</h1>
+          <h1 className="text-xl font-bold mb-2">Template renderer encountered an error</h1>
           <div className="mb-2">
             <span className="font-medium">Message:</span> {this.state.error.message}
           </div>
@@ -39,5 +39,3 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
     return this.props.children;
   }
 }
-
-export default ErrorBoundary;
