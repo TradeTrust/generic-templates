@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import QRCode, { ImageSettings } from "qrcode.react";
 import React, { FunctionComponent } from "react";
+import qrcodeImg from "/static/images/logo-qrcode.png";
 
 const Print = styled.div`
   display: none;
@@ -30,7 +31,7 @@ interface DocumentQrCode {
 
 export const DocumentQrCode: FunctionComponent<DocumentQrCode> = ({ url }) => {
   const imageSettings: ImageSettings = {
-    src: `/static/images/logo-qrcode.png`,
+    src: qrcodeImg,
     height: 90,
     width: 100,
     excavate: true,
