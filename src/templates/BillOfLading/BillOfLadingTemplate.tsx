@@ -107,7 +107,7 @@ const Section2 = (document: BillOfLadingDocument): JSX.Element => {
         <div className="w-3/5 border-black border">
           <div className="p-2">
             {smallText("Kind of Packages: Description of goods, Marks and Numbers: Container No./Serial No.")}
-            <p>{renderedKindOfPackage}</p>
+            <div>{renderedKindOfPackage}</div>
             <p style={{ fontSize: "0.8em" }} className="mt-2">
               Above particulars as declared by Shipper, but without responsibility of our representation by Carrier (see
               clause 14)
@@ -117,13 +117,13 @@ const Section2 = (document: BillOfLadingDocument): JSX.Element => {
         <div className="w-1/5 border-black border">
           <div className="p-2">
             {smallText("Weight")}
-            <p>{renderedWeight}</p>
+            <div>{renderedWeight}</div>
           </div>
         </div>
         <div className="w-1/5 border-black border">
           <div className="p-2">
             {smallText("Measurement")}
-            <p>{renderedMeasurement}</p>
+            <div>{renderedMeasurement}</div>
           </div>
         </div>
       </div>
