@@ -29,7 +29,6 @@ export interface ChaftaCooDocument {
 interface SignatoryAuthentication {
   signature?: string;
   actualDateTime?: string;
-  statement?: string;
 }
 
 interface PostalAddress {
