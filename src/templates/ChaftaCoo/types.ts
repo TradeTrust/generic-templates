@@ -13,7 +13,6 @@ export interface ChaftaCooDocument {
   issueDateTime?: string;
   name?: string;
   firstSignatoryAuthentication?: SignatoryAuthentication;
-  secondSignatoryAuthentication?: SignatoryAuthentication;
   issueLocation?: {
     iD?: string;
     name?: string;
@@ -29,7 +28,6 @@ export interface ChaftaCooDocument {
 interface SignatoryAuthentication {
   signature?: string;
   actualDateTime?: string;
-  statement?: string;
 }
 
 interface PostalAddress {
