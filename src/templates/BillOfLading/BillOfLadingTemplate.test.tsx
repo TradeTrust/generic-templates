@@ -12,7 +12,7 @@ describe("bill of lading V2", () => {
 
   it("should render tradetrust logo", () => {
     render(<BillOfLadingTemplate document={BillOfLadingSampleV2} handleObfuscation={() => {}} />);
-    expect(screen.getByTestId("logo")).toHaveAttribute("src", "/static/images/logo-tradetrust.svg");
+    expect(screen.getByTestId("logo")).toHaveAttribute("src", "test-file-stub");
   });
 });
 
@@ -24,6 +24,6 @@ describe("bill of lading V3", () => {
 
   it("should render tradetrust logo", () => {
     render(<BillOfLadingTemplate document={BillOfLadingSampleV3} handleObfuscation={() => {}} />);
-    expect(screen.getByTestId("logo")).toHaveAttribute("src", "/static/images/logo-tradetrust.svg");
+    expect(screen.getByTestId("logo")).toHaveAttribute("src", "test-file-stub");
   });
 });

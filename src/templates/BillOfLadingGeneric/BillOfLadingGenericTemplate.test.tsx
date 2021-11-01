@@ -11,7 +11,7 @@ describe("bill of lading", () => {
 
   it("should render company logo", () => {
     render(<BillOfLadingGenericTemplate document={BillOfLadingGenericSample} handleObfuscation={() => {}} />);
-    expect(screen.getByTestId("logo")).toHaveAttribute("src", "/static/images/logo-tradetrust.svg");
+    expect(screen.getByTestId("logo")).toHaveAttribute("src", "test-file-stub");
   });
 
   it("should render fields 1-9 content correctly", () => {
