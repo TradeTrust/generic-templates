@@ -152,7 +152,7 @@
   "dependencies": {
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
-    "@govtechsg/decentralized-renderer-react-components": "^3.5.0",
+    "@govtechsg/decentralized-renderer-react-components": "^3.6.1",
     "@govtechsg/open-attestation": "^6.0.4",
     "@hot-loader/react-dom": "^17.0.1",
     "date-fns": "^2.22.1",
