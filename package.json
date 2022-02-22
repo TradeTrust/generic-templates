@@ -157,7 +157,7 @@
     "@hot-loader/react-dom": "^17.0.2",
     "date-fns": "^2.28.0",
     "debug": "^4.3.3",
-    "escape-goat": "^4.0.0",
+    "escape-goat": "3.0.0",
     "qrcode.react": "^1.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
