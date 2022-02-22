@@ -24,8 +24,8 @@
     "lint": "eslint . --ext .ts,.tsx --max-warnings 0",
     "lint:fix": "npm run lint -- --fix",
     "prep": "run-s lint:fix check-types test",
-    "storybook": "start-storybook -s ./ -p 6006",
-    "storybook:build": "build-storybook -o docs",
+    "storybook": "npm run build:css && sleep 2 && start-storybook -s ./ -p 6006",
+    "storybook:build": "npm run build:css && sleep 2 && build-storybook -o docs",
     "test": "jest --ci",
     "test:coverage": "npm run test -- --coverage",
     "test:watch": "npm run test -- --watch"
