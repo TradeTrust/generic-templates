@@ -10,15 +10,15 @@ const IS_PROD = !IS_DEV;
 
 module.exports = {
   entry: {
-    app: ["./src/index.tsx"]
+    app: ["./src/index.tsx"],
   },
   context: path.resolve(__dirname),
   mode: IS_DEV ? "development" : "production",
   target: "web",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "[name].[hash:7].js",
-    publicPath: "/"
+    filename: "[name].[fullhash:7].js",
+    publicPath: "/",
   },
   module: {
     rules: [
@@ -26,36 +26,36 @@ module.exports = {
         test: /\.(ts|js)x?$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
-        }
+          loader: "babel-loader",
+        },
       },
       {
         test: /\.(png|jpe?g|gif|svg)$/i,
         use: [
           {
-            loader: "file-loader"
-          }
-        ]
+            loader: "file-loader",
+          },
+        ],
       },
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader"]
-      }
-    ]
+        use: ["style-loader", "css-loader"],
+      },
+    ],
   },
   plugins: [
-    new webpack.EnvironmentPlugin(["NODE_ENV", "NET"]),
+    new webpack.EnvironmentPlugin(["NODE_ENV"]),
     new HtmlWebpackPlugin({
       filename: "index.html",
-      template: `${__dirname}/static/index.html`
+      template: `${__dirname}/static/index.html`,
     }),
     ...(IS_PROD
       ? [
           new CompressionPlugin({ test: /\.(js|css|html|svg)$/ }),
           new BrotliPlugin({ test: /\.(js|css|html|svg)$/ }),
-          new CopyWebpackPlugin({ patterns: [{ from: "static/images", to: "static/images" }] })
+          new CopyWebpackPlugin({ patterns: [{ from: "static/images", to: "static/images" }] }),
         ]
-      : [])
+      : []),
   ],
   optimization: {
     splitChunks: {
@@ -63,35 +63,34 @@ module.exports = {
         vendors: {
           test: /\/node_modules\//,
           name: "vendor",
-          chunks: "all"
-        }
-      }
-    }
+          chunks: "all",
+        },
+      },
+    },
   },
 
-  // Using cheap-eval-source-map for build times
+  // Using eval-cheap-module-source-map for build times
   // switch to inline-source-map if detailed debugging needed
-  devtool: IS_PROD ? false : "cheap-eval-source-map",
+  devtool: IS_PROD ? false : "eval-cheap-module-source-map",
 
   devServer: {
     compress: true,
-    disableHostCheck: true,
     historyApiFallback: true,
     hot: true,
-    inline: true,
     port: 3000,
-    stats: {
-      colors: true,
-      progress: true
-    }
   },
 
   resolve: {
     extensions: [".js", ".ts", ".tsx"],
     modules: ["node_modules", path.resolve(__dirname, "src")],
     alias: {
-      "react-dom": "@hot-loader/react-dom"
-    }
+      "react-dom": "@hot-loader/react-dom",
+    },
+    fallback: {
+      crypto: require.resolve("crypto-browserify"),
+      stream: require.resolve("stream-browserify"),
+      timers: require.resolve("timers-browserify"),
+    },
   },
-  bail: true
+  bail: true,
 };
