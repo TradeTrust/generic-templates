@@ -10,7 +10,9 @@
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "scripts": {
-    "build": "npm run check-types && cross-env NODE_ENV=production webpack --progress --mode production",
+    "build": "run-s check-types build:css build:app",
+    "build:css": "cross-env NODE_ENV=production tailwindcss -i src/tailwind.css -o src/main.css",
+    "build:app": "cross-env NODE_ENV=production webpack --progress --mode production",
     "check-types": "tsc --sourceMap false --noEmit",
     "dev": "npm-run-all -p dev:*",
     "dev:server": "cross-env NODE_ENV=development webpack-dev-server",
