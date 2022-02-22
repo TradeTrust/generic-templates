@@ -78,6 +78,12 @@ This repository has been configured to run end-to-end tests using `Testcafe`.
 - [**Storybook**](https://storybook.js.org/) - Tool for developing UI components in isolation with documentation.
 - [**Debug**](https://github.com/visionmedia/debug) - JS debugging utility that works both in node.js and browsers.
 
+### Pinned dependancies
+
+Pure ESM issues:
+
+- `escape-goat` to 3.0.0
+
 ## License
 
 GPL-3.0
