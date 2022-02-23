@@ -10,3 +10,4 @@ dist
 *.iml
 .idea
 docs
+src/main.css
