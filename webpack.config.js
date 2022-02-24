@@ -31,11 +31,11 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g|gif|svg)$/i,
-        use: [
-          {
-            loader: "file-loader",
-          },
-        ],
+        type: "asset",
+      },
+      {
+        resourceQuery: /inline/,
+        type: "asset/inline",
       },
       {
         test: /\.css$/i,
@@ -68,18 +68,13 @@ module.exports = {
       },
     },
   },
-
-  // Using eval-cheap-module-source-map for build times
-  // switch to inline-source-map if detailed debugging needed
-  devtool: IS_PROD ? false : "eval-cheap-module-source-map",
-
+  devtool: IS_PROD ? false : "eval-cheap-module-source-map", // https://webpack.js.org/configuration/devtool
   devServer: {
     compress: true,
     historyApiFallback: true,
     hot: true,
     port: 3000,
   },
-
   resolve: {
     extensions: [".js", ".ts", ".tsx"],
     modules: ["node_modules", path.resolve(__dirname, "src")],
