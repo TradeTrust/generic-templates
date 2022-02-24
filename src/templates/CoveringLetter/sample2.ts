@@ -1,6 +1,6 @@
 import { v2 } from "@govtechsg/open-attestation";
 import { CoveringLetter } from "./types";
-import logo from "/static/images/logo-dbs.png";
+import logo from "/static/images/logo-dbs.png?inline";
 
 export const CoveringLetterSample2: CoveringLetter = {
   $template: {
