@@ -14,7 +14,7 @@ export interface InvoiceDocument {
   customerId?: string;
   terms?: string;
   billFrom?: CompanyInfo;
-  billTo?: BillingAddress;
+  billTo: BillingAddress;
   billableItems?: InvoiceItem[];
   subtotal?: string;
   tax?: string;

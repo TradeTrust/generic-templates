@@ -1,9 +1,10 @@
 import styled from "@emotion/styled";
-import { TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
+import { ObfuscatableValue, TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
 import { format } from "date-fns";
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useState } from "react";
 import { DocumentQrCode } from "../../core/DocumentQrCode";
 import { Wrapper } from "../../core/Wrapper";
+import { PrivacyFilter } from "../../core/PrivacyFilter";
 import { getDocumentData } from "../../utils";
 import { InvoiceDocument, InvoiceDocumentSchema } from "./types";
 
@@ -39,7 +40,11 @@ const CustomStyles = styled.div`
   }
 `;
 
-export const InvoiceTemplate: FunctionComponent<TemplateProps<InvoiceDocumentSchema>> = ({ document }) => {
+export const InvoiceTemplate: FunctionComponent<TemplateProps<InvoiceDocumentSchema>> = ({
+  document,
+  handleObfuscation,
+}) => {
+  const [editable, setEditable] = useState(false);
   const documentData = getDocumentData(document) as InvoiceDocument;
   const {
     id,
@@ -58,6 +63,7 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<InvoiceDocumentSch
 
   return (
     <Wrapper data-testid="invoice-template">
+      <PrivacyFilter editable={editable} onToggleEditable={() => setEditable(!editable)} />
       <CustomStyles>
         <div className="flex flex-wrap">
           <div className="w-full md:w-5/12 mb-4 md:mb-0 md:ml-auto md:order-2">
@@ -110,15 +116,19 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<InvoiceDocumentSch
             </div>
             <div className="flex flex-wrap">
               <div className="mb-4 py-2">
-                <p>{billTo?.name}</p>
-                <p>{billTo?.company.name}</p>
-                <p>{billTo?.company.streetAddress}</p>
+                <ObfuscatableValue
+                  editable={editable}
+                  value={billTo.name}
+                  onObfuscationRequested={() => handleObfuscation(`billTo.name`)}
+                />
+                <p>{billTo.company.name}</p>
+                <p>{billTo.company.streetAddress}</p>
                 <p>
-                  {billTo?.company.city}
-                  {billTo?.company.postalCode && `, ${billTo?.company.postalCode}`}
+                  {billTo.company.city}
+                  {billTo.company.postalCode && `, ${billTo.company.postalCode}`}
                 </p>
-                <p>{billTo?.company.phoneNumber}</p>
-                <p>{billTo?.email}</p>
+                <p>{billTo.company.phoneNumber}</p>
+                <p>{billTo.email}</p>
               </div>
             </div>
           </div>
