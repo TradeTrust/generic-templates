@@ -40,6 +40,14 @@ const CustomStyles = styled.div`
   }
 `;
 
+// const IconRedact: FunctionComponent = () => {
+//   return (
+//     <span className="transition-colors ease-out duration-200 text-red-600 hover:text-red-700 font-normal text-sm">
+//       [Remove]
+//     </span>
+//   );
+// };
+
 export const InvoiceTemplate: FunctionComponent<TemplateProps<InvoiceDocumentSchema>> = ({
   document,
   handleObfuscation,
@@ -101,13 +109,40 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<InvoiceDocumentSch
           </div>
           <div className="w-full md:w-5/12 md:order-1">
             <div className="mb-4">
-              <h2>{billFrom?.name}</h2>
-              <p>{billFrom?.streetAddress}</p>
+              <h2>
+                <ObfuscatableValue
+                  editable={editable}
+                  value={billFrom?.name}
+                  onObfuscationRequested={() => handleObfuscation(`billFrom.name`)}
+                />
+              </h2>
               <p>
-                {billFrom?.city}
-                {billFrom?.postalCode && `, ${billFrom?.postalCode}`}
+                <ObfuscatableValue
+                  editable={editable}
+                  value={billFrom?.streetAddress}
+                  onObfuscationRequested={() => handleObfuscation(`billFrom.streetAddress`)}
+                />
               </p>
-              <p>{billFrom?.phoneNumber}</p>
+              <p>
+                <ObfuscatableValue
+                  editable={editable}
+                  value={billFrom?.city}
+                  onObfuscationRequested={() => handleObfuscation(`billFrom.city`)}
+                />
+                {billFrom?.postalCode && `, `}
+                <ObfuscatableValue
+                  editable={editable}
+                  value={billFrom?.postalCode}
+                  onObfuscationRequested={() => handleObfuscation(`billFrom.postalCode`)}
+                />
+              </p>
+              <p>
+                <ObfuscatableValue
+                  editable={editable}
+                  value={billFrom?.phoneNumber}
+                  onObfuscationRequested={() => handleObfuscation(`billFrom.phoneNumber`)}
+                />
+              </p>
             </div>
             <div className="flex flex-wrap bg-blue">
               <div className="pl-2">
@@ -116,19 +151,54 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<InvoiceDocumentSch
             </div>
             <div className="flex flex-wrap">
               <div className="mb-4 py-2">
-                <ObfuscatableValue
-                  editable={editable}
-                  value={billTo.name}
-                  onObfuscationRequested={() => handleObfuscation(`billTo.name`)}
-                />
-                <p>{billTo.company.name}</p>
-                <p>{billTo.company.streetAddress}</p>
                 <p>
-                  {billTo.company.city}
-                  {billTo.company.postalCode && `, ${billTo.company.postalCode}`}
+                  <ObfuscatableValue
+                    editable={editable}
+                    value={billTo.name}
+                    onObfuscationRequested={() => handleObfuscation(`billTo.name`)}
+                  />
                 </p>
-                <p>{billTo.company.phoneNumber}</p>
-                <p>{billTo.email}</p>
+                <p>
+                  <ObfuscatableValue
+                    editable={editable}
+                    value={billTo.company.name}
+                    onObfuscationRequested={() => handleObfuscation(`billTo.company.name`)}
+                  />
+                </p>
+                <p>
+                  <ObfuscatableValue
+                    editable={editable}
+                    value={billTo.company.streetAddress}
+                    onObfuscationRequested={() => handleObfuscation(`billTo.company.streetAddress`)}
+                  />
+                </p>
+                <p>
+                  <ObfuscatableValue
+                    editable={editable}
+                    value={billTo.company.city}
+                    onObfuscationRequested={() => handleObfuscation(`billTo.company.city`)}
+                  />
+                  {billTo.company.postalCode && `, `}
+                  <ObfuscatableValue
+                    editable={editable}
+                    value={billTo.company.postalCode}
+                    onObfuscationRequested={() => handleObfuscation(`billTo.company.postalCode`)}
+                  />
+                </p>
+                <p>
+                  <ObfuscatableValue
+                    editable={editable}
+                    value={billTo.company.phoneNumber}
+                    onObfuscationRequested={() => handleObfuscation(`billTo.company.phoneNumber`)}
+                  />
+                </p>
+                <p>
+                  <ObfuscatableValue
+                    editable={editable}
+                    value={billTo.email}
+                    onObfuscationRequested={() => handleObfuscation(`billTo.email`)}
+                  />
+                </p>
               </div>
             </div>
           </div>
