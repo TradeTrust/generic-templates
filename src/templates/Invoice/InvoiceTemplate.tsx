@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { ObfuscatableValue, TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
+import { RedactableValue, TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
 import { format } from "date-fns";
 import React, { FunctionComponent, useState } from "react";
 import { DocumentQrCode } from "../../core/DocumentQrCode";
@@ -40,13 +40,13 @@ const CustomStyles = styled.div`
   }
 `;
 
-// const IconRedact: FunctionComponent = () => {
-//   return (
-//     <span className="transition-colors ease-out duration-200 text-red-600 hover:text-red-700 font-normal text-sm">
-//       [Remove]
-//     </span>
-//   );
-// };
+const IconRedact: FunctionComponent = () => {
+  return (
+    <span className="transition-colors ease-out duration-200 text-red-600 hover:text-red-700 font-normal text-sm">
+      [Remove]
+    </span>
+  );
+};
 
 export const InvoiceTemplate: FunctionComponent<TemplateProps<InvoiceDocumentSchema>> = ({
   document,
@@ -110,37 +110,37 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<InvoiceDocumentSch
           <div className="w-full md:w-5/12 md:order-1">
             <div className="mb-4">
               <h2>
-                <ObfuscatableValue
+                <RedactableValue
                   editable={editable}
                   value={billFrom?.name}
-                  onObfuscationRequested={() => handleObfuscation(`billFrom.name`)}
+                  onRedactionRequested={() => handleObfuscation(`billFrom.name`)}
+                  iconRedact={<IconRedact />}
                 />
               </h2>
               <p>
-                <ObfuscatableValue
+                <RedactableValue
                   editable={editable}
                   value={billFrom?.streetAddress}
-                  onObfuscationRequested={() => handleObfuscation(`billFrom.streetAddress`)}
+                  onRedactionRequested={() => handleObfuscation(`billFrom.streetAddress`)}
+                  iconRedact={<IconRedact />}
                 />
               </p>
               <p>
-                <ObfuscatableValue
-                  editable={editable}
-                  value={billFrom?.city}
-                  onObfuscationRequested={() => handleObfuscation(`billFrom.city`)}
-                />
+                {billFrom?.city}
                 {billFrom?.postalCode && `, `}
-                <ObfuscatableValue
+                <RedactableValue
                   editable={editable}
                   value={billFrom?.postalCode}
-                  onObfuscationRequested={() => handleObfuscation(`billFrom.postalCode`)}
+                  onRedactionRequested={() => handleObfuscation(`billFrom.postalCode`)}
+                  iconRedact={<IconRedact />}
                 />
               </p>
               <p>
-                <ObfuscatableValue
+                <RedactableValue
                   editable={editable}
                   value={billFrom?.phoneNumber}
-                  onObfuscationRequested={() => handleObfuscation(`billFrom.phoneNumber`)}
+                  onRedactionRequested={() => handleObfuscation(`billFrom.phoneNumber`)}
+                  iconRedact={<IconRedact />}
                 />
               </p>
             </div>
@@ -152,51 +152,53 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<InvoiceDocumentSch
             <div className="flex flex-wrap">
               <div className="mb-4 py-2">
                 <p>
-                  <ObfuscatableValue
+                  <RedactableValue
                     editable={editable}
                     value={billTo.name}
-                    onObfuscationRequested={() => handleObfuscation(`billTo.name`)}
+                    onRedactionRequested={() => handleObfuscation(`billTo.name`)}
+                    iconRedact={<IconRedact />}
                   />
                 </p>
                 <p>
-                  <ObfuscatableValue
+                  <RedactableValue
                     editable={editable}
                     value={billTo.company.name}
-                    onObfuscationRequested={() => handleObfuscation(`billTo.company.name`)}
+                    onRedactionRequested={() => handleObfuscation(`billTo.company.name`)}
+                    iconRedact={<IconRedact />}
                   />
                 </p>
                 <p>
-                  <ObfuscatableValue
+                  <RedactableValue
                     editable={editable}
                     value={billTo.company.streetAddress}
-                    onObfuscationRequested={() => handleObfuscation(`billTo.company.streetAddress`)}
+                    onRedactionRequested={() => handleObfuscation(`billTo.company.streetAddress`)}
+                    iconRedact={<IconRedact />}
                   />
                 </p>
                 <p>
-                  <ObfuscatableValue
-                    editable={editable}
-                    value={billTo.company.city}
-                    onObfuscationRequested={() => handleObfuscation(`billTo.company.city`)}
-                  />
+                  {billTo.company.city}
                   {billTo.company.postalCode && `, `}
-                  <ObfuscatableValue
+                  <RedactableValue
                     editable={editable}
                     value={billTo.company.postalCode}
-                    onObfuscationRequested={() => handleObfuscation(`billTo.company.postalCode`)}
+                    onRedactionRequested={() => handleObfuscation(`billTo.company.postalCode`)}
+                    iconRedact={<IconRedact />}
                   />
                 </p>
                 <p>
-                  <ObfuscatableValue
+                  <RedactableValue
                     editable={editable}
                     value={billTo.company.phoneNumber}
-                    onObfuscationRequested={() => handleObfuscation(`billTo.company.phoneNumber`)}
+                    onRedactionRequested={() => handleObfuscation(`billTo.company.phoneNumber`)}
+                    iconRedact={<IconRedact />}
                   />
                 </p>
                 <p>
-                  <ObfuscatableValue
+                  <RedactableValue
                     editable={editable}
                     value={billTo.email}
-                    onObfuscationRequested={() => handleObfuscation(`billTo.email`)}
+                    onRedactionRequested={() => handleObfuscation(`billTo.email`)}
+                    iconRedact={<IconRedact />}
                   />
                 </p>
               </div>
