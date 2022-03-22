@@ -1,9 +1,10 @@
 import styled from "@emotion/styled";
-import { TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
+import { RedactableValue, TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
 import { format } from "date-fns";
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useState } from "react";
 import { DocumentQrCode } from "../../core/DocumentQrCode";
 import { Wrapper } from "../../core/Wrapper";
+import { PrivacyFilter } from "../../core/PrivacyFilter";
 import { getDocumentData } from "../../utils";
 import { InvoiceDocument, InvoiceDocumentSchema } from "./types";
 
@@ -39,7 +40,19 @@ const CustomStyles = styled.div`
   }
 `;
 
-export const InvoiceTemplate: FunctionComponent<TemplateProps<InvoiceDocumentSchema>> = ({ document }) => {
+const IconRedact: FunctionComponent = () => {
+  return (
+    <span className="transition-colors ease-out duration-200 text-red-600 hover:text-red-700 font-normal text-sm">
+      [Remove]
+    </span>
+  );
+};
+
+export const InvoiceTemplate: FunctionComponent<TemplateProps<InvoiceDocumentSchema>> = ({
+  document,
+  handleObfuscation,
+}) => {
+  const [editable, setEditable] = useState(false);
   const documentData = getDocumentData(document) as InvoiceDocument;
   const {
     id,
@@ -58,6 +71,7 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<InvoiceDocumentSch
 
   return (
     <Wrapper data-testid="invoice-template">
+      <PrivacyFilter editable={editable} onToggleEditable={() => setEditable(!editable)} />
       <CustomStyles>
         <div className="flex flex-wrap">
           <div className="w-full md:w-5/12 mb-4 md:mb-0 md:ml-auto md:order-2">
@@ -95,13 +109,40 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<InvoiceDocumentSch
           </div>
           <div className="w-full md:w-5/12 md:order-1">
             <div className="mb-4">
-              <h2>{billFrom?.name}</h2>
-              <p>{billFrom?.streetAddress}</p>
+              <h2>
+                <RedactableValue
+                  editable={editable}
+                  value={billFrom?.name}
+                  onRedactionRequested={() => handleObfuscation(`billFrom.name`)}
+                  iconRedact={<IconRedact />}
+                />
+              </h2>
+              <p>
+                <RedactableValue
+                  editable={editable}
+                  value={billFrom?.streetAddress}
+                  onRedactionRequested={() => handleObfuscation(`billFrom.streetAddress`)}
+                  iconRedact={<IconRedact />}
+                />
+              </p>
               <p>
                 {billFrom?.city}
-                {billFrom?.postalCode && `, ${billFrom?.postalCode}`}
+                {billFrom?.postalCode && `, `}
+                <RedactableValue
+                  editable={editable}
+                  value={billFrom?.postalCode}
+                  onRedactionRequested={() => handleObfuscation(`billFrom.postalCode`)}
+                  iconRedact={<IconRedact />}
+                />
               </p>
-              <p>{billFrom?.phoneNumber}</p>
+              <p>
+                <RedactableValue
+                  editable={editable}
+                  value={billFrom?.phoneNumber}
+                  onRedactionRequested={() => handleObfuscation(`billFrom.phoneNumber`)}
+                  iconRedact={<IconRedact />}
+                />
+              </p>
             </div>
             <div className="flex flex-wrap bg-blue">
               <div className="pl-2">
@@ -110,15 +151,56 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<InvoiceDocumentSch
             </div>
             <div className="flex flex-wrap">
               <div className="mb-4 py-2">
-                <p>{billTo?.name}</p>
-                <p>{billTo?.company.name}</p>
-                <p>{billTo?.company.streetAddress}</p>
                 <p>
-                  {billTo?.company.city}
-                  {billTo?.company.postalCode && `, ${billTo?.company.postalCode}`}
+                  <RedactableValue
+                    editable={editable}
+                    value={billTo.name}
+                    onRedactionRequested={() => handleObfuscation(`billTo.name`)}
+                    iconRedact={<IconRedact />}
+                  />
                 </p>
-                <p>{billTo?.company.phoneNumber}</p>
-                <p>{billTo?.email}</p>
+                <p>
+                  <RedactableValue
+                    editable={editable}
+                    value={billTo.company.name}
+                    onRedactionRequested={() => handleObfuscation(`billTo.company.name`)}
+                    iconRedact={<IconRedact />}
+                  />
+                </p>
+                <p>
+                  <RedactableValue
+                    editable={editable}
+                    value={billTo.company.streetAddress}
+                    onRedactionRequested={() => handleObfuscation(`billTo.company.streetAddress`)}
+                    iconRedact={<IconRedact />}
+                  />
+                </p>
+                <p>
+                  {billTo.company.city}
+                  {billTo.company.postalCode && `, `}
+                  <RedactableValue
+                    editable={editable}
+                    value={billTo.company.postalCode}
+                    onRedactionRequested={() => handleObfuscation(`billTo.company.postalCode`)}
+                    iconRedact={<IconRedact />}
+                  />
+                </p>
+                <p>
+                  <RedactableValue
+                    editable={editable}
+                    value={billTo.company.phoneNumber}
+                    onRedactionRequested={() => handleObfuscation(`billTo.company.phoneNumber`)}
+                    iconRedact={<IconRedact />}
+                  />
+                </p>
+                <p>
+                  <RedactableValue
+                    editable={editable}
+                    value={billTo.email}
+                    onRedactionRequested={() => handleObfuscation(`billTo.email`)}
+                    iconRedact={<IconRedact />}
+                  />
+                </p>
               </div>
             </div>
           </div>
