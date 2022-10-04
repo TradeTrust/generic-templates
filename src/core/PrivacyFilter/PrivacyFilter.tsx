@@ -1,5 +1,5 @@
-import React, { FunctionComponent } from "react";
 import { Button } from "@govtechsg/tradetrust-ui-components";
+import React, { FunctionComponent } from "react";
 import patternWaves from "/static/images/pattern-waves.png";
 
 interface PrivacyFilterProps {
@@ -15,7 +15,7 @@ export const PrivacyFilter: FunctionComponent<PrivacyFilterProps> = ({ editable,
     <div className="container">
       <div className="md:flex items-center">
         <div className="grow mb-4 md:mb-0 mr-0 md:mr-4">
-          <h3 className="font-normal">TradeTrust Privacy Filter Enabled</h3>
+          <h3 className="font-normal">The document allows fields to be selectively disclosed.</h3>
           <p>
             Remove sensitive information on this document by clicking on the edit button. Downloaded document remains
             valid.
