@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
 import { CoveringLetterTemplate } from "./CoveringLetterTemplate";
-import { CoveringLetterSample } from "./sample";
-import { CoveringLetterSample2 } from "./sample2";
+import { CoveringLetterSample } from "./sampleV2a";
+import { CoveringLetterSample2 } from "./sampleV2b";
 
 describe("covering Letter", () => {
   it("should render the cover letter (govtech) correctly", () => {
