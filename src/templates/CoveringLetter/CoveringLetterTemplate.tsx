@@ -3,7 +3,8 @@ import { TemplateProps } from "@govtechsg/decentralized-renderer-react-component
 import React, { FunctionComponent } from "react";
 import { DocumentQrCode } from "../../core/DocumentQrCode";
 import { Wrapper } from "../../core/Wrapper";
-import { CoveringLetter } from "./types";
+import { CoveringLetter, CoveringLetterSchema } from "./types";
+import { getDocumentData } from "../../utils";
 
 const CustomStyles = styled.div`
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
@@ -20,9 +21,11 @@ const CustomStyles = styled.div`
   }
 `;
 
-export const CoveringLetterTemplate: FunctionComponent<TemplateProps<CoveringLetter>> = ({ document }) => {
-  const { logo, title, remarks, backgroundColor, titleColor, remarksColor } = document;
-  const qrCodeUrl = document?.links?.self.href;
+export const CoveringLetterTemplate: FunctionComponent<TemplateProps<CoveringLetterSchema>> = ({ document }) => {
+  const { logo, title, remarks, backgroundColor, titleColor, remarksColor, links } = getDocumentData(
+    document
+  ) as CoveringLetter;
+  const qrCodeUrl = links?.self.href;
 
   return (
     <Wrapper data-testid="covering-letter-template">

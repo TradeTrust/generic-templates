@@ -1,7 +1,6 @@
-import { v2 } from "@govtechsg/open-attestation";
+import { v2, v3 } from "@govtechsg/open-attestation";
 
-export interface CoveringLetter extends v2.OpenAttestationDocument {
-  name: string;
+export interface CoveringLetter {
   logo?: string;
   title?: string;
   remarks?: string;
@@ -14,3 +13,9 @@ export interface CoveringLetter extends v2.OpenAttestationDocument {
     };
   };
 }
+
+export type CoveringLetterSchemaV2 = v2.OpenAttestationDocument & CoveringLetter;
+export type CoveringLetterSchemaV3 = v3.OpenAttestationDocument & {
+  credentialSubject: CoveringLetter;
+};
+export type CoveringLetterSchema = CoveringLetterSchemaV2 | CoveringLetterSchemaV3;
