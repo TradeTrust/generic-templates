@@ -11,7 +11,7 @@ _Note: These are just some rendering templates that are made available for users
 | Bill of Lading           | EMBEDDED_RENDERER | BILL_OF_LADING         | https://generic-templates.tradetrust.io | &check;       |                |
 | Bill of Lading (Generic) | EMBEDDED_RENDERER | BILL_OF_LADING_GENERIC | https://generic-templates.tradetrust.io |               |                |
 | Chafta COO               | EMBEDDED_RENDERER | CHAFTA_COO             | https://generic-templates.tradetrust.io | &check;       |                |
-| Covering Letter          | EMBEDDED_RENDERER | COVERING_LETTER        | https://generic-templates.tradetrust.io |               |                |
+| Covering Letter          | EMBEDDED_RENDERER | COVERING_LETTER        | https://generic-templates.tradetrust.io | &check;       |                |
 | Invoice                  | EMBEDDED_RENDERER | INVOICE                | https://generic-templates.tradetrust.io | &check;       | &check;        |
 | Simple COO               | EMBEDDED_RENDERER | SIMPLE_COO             | https://generic-templates.tradetrust.io | &check;       |                |
 

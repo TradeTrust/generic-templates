@@ -1,7 +1,8 @@
 import React, { FunctionComponent } from "react";
 import { CoveringLetterTemplate } from "./CoveringLetterTemplate";
-import { CoveringLetterSample } from "./sample";
-import { CoveringLetterSample2 } from "./sample2";
+import { CoveringLetterSampleV2a } from "./sampleV2a";
+import { CoveringLetterSampleV2b } from "./sampleV2b";
+import { CoveringLetterSampleV3 } from "./sampleV3";
 
 export default {
   title: "CoveringLetter",
@@ -11,10 +12,14 @@ export default {
   },
 };
 
-export const Default: FunctionComponent = () => {
-  return <CoveringLetterTemplate document={CoveringLetterSample} handleObfuscation={() => {}} />;
+export const CoveringLetterV2a: FunctionComponent = () => {
+  return <CoveringLetterTemplate document={CoveringLetterSampleV2a} handleObfuscation={() => {}} />;
 };
 
-export const DBS: FunctionComponent = () => {
-  return <CoveringLetterTemplate document={CoveringLetterSample2} handleObfuscation={() => {}} />;
+export const CoveringLetterV2b: FunctionComponent = () => {
+  return <CoveringLetterTemplate document={CoveringLetterSampleV2b} handleObfuscation={() => {}} />;
+};
+
+export const CoveringLetterV3: FunctionComponent = () => {
+  return <CoveringLetterTemplate document={CoveringLetterSampleV3} handleObfuscation={() => {}} />;
 };
