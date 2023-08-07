@@ -904,7 +904,7 @@ const Section1 = (document: BillOfLadingMaerskPilotDocument): JSX.Element => {
           <div className="p-2 border-black border-b-2">{smallText("Export references")}</div>
           <div className="p-2">
             {smallText(
-              "Onward inland routing (Not part of Carriage as defined in clasuse 1. For account and risk of Merchant)"
+              "Onward inland routing (Not part of Carriage as defined in clause 1. For account and risk of Merchant)"
             )}
           </div>
         </div>
