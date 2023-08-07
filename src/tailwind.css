@@ -31,4 +31,16 @@
 }
 
 @tailwind components;
+
+@layer components {
+  .terms {
+    @apply text-xs;
+  }
+
+  .terms h1,
+  .terms h2 {
+    @apply text-xs;
+  }
+}
+
 @tailwind utilities;
