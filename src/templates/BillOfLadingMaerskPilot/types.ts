@@ -39,4 +39,5 @@ export interface BillOfLadingMaerskPilotDocument {
   numberOfOriginalBL?: string;
   dateOfIssueBL?: string;
   carrierSignature?: string;
+  shippedOnBoardDate?: string;
 }

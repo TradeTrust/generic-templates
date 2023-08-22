@@ -724,6 +724,7 @@ const Section3 = (document: BillOfLadingMaerskPilotDocument): JSX.Element => {
     numberOfOriginalBL = "ONE/1",
     dateOfIssueBL,
     carrierSignature,
+    shippedOnBoardDate,
   } = document;
 
   return (
@@ -787,7 +788,10 @@ const Section3 = (document: BillOfLadingMaerskPilotDocument): JSX.Element => {
                 <div className="p-2">{smallText("Declared Value (see clause 7.3)")}</div>
               </div>
               <div className="w-1/2 border-black border">
-                <div className="p-2">{smallText("Shipped on Board Date (Local Time)")}</div>
+                <div className="p-2">
+                  {smallText("Shipped on Board Date (Local Time)")}
+                  {dateOfIssueBL && <p data-testid="shipped-on-board-date">{shippedOnBoardDate}</p>}
+                </div>
               </div>
             </div>
           </div>
@@ -799,13 +803,13 @@ const Section3 = (document: BillOfLadingMaerskPilotDocument): JSX.Element => {
               "SHIPPED, as far as ascertained by reasonable means of checking, in apparent good order and condition unless otherwise stated herein, the total number or quantity of Containers or other packages or units indicated in the box entitled \"Carrier's Receipt\" for carriage from the Port of Loading (or the Place of Receipt, if mentioned above) to the Port of Discharge (or the Place of Delivery, if mentioned above), such carriage being always subject to the terms, rights, defences, provisions, conditions, exceptions, limitations, and liberties hereof (INCLUDING ALL THOSE TERMS AND CONDITIONS ON THE REVERSE HEREOF NUMBERED 1-26 AND THOSE TERMS AND CONDITIONS CONTAINED IN THE CARRIER'S APPLICABLE TARIFF) and the Merchant's attention is drawn in particular to the Carrier's liberties in respect of on deck stowage (see clause 18) and the carrying vessel (see clause 19). Where the bill of lading is non-negotiable the Carrier may give delivery of the Goods to the named consignee upon reasonable proof of identity and without requiring surrender of an original bill of lading. Where the bill of lading is negotiable, the Merchant is obliged to surrender one original, duly endorsed, in exchange for the Goods. The Carrier accepts a duty of reasonable care to check that any such document which the Merchant surrenders as a bill of lading is genuine and original. If the Carrier complies with this duty, it will be entitled to deliver the Goods against what it reasonably believes to be a genuine and original bill of lading, such delivery discharging the Carrier’s delivery obligations. In accepting this bill of lading, any local customs or privileges to the contrary notwithstanding, the Merchant agrees to be bound by all Terms and Conditions stated herein whether written, printed, stamped or incorporated on the face or reverse side hereof, as fully as if they were all signed by the Merchant. IN WITNESS WHEREOF the number of original Bills of Lading stated on this side have been signed and wherever one original Bill of Lading has been surrendered any others shall be void."
             )}
             <div className="text-center my-4">
-              {smallStrongText(`Signed for the Carrier ${carrierName || ""}`)}
+              {smallStrongText(`Signed for the Carrier Maersk A/S`)}
               {carrierSignature && (
                 <img data-testid="carrier-signature" className="w-[150px] mx-auto" src={carrierSignature} />
               )}
             </div>
             <hr />
-            <div className="text-center mt-2">{smallStrongText("As Agent(s) for the Carrier")}</div>
+            <div className="text-center mt-2">{smallStrongText(`${carrierName || ""}`)}</div>
           </div>
         </div>
       </div>

@@ -41,7 +41,7 @@ export const BillOfLadingMaerskPilotSampleV2: BillOfLadingMaerskPilotSchemaV2 = 
   },
   portOfDischarge: "Paris",
   portOfLoading: "Singapore",
-  carrierName: "A.P. Moller",
+  carrierName: "MAERSK SINGAPORE PTE LTD (REG NO.197401342Z) AS AGENT(S)",
   placeOfDelivery: "Singapore",
   placeOfReceipt: "Singapore",
   logo,
@@ -49,5 +49,6 @@ export const BillOfLadingMaerskPilotSampleV2: BillOfLadingMaerskPilotSchemaV2 = 
   placeOfIssueBL: "Malaysia",
   numberOfOriginalBL: "THREE/3",
   dateOfIssueBL: "01/08/23",
+  shippedOnBoardDate: "01/08/23",
   carrierSignature: randomSignature,
 };
