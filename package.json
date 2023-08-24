@@ -146,7 +146,7 @@
     "@emotion/styled": "^11.8.1",
     "@govtechsg/decentralized-renderer-react-components": "^3.8.0",
     "@govtechsg/open-attestation": "^6.3.0",
-    "@govtechsg/tradetrust-ui-components": "^2.15.0",
+    "@govtechsg/tradetrust-ui-components": "^2.19.2",
     "date-fns": "^2.28.0",
     "debug": "^4.3.3",
     "escape-goat": "3.0.0",
