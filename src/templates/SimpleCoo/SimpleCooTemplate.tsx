@@ -65,7 +65,10 @@ export const SimpleCooTemplate: FunctionComponent<TemplateProps<SimpleCooDocumen
     );
   };
 
-  const StandardSection: FunctionComponent<{ label: string; value?: string }> = ({ label, value }) => {
+  const StandardSection: FunctionComponent<{
+    label: string;
+    value?: string;
+  }> = ({ label, value }) => {
     return (
       <>
         <h5 className="mb-4 font-bold">{label}</h5>

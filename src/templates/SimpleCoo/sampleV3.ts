@@ -22,7 +22,10 @@ export const SimpleCooSampleV3: SimpleCooDocumentSchemaV3 = {
       method: v3.Method.DocumentStore,
       value: "0x8bA63EAB43342AAc3AdBB4B827b68Cf4aAE5Caca",
     },
-    identityProof: { type: v3.IdentityProofType.DNSDid, identifier: "demo-tradetrust.openattestation.com" },
+    identityProof: {
+      type: v3.IdentityProofType.DNSDid,
+      identifier: "demo-tradetrust.openattestation.com",
+    },
   },
   credentialSubject: {
     documentName: "Form for Free Trade Agreement",
