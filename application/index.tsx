@@ -23,20 +23,32 @@ ReactDOM.render(
     documents={[
       { name: "Bill of Lading V2", document: BillOfLadingSampleV2 },
       { name: "Bill of Lading V3", document: BillOfLadingSampleV3 },
-      { name: "Bill of Lading V2 (Maersk Pilot)", document: BillOfLadingMaerskPilotSampleV2 },
+      {
+        name: "Bill of Lading V2 (Maersk Pilot)",
+        document: BillOfLadingMaerskPilotSampleV2,
+      },
       { name: "Bill of Lading (Generic)", document: BillOfLadingGenericSample },
       { name: "Chafta COO V2", document: ChaftaCooSampleV2 },
       { name: "Chafta COO V3", document: ChaftaCooSampleV3 },
       { name: "Covering Letter V2", document: CoveringLetterSampleV2a },
-      { name: "Covering Letter V2 (Variant)", document: CoveringLetterSampleV2b },
-      { name: "Covering Letter V2 (Malformed)", document: CoveringLetterSampleV2malformed },
+      {
+        name: "Covering Letter V2 (Variant)",
+        document: CoveringLetterSampleV2b,
+      },
+      {
+        name: "Covering Letter V2 (Malformed)",
+        document: CoveringLetterSampleV2malformed,
+      },
       { name: "Covering Letter V3", document: CoveringLetterSampleV3 },
       { name: "InvoiceV2", document: InvoiceSampleV2 },
       { name: "InvoiceV3", document: InvoiceSampleV3 },
       { name: "XML Renderer", document: XMLRendererSampleData },
       { name: "Simple COO V2", document: SimpleCooSampleV2 },
       { name: "Simple COO V3", document: SimpleCooSampleV3 },
-      { name: "Certificate of Non Manipulation V2", document: CertificateOfNonManipulationSampleV2 },
+      {
+        name: "Certificate of Non Manipulation V2",
+        document: CertificateOfNonManipulationSampleV2,
+      },
     ]}
   />,
   document.getElementById("root")

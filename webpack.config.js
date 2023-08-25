@@ -56,7 +56,9 @@ module.exports = {
       ? [
           new CompressionPlugin({ test: /\.(js|css|html|svg)$/ }),
           new BrotliPlugin({ test: /\.(js|css|html|svg)$/ }),
-          new CopyWebpackPlugin({ patterns: [{ from: "static/images", to: "static/images" }] }),
+          new CopyWebpackPlugin({
+            patterns: [{ from: "static/images", to: "static/images" }],
+          }),
         ]
       : []),
   ],
