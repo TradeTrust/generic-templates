@@ -28,6 +28,10 @@
   a:hover {
     @apply text-cerulean;
   }
+
+  pre {
+    @apply whitespace-pre-wrap;
+  }
 }
 
 @tailwind components;
