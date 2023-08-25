@@ -15,6 +15,7 @@ import { InvoiceSampleV3 } from "../src/templates/Invoice/sampleV3";
 import { XMLRendererSampleData } from "../src/templates/XmlRenderer/sample";
 import { SimpleCooSampleV2 } from "../src/templates/SimpleCoo/sampleV2";
 import { SimpleCooSampleV3 } from "../src/templates/SimpleCoo/sampleV3";
+import { CertificateOfNonManipulationSampleV2 } from "../src/templates/CertificateOfNonManipulation/sampleV2";
 import { App } from "./app";
 
 ReactDOM.render(
@@ -35,6 +36,7 @@ ReactDOM.render(
       { name: "XML Renderer", document: XMLRendererSampleData },
       { name: "Simple COO V2", document: SimpleCooSampleV2 },
       { name: "Simple COO V3", document: SimpleCooSampleV3 },
+      { name: "Certificate of Non Manipulation V2", document: CertificateOfNonManipulationSampleV2 },
     ]}
   />,
   document.getElementById("root")
