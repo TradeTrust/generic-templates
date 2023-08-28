@@ -8,6 +8,7 @@ import { BillOfLadingGenericTemplates } from "./BillOfLadingGeneric";
 import { XMLRendererTemplate } from "./XmlRenderer";
 import { SimpleCooTemplates } from "./SimpleCoo";
 import { CertificateOfNonManipulationTemplates } from "./CertificateOfNonManipulation";
+import { BrochureTemplates } from "./Brochure";
 
 export const registry: TemplateRegistry<any> = {
   BILL_OF_LADING: BillOfLadingTemplates,
@@ -19,4 +20,5 @@ export const registry: TemplateRegistry<any> = {
   XML_RENDERER: XMLRendererTemplate,
   SIMPLE_COO: SimpleCooTemplates,
   CERTIFICATE_OF_NON_MANIPULATION: CertificateOfNonManipulationTemplates,
+  BROCHURE: BrochureTemplates,
 };

@@ -16,6 +16,7 @@ import { XMLRendererSampleData } from "../src/templates/XmlRenderer/sample";
 import { SimpleCooSampleV2 } from "../src/templates/SimpleCoo/sampleV2";
 import { SimpleCooSampleV3 } from "../src/templates/SimpleCoo/sampleV3";
 import { CertificateOfNonManipulationSampleV2 } from "../src/templates/CertificateOfNonManipulation/sampleV2";
+import { BrochureSample } from "../src/templates/Brochure/sample";
 import { App } from "./app";
 
 ReactDOM.render(
@@ -49,6 +50,7 @@ ReactDOM.render(
         name: "Certificate of Non Manipulation V2",
         document: CertificateOfNonManipulationSampleV2,
       },
+      { name: "Brochure", document: BrochureSample },
     ]}
   />,
   document.getElementById("root")
