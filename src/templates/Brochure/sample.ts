@@ -230,10 +230,6 @@ export const BrochureSample: BrochureSchema = {
           Profiles and Certificates to registered companies.`,
           },
           {
-            description: `OpenAttestation was used to issue tamper-proof pre-departure test and vaccination certificates (“HealthCerts”)
-          for cross-border travel.`,
-          },
-          {
             description: `Singapore’s Immigrations and Checkpoints Authority uses OpenAttestation to issue long-term visitor visas.`,
           },
           {
@@ -253,12 +249,12 @@ export const BrochureSample: BrochureSchema = {
       qrPrompt: `Scan here to view a digital copy of this brochure`,
       links: [
         {
-          title: `For more Info, please visit:`,
-          urls: [`www.openattestation.com`, `www.tradetrust.io`],
+          prompt: `For more Info, please visit:`,
+          urls: [`www.tradetrust.io`, `www.openattestation.com`],
         },
         {
-          title: `Contact us at:`,
-          urls: [`emailaddress@tech.gov.sg`],
+          prompt: `Contact us at:`,
+          urls: [`tradetrust@imda.gov.sg`, `openattestation_support@tech.gov.sg`],
         },
       ],
     },
