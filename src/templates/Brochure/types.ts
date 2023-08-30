@@ -12,7 +12,10 @@ interface content {
   }[];
   bodyAsList?: string[];
   bolded?: string[];
-  link?: string;
+  links?: {
+    title?: string;
+    url: string;
+  }[];
 }
 
 export interface BrochureDocument {
@@ -42,7 +45,7 @@ export interface BrochureDocument {
       qrPrompt: string;
       links: {
         title: string;
-        domains: string[];
+        urls: string[];
       }[];
     };
   };

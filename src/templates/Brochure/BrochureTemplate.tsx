@@ -42,7 +42,7 @@ export const BrochurePage: React.FC<BrochurePageProps> = ({
   children,
 }) => (
 <div className="m-auto border bg-no-repeat border-black box-border p-[70px] relative w-[65rem] h-[90rem]">
-    <div style={backgroundStyle} className="absolute left-0 bottom-0 h-full w-full bg-no-repeat"></div>
+    <div style={{...backgroundStyle, zIndex: -1}} className="absolute left-0 bottom-0 h-full w-full bg-no-repeat"></div>
     <BrochureHeader />
     <div className="flex flex-col h-full">
       {header && <div className="text-2xl pb-4">{header}</div>}
@@ -54,10 +54,10 @@ export const BrochurePage: React.FC<BrochurePageProps> = ({
             <div className="h-full w-0.5 absolute -right-4 top-0 bg-gradient-to-b from-green-700 to-sky-400"></div>
           </div>
           {footnote && (<>
-            <div className="text-sm text-zinc-500 break-all">
+            <a className="text-sm text-zinc-500 break-all" href={footnote} target="_blank">
             <sup>1</sup>
             {footnote}
-            </div>
+            </a>
             </>
           )}
         </div>
@@ -69,6 +69,34 @@ export const BrochurePage: React.FC<BrochurePageProps> = ({
     </div>
   </div>
 );
+
+export const ParagraphsWithLinks: React.FC<{ bodies?: string[], 
+  links?: { title?: string, url: string}[],
+  linkClassNames: string
+  startWithLink?: boolean }> = ({ bodies, links, linkClassNames, startWithLink = false }) => {
+    if (!bodies || !links) return <></>
+    if (startWithLink) { 
+      return (
+      <>
+      {links.map((item, i) => (
+        <>
+          <a className={linkClassNames} href={item.url} target="_blank">{item.title ? item.title : item.url}</a>
+          {bodies[i] && <span>{bodies[i]}</span>}
+        </>
+      ))}
+      </>)
+    } else {
+      return (
+        <>
+        {bodies.map((item, i) => (
+          <>
+            <span>{item}</span>
+            {links[i] && <a className={linkClassNames} href={links[i].url} target="_blank">{links[i].title ? links[i].title : links[i].url}</a>}
+          </>
+        ))}
+        </>)
+    }
+}
 
 const Page1: React.FC<{ document: BrochureDocument }> = ({ document }) => {
   const contents = document.page1.contents;
@@ -125,7 +153,7 @@ const Page2: React.FC<{ document: BrochureDocument }> = ({ document }) => {
       <ul className="list-disc ml-4">
         {contents[1].listItems?.map((item) => (
           <>
-            <li className="ml-4">
+            <li>
               <b>{item.name} </b>
               {item.description}
             </li>
@@ -134,20 +162,18 @@ const Page2: React.FC<{ document: BrochureDocument }> = ({ document }) => {
         ))}
       </ul>
       <div>
-        {contents[2].bodyAsList?.[0]}
-        <b>{contents[2].bolded?.[0]}</b>
-        {contents[2].bodyAsList?.[1]}
-        <b>{contents[2].bolded?.[1]}</b>
-        {contents[2].bodyAsList?.[2]}
+      <ParagraphsWithLinks 
+        bodies={contents[2].bodyAsList} 
+        links={contents[2].links} 
+        linkClassNames="text-sky-500 font-bold"/>
       </div>
       <br />
       <h5>{contents[3].subheader}</h5>
       <div>
-        {contents[3].body}
-        <a href={contents[3].link} target="_blank">
-          {contents[3].link}
-        </a>
-        .
+      <ParagraphsWithLinks 
+        bodies={contents[3].bodyAsList} 
+        links={contents[3].links} 
+        linkClassNames="text-sky-500"/>
       </div>
     </BrochurePage>
   );
@@ -165,13 +191,13 @@ const Page3: React.FC<{ document: BrochureDocument }> = ({ document }) => {
       <h5>{contents[0].subheader}</h5>
       <div>{contents[0].body}</div>
       <br />
-      <ul className="list-decimal ml-8">
+      <ul className="list-decimal ml-4">
         {contents[1].listItems?.map((item, i) => {
-          if (i === 0) {
+          if (item.descriptionAsList) {
             return (
               <>
                 <li>
-                  <b>{item.name} </b>
+                  <div className="font-semibold">{item.name} </div>
                 </li>
                 {item.descriptionAsList?.map((part) => (
                   <>
@@ -207,8 +233,6 @@ const Page4: React.FC<{ document: BrochureDocument }> = ({ document }) => {
       <>
         <div className="h-0.5 w-full bg-gradient-to-r from-green-700 to-sky-400 my-4 mb-2" />
         <div className="flex flex-row items-center h-fit w-full bg-gradient-to-r from-green-700 to-sky-400 rounded-lg p-7 mb-16">
-          {/* <img src={""} className="h-32 w-32" /> */}
-          {/* <DocumentQrCode url={footer.qrUrl} /> */}
           <QRCode includeMargin={true} value={footer.qrUrl} level="M" size={200}/>
           <div className="w-48 ml-4 text-white text-sm">{footer.qrPrompt}</div>
           <div className="grow" />
@@ -216,7 +240,7 @@ const Page4: React.FC<{ document: BrochureDocument }> = ({ document }) => {
             {footer.links.map((item, i) => (
               <>
                 <b className={i === 0 ? "mb-2" : "mt-4 mb-2"}>{item.title}</b>
-                {item.domains.map((link) => (
+                {item.urls.map((link) => (
                   <div>{link}</div>
                 ))}
               </>
@@ -226,20 +250,38 @@ const Page4: React.FC<{ document: BrochureDocument }> = ({ document }) => {
       </>
     }
       description={document.shared.openAttestation.description}
-      backgroundStyle={{ backgroundImage: `url(${govtechCurve})`, backgroundPosition: "180% 31%", backgroundSize: "70%", transform: "scale(-1)", zIndex: -1 }}
+      backgroundStyle={{ backgroundImage: `url(${govtechCurve})`, backgroundPosition: "180% 31%", backgroundSize: "70%", transform: "scale(-1)" }}
       page={4}
       logo={oaLogo}
     >
         <h5>{contents[0].subheader}</h5>
         <div>{contents[0].body}</div>
         <br />
-        <ul className="list-disc ml-8">
-          {contents[1].listItems?.map((item) => (
-            <>
-              <li>{item.description}</li>
-              <br />
-            </>
-          ))}
+        <ul className="list-disc ml-4">
+          {contents[1].listItems?.map((item, i) => {
+            if (i < 3) {
+              return (
+              <>
+                <li>
+                  <ParagraphsWithLinks
+                  bodies={item.description? [item.description] : item.descriptionAsList}
+                  links={[contents[1].links![i]]}
+                  linkClassNames="text-sky-500 font-bold"
+                  startWithLink={i === 0 || i === 1}
+                  />
+                </li>
+                <br />
+              </>
+              )
+            }
+            return (
+              <>
+                <li>
+                  {item.description}</li>
+                <br />
+              </>
+            )
+          })}
         </ul>
     </BrochurePage>
   );
