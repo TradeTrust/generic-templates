@@ -79,10 +79,7 @@ export const BrochureSample: BrochureSchema = {
         bolded: [`Selective Redaction`, `Decentralised Renderer`],
       },
     ],
-    footnote: `https://www.mckinsey.com/industries/travel
-    -logistics-and-infrastructure/our-insights/the-
-    multi-billion-dollar-paper-jam-unlocking-tra
-    de-by-digitalizing-documentation`,
+    footnote: `https://www.mckinsey.com/industries/travel-logistics-and-infrastructure/our-insights/the-multi-billion-dollar-paper-jam-unlocking-trade-by-digitalizing-documentation`,
   },
   page2: {
     contents: [
@@ -123,16 +120,29 @@ export const BrochureSample: BrochureSchema = {
           `. DPGA is a multistakeholder initiative supported by the Norwegian Agency for Development Cooperation
         (Norad), United Nations Development Programme (UNDP), and UNICEF.`,
         ],
-        bolded: ["Digital Public Goods", "Digital Public Goods Alliance (DPGA)"],
+        links: [
+          {
+            title: "Digital Public Goods",
+            url: "https://digitalpublicgoods.net/registry/openattestation.html",
+          },
+          {
+            title: "Digital Public Goods Alliance (DPGA)",
+            url: "https://digitalpublicgoods.net/who-we-are/",
+          },
+        ],
       },
       {
         subheader: `Alignment with W3C Verifiable Credentials Data Model`,
-        body: `OpenAttestation is aligned with the W3C Verifiable Credentials Data Model. As a framework with real-world
+        bodyAsList: [
+          `OpenAttestation is aligned with the W3C Verifiable Credentials Data Model. As a framework with real-world
         implementation and production systems, our team hopes that OpenAttestation documents will be interoperable
         with other implementations of verifiable credentials and their related systems, including verifiers and
         wallets. We also hope to support greater adoption of verifiable credentials. To this end, we have recently
-        launched OpenAttestation v4 which improves on interoperability with the W3C Verifiable Credentials Data Model `,
-        link: `https://github.com/Open-Attestation/open-attestation`,
+        launched OpenAttestation v4 [`,
+          `] which improves on interoperability with the W3C Verifiable Credentials Data Model [`,
+          `].`,
+        ],
+        links: [{ url: "https://go.gov.sg/oa-v4" }, { url: "https://www.w3.org/TR/vc-data-model" }],
       },
     ],
   },
@@ -167,9 +177,17 @@ export const BrochureSample: BrochureSchema = {
           },
           {
             name: `Decentralised Renderer`,
-            description: `OpenAttestation checks that the document has been issued and that its issuance status is in good standing,
-              i.e., it has not been revoked, for example. Currently, OpenAttestation supports two ways to issue documents:
-              Decentralised Identifier (DID) Signing and Blockchain Smart Contracts.`,
+            descriptionAsList: [
+              `While the claims contained within verifiable credentials are machine-readable, they are not by default
+            presented in a human-readable form. OpenAttestation implements a decentralised rendering protocol that presents
+            the OpenAttestation verifiable credential in a human-readable format. Issuers create their own document schema and
+            custom templates to render their OpenAttestation verifiable credentials. This decentralised renderer is publicly 
+            hosted as an endpoint.`,
+              `When verifiers verify the OpenAttestation verifiable credential online, the OpenAttestation viewer then loads
+            the decentralised renderer and uses it to display the OpenAttestation verifiable credential. This protocol enables
+            document issuers to style their documents without code change to the different implementation of the document viewer,
+            while managing the size of the credential.`,
+            ],
           },
           {
             name: `Paper-Friendly Verifiable Credentials`,
@@ -192,17 +210,20 @@ export const BrochureSample: BrochureSchema = {
       {
         listItems: [
           {
-            description: `TradeTrust builds upon the OpenAttestation framework to verify the authenticity and source of trade documents
+            description: ` builds upon the OpenAttestation framework to verify the authenticity and source of trade documents
             and for performing title ownership transfers of electronic transferable records.`,
           },
           {
-            description: `OpenCerts leverages the OpenAttestation framework to provide a convenient way for educational institutions to
+            description: ` leverages the OpenAttestation framework to provide a convenient way for educational institutions to
           issue academic certificates, and for students to share their qualifications with prospective employers. It is
           used by all major post-secondary education institutions in Singapore.`,
           },
           {
-            description: `During the COVID-19 pandemic, OpenAttestation was used to issue tamper-proof pre-departure test and vaccination
-          certificates (“HealthCerts”) for cross-border travel.`,
+            descriptionAsList: [
+              `During the COVID-19 pandemic, OpenAttestation was used to issue tamper-proof pre-departure test and vaccination
+          certificates (“`,
+              `”) for cross-border travel.`,
+            ],
           },
           {
             description: `Singapore’s Accounting and Corporate Regulatory Authority uses OpenAttestation to Issue Official Business
@@ -220,6 +241,11 @@ export const BrochureSample: BrochureSchema = {
           credits.`,
           },
         ],
+        links: [
+          { title: "TradeTrust", url: "https://www.tradetrust.io/" },
+          { title: "OpenCerts", url: "https://www.opencerts.io/" },
+          { title: "HealthCerts", url: "https://www.healthcerts.gov.sg/" },
+        ],
       },
     ],
     footer: {
@@ -228,11 +254,11 @@ export const BrochureSample: BrochureSchema = {
       links: [
         {
           title: `For more Info, please visit:`,
-          domains: [`www.openattestation.com`, `www.tradetrust.io`],
+          urls: [`www.openattestation.com`, `www.tradetrust.io`],
         },
         {
           title: `Contact us at:`,
-          domains: [`emailaddress@tech.gov.sg`],
+          urls: [`emailaddress@tech.gov.sg`],
         },
       ],
     },
