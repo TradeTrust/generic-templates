@@ -44,7 +44,7 @@ export interface BrochureDocument {
       qrUrl: string;
       qrPrompt: string;
       links: {
-        title: string;
+        prompt: string;
         urls: string[];
       }[];
     };
