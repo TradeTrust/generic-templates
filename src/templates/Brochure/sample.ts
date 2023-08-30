@@ -1,7 +1,5 @@
 import { v2 } from "@govtechsg/open-attestation";
 import { BrochureSchema } from "./types";
-import tradeTrustLogo from "/static/images/logo-tradetrust.png";
-import oaLogo from "/static/images/logo-oa.png";
 
 export const BrochureSample: BrochureSchema = {
   $template: {
@@ -17,13 +15,11 @@ export const BrochureSample: BrochureSchema = {
   ],
   shared: {
     tradeTrust: {
-      logo: tradeTrustLogo,
       description: `TradeTrust – A digital utility that comprises a set of globally-accepted standards and frameworks that
       connects governments and businesses to a public blockchain to enable trusted interoperability and
       exchanges of electronic trade documents across digital platforms.`,
     },
     openAttestation: {
-      logo: oaLogo,
       description: `OpenAttestation –
       An Open-Source Framework for Verifiable Credentials`,
     },
@@ -83,8 +79,10 @@ export const BrochureSample: BrochureSchema = {
         bolded: [`Selective Redaction`, `Decentralised Renderer`],
       },
     ],
-    footnote: `https://www.mckinsey.com/industries/travel-logistics-and-infrastructure/our-insights/the-
-    multi-billion-dollar-paper-jam-unlocking-tra de-by-digitalizing-documentation`,
+    footnote: `https://www.mckinsey.com/industries/travel
+    -logistics-and-infrastructure/our-insights/the-
+    multi-billion-dollar-paper-jam-unlocking-tra
+    de-by-digitalizing-documentation`,
   },
   page2: {
     contents: [
@@ -225,7 +223,7 @@ export const BrochureSample: BrochureSchema = {
       },
     ],
     footer: {
-      qrCode: oaLogo,
+      qrUrl: `https://tradetrust.io/?q=%7B%22type%22%3A%22DOCUMENT%22%2C%22payload%22%3A%7B%22uri%22%3A%22https%3A%2F%2Fgallery.openattestation.com%2Fstatic%2Fdocuments%2Ftradetrust%2Fv4%2Fw3c-brochure.json%22%2C%22permittedActions%22%3A%5B%22VIEW%22%5D%2C%22redirect%22%3A%22https%3A%2F%2Fdev.tradetrust.io%22%2C%22chainId%22:1%7D%7D`,
       qrPrompt: `Scan here to view a digital copy of this brochure`,
       links: [
         {

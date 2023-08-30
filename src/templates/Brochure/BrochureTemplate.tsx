@@ -3,41 +3,11 @@ import { TemplateProps } from "@govtechsg/decentralized-renderer-react-component
 import { getDocumentData } from "../../utils";
 import { Wrapper } from "../../core/Wrapper";
 import { BrochureSchema, BrochureDocument } from "./types";
-import styled from "@emotion/styled";
 import govtechLogo from "/static/images/logo-govtech.png";
 import imdaLogo from "/static/images/logo-imda.png";
-
-export const mediaQueries: Record<string, string> = {
-  xl: `@media (min-width: ${1280}px)`,
-  "2xl": `@media (min-width: ${1536}px)`,
-  print: `@media print`,
-};
-
-export const Page = styled.div`
-  margin: auto;
-  border: 1px solid black;
-  box-sizing: border-box;
-  padding: 50px;
-  position: relative;
-  font-size: 16px;
-  line-height: 1.5;
-  font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-
-  ${mediaQueries["sm"]} {
-    padding: 15mm;
-  }
-  ${mediaQueries["lg"]} {
-    width: 23cm;
-  }
-
-  ${mediaQueries["print"]} {
-    width: 21cm;
-    min-height: 27cm;
-    padding-bottom: 2mm;
-    border: none;
-    page-break-before: always;
-  }
-`;
+import ttLogo from "/static/images/logo-tradetrust.png";
+import oaLogo from "/static/images/logo-oa.png";
+import govtechCurve from "/static/images/pattern-waves-vertical.png"
 
 export const BrochureHeader: React.FC = () => (
   <>
@@ -53,6 +23,7 @@ export const BrochureHeader: React.FC = () => (
 interface BrochurePageProps {
   logo: string;
   description: string;
+  backgroundStyle: React.CSSProperties;
   page: number;
   header?: string;
   footnote?: string;
@@ -62,34 +33,40 @@ interface BrochurePageProps {
 export const BrochurePage: React.FC<BrochurePageProps> = ({
   logo,
   description,
+  backgroundStyle,
   page,
   header,
   footnote,
   footer,
   children,
 }) => (
-  <Page>
+<div className="m-auto border bg-no-repeat border-black box-border p-[70px] relative w-[65rem] h-[90rem]">
+    <div style={backgroundStyle} className="absolute left-0 bottom-0 h-full w-full bg-no-repeat"></div>
     <BrochureHeader />
-    {header && <div className="text-2xl pb-4">{header}</div>}
-    <div className="flex flex-row gap-8">
-      <div className="flex flex-col basis-4/12 justify-between">
-        <div className="relative text-zinc-500">
-          <img src={logo} className="mb-4" />
-          {description}
-          <div className="h-full w-0.5 absolute -right-4 top-0 bg-gradient-to-b from-green-700 to-sky-400"></div>
-        </div>
-        {footnote && (
-          <div className="text-sm text-zinc-500">
+    <div className="flex flex-col h-full">
+      {header && <div className="text-2xl pb-4">{header}</div>}
+      <div className="flex flex-row gap-12">
+        <div className="flex flex-col basis-1/4 justify-between">
+          <div className="relative text-zinc-500">
+            <img src={logo} className="my-4 w-36" />
+            {description}
+            <div className="h-full w-0.5 absolute -right-4 top-0 bg-gradient-to-b from-green-700 to-sky-400"></div>
+          </div>
+          {footnote && (<>
+            <div className="text-sm text-zinc-500 break-all">
             <sup>1</sup>
             {footnote}
-          </div>
-        )}
+            </div>
+            </>
+          )}
+        </div>
+        <div className="basis-3/4">{children}</div>
       </div>
-      <div className="basis-8/12">{children}</div>
+      <div className="grow"></div>
+      {footer}
+      <div className="text-sm absolute bottom-0 right-10 p-2 text-gray-800">{page}</div>
     </div>
-    {footer}
-    <div className="text-sm absolute bottom-0 right-10 p-2 text-gray-800">{page}</div>
-  </Page>
+  </div>
 );
 
 const Page1: React.FC<{ document: BrochureDocument }> = ({ document }) => {
@@ -97,11 +74,13 @@ const Page1: React.FC<{ document: BrochureDocument }> = ({ document }) => {
   return (
     <BrochurePage
       description={document.shared.tradeTrust.description}
+      backgroundStyle={{ backgroundImage: `url(${govtechCurve})`, backgroundPosition: "-58% 120%", backgroundSize: "45%" }}
       page={1}
-      logo={document.shared.tradeTrust.logo}
+      logo={ttLogo}
       footnote={document.page1.footnote}
       header={document.page1.header}
     >
+      
       {contents.map((section, i) => {
         if (i === contents.length - 1)
           return (
@@ -133,8 +112,9 @@ const Page2: React.FC<{ document: BrochureDocument }> = ({ document }) => {
   return (
     <BrochurePage
       description={document.shared.openAttestation.description}
+      backgroundStyle={{ backgroundImage: `url(${govtechCurve})`, backgroundPosition: "110% -70%", backgroundSize: "50%", transform: "scale(-1)" }}
       page={2}
-      logo={document.shared.openAttestation.logo}
+      logo={oaLogo}
     >
       <h5>{contents[0].subheader}</h5>
       <div>{contents[0].body}</div>
@@ -177,8 +157,9 @@ const Page3: React.FC<{ document: BrochureDocument }> = ({ document }) => {
   return (
     <BrochurePage
       description={document.shared.openAttestation.description}
+      backgroundStyle={{ backgroundImage: `url(${govtechCurve})`, backgroundPosition: "-20% 105%", backgroundSize: "45%" }}
       page={3}
-      logo={document.shared.openAttestation.logo}
+      logo={oaLogo}
     >
       <h5>{contents[0].subheader}</h5>
       <div>{contents[0].body}</div>
@@ -221,41 +202,42 @@ const Page4: React.FC<{ document: BrochureDocument }> = ({ document }) => {
   const footer = document.page4.footer;
   return (
     <BrochurePage
-      description={document.shared.openAttestation.description}
-      page={4}
-      logo={document.shared.openAttestation.logo}
-      footer={
-        <>
-          <div className="h-0.5 w-full bg-gradient-to-r from-green-700 to-sky-400 my-4 mt-72 mb-2" />
-          <div className="flex flex-row items-center h-fit w-full bg-gradient-to-r from-green-700 to-sky-400 rounded-lg p-7">
-            <img src={footer.qrCode} className="h-32 w-32" />
-            <div className="w-48 ml-4 text-white text-sm">{footer.qrPrompt}</div>
-            <div className="grow" />
-            <div className="flex flex-col text-right text-white text-sm">
-              {footer.links.map((item, i) => (
-                <>
-                  <b className={i === 0 ? "mb-2" : "mt-4 mb-2"}>{item.title}</b>
-                  {item.domains.map((link) => (
-                    <div>{link}</div>
-                  ))}
-                </>
-              ))}
-            </div>
+    footer={
+      <>
+        <div className="h-0.5 w-full bg-gradient-to-r from-green-700 to-sky-400 my-4 mb-2" />
+        <div className="flex flex-row items-center h-fit w-full bg-gradient-to-r from-green-700 to-sky-400 rounded-lg p-7 mb-16">
+          <img src={""} className="h-32 w-32" />
+          <div className="w-48 ml-4 text-white text-sm">{footer.qrPrompt}</div>
+          <div className="grow" />
+          <div className="flex flex-col text-right text-white text-sm">
+            {footer.links.map((item, i) => (
+              <>
+                <b className={i === 0 ? "mb-2" : "mt-4 mb-2"}>{item.title}</b>
+                {item.domains.map((link) => (
+                  <div>{link}</div>
+                ))}
+              </>
+            ))}
           </div>
-        </>
-      }
+        </div>
+      </>
+    }
+      description={document.shared.openAttestation.description}
+      backgroundStyle={{ backgroundImage: `url(${govtechCurve})`, backgroundPosition: "180% 31%", backgroundSize: "70%", transform: "scale(-1)", zIndex: -1 }}
+      page={4}
+      logo={oaLogo}
     >
-      <h5>{contents[0].subheader}</h5>
-      <div>{contents[0].body}</div>
-      <br />
-      <ul className="list-disc ml-8">
-        {contents[1].listItems?.map((item) => (
-          <>
-            <li>{item.description}</li>
-            <br />
-          </>
-        ))}
-      </ul>
+        <h5>{contents[0].subheader}</h5>
+        <div>{contents[0].body}</div>
+        <br />
+        <ul className="list-disc ml-8">
+          {contents[1].listItems?.map((item) => (
+            <>
+              <li>{item.description}</li>
+              <br />
+            </>
+          ))}
+        </ul>
     </BrochurePage>
   );
 };
