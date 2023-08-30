@@ -18,11 +18,9 @@ interface content {
 export interface BrochureDocument {
   shared: {
     tradeTrust: {
-      logo: string;
       description: string;
     };
     openAttestation: {
-      logo: string;
       description: string;
     };
   };
@@ -40,7 +38,7 @@ export interface BrochureDocument {
   page4: {
     contents: content[];
     footer: {
-      qrCode: string;
+      qrUrl: string;
       qrPrompt: string;
       links: {
         title: string;
