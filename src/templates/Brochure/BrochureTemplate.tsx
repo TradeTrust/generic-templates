@@ -314,7 +314,7 @@ export const BrochureTemplate: FunctionComponent<TemplateProps<BrochureSchema>> 
   const [editable, setEditable] = useState(false);
   return (
     <Wrapper data-testid="brochure-template">
-      <div className="text-gray-800">
+      <div className="text-gray-800 font-sans">
         <Page1 document={documentData} />
         <Page2 document={documentData} />
         <Page3 document={documentData} />
