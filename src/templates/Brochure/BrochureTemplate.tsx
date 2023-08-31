@@ -239,7 +239,7 @@ const Page4: React.FC<{ document: BrochureDocument }> = ({ document }) => {
           <div className="flex flex-col text-right text-white text-sm">
             {footer.links.map((item, i) => (
               <>
-                <b className={i === 0 ? "mb-2" : "mt-4 mb-2"}>{item.title}</b>
+                <b className={i === 0 ? "mb-2" : "mt-4 mb-2"}>{item.prompt}</b>
                 {item.urls.map((link) => (
                   <div>{link}</div>
                 ))}
