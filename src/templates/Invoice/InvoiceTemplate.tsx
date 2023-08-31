@@ -4,7 +4,7 @@ import { format } from "date-fns";
 import React, { FunctionComponent, useState } from "react";
 import { DocumentQrCode } from "../../core/DocumentQrCode";
 import { Wrapper } from "../../core/Wrapper";
-import { PrivacyFilter } from "../../core/PrivacyFilter";
+import { IconRedact, PrivacyFilter } from "../../core/PrivacyFilter";
 import { getDocumentData } from "../../utils";
 import { InvoiceDocument, InvoiceDocumentSchema } from "./types";
 
@@ -40,14 +40,6 @@ const CustomStyles = styled.div`
   }
 `;
 
-const IconRedact: FunctionComponent = () => {
-  return (
-    <span className="transition-colors ease-out duration-200 text-red-600 hover:text-red-700 font-normal text-sm">
-      [Remove]
-    </span>
-  );
-};
-
 export const InvoiceTemplate: FunctionComponent<TemplateProps<InvoiceDocumentSchema>> = ({
   document,
   handleObfuscation,
@@ -68,7 +60,7 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<InvoiceDocumentSch
     total = 0,
   } = documentData;
   const qrCodeUrl = documentData?.links?.self.href;
-
+  console.log("BILL TO IS ", billTo)
   return (
     <Wrapper data-testid="invoice-template">
       <PrivacyFilter editable={editable} onToggleEditable={() => setEditable(!editable)} />

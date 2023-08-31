@@ -5,11 +5,12 @@ import patternWaves from "/static/images/pattern-waves.png";
 interface PrivacyFilterProps {
   editable: boolean;
   onToggleEditable: () => void;
+  className?: string;
 }
 
-export const PrivacyFilter: FunctionComponent<PrivacyFilterProps> = ({ editable, onToggleEditable }) => (
+export const PrivacyFilter: FunctionComponent<PrivacyFilterProps> = ({ editable, onToggleEditable, className }) => (
   <div
-    className="print:hidden bg-cover bg-cerulean text-white rounded-lg p-4 mb-8"
+    className={className? className: "print:hidden bg-cover bg-cerulean text-white rounded-lg p-4 mb-8"}
     style={{ backgroundImage: `url(${patternWaves})` }}
   >
     <div className="container">
@@ -28,3 +29,11 @@ export const PrivacyFilter: FunctionComponent<PrivacyFilterProps> = ({ editable,
     </div>
   </div>
 );
+
+export const IconRedact: FunctionComponent = () => {
+  return (
+    <span className="transition-colors ease-out duration-200 text-red-600 hover:text-red-700 font-normal text-sm">
+      [Remove]
+    </span>
+  );
+};
