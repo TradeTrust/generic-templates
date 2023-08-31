@@ -30,13 +30,16 @@ export const BrochureSample: BrochureSchema = {
     contents: [
       {
         subheader: `Current challenges of cross-border trade documents exchanges`,
-        body: `Current cross-border trade documentation spans many documents and processes, and is a manual,
+        bodyAsList: [
+          `Current cross-border trade documentation spans many documents and processes, and is a manual,
         time-consuming, and resource-intensive process for all stakeholders. The paper-based processes are still
         practiced today as there is currently no easy way to verify the accuracy and authenticity of the
         supporting trade documents via digital means. This results in inefficiency and delay as time required to
         process the paper-based documents for clearance may far exceed the actual time of physical movement of
-        goods. According to a study1 by McKinsey in 2022, documentation for a single shipment can require up to 50
+        goods. According to a study`,
+          ` by McKinsey in 2022, documentation for a single shipment can require up to 50
         sheets of paper that are exchanged with up to 30 different stakeholders.`,
+        ],
       },
       {
         subheader: `How does TradeTrust address these challenges`,
@@ -210,15 +213,18 @@ export const BrochureSample: BrochureSchema = {
       {
         listItems: [
           {
+            name: `TradeTrust`,
             description: ` builds upon the OpenAttestation framework to verify the authenticity and source of trade documents
             and for performing title ownership transfers of electronic transferable records.`,
           },
           {
+            name: `OpenCerts`,
             description: ` leverages the OpenAttestation framework to provide a convenient way for educational institutions to
           issue academic certificates, and for students to share their qualifications with prospective employers. It is
           used by all major post-secondary education institutions in Singapore.`,
           },
           {
+            name: `HealthCerts`,
             descriptionAsList: [
               `During the COVID-19 pandemic, OpenAttestation was used to issue tamper-proof pre-departure test and vaccination
           certificates (“`,
@@ -226,13 +232,16 @@ export const BrochureSample: BrochureSchema = {
             ],
           },
           {
+            name: `ACRA`,
             description: `Singapore’s Accounting and Corporate Regulatory Authority uses OpenAttestation to Issue Official Business
           Profiles and Certificates to registered companies.`,
           },
           {
+            name: `ICA`,
             description: `Singapore’s Immigrations and Checkpoints Authority uses OpenAttestation to issue long-term visitor visas.`,
           },
           {
+            name: `EVs`,
             description: `Start-ups have used OpenAttestation to issue transaction information about electric vehicle charging and carbon
           credits.`,
           },

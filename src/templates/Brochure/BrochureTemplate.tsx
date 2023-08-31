@@ -1,5 +1,5 @@
-import React, { FunctionComponent } from "react";
-import { TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
+import React, { FunctionComponent, useState } from "react";
+import { RedactableValue, TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
 import { getDocumentData } from "../../utils";
 import { Wrapper } from "../../core/Wrapper";
 import { BrochureSchema, BrochureDocument } from "./types";
@@ -9,6 +9,7 @@ import ttLogo from "/static/images/logo-tradetrust.png";
 import oaLogo from "/static/images/logo-oa.png";
 import govtechCurve from "/static/images/pattern-waves-vertical.png"
 import QRCode from "qrcode.react";
+import { IconRedact, PrivacyFilter } from "../../core/PrivacyFilter";
 
 export const BrochureHeader: React.FC = () => (
   <>
@@ -55,7 +56,7 @@ export const BrochurePage: React.FC<BrochurePageProps> = ({
           </div>
           {footnote && (<>
             <a className="text-sm text-zinc-500 break-all" href={footnote} target="_blank">
-            <sup>1</sup>
+            <sup className="text-sky-500">1</sup>
             {footnote}
             </a>
             </>
@@ -111,7 +112,19 @@ const Page1: React.FC<{ document: BrochureDocument }> = ({ document }) => {
     >
       
       {contents.map((section, i) => {
-        if (i === contents.length - 1)
+        if (i === 0) {
+          return (
+            <>
+              <div>
+                <h5>{section.subheader}</h5>
+                <span>{section.bodyAsList?.[0]}</span>
+                <sup className="text-sky-500">1</sup>
+                <span>{section.bodyAsList?.[1]}</span>
+              </div>
+              <br />
+            </>
+          )
+        } else if (i === contents.length - 1) {
           return (
             <>
               <h5>{section.subheader}</h5>
@@ -121,7 +134,7 @@ const Page1: React.FC<{ document: BrochureDocument }> = ({ document }) => {
               <b>{section.bolded?.[1]}</b>
               {section.bodyAsList?.[2]}
             </>
-          );
+          )}
         else {
           return (
             <>
@@ -224,7 +237,7 @@ const Page3: React.FC<{ document: BrochureDocument }> = ({ document }) => {
   );
 };
 
-const Page4: React.FC<{ document: BrochureDocument }> = ({ document }) => {
+const Page4: React.FC<{ document: BrochureDocument, editable: boolean, handleObfuscation: (field: string) => void }> = ({ document, editable, handleObfuscation }) => {
   const contents = document.page4.contents;
   const footer = document.page4.footer;
   return (
@@ -277,7 +290,15 @@ const Page4: React.FC<{ document: BrochureDocument }> = ({ document }) => {
             return (
               <>
                 <li>
-                  {item.description}</li>
+                  <div className="inline-grid">
+                    <RedactableValue
+                      editable={editable}
+                      value={item.description}
+                      onRedactionRequested={() => handleObfuscation(`page4.contents[1].listItems[${i}].description`)}
+                      iconRedact={<IconRedact />}
+                    />
+                  </div>
+                </li>
                 <br />
               </>
             )
@@ -287,14 +308,23 @@ const Page4: React.FC<{ document: BrochureDocument }> = ({ document }) => {
   );
 };
 
-export const BrochureTemplate: FunctionComponent<TemplateProps<BrochureSchema>> = ({ document }) => {
+export const BrochureTemplate: FunctionComponent<TemplateProps<BrochureSchema>> = ({ document, handleObfuscation
+}) => {
   const documentData = getDocumentData(document) as BrochureDocument;
+  const [editable, setEditable] = useState(false);
   return (
     <Wrapper data-testid="brochure-template">
-      <Page1 document={documentData} />
-      <Page2 document={documentData} />
-      <Page3 document={documentData} />
-      <Page4 document={documentData} />
+      <div className="text-gray-800">
+        <Page1 document={documentData} />
+        <Page2 document={documentData} />
+        <Page3 document={documentData} />
+        <PrivacyFilter 
+        editable={editable} 
+        onToggleEditable={() => setEditable(!editable)} 
+        className="print:hidden m-auto bg-cover bg-cerulean text-white rounded-lg p-8 w-[65rem]"/>
+        <Page4 document={documentData} editable={editable} handleObfuscation={handleObfuscation} />
+      </div>
     </Wrapper>
   );
 };
+
