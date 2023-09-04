@@ -10,10 +10,6 @@ export default {
   },
 };
 
-export const BrochureEmpty: FunctionComponent = () => {
-  return <BrochureTemplate document={{} as any} handleObfuscation={() => {}} />; // when empty, visually should not show any dangling values
-};
-
 export const Brochure: FunctionComponent = () => {
   return <BrochureTemplate document={BrochureSample} handleObfuscation={() => {}} />;
 };

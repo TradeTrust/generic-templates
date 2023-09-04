@@ -60,7 +60,7 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<InvoiceDocumentSch
     total = 0,
   } = documentData;
   const qrCodeUrl = documentData?.links?.self.href;
-  console.log("BILL TO IS ", billTo)
+  console.log("BILL TO IS ", billTo);
   return (
     <Wrapper data-testid="invoice-template">
       <PrivacyFilter editable={editable} onToggleEditable={() => setEditable(!editable)} />

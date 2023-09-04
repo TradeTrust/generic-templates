@@ -10,7 +10,7 @@ interface PrivacyFilterProps {
 
 export const PrivacyFilter: FunctionComponent<PrivacyFilterProps> = ({ editable, onToggleEditable, className }) => (
   <div
-    className={className? className: "print:hidden bg-cover bg-cerulean text-white rounded-lg p-4 mb-8"}
+    className={className ? className : "print:hidden bg-cover bg-cerulean text-white rounded-lg p-4 mb-8"}
     style={{ backgroundImage: `url(${patternWaves})` }}
   >
     <div className="container">
