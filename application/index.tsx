@@ -50,7 +50,7 @@ ReactDOM.render(
         name: "Certificate of Non Manipulation V2",
         document: CertificateOfNonManipulationSampleV2,
       },
-      { name: "Brochure", document: BrochureSample },
+      { name: "W3C Brochure", document: BrochureSample },
     ]}
   />,
   document.getElementById("root")
