@@ -296,6 +296,7 @@ const Page4: React.FC<{ document: BrochureDocument, editable: boolean, handleObf
                       value={item.description}
                       onRedactionRequested={() => handleObfuscation(`page4.contents[1].listItems[${i}].description`)}
                       iconRedact={<IconRedact />}
+                      noValueMessage="[Data has been redacted.]"
                     />
                   </div>
                 </li>
