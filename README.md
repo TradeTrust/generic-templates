@@ -16,6 +16,7 @@ _Note: These are just some rendering templates that are made available for users
 | Invoice                         | EMBEDDED_RENDERER | INVOICE                         | https://generic-templates.tradetrust.io | &check;       | &check;        |
 | Simple COO                      | EMBEDDED_RENDERER | SIMPLE_COO                      | https://generic-templates.tradetrust.io | &check;       |                |
 | Certificate of Non Manipulation | EMBEDDED_RENDERER | CERTIFICATE_OF_NON_MANIPULATION | https://generic-templates.tradetrust.io |               |                |
+| W3C Brochure                    | EMBEDDED_RENDERER | W3C_BROCHURE                    | https://generic-templates.tradetrust.io |               | &check;        |
 
 In the `forms[0].defaults.$template` field of the configuration file, refer to the above for the `type`, `name`, and `url` values.
 
