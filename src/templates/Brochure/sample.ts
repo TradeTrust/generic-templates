@@ -207,7 +207,7 @@ export const BrochureSample: BrochureSchema = {
   page4: {
     contents: [
       {
-        subheader: `Use cases`,
+        subheader: `Use Cases`,
         body: `OpenAttestation has numerous use cases across a variety of sectors:`,
       },
       {
