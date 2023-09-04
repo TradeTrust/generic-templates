@@ -20,5 +20,5 @@ export const registry: TemplateRegistry<any> = {
   XML_RENDERER: XMLRendererTemplate,
   SIMPLE_COO: SimpleCooTemplates,
   CERTIFICATE_OF_NON_MANIPULATION: CertificateOfNonManipulationTemplates,
-  BROCHURE: BrochureTemplates,
+  W3C_BROCHURE: BrochureTemplates,
 };

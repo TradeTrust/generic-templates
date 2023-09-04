@@ -4,7 +4,7 @@ import { BrochureSchema } from "./types";
 export const BrochureSample: BrochureSchema = {
   $template: {
     type: v2.TemplateType.EmbeddedRenderer,
-    name: "BROCHURE",
+    name: "W3C_BROCHURE",
     url: "http://localhost:3003",
   },
   issuers: [
