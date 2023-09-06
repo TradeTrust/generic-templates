@@ -46,11 +46,7 @@ export const BrochurePage: React.FC<BrochurePageProps> = ({
     <div style={{ ...backgroundStyle, zIndex: -1 }} className="absolute left-0 bottom-0 h-full w-full bg-no-repeat" />
     <BrochureHeader />
     <div className="flex flex-col h-full">
-      {header && (
-        <div style={{ fontFamily: "Ubuntu" }} className="text-2xl pb-4">
-          {header}
-        </div>
-      )}
+      {header && <div className="text-2xl pb-4 font-ubuntu-normal">{header}</div>}
       <div className="flex flex-row gap-12">
         <div className="flex flex-col basis-1/4 justify-between">
           <div className="relative text-zinc-500">
@@ -162,11 +158,7 @@ const Page1: React.FC<{ document: BrochureDocument; isMobile: boolean }> = ({ do
     return (
       <>
         <BrochureHeader />
-        {header && (
-          <div style={{ fontFamily: "Ubuntu" }} className="text-2xl pb-4">
-            {header}
-          </div>
-        )}
+        {header && <div className="font-ubuntu-normal text-2xl pb-4">{header}</div>}
         <div className="flex flex-col text-zinc-500 items-center mb-6">
           <img src={ttLogo} className="my-4 w-36" />
           {description}
@@ -468,7 +460,7 @@ export const BrochureTemplate: FunctionComponent<TemplateProps<BrochureSchema>> 
 
   return (
     <Wrapper data-testid="brochure-template">
-      <div style={{ fontFamily: "Gilroy" }} className="text-gray-700 font-sans">
+      <div className="text-gray-700 font-sans font-gilroy-normal">
         <Page1 document={documentData} isMobile={isMobile(width)} />
         <Page2 document={documentData} isMobile={isMobile(width)} />
         <Page3 document={documentData} isMobile={isMobile(width)} />
