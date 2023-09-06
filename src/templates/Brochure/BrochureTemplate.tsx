@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from "react";
+import React, { FunctionComponent, useEffect, useState } from "react";
 import { RedactableValue, TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
 import { getDocumentData } from "../../utils";
 import { Wrapper } from "../../core/Wrapper";
@@ -14,9 +14,9 @@ import { IconRedact, PrivacyFilter } from "../../core/PrivacyFilter";
 export const BrochureHeader: React.FC = () => (
   <>
     <div className="flex flex-row">
-      <img className="w-36" src={govtechLogo} />
+      <img className="w-32 md:w-36" src={govtechLogo} />
       <div className="grow" />
-      <img className="w-36" src={imdaLogo} />
+      <img className="w-32 md:w-36" src={imdaLogo} />
     </div>
     <div className="h-0.5 w-full bg-gradient-to-r from-green-700 to-sky-400 my-4" />
   </>
@@ -46,7 +46,11 @@ export const BrochurePage: React.FC<BrochurePageProps> = ({
     <div style={{ ...backgroundStyle, zIndex: -1 }} className="absolute left-0 bottom-0 h-full w-full bg-no-repeat" />
     <BrochureHeader />
     <div className="flex flex-col h-full">
-      {header && <div className="text-2xl pb-4">{header}</div>}
+      {header && (
+        <div style={{ fontFamily: "Ubuntu" }} className="text-2xl pb-4">
+          {header}
+        </div>
+      )}
       <div className="flex flex-row gap-12">
         <div className="flex flex-col basis-1/4 justify-between">
           <div className="relative text-zinc-500">
@@ -110,27 +114,16 @@ export const ParagraphsWithLinks: React.FC<{
   }
 };
 
-const Page1: React.FC<{ document: BrochureDocument }> = ({ document }) => {
+const Page1: React.FC<{ document: BrochureDocument; isMobile: boolean }> = ({ document, isMobile }) => {
   const contents = document.page1.contents;
-  return (
-    <BrochurePage
-      description={document.shared.tradeTrust.description}
-      backgroundStyle={{
-        backgroundImage: `url(${govtechCurve})`,
-        backgroundPosition: "-58% 120%",
-        backgroundSize: "45%",
-      }}
-      page={1}
-      logo={ttLogo}
-      footnote={document.page1.footnote}
-      header={document.page1.header}
-    >
+  const page1Elements = (
+    <>
       {contents.map((section, i) => {
         if (i === 0) {
           return (
             <>
               <div>
-                <h5>{section.subheader}</h5>
+                <div className="text-xl font-semibold">{section.subheader}</div>
                 <span>{section.bodyAsList?.[0]}</span>
                 <sup className="text-sky-500">1</sup>
                 <span>{section.bodyAsList?.[1]}</span>
@@ -141,7 +134,7 @@ const Page1: React.FC<{ document: BrochureDocument }> = ({ document }) => {
         } else if (i === contents.length - 1) {
           return (
             <>
-              <h5>{section.subheader}</h5>
+              <div className="text-xl font-semibold">{section.subheader}</div>
               {section.bodyAsList?.[0]}
               <b>{section.bolded?.[0]}</b>
               {section.bodyAsList?.[1]}
@@ -152,32 +145,68 @@ const Page1: React.FC<{ document: BrochureDocument }> = ({ document }) => {
         } else {
           return (
             <>
-              <h5>{section.subheader}</h5>
+              <div className="text-xl font-semibold">{section.subheader}</div>
               <div>{section.body}</div>
               <br />
             </>
           );
         }
       })}
-    </BrochurePage>
+    </>
   );
+
+  if (isMobile) {
+    const header = document.page1.header;
+    const description = document.shared.tradeTrust.description;
+    const footnote = document.page1.footnote;
+    return (
+      <>
+        <BrochureHeader />
+        {header && (
+          <div style={{ fontFamily: "Ubuntu" }} className="text-2xl pb-4">
+            {header}
+          </div>
+        )}
+        <div className="flex flex-col text-zinc-500 items-center mb-6">
+          <img src={ttLogo} className="my-4 w-36" />
+          {description}
+        </div>
+        {page1Elements}
+        <div className="my-6">
+          <a className="text-sm text-zinc-500 break-all" href={footnote} target="_blank" rel="noreferrer">
+            <sup className="text-sky-500">1</sup>
+            {footnote}
+          </a>
+        </div>
+        <div className="h-0.5 w-full bg-gradient-to-r from-green-700 to-sky-400 my-4" />
+      </>
+    );
+  } else {
+    return (
+      <BrochurePage
+        description={document.shared.tradeTrust.description}
+        backgroundStyle={{
+          backgroundImage: `url(${govtechCurve})`,
+          backgroundPosition: "-58% 120%",
+          backgroundSize: "45%",
+        }}
+        page={1}
+        logo={ttLogo}
+        footnote={document.page1.footnote}
+        header={document.page1.header}
+      >
+        {page1Elements}
+      </BrochurePage>
+    );
+  }
 };
 
-const Page2: React.FC<{ document: BrochureDocument }> = ({ document }) => {
+const Page2: React.FC<{ document: BrochureDocument; isMobile: boolean }> = ({ document, isMobile }) => {
   const contents = document.page2.contents;
-  return (
-    <BrochurePage
-      description={document.shared.openAttestation.description}
-      backgroundStyle={{
-        backgroundImage: `url(${govtechCurve})`,
-        backgroundPosition: "110% -70%",
-        backgroundSize: "50%",
-        transform: "scale(-1)",
-      }}
-      page={2}
-      logo={oaLogo}
-    >
-      <h5>{contents[0].subheader}</h5>
+  const description = document.shared.openAttestation.description;
+  const page2Elements = (
+    <>
+      <div className="text-xl font-semibold">{contents[0].subheader}</div>
       <div>{contents[0].body}</div>
       <br />
       <div>{contents[1].body}</div>
@@ -201,28 +230,47 @@ const Page2: React.FC<{ document: BrochureDocument }> = ({ document }) => {
         />
       </div>
       <br />
-      <h5>{contents[3].subheader}</h5>
+      <div className="text-xl font-semibold">{contents[3].subheader}</div>
       <div>
         <ParagraphsWithLinks bodies={contents[3].bodyAsList} links={contents[3].links} linkClassNames="text-sky-500" />
       </div>
-    </BrochurePage>
+    </>
   );
+
+  if (isMobile) {
+    return (
+      <>
+        <div className="flex flex-col text-zinc-500 items-center mb-6">
+          <img src={oaLogo} className="my-4 w-36" />
+          {description}
+        </div>
+        {page2Elements}
+      </>
+    );
+  } else {
+    return (
+      <BrochurePage
+        description={document.shared.openAttestation.description}
+        backgroundStyle={{
+          backgroundImage: `url(${govtechCurve})`,
+          backgroundPosition: "110% -70%",
+          backgroundSize: "50%",
+          transform: "scale(-1)",
+        }}
+        page={2}
+        logo={oaLogo}
+      >
+        {page2Elements}
+      </BrochurePage>
+    );
+  }
 };
 
-const Page3: React.FC<{ document: BrochureDocument }> = ({ document }) => {
+const Page3: React.FC<{ document: BrochureDocument; isMobile: boolean }> = ({ document, isMobile }) => {
   const contents = document.page3.contents;
-  return (
-    <BrochurePage
-      description={document.shared.openAttestation.description}
-      backgroundStyle={{
-        backgroundImage: `url(${govtechCurve})`,
-        backgroundPosition: "-20% 105%",
-        backgroundSize: "45%",
-      }}
-      page={3}
-      logo={oaLogo}
-    >
-      <h5>{contents[0].subheader}</h5>
+  const page3Elements = (
+    <>
+      <div className="text-xl font-semibold">{contents[0].subheader}</div>
       <div>{contents[0].body}</div>
       <br />
       <ul className="list-decimal ml-4">
@@ -254,50 +302,39 @@ const Page3: React.FC<{ document: BrochureDocument }> = ({ document }) => {
           }
         })}
       </ul>
-    </BrochurePage>
+    </>
   );
+  if (isMobile) {
+    return <div className="mt-8">{page3Elements}</div>;
+  } else {
+    return (
+      <BrochurePage
+        description={document.shared.openAttestation.description}
+        backgroundStyle={{
+          backgroundImage: `url(${govtechCurve})`,
+          backgroundPosition: "-20% 105%",
+          backgroundSize: "45%",
+        }}
+        page={3}
+        logo={oaLogo}
+      >
+        {page3Elements}
+      </BrochurePage>
+    );
+  }
 };
 
 const Page4: React.FC<{
   document: BrochureDocument;
   editable: boolean;
   handleObfuscation: (field: string) => void;
-}> = ({ document, editable, handleObfuscation }) => {
+  isMobile: boolean;
+}> = ({ document, editable, handleObfuscation, isMobile }) => {
   const contents = document.page4.contents;
   const footer = document.page4.footer;
-  return (
-    <BrochurePage
-      footer={
-        <>
-          <div className="h-0.5 w-full bg-gradient-to-r from-green-700 to-sky-400 my-4 mb-2" />
-          <div className="flex flex-row items-center h-fit w-full bg-gradient-to-r from-green-700 to-sky-400 rounded-lg p-7 mb-16">
-            <QRCode includeMargin={true} value={footer.qrUrl} level="M" size={200} />
-            <div className="w-48 ml-4 text-white text-sm">{footer.qrPrompt}</div>
-            <div className="grow" />
-            <div className="flex flex-col text-right text-white text-sm">
-              {footer.links.map((item, i) => (
-                <>
-                  <b className={i === 0 ? "mb-2" : "mt-4 mb-2"}>{item.prompt}</b>
-                  {item.urls.map((link, i) => (
-                    <div key={i}>{link}</div>
-                  ))}
-                </>
-              ))}
-            </div>
-          </div>
-        </>
-      }
-      description={document.shared.openAttestation.description}
-      backgroundStyle={{
-        backgroundImage: `url(${govtechCurve})`,
-        backgroundPosition: "180% 31%",
-        backgroundSize: "70%",
-        transform: "scale(-1)",
-      }}
-      page={4}
-      logo={oaLogo}
-    >
-      <h5>{contents[0].subheader}</h5>
+  const page4Elements = (
+    <>
+      <div className="text-xl font-semibold">{contents[0].subheader}</div>
       <div>{contents[0].body}</div>
       <br />
       <ul className="list-disc ml-4">
@@ -335,25 +372,117 @@ const Page4: React.FC<{
           );
         })}
       </ul>
-    </BrochurePage>
+    </>
   );
+  if (isMobile) {
+    return (
+      <>
+        <div className="mt-4" />
+        {page4Elements}
+        <div className="flex flex-row items-center h-fit w-full bg-gradient-to-r from-green-700 to-sky-400 rounded-lg p-7 mb-16">
+          <div className="flex flex-col text-left text-white text-sm">
+            {footer.links.map((item, i) => (
+              <>
+                <b className={i === 0 ? "" : "mt-4"}>{item.prompt}</b>
+                {item.urls.map((link, i) => (
+                  <a
+                    key={i}
+                    className="text-white"
+                    href={`${link.includes("@") ? `mailto:${link}` : `https://${link}`}`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {link}
+                  </a>
+                ))}
+              </>
+            ))}
+          </div>
+        </div>
+      </>
+    );
+  } else {
+    return (
+      <BrochurePage
+        footer={
+          <>
+            <div className="h-0.5 w-full bg-gradient-to-r from-green-700 to-sky-400 my-4 mb-2" />
+            <div className="flex flex-row items-center h-fit w-full bg-gradient-to-r from-green-700 to-sky-400 rounded-lg p-7 mb-16">
+              <QRCode includeMargin={true} value={footer.qrUrl} level="M" size={200} />
+              <div className="w-48 ml-4 text-white text-sm">{footer.qrPrompt}</div>
+              <div className="grow" />
+              <div className="flex flex-col text-right text-white text-sm">
+                {footer.links.map((item, i) => (
+                  <>
+                    <b className={i === 0 ? "mb-2" : "mt-4 mb-2"}>{item.prompt}</b>
+                    {item.urls.map((link, i) => (
+                      <a
+                        key={i}
+                        className="text-white"
+                        href={`${link.includes("@") ? `mailto:${link}` : `https://${link}`}`}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {link}
+                      </a>
+                    ))}
+                  </>
+                ))}
+              </div>
+            </div>
+          </>
+        }
+        description={document.shared.openAttestation.description}
+        backgroundStyle={{
+          backgroundImage: `url(${govtechCurve})`,
+          backgroundPosition: "180% 31%",
+          backgroundSize: "70%",
+          transform: "scale(-1)",
+        }}
+        page={4}
+        logo={oaLogo}
+      >
+        {page4Elements}
+      </BrochurePage>
+    );
+  }
 };
 
 export const BrochureTemplate: FunctionComponent<TemplateProps<BrochureSchema>> = ({ document, handleObfuscation }) => {
   const documentData = getDocumentData(document) as BrochureDocument;
   const [editable, setEditable] = useState(false);
+  const [width, setWidth] = useState<number>(window.innerWidth);
+  const updateWidth = (): void => setWidth(window.innerWidth);
+  const isMobile = (currentWidth: number): boolean => currentWidth < 768;
+  const privacyFilterOptions = {
+    className: "print:hidden m-auto bg-cover bg-cerulean text-white rounded-lg p-8 md:w-[65rem]",
+    description: `Remove sensitive information on this document (click \"Redact Data\" and scroll down). The downloaded document remains
+    valid.`,
+    buttonText: "Redact Data",
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
+
   return (
     <Wrapper data-testid="brochure-template">
-      <div className="text-gray-800 font-sans">
-        <Page1 document={documentData} />
-        <Page2 document={documentData} />
-        <Page3 document={documentData} />
+      <div style={{ fontFamily: "Gilroy" }} className="text-gray-700 font-sans">
+        <Page1 document={documentData} isMobile={isMobile(width)} />
+        <Page2 document={documentData} isMobile={isMobile(width)} />
+        <Page3 document={documentData} isMobile={isMobile(width)} />
         <PrivacyFilter
           editable={editable}
           onToggleEditable={() => setEditable(!editable)}
-          className="print:hidden m-auto bg-cover bg-cerulean text-white rounded-lg p-8 w-[65rem]"
+          options={privacyFilterOptions}
         />
-        <Page4 document={documentData} editable={editable} handleObfuscation={handleObfuscation} />
+        <Page4
+          document={documentData}
+          editable={editable}
+          handleObfuscation={handleObfuscation}
+          isMobile={isMobile(width)}
+        />
       </div>
     </Wrapper>
   );
