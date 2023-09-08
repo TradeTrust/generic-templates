@@ -84,12 +84,12 @@ export const ParagraphsWithLinks: React.FC<{
     return (
       <>
         {links.map((item, i) => (
-          <>
+          <React.Fragment key={i}>
             <a className={linkClassNames} href={item.url} target="_blank" rel="noreferrer">
               {item.title ? item.title : item.url}
             </a>
             {bodies[i] && <span>{bodies[i]}</span>}
-          </>
+          </React.Fragment>
         ))}
       </>
     );
@@ -97,14 +97,14 @@ export const ParagraphsWithLinks: React.FC<{
     return (
       <>
         {bodies.map((item, i) => (
-          <>
+          <React.Fragment key={i}>
             <span>{item}</span>
             {links[i] && (
               <a className={linkClassNames} href={links[i].url} target="_blank" rel="noreferrer">
                 {links[i].title ? links[i].title : links[i].url}
               </a>
             )}
-          </>
+          </React.Fragment>
         ))}
       </>
     );
@@ -118,7 +118,7 @@ const Page1: React.FC<{ document: BrochureDocument; isMobile: boolean }> = ({ do
       {contents.map((section, i) => {
         if (i === 0) {
           return (
-            <>
+            <React.Fragment key={`page1-section-${i}`}>
               <div>
                 <div className="text-xl font-semibold">{section.subheader}</div>
                 <span>{section.bodyAsList?.[0]}</span>
@@ -126,26 +126,26 @@ const Page1: React.FC<{ document: BrochureDocument; isMobile: boolean }> = ({ do
                 <span>{section.bodyAsList?.[1]}</span>
               </div>
               <br />
-            </>
+            </React.Fragment>
           );
         } else if (i === contents.length - 1) {
           return (
-            <>
+            <React.Fragment key={`page1-section-${i}`}>
               <div className="text-xl font-semibold">{section.subheader}</div>
               {section.bodyAsList?.[0]}
               <b>{section.bolded?.[0]}</b>
               {section.bodyAsList?.[1]}
               <b>{section.bolded?.[1]}</b>
               {section.bodyAsList?.[2]}
-            </>
+            </React.Fragment>
           );
         } else {
           return (
-            <>
+            <React.Fragment key={`page1-section-${i}`}>
               <div className="text-xl font-semibold">{section.subheader}</div>
               <div>{section.body}</div>
               <br />
-            </>
+            </React.Fragment>
           );
         }
       })}
@@ -205,14 +205,14 @@ const Page2: React.FC<{ document: BrochureDocument; isMobile: boolean }> = ({ do
       <div>{contents[1].body}</div>
       <br />
       <ul className="list-disc ml-4">
-        {contents[1].listItems?.map((item) => (
-          <>
+        {contents[1].listItems?.map((item, i) => (
+          <React.Fragment key={i}>
             <li>
               <b>{item.name} </b>
               {item.description}
             </li>
             <br />
-          </>
+          </React.Fragment>
         ))}
       </ul>
       <div>
@@ -267,30 +267,30 @@ const Page3: React.FC<{ document: BrochureDocument; isMobile: boolean }> = ({ do
       <div>{contents[0].body}</div>
       <br />
       <ul className="list-decimal ml-4">
-        {contents[1].listItems?.map((item) => {
+        {contents[1].listItems?.map((item, i) => {
           if (item.descriptionAsList) {
             return (
-              <>
+              <React.Fragment key={i}>
                 <li>
                   <div className="font-semibold">{item.name} </div>
                 </li>
-                {item.descriptionAsList?.map((part) => (
-                  <>
+                {item.descriptionAsList?.map((part, partIndex) => (
+                  <React.Fragment key={`page3-description-${i}-${partIndex}`}>
                     <div>{part}</div>
                     <br />
-                  </>
+                  </React.Fragment>
                 ))}
-              </>
+              </React.Fragment>
             );
           } else {
             return (
-              <>
+              <React.Fragment key={i}>
                 <li>
                   <b>{item.name} </b>
                 </li>
                 <div>{item.description}</div>
                 <br />
-              </>
+              </React.Fragment>
             );
           }
         })}
@@ -335,7 +335,7 @@ const Page4: React.FC<{
         {contents[1].listItems?.map((item, i) => {
           if (i < 3) {
             return (
-              <>
+              <React.Fragment key={i}>
                 <li>
                   <ParagraphsWithLinks
                     bodies={item.description ? [item.description] : item.descriptionAsList}
@@ -345,11 +345,11 @@ const Page4: React.FC<{
                   />
                 </li>
                 <br />
-              </>
+              </React.Fragment>
             );
           }
           return (
-            <>
+            <React.Fragment key={i}>
               <li>
                 <div className="inline-grid">
                   <RedactableValue
@@ -366,7 +366,7 @@ const Page4: React.FC<{
                 </div>
               </li>
               <br />
-            </>
+            </React.Fragment>
           );
         })}
       </ul>
@@ -380,7 +380,7 @@ const Page4: React.FC<{
         <div className="flex flex-row items-center h-fit w-full bg-gradient-to-r from-green-700 to-sky-400 rounded-lg p-7 mb-16">
           <div className="flex flex-col text-left text-white text-sm">
             {footer.links.map((item, i) => (
-              <>
+              <React.Fragment key={`footer-link-${i}`}>
                 <b className={i === 0 ? "" : "mt-4"}>{item.prompt}</b>
                 {item.urls.map((link, i) => (
                   <a
@@ -393,7 +393,7 @@ const Page4: React.FC<{
                     {link}
                   </a>
                 ))}
-              </>
+              </React.Fragment>
             ))}
           </div>
         </div>
@@ -411,7 +411,7 @@ const Page4: React.FC<{
               <div className="grow" />
               <div className="flex flex-col text-right text-white text-sm">
                 {footer.links.map((item, i) => (
-                  <>
+                  <React.Fragment key={`footer-link-${i}`}>
                     <b className={i === 0 ? "mb-2" : "mt-4 mb-2"}>{item.prompt}</b>
                     {item.urls.map((link, i) => (
                       <a
@@ -424,7 +424,7 @@ const Page4: React.FC<{
                         {link}
                       </a>
                     ))}
-                  </>
+                  </React.Fragment>
                 ))}
               </div>
             </div>
