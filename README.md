@@ -6,21 +6,24 @@ Generic templates for TradeTrust, where users can use any of these available tem
 
 _Note: These are just some rendering templates that are made available for users to use, the configurations to use these templates are in the [documentation](https://docs.tradetrust.io/document-creator) of TradeTrust document creator._
 
-| Available Templates             | type              | name                            | url                                     | Support OA V3 | Privacy Filter |
-| ------------------------------- | ----------------- | ------------------------------- | --------------------------------------- | ------------- | -------------- |
-| Bill of Lading                  | EMBEDDED_RENDERER | BILL_OF_LADING                  | https://generic-templates.tradetrust.io | &check;       |                |
-| Bill of Lading (Generic)        | EMBEDDED_RENDERER | BILL_OF_LADING_GENERIC          | https://generic-templates.tradetrust.io |               |                |
-| Bill of Lading (Maersk Pilot)   | EMBEDDED_RENDERER | BILL_OF_LADING_MAERSK_PILOT     | https://generic-templates.tradetrust.io |               |                |
-| Chafta COO                      | EMBEDDED_RENDERER | CHAFTA_COO                      | https://generic-templates.tradetrust.io | &check;       |                |
-| Covering Letter                 | EMBEDDED_RENDERER | COVERING_LETTER                 | https://generic-templates.tradetrust.io | &check;       |                |
-| Invoice                         | EMBEDDED_RENDERER | INVOICE                         | https://generic-templates.tradetrust.io | &check;       | &check;        |
-| Simple COO                      | EMBEDDED_RENDERER | SIMPLE_COO                      | https://generic-templates.tradetrust.io | &check;       |                |
-| Certificate of Non Manipulation | EMBEDDED_RENDERER | CERTIFICATE_OF_NON_MANIPULATION | https://generic-templates.tradetrust.io |               |                |
-| W3C Brochure                    | EMBEDDED_RENDERER | W3C_BROCHURE                    | https://generic-templates.tradetrust.io |               | &check;        |
+| Available Templates             | type              | name                            | Verifiable | Transferable | Support OA V3 | Privacy Filter |
+| ------------------------------- | ----------------- | ------------------------------- | ---------- | ------------ | ------------- | -------------- |
+| Bill of Lading                  | EMBEDDED_RENDERER | BILL_OF_LADING                  | &cross;    | &check;      | &check;       | -              |
+| Bill of Lading (Generic)        | EMBEDDED_RENDERER | BILL_OF_LADING_GENERIC          | &cross;    | &check;      | -             | -              |
+| Bill of Lading (Maersk Pilot)   | EMBEDDED_RENDERER | BILL_OF_LADING_MAERSK_PILOT     | &cross;    | &check;      | -             | -              |
+| Chafta COO                      | EMBEDDED_RENDERER | CHAFTA_COO                      | &check;    | &cross;      | &check;       | -              |
+| Covering Letter                 | EMBEDDED_RENDERER | COVERING_LETTER                 | &check;    | &cross;      | &check;       | -              |
+| Invoice                         | EMBEDDED_RENDERER | INVOICE                         | &check;    | &cross;      | &check;       | &check;        |
+| Simple COO                      | EMBEDDED_RENDERER | SIMPLE_COO                      | &check;    | &cross;      | &check;       | -              |
+| Certificate of Non Manipulation | EMBEDDED_RENDERER | CERTIFICATE_OF_NON_MANIPULATION | &check;    | &cross;      | -             | -              |
 
 In the `forms[0].defaults.$template` field of the configuration file, refer to the above for the `type`, `name`, and `url` values.
 
 > Note: To use these available templates, please ensure that you have the correct schema in the configuration file.
+
+## Renderer
+
+- https://generic-templates.tradetrust.io
 
 ## Storybook
 
