@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { BillOfLadingSampleV2 } from "../src/templates/BillOfLading/sampleV2";
 import { BillOfLadingSampleV3 } from "../src/templates/BillOfLading/sampleV3";
 import { BillOfLadingMaerskPilotSampleV2 } from "../src/templates/BillOfLadingMaerskPilot/sampleV2";
+import { BillOfLadingMaerskTpacSampleV2 } from "../src/templates/BillOfLadingMaerskTpac/sampleV2";
 import { BillOfLadingGenericSample } from "../src/templates/BillOfLadingGeneric/sample";
 import { ChaftaCooSampleV2 } from "../src/templates/ChaftaCoo/sampleV2";
 import { ChaftaCooSampleV3 } from "../src/templates/ChaftaCoo/sampleV3";
@@ -28,6 +29,10 @@ ReactDOM.render(
       {
         name: "Bill of Lading V2 (Maersk Pilot)",
         document: BillOfLadingMaerskPilotSampleV2,
+      },
+      {
+        name: "Bill of Lading V2 (Maersk TPAC)",
+        document: BillOfLadingMaerskTpacSampleV2,
       },
       { name: "Bill of Lading (Generic)", document: BillOfLadingGenericSample },
       { name: "Chafta COO V2", document: ChaftaCooSampleV2 },

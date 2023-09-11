@@ -39,8 +39,44 @@ export const PrivacyFilter: FunctionComponent<PrivacyFilterProps> = ({ editable,
 
 export const IconRedact: FunctionComponent = () => {
   return (
-    <span className="transition-colors ease-out duration-200 text-red-600 hover:text-red-700 font-normal text-sm">
+    <span className="transition-colors ease-out duration-200 text-red-600 hover:text-red-700 font-normal text-sm inline-block">
       [Remove]
     </span>
+  );
+};
+
+interface RedactableUIProps {
+  value?: string | number | Record<string, unknown> | Record<string, unknown>[];
+  isShowValue?: boolean;
+  editable: boolean;
+  onRedactionRequested: () => void;
+  iconRedact?: React.ReactElement;
+  className?: string;
+}
+
+export const RedactableUI: FunctionComponent<RedactableUIProps> = ({
+  value,
+  isShowValue = false,
+  editable = false,
+  onRedactionRequested = (): void => void 0,
+  iconRedact = <IconRedact />,
+  className = "",
+}) => {
+  if (!value) return null; // value obfuscated, show nth
+
+  return (
+    <>
+      {isShowValue && value}
+      {editable && (
+        <span
+          className={`cursor-pointer ${className}`}
+          onClick={() => {
+            onRedactionRequested();
+          }}
+        >
+          {iconRedact}
+        </span>
+      )}
+    </>
   );
 };
