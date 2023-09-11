@@ -8,14 +8,14 @@ _Note: These are just some rendering templates that are made available for users
 
 | Available Templates             | type              | name                            | Verifiable | Transferable | Support OA V3 | Privacy Filter |
 | ------------------------------- | ----------------- | ------------------------------- | ---------- | ------------ | ------------- | -------------- |
-| Bill of Lading                  | EMBEDDED_RENDERER | BILL_OF_LADING                  | -          | &check;      | &check;       | -              |
-| Bill of Lading (Generic)        | EMBEDDED_RENDERER | BILL_OF_LADING_GENERIC          | -          | &check;      | -             | -              |
-| Bill of Lading (Maersk Pilot)   | EMBEDDED_RENDERER | BILL_OF_LADING_MAERSK_PILOT     | -          | &check;      | -             | -              |
-| Chafta COO                      | EMBEDDED_RENDERER | CHAFTA_COO                      | &check;    | -            | &check;       | -              |
-| Covering Letter                 | EMBEDDED_RENDERER | COVERING_LETTER                 | &check;    | -            | &check;       | -              |
-| Invoice                         | EMBEDDED_RENDERER | INVOICE                         | &check;    | -            | &check;       | &check;        |
-| Simple COO                      | EMBEDDED_RENDERER | SIMPLE_COO                      | &check;    | -            | &check;       | -              |
-| Certificate of Non Manipulation | EMBEDDED_RENDERER | CERTIFICATE_OF_NON_MANIPULATION | &check;    | -            | -             | -              |
+| Bill of Lading                  | EMBEDDED_RENDERER | BILL_OF_LADING                  | &cross;    | &check;      | &check;       | -              |
+| Bill of Lading (Generic)        | EMBEDDED_RENDERER | BILL_OF_LADING_GENERIC          | &cross;    | &check;      | -             | -              |
+| Bill of Lading (Maersk Pilot)   | EMBEDDED_RENDERER | BILL_OF_LADING_MAERSK_PILOT     | &cross;    | &check;      | -             | -              |
+| Chafta COO                      | EMBEDDED_RENDERER | CHAFTA_COO                      | &check;    | &cross;      | &check;       | -              |
+| Covering Letter                 | EMBEDDED_RENDERER | COVERING_LETTER                 | &check;    | &cross;      | &check;       | -              |
+| Invoice                         | EMBEDDED_RENDERER | INVOICE                         | &check;    | &cross;      | &check;       | &check;        |
+| Simple COO                      | EMBEDDED_RENDERER | SIMPLE_COO                      | &check;    | &cross;      | &check;       | -              |
+| Certificate of Non Manipulation | EMBEDDED_RENDERER | CERTIFICATE_OF_NON_MANIPULATION | &check;    | &cross;      | -             | -              |
 
 In the `forms[0].defaults.$template` field of the configuration file, refer to the above for the `type`, `name`, and `url` values.
 
