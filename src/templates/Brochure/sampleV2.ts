@@ -5,7 +5,7 @@ export const BrochureSampleV2: BrochureSchema = {
   $template: {
     type: v2.TemplateType.EmbeddedRenderer,
     name: "W3C_BROCHURE",
-    url: "http://localhost:3003",
+    url: "http://localhost:3000",
   },
   issuers: [
     {

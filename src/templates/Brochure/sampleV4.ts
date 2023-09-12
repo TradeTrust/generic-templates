@@ -26,7 +26,7 @@ export const BrochureSampleV4: BrochureSchema = {
     type: "OpenAttestationRenderMethod",
     renderMethodType: v4.RenderMethodType.EmbeddedRenderer,
     name: "W3C_BROCHURE",
-    url: "http://localhost:3003",
+    url: "http://localhost:3000",
   },
   credentialSubject: {
     shared: {
