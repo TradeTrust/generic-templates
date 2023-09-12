@@ -1,6 +1,12 @@
-import { v2 } from "@govtechsg/open-attestation";
+import { v2, v4 } from "@govtechsg/open-attestation";
 
-export type BrochureSchema = v2.OpenAttestationDocument & BrochureDocument;
+export type BrochureSchemaV2 = v2.OpenAttestationDocument & BrochureDocument;
+
+export type BrochureSchemaV4 = v4.OpenAttestationDocument & {
+  credentialSubject: BrochureDocument;
+};
+
+export type BrochureSchema = BrochureSchemaV2 | BrochureSchemaV4;
 
 interface content {
   subheader?: string;

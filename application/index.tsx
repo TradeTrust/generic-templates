@@ -16,7 +16,8 @@ import { XMLRendererSampleData } from "../src/templates/XmlRenderer/sample";
 import { SimpleCooSampleV2 } from "../src/templates/SimpleCoo/sampleV2";
 import { SimpleCooSampleV3 } from "../src/templates/SimpleCoo/sampleV3";
 import { CertificateOfNonManipulationSampleV2 } from "../src/templates/CertificateOfNonManipulation/sampleV2";
-import { BrochureSample } from "../src/templates/Brochure/sample";
+import { BrochureSampleV2 } from "../src/templates/Brochure/sampleV2";
+import { BrochureSampleV4 } from "../src/templates/Brochure/sampleV4";
 import { App } from "./app";
 
 ReactDOM.render(
@@ -50,7 +51,8 @@ ReactDOM.render(
         name: "Certificate of Non Manipulation V2",
         document: CertificateOfNonManipulationSampleV2,
       },
-      { name: "W3C Brochure", document: BrochureSample },
+      { name: "W3C Brochure V2", document: BrochureSampleV2 },
+      { name: "W3C Brochure V4", document: BrochureSampleV4 },
     ]}
   />,
   document.getElementById("root")

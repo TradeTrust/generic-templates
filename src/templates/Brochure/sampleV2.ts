@@ -1,11 +1,11 @@
 import { v2 } from "@govtechsg/open-attestation";
 import { BrochureSchema } from "./types";
 
-export const BrochureSample: BrochureSchema = {
+export const BrochureSampleV2: BrochureSchema = {
   $template: {
     type: v2.TemplateType.EmbeddedRenderer,
     name: "W3C_BROCHURE",
-    url: "http://localhost:3003",
+    url: "http://localhost:3000",
   },
   issuers: [
     {
