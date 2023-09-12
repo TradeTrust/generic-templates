@@ -10,7 +10,7 @@ _Note: These are just some rendering templates that are made available for users
 | ------------------------------- | ----------------- | ------------------------------- | ---------- | ------------ | ------------- | -------------- |
 | Bill of Lading                  | EMBEDDED_RENDERER | BILL_OF_LADING                  | &cross;    | &check;      | &check;       | -              |
 | Bill of Lading (Generic)        | EMBEDDED_RENDERER | BILL_OF_LADING_GENERIC          | &cross;    | &check;      | -             | -              |
-| Bill of Lading (Maersk Pilot)   | EMBEDDED_RENDERER | BILL_OF_LADING_MAERSK_PILOT     | &cross;    | &check;      | -             | -              |
+| Bill of Lading (Carrier)        | EMBEDDED_RENDERER | BILL_OF_LADING_CARRIER          | &cross;    | &check;      | -             | -              |
 | Chafta COO                      | EMBEDDED_RENDERER | CHAFTA_COO                      | &check;    | &cross;      | &check;       | -              |
 | Covering Letter                 | EMBEDDED_RENDERER | COVERING_LETTER                 | &check;    | &cross;      | &check;       | -              |
 | Invoice                         | EMBEDDED_RENDERER | INVOICE                         | &check;    | &cross;      | &check;       | &check;        |
