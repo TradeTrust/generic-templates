@@ -12,56 +12,9 @@ interface AppProps {
   }[];
 }
 
-const TemplatesContainer = styled.div``;
-
-const ActionsContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-  button {
-    color: #fff;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    font-weight: 700;
-    border-radius: 0.25rem;
-    background-color: #4299e1;
-    cursor: pointer;
-    border: 0;
-
-    &:hover {
-      background-color: #2b6cb0;
-    }
-  }
-`;
-
-const FrameContainer = styled.div`
-  display: flex;
-`;
-const DocumentsContainer = styled.div`
-  width: 300px;
-  min-width: 300px;
-  max-width: 300px;
-  padding: 0.5rem;
-  .document {
-    cursor: pointer;
-    padding: 0.5rem;
-    background-color: #ebf8ff;
-    border-top: 4px solid #4299e2;
-    margin-bottom: 0.5rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  }
-  .document.active {
-    border-top-color: #38b2ac;
-    background-color: #e6fffa;
-  }
-`;
-
 export const App: React.FunctionComponent<AppProps> = ({ documents }): React.ReactElement => {
   const [toFrame, setToFrame] = useState<HostActionsHandler>();
-  const [height, setHeight] = useState(50);
+  const [height, setHeight] = useState(0);
   const [templates, setTemplates] = useState<{ id: string; label: string }[]>([]);
   const [document, setDocument] = useState<{ name: string; document: any }>();
   const [selectedTemplate, setSelectedTemplate] = useState<string>("");
@@ -112,9 +65,10 @@ export const App: React.FunctionComponent<AppProps> = ({ documents }): React.Rea
   }, [selectedTemplate, toFrame]);
 
   return (
-    <div>
-      <ActionsContainer>
+    <div className="my-4">
+      <div className="w-full text-center mb-2">
         <button
+          className="bg-sky-500 text-white py-2 px-4 rounded "
           onClick={() => {
             if (toFrame) {
               toFrame({
@@ -125,124 +79,57 @@ export const App: React.FunctionComponent<AppProps> = ({ documents }): React.Rea
         >
           Print
         </button>
-      </ActionsContainer>
-      <FrameContainer>
-        <DocumentsContainer>
-          <div
-            css={css`
-              text-align: center;
-              font-weight: bold;
-            `}
-          >
-            Documents
-          </div>
-          {documents.length === 0 && <div>Please configure the application and provide at least one document</div>}
-          {documents.map((d, index) => {
-            return (
-              <div
-                key={index}
-                data-testid={`${d.name}`}
-                className={`document ${document === d ? "active" : ""}`}
-                onClick={() => setDocument(d)}
-              >
-                {d.name}
-              </div>
-            );
-          })}
-        </DocumentsContainer>
-        {!document && (
-          <div
-            css={css`
-              text-align: center;
-              flex-grow: 1;
-              align-self: center;
-              cursor: pointer;
-            `}
-          >
-            Please select a document on the left bar
-          </div>
-        )}
-        <div
-          css={css`
-            width: 100%;
-            display: ${document ? "block" : "none"};
-          `}
-        >
-          <TemplatesContainer>
-            <ul
-              css={css`
-                display: flex;
-                border-bottom: 1px solid #e2e8f0;
-                list-style: none;
-                margin: 0;
-                padding: 0;
-                li {
-                  margin-right: 0.25rem;
-                }
-                li.selected {
-                  margin-bottom: -1px;
-                }
-                a {
-                  text-decoration: none;
-                  padding-left: 1rem;
-                  padding-right: 1rem;
-                  padding-top: 0.5rem;
-                  padding-bottom: 0.5rem;
-                  font-weight: 600;
-                  display: inline-block;
-                  background-color: white;
-                  border-style: solid;
-                  border-color: #e2e8f0;
-                }
-                li.selected a {
-                  color: #2b6cb0;
-                  border-bottom: none;
-                  border-left-width: 1px;
-                  border-right-width: 1px;
-                  border-top-width: 1px;
-                  border-top-left-radius: 0.25rem;
-                  border-top-right-radius: 0.25rem;
-                }
-                li a {
-                  color: #4299e1;
-                  border-width: 0px;
-                }
-              `}
-            >
-              {templates.map((template) => (
-                <li
-                  key={template.id}
-                  className={`tab ${selectedTemplate === template.id ? "selected" : ""}`}
-                  onClick={() => setSelectedTemplate(template.id)}
+      </div>
+      <div className="container mx-auto">
+        <div className="flex flex-wrap">
+          <aside className="w-1/4">
+            <p className="font-bold p-2 text-center">Documents</p>
+            {documents.length === 0 && <div>Please configure the application and provide at least one document</div>}
+            {documents.map((d, index) => {
+              return (
+                <div
+                  key={index}
+                  data-testid={`${d.name}`}
+                  className={`bg-sky-50 p-2 border-t-4 border-sky-500 cursor-pointer hover:bg-sky-100 document ${
+                    document === d ? "active" : ""
+                  }`}
+                  onClick={() => setDocument(d)}
                 >
-                  <a href="#">{template.label}</a>
-                </li>
-              ))}
-            </ul>
-          </TemplatesContainer>
-          <div
-            css={css`
-              border: 1px solid #e2e8f0;
-              border-top: none;
-              padding: 2rem;
-              margin-right: 0.5rem;
-            `}
-          >
-            <FrameConnector
-              source="http://localhost:3000"
-              dispatch={fromFrame}
-              onConnected={fn}
-              css={css`
-                margin: auto;
-                max-width: 1120px;
-                border: 0;
-                width: 100%;
-                height: ${height}px;
-              `}
-            />
-          </div>
+                  {d.name}
+                </div>
+              );
+            })}
+          </aside>
+          <main className="w-3/4">
+            {document ? (
+              <>
+                <ul>
+                  {templates.map((template) => (
+                    <li
+                      key={template.id}
+                      className={`inline-block p-2 border border-b-0 ${
+                        selectedTemplate === template.id ? "text-sky-500" : ""
+                      }`}
+                      onClick={() => setSelectedTemplate(template.id)}
+                    >
+                      <a href="#">{template.label}</a>
+                    </li>
+                  ))}
+                </ul>
+                <FrameConnector
+                  source="http://localhost:3000"
+                  dispatch={fromFrame}
+                  onConnected={fn}
+                  className={`w-full ${height !== 0 ? "border" : ""}`}
+                  style={{ height: `${height}px` }}
+                />
+              </>
+            ) : (
+              <div className="text-center p-8">Please select a document on the left bar</div>
+            )}
+          </main>
         </div>
-      </FrameContainer>
+      </div>
     </div>
   );
 };
