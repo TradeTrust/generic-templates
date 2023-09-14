@@ -1,7 +1,3 @@
-/// <reference types="@emotion/react/types/css-prop" />
-
-import { css } from "@emotion/react";
-import styled from "@emotion/styled";
 import { FrameActions, FrameConnector, HostActionsHandler } from "@govtechsg/decentralized-renderer-react-components";
 import React, { useCallback, useEffect, useState } from "react";
 
