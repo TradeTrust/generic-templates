@@ -20,6 +20,7 @@ import { CertificateOfNonManipulationSampleV2 } from "../src/templates/Certifica
 import { BrochureSampleV2 } from "../src/templates/Brochure/sampleV2";
 import { BrochureSampleV4 } from "../src/templates/Brochure/sampleV4";
 import { App } from "./app";
+import "./main.css";
 
 ReactDOM.render(
   <App
