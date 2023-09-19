@@ -12,7 +12,7 @@
   "scripts": {
     "build": "run-s check-types build:css build:app",
     "build:css": "run-s build:css:application build:css:renderer",
-    "build:css:application": "cross-env NODE_ENV=production tailwindcss -c application/tailwind.config.js -i application/input.css -o static/main.css",
+    "build:css:application": "cross-env NODE_ENV=production tailwindcss -c application/tailwind.config.js -i application/input.css -o application/main.css",
     "build:css:renderer": "cross-env NODE_ENV=production tailwindcss -c tailwind.config.js -i src/tailwind.css -o src/main.css",
     "build:app": "cross-env NODE_ENV=production webpack --progress --mode production",
     "check-types": "tsc --sourceMap false --noEmit",
