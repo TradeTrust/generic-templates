@@ -1,7 +1,7 @@
-import { TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
+import { TemplateProps, RedactableValue } from "@govtechsg/decentralized-renderer-react-components";
 import React, { FunctionComponent, useState } from "react";
 import { DocumentQrCode } from "../../core/DocumentQrCode";
-import { PrivacyFilter, RedactableUI } from "../../core/PrivacyFilter";
+import { PrivacyFilter, IconRedact } from "../../core/PrivacyFilter";
 import { Wrapper } from "../../core/Wrapper";
 import { getDocumentData } from "../../utils";
 import { BillOfLadingMaerskTpacDocument, BillOfLadingMaerskTpacSchema } from "./types";
@@ -767,11 +767,11 @@ const Section3 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
                     "Carrier's Receipt (see clause 1 and 14). Total number of containers or packages received by Carrier."
                   )}
                   <p data-testid="carrier-receipt">
-                    <RedactableUI
+                    <RedactableValue
                       value={carrierReceipt}
-                      isShowValue={true}
                       editable={editable}
                       onRedactionRequested={() => handleObfuscation(`carrierReceipt`)}
+                      iconRedact={<IconRedact />}
                     />
                   </p>
                 </div>
@@ -780,11 +780,11 @@ const Section3 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
                 <div className="p-2">
                   {smallText("Place of Issue of B/L")}
                   <p data-testid="place-of-issue-bl">
-                    <RedactableUI
+                    <RedactableValue
                       value={placeOfIssueBL}
-                      isShowValue={true}
                       editable={editable}
                       onRedactionRequested={() => handleObfuscation(`placeOfIssueBL`)}
+                      iconRedact={<IconRedact />}
                     />
                   </p>
                 </div>
@@ -796,11 +796,11 @@ const Section3 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
                   {smallText("Number & Sequence of Original B(s)/L")}
                   <p data-testid="number-of-original-bl">
                     {numberOfOriginalBL ? (
-                      <RedactableUI
+                      <RedactableValue
                         value={numberOfOriginalBL}
-                        isShowValue={true}
                         editable={editable}
                         onRedactionRequested={() => handleObfuscation(`numberOfOriginalBL`)}
+                        iconRedact={<IconRedact />}
                       />
                     ) : (
                       "ONE/1"
@@ -812,11 +812,11 @@ const Section3 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
                 <div className="p-2">
                   {smallText("Date of Issue of B/L")}
                   <p data-testid="date-of-issue-bl">
-                    <RedactableUI
+                    <RedactableValue
                       value={dateOfIssueBL}
-                      isShowValue={true}
                       editable={editable}
                       onRedactionRequested={() => handleObfuscation(`dateOfIssueBL`)}
+                      iconRedact={<IconRedact />}
                     />
                   </p>
                 </div>
@@ -830,11 +830,11 @@ const Section3 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
                 <div className="p-2">
                   {smallText("Shipped on Board Date (Local Time)")}
                   <p data-testid="shipped-on-board-date">
-                    <RedactableUI
+                    <RedactableValue
                       value={shippedOnBoardDate}
-                      isShowValue={true}
                       editable={editable}
                       onRedactionRequested={() => handleObfuscation(`shippedOnBoardDate`)}
+                      iconRedact={<IconRedact />}
                     />
                   </p>
                 </div>
@@ -906,10 +906,12 @@ const Section2 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
                 ))}
               </div>
             )}
-            <RedactableUI
+            <RedactableValue
               value={packages}
+              isValueHidden
               editable={editable}
               onRedactionRequested={() => handleObfuscation(`packages`)}
+              iconRedact={<IconRedact />}
             />
           </div>
         </div>
@@ -955,11 +957,11 @@ const Section1 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
                 <p>
                   SCAC{" "}
                   <strong>
-                    <RedactableUI
+                    <RedactableValue
                       value={scac}
-                      isShowValue={true}
                       editable={editable}
                       onRedactionRequested={() => handleObfuscation(`scac`)}
+                      iconRedact={<IconRedact />}
                     />
                   </strong>
                 </p>
@@ -968,11 +970,11 @@ const Section1 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
                 B/L No
                 <p data-testid="blNumber">
                   <strong className="break-all">
-                    <RedactableUI
+                    <RedactableValue
                       value={blNumber}
-                      isShowValue={true}
                       editable={editable}
                       onRedactionRequested={() => handleObfuscation(`blNumber`)}
+                      iconRedact={<IconRedact />}
                     />
                   </strong>
                 </p>
@@ -994,10 +996,12 @@ const Section1 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
                   <p>{shipper.address.country}</p>
                 </>
               )}
-              <RedactableUI
+              <RedactableValue
                 value={shipper}
+                isValueHidden
                 editable={editable}
                 onRedactionRequested={() => handleObfuscation(`shipper`)}
+                iconRedact={<IconRedact />}
               />
             </div>
           </div>
@@ -1006,11 +1010,11 @@ const Section1 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
           <div className="p-2 border-black border-b-2">
             {smallText("Booking No")}
             <p>
-              <RedactableUI
+              <RedactableValue
                 editable={editable}
-                isShowValue={true}
                 value={blNumber}
                 onRedactionRequested={() => handleObfuscation(`blNumber`)}
+                iconRedact={<IconRedact />}
               />
             </p>
           </div>
@@ -1031,10 +1035,12 @@ const Section1 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
             <div className="p-4">
               <p>TO THE ORDER OF</p>
               {consignee && <p>{consignee.name}</p>}
-              <RedactableUI
+              <RedactableValue
                 value={consignee}
+                isValueHidden
                 editable={editable}
                 onRedactionRequested={() => handleObfuscation(`consignee`)}
+                iconRedact={<IconRedact />}
               />
             </div>
           </div>
@@ -1043,10 +1049,12 @@ const Section1 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
           <div className="p-2">
             {smallText(`Notify Party (see clause 22)`)}
             {notifyParty && <p className="p-4">{notifyParty.name}</p>}
-            <RedactableUI
+            <RedactableValue
               value={notifyParty}
+              isValueHidden
               editable={editable}
               onRedactionRequested={() => handleObfuscation(`notifyParty`)}
+              iconRedact={<IconRedact />}
             />
           </div>
         </div>
@@ -1057,11 +1065,11 @@ const Section1 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
           <div className="p-2">
             {smallText(`Vessel (see clause 1 + 19)`)}
             <p className="break-words">
-              <RedactableUI
+              <RedactableValue
                 editable={editable}
-                isShowValue={true}
                 value={vessel}
                 onRedactionRequested={() => handleObfuscation(`vessel`)}
+                iconRedact={<IconRedact />}
               />
             </p>
           </div>
@@ -1070,11 +1078,11 @@ const Section1 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
           <div className="p-2">
             {smallText(`Voyage No.`)}
             <p className="break-all">
-              <RedactableUI
+              <RedactableValue
                 editable={editable}
-                isShowValue={true}
                 value={voyageNo}
                 onRedactionRequested={() => handleObfuscation(`voyageNo`)}
+                iconRedact={<IconRedact />}
               />
             </p>
           </div>
@@ -1085,11 +1093,11 @@ const Section1 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
               `  Place of Receipt. Applicable only when document used as Multimodal Transport B/L (see clause 1)`
             )}
             <p className="break-all">
-              <RedactableUI
+              <RedactableValue
                 editable={editable}
-                isShowValue={true}
                 value={placeOfReceipt}
                 onRedactionRequested={() => handleObfuscation(`placeOfReceipt`)}
+                iconRedact={<IconRedact />}
               />
             </p>
           </div>
@@ -1100,11 +1108,11 @@ const Section1 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
           <div className="p-2">
             {smallText(`Port of Loading`)}
             <p className="break-words">
-              <RedactableUI
+              <RedactableValue
                 editable={editable}
-                isShowValue={true}
                 value={portOfLoading}
                 onRedactionRequested={() => handleObfuscation(`portOfLoading`)}
+                iconRedact={<IconRedact />}
               />
             </p>
           </div>
@@ -1113,11 +1121,11 @@ const Section1 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
           <div className="p-2">
             {smallText(`Port of Discharge`)}
             <p className="break-words">
-              <RedactableUI
+              <RedactableValue
                 editable={editable}
-                isShowValue={true}
                 value={portOfDischarge}
                 onRedactionRequested={() => handleObfuscation(`portOfDischarge`)}
+                iconRedact={<IconRedact />}
               />
             </p>
           </div>
@@ -1128,11 +1136,11 @@ const Section1 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
               `Place of Delivery. Applicable only when document used as Multimodal Transport B/L (see clause 1)`
             )}
             <p className="break-all">
-              <RedactableUI
+              <RedactableValue
                 editable={editable}
-                isShowValue={true}
                 value={placeOfDelivery}
                 onRedactionRequested={() => handleObfuscation(`placeOfDelivery`)}
+                iconRedact={<IconRedact />}
               />
             </p>
           </div>

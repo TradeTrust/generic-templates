@@ -44,39 +44,3 @@ export const IconRedact: FunctionComponent = () => {
     </span>
   );
 };
-
-interface RedactableUIProps {
-  value?: string | number | Record<string, unknown> | Record<string, unknown>[];
-  isShowValue?: boolean;
-  editable: boolean;
-  onRedactionRequested: () => void;
-  iconRedact?: React.ReactElement;
-  className?: string;
-}
-
-export const RedactableUI: FunctionComponent<RedactableUIProps> = ({
-  value,
-  isShowValue = false,
-  editable = false,
-  onRedactionRequested = (): void => void 0,
-  iconRedact = <IconRedact />,
-  className = "",
-}) => {
-  if (!value) return null; // value obfuscated, show nth
-
-  return (
-    <>
-      {isShowValue && value}
-      {editable && (
-        <span
-          className={`cursor-pointer ${className}`}
-          onClick={() => {
-            onRedactionRequested();
-          }}
-        >
-          {iconRedact}
-        </span>
-      )}
-    </>
-  );
-};
