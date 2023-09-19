@@ -64,7 +64,7 @@ export const App: React.FunctionComponent<AppProps> = ({ documents }): React.Rea
     <div className="my-4">
       <div className="w-full text-center mb-2">
         <button
-          className="bg-sky-500 text-white py-2 px-4 rounded "
+          className="bg-blue-500 text-white py-2 px-4 rounded "
           onClick={() => {
             if (toFrame) {
               toFrame({
@@ -86,7 +86,7 @@ export const App: React.FunctionComponent<AppProps> = ({ documents }): React.Rea
                 <div
                   key={index}
                   data-testid={`${d.name}`}
-                  className={`bg-sky-50 p-2 border-t-4 border-sky-500 cursor-pointer hover:bg-sky-100 document ${
+                  className={`bg-blue-50 p-2 border-t-4 border-blue-500 cursor-pointer hover:bg-blue-100 document ${
                     document === d ? "active" : ""
                   }`}
                   onClick={() => setDocument(d)}
@@ -104,7 +104,7 @@ export const App: React.FunctionComponent<AppProps> = ({ documents }): React.Rea
                     <li
                       key={template.id}
                       className={`inline-block p-2 border border-b-0 ${
-                        selectedTemplate === template.id ? "text-sky-500" : ""
+                        selectedTemplate === template.id ? "text-blue-500" : ""
                       }`}
                       onClick={() => setSelectedTemplate(template.id)}
                     >
