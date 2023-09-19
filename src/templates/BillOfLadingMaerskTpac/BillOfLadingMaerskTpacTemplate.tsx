@@ -769,6 +769,7 @@ const Section3 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
                   <p data-testid="carrier-receipt">
                     <RedactableValue
                       value={carrierReceipt}
+                      noValueMessage=" "
                       editable={editable}
                       onRedactionRequested={() => handleObfuscation(`carrierReceipt`)}
                       iconRedact={<IconRedact />}
@@ -782,6 +783,7 @@ const Section3 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
                   <p data-testid="place-of-issue-bl">
                     <RedactableValue
                       value={placeOfIssueBL}
+                      noValueMessage=" "
                       editable={editable}
                       onRedactionRequested={() => handleObfuscation(`placeOfIssueBL`)}
                       iconRedact={<IconRedact />}
@@ -798,6 +800,7 @@ const Section3 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
                     {numberOfOriginalBL ? (
                       <RedactableValue
                         value={numberOfOriginalBL}
+                        noValueMessage=" "
                         editable={editable}
                         onRedactionRequested={() => handleObfuscation(`numberOfOriginalBL`)}
                         iconRedact={<IconRedact />}
@@ -814,6 +817,7 @@ const Section3 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
                   <p data-testid="date-of-issue-bl">
                     <RedactableValue
                       value={dateOfIssueBL}
+                      noValueMessage=" "
                       editable={editable}
                       onRedactionRequested={() => handleObfuscation(`dateOfIssueBL`)}
                       iconRedact={<IconRedact />}
@@ -832,6 +836,7 @@ const Section3 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
                   <p data-testid="shipped-on-board-date">
                     <RedactableValue
                       value={shippedOnBoardDate}
+                      noValueMessage=" "
                       editable={editable}
                       onRedactionRequested={() => handleObfuscation(`shippedOnBoardDate`)}
                       iconRedact={<IconRedact />}
@@ -959,6 +964,7 @@ const Section1 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
                   <strong>
                     <RedactableValue
                       value={scac}
+                      noValueMessage=" "
                       editable={editable}
                       onRedactionRequested={() => handleObfuscation(`scac`)}
                       iconRedact={<IconRedact />}
@@ -972,6 +978,7 @@ const Section1 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
                   <strong className="break-all">
                     <RedactableValue
                       value={blNumber}
+                      noValueMessage=" "
                       editable={editable}
                       onRedactionRequested={() => handleObfuscation(`blNumber`)}
                       iconRedact={<IconRedact />}
@@ -1013,6 +1020,7 @@ const Section1 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
               <RedactableValue
                 editable={editable}
                 value={blNumber}
+                noValueMessage=" "
                 onRedactionRequested={() => handleObfuscation(`blNumber`)}
                 iconRedact={<IconRedact />}
               />
@@ -1068,6 +1076,7 @@ const Section1 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
               <RedactableValue
                 editable={editable}
                 value={vessel}
+                noValueMessage=" "
                 onRedactionRequested={() => handleObfuscation(`vessel`)}
                 iconRedact={<IconRedact />}
               />
@@ -1081,6 +1090,7 @@ const Section1 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
               <RedactableValue
                 editable={editable}
                 value={voyageNo}
+                noValueMessage=" "
                 onRedactionRequested={() => handleObfuscation(`voyageNo`)}
                 iconRedact={<IconRedact />}
               />
@@ -1096,6 +1106,7 @@ const Section1 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
               <RedactableValue
                 editable={editable}
                 value={placeOfReceipt}
+                noValueMessage=" "
                 onRedactionRequested={() => handleObfuscation(`placeOfReceipt`)}
                 iconRedact={<IconRedact />}
               />
@@ -1111,6 +1122,7 @@ const Section1 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
               <RedactableValue
                 editable={editable}
                 value={portOfLoading}
+                noValueMessage=" "
                 onRedactionRequested={() => handleObfuscation(`portOfLoading`)}
                 iconRedact={<IconRedact />}
               />
@@ -1124,6 +1136,7 @@ const Section1 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
               <RedactableValue
                 editable={editable}
                 value={portOfDischarge}
+                noValueMessage=" "
                 onRedactionRequested={() => handleObfuscation(`portOfDischarge`)}
                 iconRedact={<IconRedact />}
               />
@@ -1139,6 +1152,7 @@ const Section1 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
               <RedactableValue
                 editable={editable}
                 value={placeOfDelivery}
+                noValueMessage=" "
                 onRedactionRequested={() => handleObfuscation(`placeOfDelivery`)}
                 iconRedact={<IconRedact />}
               />
