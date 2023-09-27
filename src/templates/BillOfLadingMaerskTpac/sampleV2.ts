@@ -12,7 +12,7 @@ export const BillOfLadingMaerskTpacSampleV2: BillOfLadingMaerskTpacSchemaV2 = {
   issuers: [
     {
       name: "abc",
-      documentStore: "0x142Ca30e3b78A840a82192529cA047ED759a6F7e",
+      tokenRegistry: "0x142Ca30e3b78A840a82192529cA047ED759a6F7e",
     },
   ],
   scac: "SGPU",

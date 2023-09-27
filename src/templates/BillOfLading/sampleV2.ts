@@ -10,7 +10,7 @@ export const BillOfLadingSampleV2: BillOfLadingSchemaV2 = {
   issuers: [
     {
       name: "abc",
-      documentStore: "0x1245e5B64D785b25057f7438F715f4aA5D965733",
+      tokenRegistry: "0x142Ca30e3b78A840a82192529cA047ED759a6F7e",
     },
   ],
   links: {
