@@ -37,7 +37,7 @@
   }
 
   a:hover {
-    @apply text-cerulean;
+    @apply text-cerulean-500;
   }
 
   pre {

@@ -14,7 +14,7 @@ interface PrivacyFilterProps {
 
 export const PrivacyFilter: FunctionComponent<PrivacyFilterProps> = ({ editable, onToggleEditable, options }) => {
   const defaultOptions = {
-    className: "print:hidden bg-cover bg-cerulean text-white rounded-lg p-4 mb-8",
+    className: "print:hidden bg-cover bg-cerulean-500 text-white rounded-lg p-4 mb-8",
     description: `Remove sensitive information on this document by clicking on the edit button. Downloaded document remains valid.`,
     buttonText: "Edit Document",
   };
@@ -28,7 +28,7 @@ export const PrivacyFilter: FunctionComponent<PrivacyFilterProps> = ({ editable,
             <h3 className="font-normal">The document allows fields to be selectively disclosed.</h3>
             <p>{description}</p>
           </div>
-          <Button onClick={onToggleEditable} className="bg-white text-cerulean hover:bg-gray-50 whitespace-nowrap">
+          <Button onClick={onToggleEditable} className="bg-white text-cerulean-500 hover:bg-gray-50 whitespace-nowrap">
             {editable ? "Done" : buttonText}
           </Button>
         </div>
