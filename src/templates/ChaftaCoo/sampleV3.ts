@@ -4,7 +4,7 @@ import { ChaftaCooDocumentSchemaV3 } from "./types";
 export const ChaftaCooSampleV3: ChaftaCooDocumentSchemaV3 = {
   "@context": [
     "https://www.w3.org/2018/credentials/v1",
-    "https://schemata.openattestation.com/io/tradetrust/certificate-of-origin/1.0/CertificateOfOrigin.v3.json",
+    "https://schemata.openattestation.com/io/tradetrust/certificate-of-origin/1.0/certificate-of-origin-context.json", // TODO: v3 schema fields did not tally at schemata yet
     "https://schemata.openattestation.com/com/openattestation/1.0/OpenAttestation.v3.json",
   ],
   type: ["VerifiableCredential", "OpenAttestationCredential"],

@@ -1,5 +1,10 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
+import {
+  utils,
+  wrapDocument,
+  __unsafe__use__it__at__your__own__risks__wrapDocument as wrapDocumentV3,
+} from "@govtechsg/open-attestation";
 import { SimpleCooTemplate } from "./SimpleCooTemplate";
 import { SimpleCooSampleV2 } from "./sampleV2";
 import { SimpleCooSampleV3 } from "./sampleV3";
@@ -19,6 +24,11 @@ describe("simple coo v2", () => {
     render(<SimpleCooTemplate document={SimpleCooSampleV2} handleObfuscation={() => {}} />);
     expect(screen.getByTestId("signature-second")).toBeInTheDocument();
   });
+
+  it("should be able to wrap v2", () => {
+    const wrappedDocument = wrapDocument(SimpleCooSampleV2);
+    expect(utils.isWrappedV2Document(wrappedDocument)).toBe(true);
+  });
 });
 
 describe("simple coo v3", () => {
@@ -36,6 +46,12 @@ describe("simple coo v3", () => {
     render(<SimpleCooTemplate document={SimpleCooSampleV3} handleObfuscation={() => {}} />);
     expect(screen.getByTestId("signature-second")).toBeInTheDocument();
   });
+
+  // eslint-disable-next-line jest/no-commented-out-tests
+  // it("should be able to wrap v3", async () => {
+  //   const wrappedDocument = await wrapDocumentV3(SimpleCooSampleV3);
+  //   expect(utils.isWrappedV3Document(wrappedDocument)).toBe(true);
+  // }); // TODO: simple coo has no v3 schema defined at schemata yet -> https://schemata.openattestation.com
 });
 
 describe("simple coo empty", () => {
