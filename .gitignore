@@ -11,3 +11,4 @@ dist
 .idea
 docs
 src/main.css
+application/main.css
