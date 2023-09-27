@@ -1,7 +1,7 @@
-import { TemplateProps, RedactableValue } from "@govtechsg/decentralized-renderer-react-components";
+import { TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
 import React, { FunctionComponent, useState } from "react";
 import { DocumentQrCode } from "../../core/DocumentQrCode";
-import { PrivacyFilter, IconRedact } from "../../core/PrivacyFilter";
+import { PrivacyFilter, IconRedact, RedactableValue } from "../../core/PrivacyFilter";
 import { Wrapper } from "../../core/Wrapper";
 import { getDocumentData } from "../../utils";
 import { BillOfLadingMaerskTpacDocument, BillOfLadingMaerskTpacSchema } from "./types";
