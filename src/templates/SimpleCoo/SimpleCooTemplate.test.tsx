@@ -1,10 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
-import {
-  utils,
-  wrapDocument,
-  __unsafe__use__it__at__your__own__risks__wrapDocument as wrapDocumentV3,
-} from "@govtechsg/open-attestation";
+import { utils, wrapDocument } from "@govtechsg/open-attestation";
 import { SimpleCooTemplate } from "./SimpleCooTemplate";
 import { SimpleCooSampleV2 } from "./sampleV2";
 import { SimpleCooSampleV3 } from "./sampleV3";
