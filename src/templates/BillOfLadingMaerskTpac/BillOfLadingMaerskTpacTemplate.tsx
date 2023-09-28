@@ -770,6 +770,7 @@ const Section3 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
                     <RedactableValue
                       value={carrierReceipt}
                       noValueMessage=" "
+                      redactedMessage=" "
                       editable={editable}
                       onRedactionRequested={() => handleObfuscation(`carrierReceipt`)}
                       iconRedact={<IconRedact />}
@@ -784,6 +785,7 @@ const Section3 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
                     <RedactableValue
                       value={placeOfIssueBL}
                       noValueMessage=" "
+                      redactedMessage=" "
                       editable={editable}
                       onRedactionRequested={() => handleObfuscation(`placeOfIssueBL`)}
                       iconRedact={<IconRedact />}
@@ -801,6 +803,7 @@ const Section3 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
                       <RedactableValue
                         value={numberOfOriginalBL}
                         noValueMessage=" "
+                        redactedMessage=" "
                         editable={editable}
                         onRedactionRequested={() => handleObfuscation(`numberOfOriginalBL`)}
                         iconRedact={<IconRedact />}
@@ -818,6 +821,7 @@ const Section3 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
                     <RedactableValue
                       value={dateOfIssueBL}
                       noValueMessage=" "
+                      redactedMessage=" "
                       editable={editable}
                       onRedactionRequested={() => handleObfuscation(`dateOfIssueBL`)}
                       iconRedact={<IconRedact />}
@@ -837,6 +841,7 @@ const Section3 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
                     <RedactableValue
                       value={shippedOnBoardDate}
                       noValueMessage=" "
+                      redactedMessage=" "
                       editable={editable}
                       onRedactionRequested={() => handleObfuscation(`shippedOnBoardDate`)}
                       iconRedact={<IconRedact />}
@@ -965,6 +970,7 @@ const Section1 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
                     <RedactableValue
                       value={scac}
                       noValueMessage=" "
+                      redactedMessage=" "
                       editable={editable}
                       onRedactionRequested={() => handleObfuscation(`scac`)}
                       iconRedact={<IconRedact />}
@@ -979,6 +985,7 @@ const Section1 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
                     <RedactableValue
                       value={blNumber}
                       noValueMessage=" "
+                      redactedMessage=" "
                       editable={editable}
                       onRedactionRequested={() => handleObfuscation(`blNumber`)}
                       iconRedact={<IconRedact />}
@@ -1021,6 +1028,7 @@ const Section1 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
                 editable={editable}
                 value={blNumber}
                 noValueMessage=" "
+                redactedMessage=" "
                 onRedactionRequested={() => handleObfuscation(`blNumber`)}
                 iconRedact={<IconRedact />}
               />
@@ -1077,6 +1085,7 @@ const Section1 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
                 editable={editable}
                 value={vessel}
                 noValueMessage=" "
+                redactedMessage=" "
                 onRedactionRequested={() => handleObfuscation(`vessel`)}
                 iconRedact={<IconRedact />}
               />
@@ -1091,6 +1100,7 @@ const Section1 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
                 editable={editable}
                 value={voyageNo}
                 noValueMessage=" "
+                redactedMessage=" "
                 onRedactionRequested={() => handleObfuscation(`voyageNo`)}
                 iconRedact={<IconRedact />}
               />
@@ -1107,6 +1117,7 @@ const Section1 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
                 editable={editable}
                 value={placeOfReceipt}
                 noValueMessage=" "
+                redactedMessage=" "
                 onRedactionRequested={() => handleObfuscation(`placeOfReceipt`)}
                 iconRedact={<IconRedact />}
               />
@@ -1123,6 +1134,7 @@ const Section1 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
                 editable={editable}
                 value={portOfLoading}
                 noValueMessage=" "
+                redactedMessage=" "
                 onRedactionRequested={() => handleObfuscation(`portOfLoading`)}
                 iconRedact={<IconRedact />}
               />
@@ -1137,6 +1149,7 @@ const Section1 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
                 editable={editable}
                 value={portOfDischarge}
                 noValueMessage=" "
+                redactedMessage=" "
                 onRedactionRequested={() => handleObfuscation(`portOfDischarge`)}
                 iconRedact={<IconRedact />}
               />
@@ -1153,6 +1166,7 @@ const Section1 = ({ document, editable, handleObfuscation }: SectionProps): JSX.
                 editable={editable}
                 value={placeOfDelivery}
                 noValueMessage=" "
+                redactedMessage=" "
                 onRedactionRequested={() => handleObfuscation(`placeOfDelivery`)}
                 iconRedact={<IconRedact />}
               />
