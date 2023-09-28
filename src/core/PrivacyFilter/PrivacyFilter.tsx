@@ -1,5 +1,5 @@
 import { Button } from "@govtechsg/tradetrust-ui-components";
-import React, { FunctionComponent, useState } from "react";
+import React, { FunctionComponent } from "react";
 import patternWaves from "/static/images/pattern-waves.png";
 
 interface PrivacyFilterProps {
