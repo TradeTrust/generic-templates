@@ -11,6 +11,10 @@ export const BrochureSampleV2: BrochureSchema = {
     {
       name: "abc",
       documentStore: "0x1245e5B64D785b25057f7438F715f4aA5D965733",
+      identityProof: {
+        type: v2.IdentityProofType.DNSTxt,
+        location: "example.tradetrust.io",
+      },
     },
   ],
   shared: {
@@ -184,7 +188,7 @@ export const BrochureSampleV2: BrochureSchema = {
               `While the claims contained within verifiable credentials are machine-readable, they are not by default
             presented in a human-readable form. OpenAttestation implements a decentralised rendering protocol that presents
             the OpenAttestation verifiable credential in a human-readable format. Issuers create their own document schema and
-            custom templates to render their OpenAttestation verifiable credentials. This decentralised renderer is publicly 
+            custom templates to render their OpenAttestation verifiable credentials. This decentralised renderer is publicly
             hosted as an endpoint.`,
               `When verifiers verify the OpenAttestation verifiable credential online, the OpenAttestation viewer then loads
             the decentralised renderer and uses it to display the OpenAttestation verifiable credential. This protocol enables

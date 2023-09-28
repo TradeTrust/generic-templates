@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
+import { utils, wrapDocument } from "@govtechsg/open-attestation";
 import { BillOfLadingMaerskPilotTemplate } from "./BillOfLadingMaerskPilotTemplate";
 import { BillOfLadingMaerskPilotSampleV2 } from "./sampleV2";
 
@@ -44,5 +45,10 @@ describe("bill of lading V2 (Maersk Pilot)", () => {
     expect(screen.queryByTestId("place-of-issue-bl")).not.toBeInTheDocument();
     expect(screen.getByTestId("number-of-original-bl")).toHaveTextContent("ONE/1");
     expect(screen.queryByTestId("date-of-issue-bl")).not.toBeInTheDocument();
+  });
+
+  it("should be able to wrap v2", () => {
+    const wrappedDocument = wrapDocument(BillOfLadingMaerskPilotSampleV2);
+    expect(utils.isWrappedV2Document(wrappedDocument)).toBe(true);
   });
 });

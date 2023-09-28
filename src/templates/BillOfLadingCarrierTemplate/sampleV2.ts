@@ -13,6 +13,10 @@ export const BillOfLadingCarrierSampleV2: BillOfLadingCarrierSchemaV2 = {
     {
       name: "abc",
       tokenRegistry: "0x142Ca30e3b78A840a82192529cA047ED759a6F7e",
+      identityProof: {
+        type: v2.IdentityProofType.DNSTxt,
+        location: "example.tradetrust.io",
+      },
     },
   ],
   scac: "SGPU",
