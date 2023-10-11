@@ -1,15 +1,25 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import React, { FunctionComponent } from "react";
 import { BillOfLadingBimcoStandard } from "./BillOfLadingBimcoStandard";
-import bimcoSample from "./assets/bimcoSample.json";
+import { BillOfLadingBimcoSampleV1 } from "./sample";
+import { BillOfLadingBimcoSchemaV1 } from "./types";
 
 export default {
-  title: "BillOfLadingBimcoStandard",
+  title: "BillOfLadingBimco",
   component: BillOfLadingBimcoStandard,
-} as ComponentMeta<typeof BillOfLadingBimcoStandard>;
+  parameters: {
+    componentSubtitle: "Bill of Lading BIMCO template.",
+  },
+};
 
-const Template: ComponentStory<typeof BillOfLadingBimcoStandard> = (args) => <BillOfLadingBimcoStandard {...args} />;
+// export const BillOfLadingBimcoEmpty: FunctionComponent = () => {
+//   return <BillOfLadingBimcoStandard document={{} as any} handleObfuscation={() => {}} />; // when empty, visually should not show any dangling values
+// };
 
-export const BimcoV1 = Template.bind({});
-BimcoV1.args = {
-  document: bimcoSample,
+export const BillOfLadingBimcoV1: FunctionComponent = () => {
+  return (
+    <BillOfLadingBimcoStandard
+      document={BillOfLadingBimcoSampleV1 as BillOfLadingBimcoSchemaV1}
+      handleObfuscation={() => {}}
+    />
+  );
 };

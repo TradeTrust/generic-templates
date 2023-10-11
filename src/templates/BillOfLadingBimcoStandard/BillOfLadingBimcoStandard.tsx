@@ -1,11 +1,9 @@
 import React from "react";
 import { v2 } from "@govtechsg/open-attestation";
 import { TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
-import bimcoLogo from "./assets/bimcoLogo.svg";
 import "./css/bimco.css";
 
 interface Address {
-  name?: string;
   street: string;
   streetNumber: string;
   floor?: string;
@@ -15,20 +13,23 @@ interface Address {
   country: string;
 }
 
-interface PartyContactDetails {
+interface Party {
+  partyName: string;
+  taxReference: string;
+  address: Address;
   phone: string;
   email: string;
   url?: string;
 }
 
-interface Party {
-  partyName: string;
-  taxReference: string;
-  address: Address;
-  partyContactDetails: PartyContactDetails[];
-}
-
 interface BimcoV1Template extends v2.OpenAttestationDocument {
+  $template: {
+    // Included $template property
+    name: string;
+    type: v2.TemplateType.EmbeddedRenderer;
+    url: string;
+  };
+  issuers: any[];
   oaDocument: {
     shipper: { party: Party };
     consignee: { party: Party };
@@ -55,9 +56,9 @@ interface BimcoV1Template extends v2.OpenAttestationDocument {
     dateOfIssue: string;
     shippedOnBoardDate: string;
     signedBy: string;
-    SCAC?: string;
+    SCAC: string | null;
     termsAndConditions: string;
-    cargoShippedOnDeck?: string;
+    cargoShippedOnDeck: string | null;
   };
 }
 
@@ -70,7 +71,7 @@ export const BillOfLadingBimcoStandard: React.FunctionComponent<TemplateProps<Bi
   );
 };
 
-const PartySection = ({ title, party }: { title: string; party?: any }): JSX.Element => {
+const PartySection = ({ title, party }: { title: string; party?: Party }): JSX.Element => {
   return (
     <div className="w-full border p-2 px-3 py-2">
       <div className="field-title text-xs font-normal" style={{ fontSize: "12px" }}>
@@ -80,8 +81,8 @@ const PartySection = ({ title, party }: { title: string; party?: any }): JSX.Ele
         <div className="w-6/12">
           <div className="text-xs">{party?.partyName}</div>
           <div className="text-xs">{party?.taxReference}</div>
-          <div className="text-xs">{party?.partyContactDetails?.[0]?.phone}</div>
-          <div className="text-xs">{party?.partyContactDetails?.[0]?.email}</div>
+          <div className="text-xs">{party?.phone}</div>
+          <div className="text-xs">{party?.email}</div>
         </div>
         <div className="w-6/12">
           <div className="text-xs">{`${party?.address?.streetNumber ?? ""} ${party?.address?.street}`}</div>
@@ -93,7 +94,6 @@ const PartySection = ({ title, party }: { title: string; party?: any }): JSX.Ele
     </div>
   );
 };
-
 const DetailSection = ({ title, detail }: { title: string; detail: string }): JSX.Element => {
   return (
     <div className="w-full border p-2 px-3 py-2">
@@ -175,6 +175,7 @@ const CarrierSection = ({ signedBy }: { signedBy: string }): JSX.Element => {
       <div className="text-xs">
         Document has been successfully signed with a secure digital signature, using the following public key: 0x....
       </div>
+      <div className="text-xs">View the transaction at: https://etherscan.io/tx/0x...</div>
     </div>
   );
 };
@@ -200,10 +201,8 @@ const RenderDocument = (document: BimcoV1Template): JSX.Element => {
 
   return (
     <div className="flex flex-col border">
-      {/* Bimco logo and title */}
       <div className="border p-2 flex justify-center items-center">
         <div className="w-1/2 text-center">
-          <img src={bimcoLogo} className="logo mx-auto" alt="Bimco logo" />
           <strong>Digital Template for BIMCO Bill of Lading</strong>
         </div>
       </div>
