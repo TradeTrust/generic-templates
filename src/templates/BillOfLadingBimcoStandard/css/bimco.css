@@ -1,0 +1,26 @@
+div {
+    word-wrap: break-word;
+}
+
+.field {
+    font-size: 0.6em;
+    padding: 6px;
+    line-height: 12px;
+}
+
+.field-title {
+    font-size: 1.0em;
+    font-weight: 600;
+}
+
+.logo {
+    max-height: 100px;
+    max-width: 150px;
+    overflow: hidden;
+}
+
+.divider-title {
+    font-size: 0.7em;
+    font-weight: 800;
+    padding: 15px;
+}

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="layer" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 652 652" style="enable-background:new 0 0 652 652;" xml:space="preserve">
+<style type="text/css">
+	.st0{filter:url(#Adobe_OpacityMaskFilter);}
+	.st1{clip-path:url(#SVGID_2_);fill:url(#SVGID_4_);}
+	.st2{clip-path:url(#SVGID_2_);mask:url(#SVGID_3_);fill:url(#SVGID_5_);}
+	.st3{filter:url(#Adobe_OpacityMaskFilter_1_);}
+	.st4{clip-path:url(#SVGID_7_);fill:url(#SVGID_9_);}
+	.st5{clip-path:url(#SVGID_7_);mask:url(#SVGID_8_);fill:url(#SVGID_10_);}
+	.st6{fill:#005A7C;}
+</style>
+<g>
+	<defs>
+		<polygon id="SVGID_1_" points="194.3,193.1 194.3,205.1 621.5,217.4 621.5,184.7 		"/>
+	</defs>
+	<clipPath id="SVGID_2_">
+		<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+	</clipPath>
+	<defs>
+		<filter id="Adobe_OpacityMaskFilter" filterUnits="userSpaceOnUse" x="194.3" y="184.7" width="427.2" height="32.6">
+			<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+		</filter>
+	</defs>
+	<mask maskUnits="userSpaceOnUse" x="194.3" y="184.7" width="427.2" height="32.6" id="SVGID_3_">
+		<g class="st0">
+			
+				<linearGradient id="SVGID_4_" gradientUnits="userSpaceOnUse" x1="39.033" y1="720.3094" x2="53.951" y2="720.3094" gradientTransform="matrix(30.3239 0 0 -30.3239 -1014.5265 22043.6406)">
+				<stop  offset="0" style="stop-color:#FFFFFF"/>
+				<stop  offset="0.5" style="stop-color:#FFFFFF"/>
+				<stop  offset="1" style="stop-color:#000000"/>
+			</linearGradient>
+			<rect x="194.3" y="184.7" class="st1" width="427.2" height="32.7"/>
+		</g>
+	</mask>
+	
+		<linearGradient id="SVGID_5_" gradientUnits="userSpaceOnUse" x1="39.033" y1="720.3097" x2="53.951" y2="720.3097" gradientTransform="matrix(30.3239 0 0 -30.3239 -1014.5272 22043.6543)">
+		<stop  offset="0" style="stop-color:#00A8D5"/>
+		<stop  offset="0.5" style="stop-color:#00A8D5"/>
+		<stop  offset="1" style="stop-color:#00A8D5"/>
+	</linearGradient>
+	<rect x="194.3" y="184.7" class="st2" width="427.2" height="32.6"/>
+</g>
+<g>
+	<defs>
+		<polygon id="SVGID_6_" points="21.7,208.3 144.1,205.1 144.1,193.1 21.7,190.3 		"/>
+	</defs>
+	<clipPath id="SVGID_7_">
+		<use xlink:href="#SVGID_6_"  style="overflow:visible;"/>
+	</clipPath>
+	<defs>
+		<filter id="Adobe_OpacityMaskFilter_1_" filterUnits="userSpaceOnUse" x="21.7" y="190.3" width="122.4" height="17.9">
+			<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+		</filter>
+	</defs>
+	<mask maskUnits="userSpaceOnUse" x="21.7" y="190.3" width="122.4" height="17.9" id="SVGID_8_">
+		<g class="st3">
+			
+				<linearGradient id="SVGID_9_" gradientUnits="userSpaceOnUse" x1="29.3097" y1="745.9981" x2="44.2276" y2="745.9981" gradientTransform="matrix(9.8664 0 0 -9.8664 -267.4825 7559.6563)">
+				<stop  offset="0" style="stop-color:#000000"/>
+				<stop  offset="0.5" style="stop-color:#FFFFFF"/>
+				<stop  offset="1" style="stop-color:#FFFFFF"/>
+			</linearGradient>
+			<rect x="21.7" y="190.3" class="st4" width="122.4" height="18"/>
+		</g>
+	</mask>
+	
+		<linearGradient id="SVGID_10_" gradientUnits="userSpaceOnUse" x1="29.3082" y1="745.9974" x2="44.2261" y2="745.9974" gradientTransform="matrix(9.8664 0 0 -9.8664 -267.4825 7559.6563)">
+		<stop  offset="0" style="stop-color:#00A8D5"/>
+		<stop  offset="0.5" style="stop-color:#00A8D5"/>
+		<stop  offset="1" style="stop-color:#00A8D5"/>
+	</linearGradient>
+	<rect x="21.7" y="190.3" class="st5" width="122.4" height="17.9"/>
+</g>
+<polygon class="st6" points="152.9,183.5 152.9,193.3 152.9,204.9 152.9,216.1 185.5,216.1 185.5,204.9 185.5,193.3 185.5,183.5 "/>
+<g>
+	<path class="st6" d="M616.8,263.5c-3.3-7.2-7.6-13.2-13-17.9c-5.3-4.7-11.4-8.2-18-10.6c-13.2-4.7-26.9-4.7-40.1,0
+		c-6.6,2.4-12.7,6-18,10.6c-5.4,4.7-9.7,10.7-13,17.9c-3.3,7.2-4.9,15.5-4.9,24.7v115c0,9.5,1.7,17.8,4.9,24.9
+		c3.3,7.1,7.6,13,13,17.7c5.3,4.7,11.4,8.2,18,10.6c6.6,2.4,13.3,3.6,20,3.6c6.7,0,13.4-1.2,20-3.6c6.6-2.4,12.7-6,18-10.6
+		c5.4-4.7,9.7-10.7,13-17.7c3.3-7.1,4.9-15.5,4.9-24.9v-115C621.7,279,620,270.7,616.8,263.5 M583.2,403.2c0,6.5-1.6,11-5,13.9
+		c-3.5,3-7.6,4.5-12.5,4.5c-4.9,0-8.9-1.5-12.5-4.5c-3.4-2.9-5-7.4-5-13.9v-115c0-6.5,1.6-11,5-13.9c3.5-3,7.6-4.5,12.5-4.5
+		c4.8,0,8.9,1.4,12.5,4.5c3.4,2.9,5,7.4,5,13.9V403.2z"/>
+	<polygon class="st6" points="322.8,233.2 359.3,233.2 359.3,458.2 320.8,458.2 320.8,343.1 295.6,419.4 274.8,419.4 249.9,343.3 
+		249.9,458.2 211.4,458.2 211.4,233.2 247.6,233.2 285.3,341.9 	"/>
+	<polygon class="st6" points="185.5,233.2 191.3,458.2 147,458.2 152.8,233.2 	"/>
+	<path class="st6" d="M116.5,251.3c-4.8-5.5-11.1-9.9-18.6-13.2c-7.5-3.3-16.5-4.9-27-4.9H21.7v225h46.2c21.3,0,37.2-5.5,47.2-16.5
+		c9.9-10.8,14.9-26.5,14.9-46.5V383c0-11.9-1.9-21.7-5.6-29c-2.9-5.7-7.1-10.4-12.4-14c1.6-1.2,3.1-2.4,4.6-3.6
+		c2.9-2.6,5.4-5.6,7.4-9c2-3.4,3.6-7.3,4.6-11.8c1-4.3,1.5-9.6,1.5-15.8v-8c0-7.4-1-14.7-3.1-21.7
+		C124.8,263.2,121.3,256.8,116.5,251.3 M92.6,401.1c-0.4,4-1.3,7.4-2.9,10.2c-1.5,2.6-3.6,4.7-6.6,6.2c-3,1.6-7.5,2.3-13.2,2.3h-9.8
+		v-62.4h10.1c5.2,0,9.4,0.6,12.4,1.9c2.8,1.2,5,2.8,6.5,5c1.6,2.3,2.7,5.2,3.2,8.7c0.6,3.9,0.9,8.5,0.9,13.8
+		C93.2,391.9,93,396.7,92.6,401.1 M88.5,316.3c-2.8,4.1-8.9,6.2-17.9,6.2H60.2v-52.6h9.2c9.2,0,15.5,2,18.7,6
+		c3.4,4.2,5.1,10.8,5.1,19.7C93.2,304.8,91.7,311.8,88.5,316.3"/>
+	<path class="st6" d="M435.4,231.4c7.6,0,14.7,1.4,21.3,4.1c6.5,2.7,12.3,6.6,17.1,11.5c4.8,4.9,8.6,10.9,11.3,17.7
+		c2.7,6.8,4.1,14.3,4.1,22.3v15.9h-38.5v-14c0-5.3-1.5-9.8-4.4-13.7c-2.8-3.6-6.4-5.3-11.2-5.3c-6.3,0-10.3,1.7-12.2,5.3
+		c-2.3,4.2-3.4,9.8-3.4,16.5v111.3c0,5.6,1.2,10.3,3.6,13.9c2.1,3.2,5.9,4.7,11.8,4.7c1.7,0,3.5-0.3,5.5-0.9
+		c1.9-0.6,3.6-1.5,5.1-2.8c1.5-1.3,2.8-3.1,3.7-5.4c1-2.4,1.5-5.5,1.5-9.3v-14.4h38.5V406c0,7.2-1.4,14.1-4.1,20.7
+		c-2.7,6.5-6.5,12.3-11.3,17.2c-4.8,4.9-10.4,8.8-16.8,11.8c-6.5,3-13.5,4.5-20.9,4.5c-6.2,0-12.6-0.9-19-2.6
+		c-6.6-1.8-12.6-4.8-17.9-9.1c-5.3-4.3-9.7-10-13.1-17c-3.4-7-5.1-15.9-5.1-26.4V285.2c0-7.6,1.3-14.7,3.9-21.2
+		c2.6-6.5,6.4-12.3,11.2-17.1c4.8-4.8,10.6-8.6,17.3-11.3C420,232.8,427.4,231.4,435.4,231.4"/>
+</g>
+</svg>
