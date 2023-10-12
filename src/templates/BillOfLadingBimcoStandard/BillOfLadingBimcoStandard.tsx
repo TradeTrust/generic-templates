@@ -30,36 +30,34 @@ interface BimcoV1Template extends v2.OpenAttestationDocument {
     url: string;
   };
   issuers: any[];
-  oaDocument: {
-    shipper: { party: Party };
-    consignee: { party: Party };
-    notifyParty: { party: Party };
-    freightPayableAsPerCharterPartyDated: string;
-    portOfLoading: {
-      location: {
-        locationName: string;
-        UNLocationCode: string;
-      };
+  shipper: { party: Party };
+  consignee: { party: Party };
+  notifyParty: { party: Party };
+  freightPayableAsPerCharterPartyDated: string;
+  portOfLoading: {
+    location: {
+      locationName: string;
+      UNLocationCode: string;
     };
-    portOfDischarge: {
-      location: {
-        locationName: string;
-        UNLocationCode: string;
-      };
-    };
-    vessel: string;
-    referenceNo: string;
-    billOfLadingNo: string;
-    descriptionOfGoods: string[];
-    cargoGrossWeight: string;
-    measurement: string;
-    dateOfIssue: string;
-    shippedOnBoardDate: string;
-    signedBy: string;
-    SCAC: string | null;
-    termsAndConditions: string;
-    cargoShippedOnDeck: string | null;
   };
+  portOfDischarge: {
+    location: {
+      locationName: string;
+      UNLocationCode: string;
+    };
+  };
+  vessel: string;
+  referenceNo: string;
+  billOfLadingNo: string;
+  descriptionOfGoods: string[];
+  cargoGrossWeight: string;
+  measurement: string;
+  dateOfIssue: string;
+  shippedOnBoardDate: string;
+  signedBy: string;
+  SCAC: string | null;
+  termsAndConditions: string;
+  cargoShippedOnDeck: string | null;
 }
 
 export const BillOfLadingBimcoStandard: React.FunctionComponent<TemplateProps<BimcoV1Template>> = ({ document }) => {
@@ -207,7 +205,7 @@ const RenderDocument = (document: BimcoV1Template): JSX.Element => {
     dateOfIssue = "",
     termsAndConditions = "",
     freightPayableAsPerCharterPartyDated = "",
-  } = document?.oaDocument ?? {};
+  } = document ?? {};
 
   return (
     <div className="flex flex-col border">
