@@ -91,3 +91,93 @@ export const BillOfLadingBimcoSampleV1: BillOfLadingBimcoSchemaV1 = {
     cargoShippedOnDeck: null,
   },
 };
+
+export const BillOfLadingBimcoEmptyV1: BillOfLadingBimcoSchemaV1 = {
+  $template: {
+    name: "",
+    type: v2.TemplateType.EmbeddedRenderer,
+    url: "",
+  },
+  issuers: [],
+  oaDocument: {
+    shipper: {
+      party: {
+        partyName: "",
+        taxReference: "",
+        phone: "",
+        email: "",
+        url: "",
+        address: {
+          street: "",
+          streetNumber: "",
+          floor: "",
+          postCode: "",
+          city: "",
+          stateRegion: "",
+          country: "",
+        },
+      },
+    },
+    consignee: {
+      party: {
+        partyName: "",
+        taxReference: "",
+        phone: "",
+        email: "",
+        url: "",
+        address: {
+          street: "",
+          streetNumber: "",
+          floor: "",
+          postCode: "",
+          city: "",
+          stateRegion: "",
+          country: "",
+        },
+      },
+    },
+    notifyParty: {
+      party: {
+        partyName: "",
+        taxReference: "",
+        phone: "",
+        email: "",
+        url: "",
+        address: {
+          street: "",
+          streetNumber: "",
+          floor: "",
+          postCode: "",
+          city: "",
+          stateRegion: "",
+          country: "",
+        },
+      },
+    },
+    portOfLoading: {
+      location: {
+        locationName: "",
+        UNLocationCode: "",
+      },
+    },
+    portOfDischarge: {
+      location: {
+        locationName: "",
+        UNLocationCode: "",
+      },
+    },
+    descriptionOfGoods: [""],
+    freightPayableAsPerCharterPartyDated: "",
+    vessel: "",
+    referenceNo: "",
+    billOfLadingNo: "",
+    cargoGrossWeight: "",
+    measurement: "",
+    dateOfIssue: "",
+    shippedOnBoardDate: "",
+    signedBy: "",
+    SCAC: null,
+    termsAndConditions: "",
+    cargoShippedOnDeck: null,
+  },
+};

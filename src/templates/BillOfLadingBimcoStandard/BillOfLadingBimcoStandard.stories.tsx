@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from "react";
 import { BillOfLadingBimcoStandard } from "./BillOfLadingBimcoStandard";
-import { BillOfLadingBimcoSampleV1 } from "./sample";
+import { BillOfLadingBimcoSampleV1, BillOfLadingBimcoEmptyV1 } from "./sample";
 import { BillOfLadingBimcoSchemaV1 } from "./types";
 
 export default {
@@ -12,7 +12,12 @@ export default {
 };
 
 export const BillOfLadingBimcoEmpty: FunctionComponent = () => {
-  return <BillOfLadingBimcoStandard document={{}} handleObfuscation={() => {}} />;
+  return (
+    <BillOfLadingBimcoStandard
+      document={BillOfLadingBimcoEmptyV1 as BillOfLadingBimcoSchemaV1}
+      handleObfuscation={() => {}}
+    />
+  );
 };
 
 export const BillOfLadingBimcoV1: FunctionComponent = () => {
