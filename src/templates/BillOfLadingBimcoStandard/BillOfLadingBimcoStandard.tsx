@@ -79,16 +79,18 @@ const PartySection = ({ title, party }: { title: string; party?: Party }): JSX.E
       </div>
       <div className="flex">
         <div className="w-6/12">
-          <div className="text-xs">{party?.partyName}</div>
-          <div className="text-xs">{party?.taxReference}</div>
-          <div className="text-xs">{party?.phone}</div>
-          <div className="text-xs">{party?.email}</div>
+          <div className="text-xs">{party?.partyName ?? ""}</div>
+          <div className="text-xs">{party?.taxReference ?? ""}</div>
+          <div className="text-xs">{party?.phone ?? ""}</div>
+          <div className="text-xs">{party?.email ?? ""}</div>
         </div>
         <div className="w-6/12">
-          <div className="text-xs">{`${party?.address?.streetNumber ?? ""} ${party?.address?.street}`}</div>
-          <div className="text-xs">{party?.address?.postCode}</div>
-          <div className="text-xs">{party?.address?.city}</div>
-          <div className="text-xs">{party?.address?.country}</div>
+          <div className="text-xs">
+            {party && party.address ? `${party.address.streetNumber ?? ""} ${party.address.street}` : ""}
+          </div>
+          <div className="text-xs">{party?.address?.postCode ?? ""}</div>
+          <div className="text-xs">{party?.address?.city ?? ""}</div>
+          <div className="text-xs">{party?.address?.country ?? ""}</div>
         </div>
       </div>
     </div>
@@ -181,23 +183,31 @@ const CarrierSection = ({ signedBy }: { signedBy: string }): JSX.Element => {
 };
 
 const RenderDocument = (document: BimcoV1Template): JSX.Element => {
+  const defaultPartyContainer: { party?: Party } = {};
+  const defaultPort = {
+    location: {
+      locationName: "",
+      UNLocationCode: "",
+    },
+  };
+
   const {
-    signedBy,
-    shipper,
-    consignee,
-    notifyParty,
-    billOfLadingNo,
-    referenceNo,
-    vessel,
-    portOfDischarge,
-    portOfLoading,
-    descriptionOfGoods,
-    cargoGrossWeight,
-    measurement,
-    dateOfIssue,
-    termsAndConditions,
-    freightPayableAsPerCharterPartyDated,
-  } = document.oaDocument;
+    signedBy = "",
+    shipper = defaultPartyContainer,
+    consignee = defaultPartyContainer,
+    notifyParty = defaultPartyContainer,
+    billOfLadingNo = "",
+    referenceNo = "",
+    vessel = "",
+    portOfDischarge = defaultPort,
+    portOfLoading = defaultPort,
+    descriptionOfGoods = [],
+    cargoGrossWeight = "",
+    measurement = "",
+    dateOfIssue = "",
+    termsAndConditions = "",
+    freightPayableAsPerCharterPartyDated = "",
+  } = document?.oaDocument ?? {};
 
   return (
     <div className="flex flex-col border">
@@ -223,13 +233,11 @@ const RenderDocument = (document: BimcoV1Template): JSX.Element => {
         <PreCarriageSection />
         <DetailSection
           title="Port of loading"
-          detail={`${portOfLoading?.location?.locationName ?? ""}, ${portOfLoading?.location?.UNLocationCode ?? ""}`}
+          detail={`${portOfLoading?.location?.locationName ?? ""} ${portOfLoading?.location?.UNLocationCode ?? ""}`}
         />
         <DetailSection
           title="Port of discharge"
-          detail={`${portOfDischarge?.location?.locationName ?? ""}, ${
-            portOfDischarge?.location?.UNLocationCode ?? ""
-          }`}
+          detail={`${portOfDischarge?.location?.locationName ?? ""} ${portOfDischarge?.location?.UNLocationCode ?? ""}`}
         />
       </div>
 

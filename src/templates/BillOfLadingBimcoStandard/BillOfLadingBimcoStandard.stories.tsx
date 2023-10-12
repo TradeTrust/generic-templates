@@ -11,9 +11,9 @@ export default {
   },
 };
 
-// export const BillOfLadingBimcoEmpty: FunctionComponent = () => {
-//   return <BillOfLadingBimcoStandard document={{} as any} handleObfuscation={() => {}} />; // when empty, visually should not show any dangling values
-// };
+export const BillOfLadingBimcoEmpty: FunctionComponent = () => {
+  return <BillOfLadingBimcoStandard document={{}} handleObfuscation={() => {}} />;
+};
 
 export const BillOfLadingBimcoV1: FunctionComponent = () => {
   return (
