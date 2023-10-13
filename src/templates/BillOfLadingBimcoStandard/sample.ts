@@ -1,5 +1,6 @@
 import { v2 } from "@govtechsg/open-attestation";
 import { BillOfLadingBimcoSchemaV1 } from "./types";
+import { firstSignatoryAuthentication as randomSignature } from "../../core/Signatures";
 
 export const BillOfLadingBimcoSampleV1: BillOfLadingBimcoSchemaV1 = {
   $template: {
@@ -83,7 +84,7 @@ export const BillOfLadingBimcoSampleV1: BillOfLadingBimcoSchemaV1 = {
   measurement: "15.6 M3",
   dateOfIssue: "Rotterdam, 2023-10-17",
   shippedOnBoardDate: "2023-10-18",
-  signedBy: "Carrier company",
+  signedBy: randomSignature,
   SCAC: null,
   termsAndConditions:
     "Your electronic signature on this Bill of Lading serves as a binding authentication method, confirming your acceptance of the cargo and its stated condition.",

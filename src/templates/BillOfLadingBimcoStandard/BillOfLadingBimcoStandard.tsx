@@ -167,15 +167,14 @@ const CarrierSection = ({ signedBy }: { signedBy: string }): JSX.Element => {
       <div className="text-xs font-normal field-title" style={{ fontSize: "12px" }}>
         Carrier or on behalf of
       </div>
-      <div className="text-xs">{signedBy}</div>
+      <div className="text-xs">Carrier company</div>
       <div className="my-4" />
       <div className="text-xs font-normal field-title" style={{ fontSize: "12px" }}>
         Signature
       </div>
       <div className="text-xs">
-        Document has been successfully signed with a secure digital signature, using the following public key: 0x....
+        {signedBy && <img data-testid="carrier-signature" className="w-[150px] mx-auto" src={signedBy} />}
       </div>
-      <div className="text-xs">View the transaction at: https://etherscan.io/tx/0x...</div>
     </div>
   );
 };
