@@ -454,7 +454,7 @@ export const BrochureTemplate: FunctionComponent<TemplateProps<BrochureSchema>> 
   const updateWidth = (): void => setWidth(window.innerWidth);
   const isMobile = (currentWidth: number): boolean => currentWidth < 768;
   const privacyFilterOptions = {
-    className: "print:hidden m-auto bg-cover bg-cerulean text-white rounded-lg p-8 md:w-[65rem]",
+    className: "print:hidden m-auto bg-cover bg-cerulean-500 text-white rounded-lg p-8 md:w-[65rem]",
     description: `Remove sensitive information on this document (click \"Redact Data\" and scroll down). The downloaded document remains
     valid.`,
     buttonText: "Redact Data",

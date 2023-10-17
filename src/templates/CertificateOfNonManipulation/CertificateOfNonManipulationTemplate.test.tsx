@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
+import { utils, wrapDocument } from "@govtechsg/open-attestation";
 import { CertificateOfNonManipulationTemplate } from "./CertificateOfNonManipulationTemplate";
 import { CertificateOfNonManipulationSampleV2 } from "./sampleV2";
 
@@ -35,5 +36,10 @@ describe("certificate of non manipulation", () => {
       "src",
       CertificateOfNonManipulationSampleV2.certification?.stamp
     );
+  });
+
+  it("should be able to wrap v2", () => {
+    const wrappedDocument = wrapDocument(CertificateOfNonManipulationSampleV2);
+    expect(utils.isWrappedV2Document(wrappedDocument)).toBe(true);
   });
 });

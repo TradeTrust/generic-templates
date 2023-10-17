@@ -1,7 +1,8 @@
-import { XMLRenderer } from "./template";
-import { XMLRendererSampleData } from "./sample";
 import { render } from "@testing-library/react";
 import React from "react";
+import { utils, wrapDocument } from "@govtechsg/open-attestation";
+import { XMLRenderer } from "./template";
+import { XMLRendererSampleData } from "./sample";
 
 const emptySample = {
   XMLRendererSampleData,
@@ -50,5 +51,10 @@ describe("xml renderer", () => {
     ).not.toBeInTheDocument();
     expect(queryByText("000166000001")).not.toBeInTheDocument();
     expect(queryByText("8360.00")).not.toBeInTheDocument();
+  });
+
+  it("should be able to wrap v2", () => {
+    const wrappedDocument = wrapDocument(XMLRendererSampleData);
+    expect(utils.isWrappedV2Document(wrappedDocument)).toBe(true);
   });
 });

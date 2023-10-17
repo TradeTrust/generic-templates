@@ -1,12 +1,12 @@
 import { v2 } from "@govtechsg/open-attestation";
-import { BillOfLadingMaerskPilotSchemaV2 } from "./types";
+import { BillOfLadingMaerskTpacSchemaV2 } from "./types";
 import logo from "/static/images/logo-maersk.jpg?inline";
 import { firstSignatoryAuthentication as randomSignature } from "../../core/Signatures";
 
-export const BillOfLadingMaerskPilotSampleV2: BillOfLadingMaerskPilotSchemaV2 = {
+export const BillOfLadingMaerskTpacSampleV2: BillOfLadingMaerskTpacSchemaV2 = {
   $template: {
     type: v2.TemplateType.EmbeddedRenderer,
-    name: "BILL_OF_LADING_MAERSK_PILOT",
+    name: "BILL_OF_LADING_MAERSK_TPAC",
     url: "http://localhost:3000",
   },
   issuers: [
@@ -23,7 +23,7 @@ export const BillOfLadingMaerskPilotSampleV2: BillOfLadingMaerskPilotSchemaV2 = 
   blNumber: "SGCNM21566325",
   packages: [
     {
-      description: "description",
+      description: "Apples",
       weight: "10",
       measurement: "20",
     },
@@ -35,10 +35,10 @@ export const BillOfLadingMaerskPilotSampleV2: BillOfLadingMaerskPilotSchemaV2 = 
       country: "SINGAPORE",
     },
   },
-  vessel: "vessel",
-  voyageNo: "voyageNo",
+  vessel: "Vessel",
+  voyageNo: "Voyage Number",
   consignee: {
-    name: "Consignee name",
+    name: "Consignee Name",
   },
   notifyParty: {
     name: "Notify Party Name",

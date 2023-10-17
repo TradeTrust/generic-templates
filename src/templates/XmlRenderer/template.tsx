@@ -82,7 +82,7 @@ export const XMLRenderer: FunctionComponent<TemplateProps<XmlRendererFileInterfa
   let jsonDocument = {} as XmlRendererInterface;
 
   // Convert XML string to Json
-  parser.parseString(output, function (err: string, result: XmlRendererInterface) {
+  parser.parseString(output, (err: Error | null, result: any) => {
     if (!err) {
       jsonDocument = result;
     }
