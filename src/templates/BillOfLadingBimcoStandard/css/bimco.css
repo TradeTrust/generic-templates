@@ -1,0 +1,14 @@
+div {
+  word-wrap: break-word;
+}
+
+.field-title {
+  font-size: 1em;
+  font-weight: 600;
+}
+
+.logo {
+  max-height: 100px;
+  max-width: 150px;
+  overflow: hidden;
+}
