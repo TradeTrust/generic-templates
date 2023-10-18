@@ -1,8 +1,8 @@
 import { v2 } from "@govtechsg/open-attestation";
-import { BillOfLadingBimcoSchemaV1 } from "./types";
+import { BillOfLadingV1BimcoSchema } from "./types";
 import { firstSignatoryAuthentication as randomSignature } from "../../core/Signatures";
 
-export const BillOfLadingBimcoSampleV1: BillOfLadingBimcoSchemaV1 = {
+export const BillOfLadingV1BimcoSample: BillOfLadingV1BimcoSchema = {
   $template: {
     name: "BILL_OF_LADING_BIMCO",
     type: v2.TemplateType.EmbeddedRenderer,
@@ -91,7 +91,7 @@ export const BillOfLadingBimcoSampleV1: BillOfLadingBimcoSchemaV1 = {
   cargoShippedOnDeck: null,
 };
 
-export const BillOfLadingBimcoEmptyV1: BillOfLadingBimcoSchemaV1 = {
+export const BillOfLadingV1BimcoEmptySample: BillOfLadingV1BimcoSchema = {
   $template: {
     name: "",
     type: v2.TemplateType.EmbeddedRenderer,

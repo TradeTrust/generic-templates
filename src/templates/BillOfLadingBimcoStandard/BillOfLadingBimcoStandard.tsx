@@ -60,7 +60,7 @@ interface BimcoV1Template extends v2.OpenAttestationDocument {
   cargoShippedOnDeck: string | null;
 }
 
-export const BillOfLadingBimcoStandard: React.FunctionComponent<TemplateProps<BimcoV1Template>> = ({ document }) => {
+export const BillOfLadingV1BimcoStandard: React.FunctionComponent<TemplateProps<BimcoV1Template>> = ({ document }) => {
   return (
     <div className="container">
       {RenderDocument(document)}

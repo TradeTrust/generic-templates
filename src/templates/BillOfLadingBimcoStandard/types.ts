@@ -1,8 +1,8 @@
 import { v2 } from "@govtechsg/open-attestation";
 
-export type BillOfLadingBimcoSchemaV1 = v2.OpenAttestationDocument & BillOfLadingBimcoDocument;
+export type BillOfLadingV1BimcoSchema = v2.OpenAttestationDocument & BillOfLadingBimcoDocument;
 
-export type BillOfLadingBimcoSchema = BillOfLadingBimcoSchemaV1;
+export type BillOfLadingBimcoSchema = BillOfLadingV1BimcoSchema;
 
 interface Address {
   street: string;

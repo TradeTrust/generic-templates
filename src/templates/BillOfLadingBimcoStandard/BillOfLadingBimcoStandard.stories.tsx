@@ -1,29 +1,29 @@
 import React, { FunctionComponent } from "react";
-import { BillOfLadingBimcoStandard } from "./BillOfLadingBimcoStandard";
-import { BillOfLadingBimcoSampleV1, BillOfLadingBimcoEmptyV1 } from "./sample";
-import { BillOfLadingBimcoSchemaV1 } from "./types";
+import { BillOfLadingV1BimcoStandard } from "./BillOfLadingBimcoStandard";
+import { BillOfLadingV1BimcoSample, BillOfLadingV1BimcoEmptySample } from "./sample";
+import { BillOfLadingV1BimcoSchema } from "./types";
 
 export default {
   title: "BillOfLadingBimco",
-  component: BillOfLadingBimcoStandard,
+  component: BillOfLadingV1BimcoStandard,
   parameters: {
     componentSubtitle: "Bill of Lading BIMCO template.",
   },
 };
 
-export const BillOfLadingBimcoEmpty: FunctionComponent = () => {
+export const BillOfLadingV1BimcoEmpty: FunctionComponent = () => {
   return (
-    <BillOfLadingBimcoStandard
-      document={BillOfLadingBimcoEmptyV1 as BillOfLadingBimcoSchemaV1}
+    <BillOfLadingV1BimcoStandard
+      document={BillOfLadingV1BimcoEmptySample as BillOfLadingV1BimcoSchema}
       handleObfuscation={() => {}}
     />
   );
 };
 
-export const BillOfLadingBimcoV1: FunctionComponent = () => {
+export const BillOfLadingV1Bimco: FunctionComponent = () => {
   return (
-    <BillOfLadingBimcoStandard
-      document={BillOfLadingBimcoSampleV1 as BillOfLadingBimcoSchemaV1}
+    <BillOfLadingV1BimcoStandard
+      document={BillOfLadingV1BimcoSample as BillOfLadingV1BimcoSchema}
       handleObfuscation={() => {}}
     />
   );
