@@ -6,16 +6,17 @@ Generic templates for TradeTrust, where users can use any of these available tem
 
 _Note: These are just some rendering templates that are made available for users to use, the configurations to use these templates are in the [documentation](https://docs.tradetrust.io/document-creator) of TradeTrust document creator._
 
-| Available Templates             | type              | name                            | Verifiable | Transferable | Support OA V3 | Privacy Filter |
-| ------------------------------- | ----------------- | ------------------------------- | ---------- | ------------ | ------------- | -------------- |
-| Bill of Lading                  | EMBEDDED_RENDERER | BILL_OF_LADING                  | &cross;    | &check;      | &check;       | -              |
-| Bill of Lading (Generic)        | EMBEDDED_RENDERER | BILL_OF_LADING_GENERIC          | &cross;    | &check;      | -             | -              |
-| Bill of Lading (Carrier)        | EMBEDDED_RENDERER | BILL_OF_LADING_CARRIER          | &cross;    | &check;      | -             | -              |
-| Chafta COO                      | EMBEDDED_RENDERER | CHAFTA_COO                      | &check;    | &cross;      | -             | -              |
-| Covering Letter                 | EMBEDDED_RENDERER | COVERING_LETTER                 | &check;    | &cross;      | &check;       | -              |
-| Invoice                         | EMBEDDED_RENDERER | INVOICE                         | &check;    | &cross;      | &check;       | &check;        |
-| Simple COO                      | EMBEDDED_RENDERER | SIMPLE_COO                      | &check;    | &cross;      | -             | -              |
-| Certificate of Non Manipulation | EMBEDDED_RENDERER | CERTIFICATE_OF_NON_MANIPULATION | &check;    | &cross;      | -             | -              |
+| Available Templates             | type              | name                             | Verifiable | Transferable | Support OA V3 | Privacy Filter |
+| ------------------------------- | ----------------- | -------------------------------- | ---------- | ------------ | ------------- | -------------- |
+| Bill of Lading                  | EMBEDDED_RENDERER | BILL_OF_LADING                   | &cross;    | &check;      | &check;       | -              |
+| Bill of Lading (Generic)        | EMBEDDED_RENDERER | BILL_OF_LADING_GENERIC           | &cross;    | &check;      | -             | -              |
+| Bill of Lading (Carrier)        | EMBEDDED_RENDERER | BILL_OF_LADING_CARRIER           | &cross;    | &check;      | -             | -              |
+| Bill of Lading BIMCO V1         | EMBEDDED_RENDERER | BILL_OF_LADING_V1_BIMCO_STANDARD | &cross;    | &check;      | -             | -              |
+| Chafta COO                      | EMBEDDED_RENDERER | CHAFTA_COO                       | &check;    | &cross;      | -             | -              |
+| Covering Letter                 | EMBEDDED_RENDERER | COVERING_LETTER                  | &check;    | &cross;      | &check;       | -              |
+| Invoice                         | EMBEDDED_RENDERER | INVOICE                          | &check;    | &cross;      | &check;       | &check;        |
+| Simple COO                      | EMBEDDED_RENDERER | SIMPLE_COO                       | &check;    | &cross;      | -             | -              |
+| Certificate of Non Manipulation | EMBEDDED_RENDERER | CERTIFICATE_OF_NON_MANIPULATION  | &check;    | &cross;      | -             | -              |
 
 In the `forms[0].defaults.$template` field of the configuration file, refer to the above for the `type`, `name`, and `url` values.
 
