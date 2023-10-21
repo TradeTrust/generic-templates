@@ -11,6 +11,7 @@ import { XMLRendererTemplate } from "./XmlRenderer";
 import { SimpleCooTemplates } from "./SimpleCoo";
 import { CertificateOfNonManipulationTemplates } from "./CertificateOfNonManipulation";
 import { BrochureTemplates } from "./Brochure";
+import { BillOfLadingV1BimcoStandardTemplates } from "./BillOfLadingBimcoStandard";
 
 export const registry: TemplateRegistry<any> = {
   BILL_OF_LADING: BillOfLadingTemplates,
@@ -18,6 +19,7 @@ export const registry: TemplateRegistry<any> = {
   BILL_OF_LADING_MAERSK_TPAC: BillOfLadingMaerskTpacTemplates,
   BILL_OF_LADING_GENERIC: BillOfLadingGenericTemplates,
   BILL_OF_LADING_CARRIER: BillOfLadingCarrierTemplates,
+  BILL_OF_LADING_V1_BIMCO_STANDARD: BillOfLadingV1BimcoStandardTemplates,
   CHAFTA_COO: ChaftaCooTemplates,
   COVERING_LETTER: CoveringLetterTemplates,
   INVOICE: InvoiceTemplates,
