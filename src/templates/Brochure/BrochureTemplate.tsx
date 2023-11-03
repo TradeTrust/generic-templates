@@ -448,7 +448,7 @@ const Page4: React.FC<{
 
 export const BrochureTemplate: FunctionComponent<TemplateProps<BrochureSchema>> = ({ document, handleObfuscation }) => {
   const documentData = getDocumentData(document) as BrochureDocument;
-  const isV4 = utils.isRawV4Document(document);
+  const isV4 = utils.isRawOAV4Document(document);
   const [editable, setEditable] = useState(false);
   const [width, setWidth] = useState<number>(window.innerWidth);
   const updateWidth = (): void => setWidth(window.innerWidth);
