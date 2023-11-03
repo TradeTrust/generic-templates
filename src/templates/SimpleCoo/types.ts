@@ -1,4 +1,4 @@
-import { v2, v3 } from "@govtechsg/open-attestation";
+import { v2, v3 } from "@tradetrust/open-attestation";
 
 export type SimpleCooDocumentSchemaV2 = v2.OpenAttestationDocument & SimpleCooDocument;
 

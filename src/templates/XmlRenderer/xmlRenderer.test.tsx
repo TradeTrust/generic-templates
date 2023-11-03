@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 import React from "react";
-import { utils, wrapDocument } from "@govtechsg/open-attestation";
+import { utils, wrapDocument } from "@tradetrust/open-attestation";
 import { XMLRenderer } from "./template";
 import { XMLRendererSampleData } from "./sample";
 

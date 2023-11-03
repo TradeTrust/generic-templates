@@ -1,4 +1,4 @@
-import { v2 } from "@govtechsg/open-attestation";
+import { v2 } from "@tradetrust/open-attestation";
 import { firstSignatoryAuthentication, secondSignatoryAuthentication } from "../../core/Signatures";
 import { SimpleCooDocumentSchemaV2 } from "./types";
 

@@ -1,4 +1,4 @@
-import { v2 } from "@govtechsg/open-attestation";
+import { v2 } from "@tradetrust/open-attestation";
 
 export type BillOfLadingMaerskPilotSchemaV2 = v2.OpenAttestationDocument & BillOfLadingMaerskPilotDocument;
 

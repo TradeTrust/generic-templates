@@ -1,4 +1,4 @@
-import { v2, v4 } from "@govtechsg/open-attestation";
+import { v2, v4 } from "@tradetrust/open-attestation";
 
 export type BrochureSchemaV2 = v2.OpenAttestationDocument & BrochureDocument;
 

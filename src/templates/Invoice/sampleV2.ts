@@ -1,4 +1,4 @@
-import { v2 } from "@govtechsg/open-attestation";
+import { v2 } from "@tradetrust/open-attestation";
 import { InvoiceDocumentSchemaV2 } from "./types";
 
 export const InvoiceSampleV2: InvoiceDocumentSchemaV2 = {

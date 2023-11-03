@@ -4,7 +4,7 @@ import {
   utils,
   wrapDocument,
   __unsafe__use__it__at__your__own__risks__wrapDocument as wrapDocumentV3,
-} from "@govtechsg/open-attestation";
+} from "@tradetrust/open-attestation";
 import { InvoiceTemplate } from "./InvoiceTemplate";
 import { InvoiceSampleV2 } from "./sampleV2";
 import { InvoiceSampleV3 } from "./sampleV3";

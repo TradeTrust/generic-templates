@@ -1,4 +1,4 @@
-import { v2 } from "@govtechsg/open-attestation";
+import { v2 } from "@tradetrust/open-attestation";
 import { BillOfLadingV1BimcoSchema } from "./types";
 import { firstSignatoryAuthentication as randomSignature } from "../../core/Signatures";
 
