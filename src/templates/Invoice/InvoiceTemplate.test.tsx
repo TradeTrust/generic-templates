@@ -58,8 +58,7 @@ describe("invoice v3", () => {
 
 describe("invoice ttv4", () => {
   it("should render the V3 invoice correctly", () => {
-    // ignore type check since we will try not to fork govtechsg/react-render components
-    // @ts-expect-error
+    // @ts-expect-error ignore type check since we will try not to fork govtechsg/react-render components
     render(<InvoiceTemplate document={InvoiceSampleV4} handleObfuscation={() => {}} />);
 
     expect(screen.getByText("INVOICE")).toBeInTheDocument();

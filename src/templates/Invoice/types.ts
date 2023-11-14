@@ -8,7 +8,7 @@ export type InvoiceDocumentSchemaV3 = v3.OpenAttestationDocument & {
 
 export type InvoiceDocumentSchemaTTV4 = TTv4.TradeTrustDocument & {
   credentialSubject: InvoiceDocument;
-}
+};
 
 export type InvoiceDocumentSchema = InvoiceDocumentSchemaV2 | InvoiceDocumentSchemaV3;
 
