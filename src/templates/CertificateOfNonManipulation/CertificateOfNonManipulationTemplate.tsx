@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
+import { TemplateProps } from "@tradetrust/decentralized-renderer-react-components";
 import { CertificateOfNonManipulationSchema } from "./types";
 
 const Header = ({ recipient = {}, id }: CertificateOfNonManipulationSchema): JSX.Element => (

@@ -1,4 +1,4 @@
-import { TemplateRegistry } from "@govtechsg/decentralized-renderer-react-components";
+import { TemplateRegistry } from "@tradetrust/decentralized-renderer-react-components";
 import { BillOfLadingTemplates } from "./BillOfLading";
 import { BillOfLadingMaerskPilotTemplates } from "./BillOfLadingMaerskPilot";
 import { BillOfLadingCarrierTemplates } from "./BillOfLadingCarrierTemplate";

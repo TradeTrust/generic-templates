@@ -1,4 +1,4 @@
-import { TemplateProps, RedactableValue } from "@govtechsg/decentralized-renderer-react-components";
+import { TemplateProps, RedactableValue } from "@tradetrust/decentralized-renderer-react-components";
 import React, { FunctionComponent, useState } from "react";
 import { DocumentQrCode } from "../../core/DocumentQrCode";
 import { PrivacyFilter, IconRedact } from "../../core/PrivacyFilter";
