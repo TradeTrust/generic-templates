@@ -4,7 +4,7 @@ import {
   utils,
   wrapDocument,
   __unsafe__use__it__at__your__own__risks__wrapDocument as wrapDocumentV3,
-} from "@govtechsg/open-attestation";
+} from "@tradetrust/open-attestation";
 import { CoveringLetterTemplate } from "./CoveringLetterTemplate";
 import { CoveringLetterSampleV2a } from "./sampleV2a";
 import { CoveringLetterSampleV2b } from "./sampleV2b";

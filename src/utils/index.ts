@@ -1,5 +1,9 @@
-import { OpenAttestationDocument, utils } from "@govtechsg/open-attestation";
+import { OpenAttestationDocument, utils } from "@tradetrust/open-attestation";
 
 export const getDocumentData = (document: OpenAttestationDocument): any => {
-  return utils.isRawV3Document(document) || utils.isRawV4Document(document) ? document.credentialSubject : document;
+  if (utils.isRawV3Document(document) || utils.isRawOAV4Document(document) || utils.isRawTTV4Document(document)) {
+    return document.credentialSubject;
+  } else {
+    return document;
+  }
 };

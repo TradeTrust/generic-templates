@@ -1,4 +1,4 @@
-import { v2 } from "@govtechsg/open-attestation";
+import { v2 } from "@tradetrust/open-attestation";
 import { BillOfLadingGeneric } from "./types";
 import logo from "/static/images/logo-tradetrust.svg";
 

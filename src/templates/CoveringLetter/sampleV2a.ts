@@ -1,4 +1,4 @@
-import { v2 } from "@govtechsg/open-attestation";
+import { v2 } from "@tradetrust/open-attestation";
 import { CoveringLetterSchemaV2 } from "./types";
 
 export const CoveringLetterSampleV2a: CoveringLetterSchemaV2 = {

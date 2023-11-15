@@ -1,4 +1,4 @@
-import { v2 } from "@govtechsg/open-attestation";
+import { v2 } from "@tradetrust/open-attestation";
 import { CertificateOfNonManipulationSchema } from "./types";
 
 export const CertificateOfNonManipulationSampleV2: CertificateOfNonManipulationSchema = {

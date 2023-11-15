@@ -1,4 +1,4 @@
-import { v2 } from "@govtechsg/open-attestation";
+import { v2 } from "@tradetrust/open-attestation";
 import { BillOfLadingMaerskTpacSchemaV2 } from "./types";
 import logo from "/static/images/logo-maersk.jpg?inline";
 import { firstSignatoryAuthentication as randomSignature } from "../../core/Signatures";
