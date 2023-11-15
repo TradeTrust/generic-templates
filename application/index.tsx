@@ -13,7 +13,7 @@ import { CoveringLetterSampleV2malformed } from "../src/templates/CoveringLetter
 import { CoveringLetterSampleV3 } from "../src/templates/CoveringLetter/sampleV3";
 import { InvoiceSampleV2 } from "../src/templates/Invoice/sampleV2";
 import { InvoiceSampleV3 } from "../src/templates/Invoice/sampleV3";
-import {InvoiceSampleV4} from "../src/templates/Invoice/sampleV4";
+import { InvoiceSampleV4 } from "../src/templates/Invoice/sampleV4";
 import { XMLRendererSampleData } from "../src/templates/XmlRenderer/sample";
 import { SimpleCooSampleV2 } from "../src/templates/SimpleCoo/sampleV2";
 import { SimpleCooSampleV3 } from "../src/templates/SimpleCoo/sampleV3";
