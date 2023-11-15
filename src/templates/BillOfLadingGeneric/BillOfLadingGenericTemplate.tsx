@@ -1,4 +1,4 @@
-import { TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
+import { TemplateProps } from "@tradetrust/decentralized-renderer-react-components";
 import React, { FunctionComponent } from "react";
 import { Wrapper } from "../../core/Wrapper";
 import { BillOfLadingGeneric } from "./types";

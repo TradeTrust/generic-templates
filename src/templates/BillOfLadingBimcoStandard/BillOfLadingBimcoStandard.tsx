@@ -1,6 +1,6 @@
 import React from "react";
 import { v2 } from "@tradetrust/open-attestation";
-import { TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
+import { TemplateProps } from "@tradetrust/decentralized-renderer-react-components";
 import "./css/bimco.css";
 
 interface Address {

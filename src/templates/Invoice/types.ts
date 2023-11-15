@@ -10,7 +10,7 @@ export type InvoiceDocumentSchemaTTV4 = TTv4.TradeTrustDocument & {
   credentialSubject: InvoiceDocument;
 };
 
-export type InvoiceDocumentSchema = InvoiceDocumentSchemaV2 | InvoiceDocumentSchemaV3;
+export type InvoiceDocumentSchema = InvoiceDocumentSchemaV2 | InvoiceDocumentSchemaV3 | InvoiceDocumentSchemaTTV4;
 
 export interface InvoiceDocument {
   id?: string;

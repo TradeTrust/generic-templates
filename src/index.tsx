@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { FramedDocumentRenderer, fullAttachmentRenderer } from "@govtechsg/decentralized-renderer-react-components";
+import { FramedDocumentRenderer, fullAttachmentRenderer } from "@tradetrust/decentralized-renderer-react-components";
 import { registry } from "./templates";
 import "./main.css";
 

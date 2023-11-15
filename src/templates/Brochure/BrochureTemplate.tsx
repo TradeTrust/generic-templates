@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useEffect, useState } from "react";
-import { RedactableValue, TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
+import { RedactableValue, TemplateProps } from "@tradetrust/decentralized-renderer-react-components";
 import { getDocumentData } from "../../utils";
 import { Wrapper } from "../../core/Wrapper";
 import { BrochureSchema, BrochureDocument } from "./types";
