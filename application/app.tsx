@@ -1,4 +1,8 @@
-import { FrameActions, FrameConnector, HostActionsHandler } from "@tradetrust-tt/decentralized-renderer-react-components";
+import {
+  FrameActions,
+  FrameConnector,
+  HostActionsHandler,
+} from "@tradetrust-tt/decentralized-renderer-react-components";
 import React, { useCallback, useEffect, useState } from "react";
 
 interface AppProps {
