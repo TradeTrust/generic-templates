@@ -1,4 +1,4 @@
-import { v2 } from "@tradetrust/open-attestation";
+import { v2 } from "@tradetrust-tt/tradetrust";
 
 interface CertificateOfNonManipulation extends v2.OpenAttestationDocument {
   recipient?: {

@@ -1,4 +1,4 @@
-import { OAv4 as v4 } from "@tradetrust/open-attestation";
+import { OAv4 as v4 } from "@tradetrust-tt/tradetrust";
 import { BrochureSchema } from "./types";
 
 export const BrochureSampleV4: BrochureSchema = {

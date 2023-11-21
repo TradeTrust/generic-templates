@@ -1,4 +1,4 @@
-import { v2 } from "@tradetrust/open-attestation";
+import { v2 } from "@tradetrust-tt/tradetrust";
 import { firstSignatoryAuthentication, secondSignatoryAuthentication } from "../../core/Signatures";
 import { SimpleCooDocumentSchemaV2 } from "./types";
 

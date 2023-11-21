@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { RedactableValue, TemplateProps } from "@tradetrust/decentralized-renderer-react-components";
+import { RedactableValue, TemplateProps } from "@tradetrust-tt/decentralized-renderer-react-components";
 import { format } from "date-fns";
 import React, { FunctionComponent, useState } from "react";
 import { DocumentQrCode } from "../../core/DocumentQrCode";

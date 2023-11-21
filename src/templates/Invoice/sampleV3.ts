@@ -1,4 +1,4 @@
-import { v3 } from "@tradetrust/open-attestation";
+import { v3 } from "@tradetrust-tt/tradetrust";
 import { InvoiceDocumentSchemaV3 } from "./types";
 
 export const InvoiceSampleV3: InvoiceDocumentSchemaV3 = {
