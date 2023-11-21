@@ -1,4 +1,4 @@
-import { v2 } from "@tradetrust/open-attestation";
+import { v2 } from "@tradetrust-tt/tradetrust";
 import { ChaftaCooDocumentSchemaV2 } from "./types";
 
 export const ChaftaCooSampleV2: ChaftaCooDocumentSchemaV2 = {

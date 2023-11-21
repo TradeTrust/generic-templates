@@ -1,4 +1,4 @@
-import { v2, v3, TTv4 } from "@tradetrust/open-attestation";
+import { v2, v3, TTv4 } from "@tradetrust-tt/tradetrust";
 
 export type InvoiceDocumentSchemaV2 = v2.OpenAttestationDocument & InvoiceDocument;
 

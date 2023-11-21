@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
-import { utils, wrapDocument } from "@tradetrust/open-attestation";
+import { utils, wrapDocument } from "@tradetrust-tt/tradetrust";
 import { BillOfLadingCarrierTemplate } from "./BillOfLadingCarrierTemplate";
 import { BillOfLadingCarrierSampleV2 } from "./sampleV2";
 

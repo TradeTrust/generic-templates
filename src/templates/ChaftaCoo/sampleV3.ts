@@ -1,4 +1,4 @@
-import { v3 } from "@tradetrust/open-attestation";
+import { v3 } from "@tradetrust-tt/tradetrust";
 import { ChaftaCooDocumentSchemaV3 } from "./types";
 
 export const ChaftaCooSampleV3: ChaftaCooDocumentSchemaV3 = {

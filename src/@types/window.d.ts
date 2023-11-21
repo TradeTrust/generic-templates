@@ -1,4 +1,4 @@
-import { HostActions } from "@tradetrust/decentralized-renderer-react-components";
+import { HostActions } from "@tradetrust-tt/decentralized-renderer-react-components";
 // for test cafe
 declare global {
   interface Window {

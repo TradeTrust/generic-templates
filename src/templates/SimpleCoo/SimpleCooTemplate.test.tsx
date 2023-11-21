@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
-import { utils, wrapDocument } from "@tradetrust/open-attestation";
+import { utils, wrapDocument } from "@tradetrust-tt/tradetrust";
 import { SimpleCooTemplate } from "./SimpleCooTemplate";
 import { SimpleCooSampleV2 } from "./sampleV2";
 import { SimpleCooSampleV3 } from "./sampleV3";

@@ -1,4 +1,4 @@
-import { v2 } from "@tradetrust/open-attestation";
+import { v2 } from "@tradetrust-tt/tradetrust";
 import { CoveringLetterSchemaV2 } from "./types";
 import logo from "/static/images/logo-dbs.png?inline";
 

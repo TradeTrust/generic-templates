@@ -1,4 +1,4 @@
-import { v2 } from "@tradetrust/open-attestation";
+import { v2 } from "@tradetrust-tt/tradetrust";
 
 export interface BillOfLadingGeneric extends v2.OpenAttestationDocument {
   blNumber: string;

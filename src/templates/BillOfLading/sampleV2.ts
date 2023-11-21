@@ -1,4 +1,4 @@
-import { v2 } from "@tradetrust/open-attestation";
+import { v2 } from "@tradetrust-tt/tradetrust";
 import { BillOfLadingSchemaV2 } from "./types";
 
 export const BillOfLadingSampleV2: BillOfLadingSchemaV2 = {

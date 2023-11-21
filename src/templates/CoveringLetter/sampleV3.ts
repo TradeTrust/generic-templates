@@ -1,4 +1,4 @@
-import { v3 } from "@tradetrust/open-attestation";
+import { v3 } from "@tradetrust-tt/tradetrust";
 import { CoveringLetterSchemaV3 } from "./types";
 
 export const CoveringLetterSampleV3: CoveringLetterSchemaV3 = {

@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { TemplateProps } from "@tradetrust/decentralized-renderer-react-components";
+import { TemplateProps } from "@tradetrust-tt/decentralized-renderer-react-components";
 import styled from "@emotion/styled";
 import { XmlRendererFileInterface } from "./typesFile";
 import { XmlRendererInterface } from "./typesData";
