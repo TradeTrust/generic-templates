@@ -8,9 +8,9 @@ export type WarehouseReceiptSchemaV3 = v3.OpenAttestationDocument & {
 export type WarehouseReceiptSchema = WarehouseReceiptSchemaV2 | WarehouseReceiptSchemaV3;
 
 export interface WarehouseReceiptDocument {
-  logo?: string,
-  spl?: string,
-  warehouseReceiptDetails?: WarehouseReceiptDetails,
+  logo?: string;
+  spl?: string;
+  warehouseReceiptDetails?: WarehouseReceiptDetails;
   goods?: Goods[];
   totalNetWeight?: string;
   warehouseAddress?: string;
@@ -21,15 +21,15 @@ export interface WarehouseReceiptDocument {
 }
 
 interface WarehouseReceiptDetails {
-  warehouseReceipt?: string,
-  issuanceDate?: string,
-  ourRef?: string,
-  rentStartDate?: string,
-  yourRef?: string,
-  commodity?: string,
-  documentType?: string,
-  order?: string,
-  account?: string,
+  warehouseReceipt?: string;
+  issuanceDate?: string;
+  ourRef?: string;
+  rentStartDate?: string;
+  yourRef?: string;
+  commodity?: string;
+  documentType?: string;
+  order?: string;
+  account?: string;
 }
 
 interface Goods {

@@ -9,7 +9,8 @@ const HeaderSection = (document: WarehouseReceiptDocument): JSX.Element => {
   return (
     <div className="flex justify-end items-end">
       <p>
-        <strong>SPL </strong>{spl}
+        <strong>SPL </strong>
+        {spl}
       </p>
     </div>
   );
@@ -35,9 +36,7 @@ const WarehouseReceiptDetailsSection = (document: WarehouseReceiptDocument): JSX
           </div>
         </div>
         <div className="w-1/2 border-black border">
-          <div className="p-2">
-            {warehouseReceiptDetails?.warehouseReceipt}
-          </div>
+          <div className="p-2">{warehouseReceiptDetails?.warehouseReceipt}</div>
         </div>
       </div>
       <div className="flex">
@@ -47,9 +46,7 @@ const WarehouseReceiptDetailsSection = (document: WarehouseReceiptDocument): JSX
           </div>
         </div>
         <div className="w-1/4 border-black border">
-          <div className="p-2">
-            {warehouseReceiptDetails?.issuanceDate}
-          </div>
+          <div className="p-2">{warehouseReceiptDetails?.issuanceDate}</div>
         </div>
         <div className="w-1/4 border-black border">
           <div className="p-2">
@@ -57,9 +54,7 @@ const WarehouseReceiptDetailsSection = (document: WarehouseReceiptDocument): JSX
           </div>
         </div>
         <div className="w-1/4 border-black border">
-          <div className="p-2">
-            {warehouseReceiptDetails?.ourRef}
-          </div>
+          <div className="p-2">{warehouseReceiptDetails?.ourRef}</div>
         </div>
       </div>
       <div className="flex">
@@ -69,9 +64,7 @@ const WarehouseReceiptDetailsSection = (document: WarehouseReceiptDocument): JSX
           </div>
         </div>
         <div className="w-1/4 border-black border">
-          <div className="p-2">
-            {warehouseReceiptDetails?.rentStartDate}
-          </div>
+          <div className="p-2">{warehouseReceiptDetails?.rentStartDate}</div>
         </div>
         <div className="w-1/4 border-black border">
           <div className="p-2">
@@ -79,9 +72,7 @@ const WarehouseReceiptDetailsSection = (document: WarehouseReceiptDocument): JSX
           </div>
         </div>
         <div className="w-1/4 border-black border">
-          <div className="p-2">
-            {warehouseReceiptDetails?.yourRef}
-          </div>
+          <div className="p-2">{warehouseReceiptDetails?.yourRef}</div>
         </div>
       </div>
       <div className="flex">
@@ -91,9 +82,7 @@ const WarehouseReceiptDetailsSection = (document: WarehouseReceiptDocument): JSX
           </div>
         </div>
         <div className="w-1/4 border-black border">
-          <div className="p-2">
-            {warehouseReceiptDetails?.commodity}
-          </div>
+          <div className="p-2">{warehouseReceiptDetails?.commodity}</div>
         </div>
         <div className="w-1/4 border-black border">
           <div className="p-2">
@@ -101,16 +90,21 @@ const WarehouseReceiptDetailsSection = (document: WarehouseReceiptDocument): JSX
           </div>
         </div>
         <div className="w-1/4 border-black border">
-          <div className="p-2">
-            {warehouseReceiptDetails?.documentType}
-          </div>
+          <div className="p-2">{warehouseReceiptDetails?.documentType}</div>
         </div>
       </div>
       <div className="flex">
         <div className="w-full border-black border">
           <div className="p-2">
-            <p><strong>TO THE ORDER OF: </strong>{warehouseReceiptDetails?.order}</p>
-            <p><strong>FOR THE ACCOUNT OF: </strong>{warehouseReceiptDetails?.account}</p>
+            <p>
+              <strong>TO THE ORDER OF: </strong>
+              {warehouseReceiptDetails?.order}
+            </p>
+
+            <p>
+              <strong>FOR THE ACCOUNT OF: </strong>
+              {warehouseReceiptDetails?.account}
+            </p>
           </div>
         </div>
       </div>
@@ -163,34 +157,22 @@ const GoodsSection = (document: WarehouseReceiptDocument): JSX.Element => {
       </div>
       <div className="flex">
         <div className="w-5/12 border-black border divide-y">
-          <div className="p-2">
-            {renderedBrand}
-          </div>
+          <div className="p-2">{renderedBrand}</div>
         </div>
         <div className="w-1/12 border-black border">
-          <div className="p-2">
-            {renderedPiles}
-          </div>
+          <div className="p-2">{renderedPiles}</div>
         </div>
         <div className="w-1/12 border-black border">
-          <div className="p-2">
-            {renderedBundles}
-          </div>
+          <div className="p-2">{renderedBundles}</div>
         </div>
         <div className="w-1/12 border-black border">
-          <div className="p-2">
-            {renderedPieces}
-          </div>
+          <div className="p-2">{renderedPieces}</div>
         </div>
         <div className="w-2/12 border-black border">
-          <div className="p-2">
-            {renderedNetWeight}
-          </div>
+          <div className="p-2">{renderedNetWeight}</div>
         </div>
         <div className="w-2/12 border-black border">
-          <div className="p-2">
-            {renderedGrossWeight}
-          </div>
+          <div className="p-2">{renderedGrossWeight}</div>
         </div>
       </div>
       <div className="flex">
@@ -200,9 +182,7 @@ const GoodsSection = (document: WarehouseReceiptDocument): JSX.Element => {
           </div>
         </div>
         <div className="w-5/12 border-black border">
-          <div className="p-2">
-            {totalNetWeight}
-          </div>
+          <div className="p-2">{totalNetWeight}</div>
         </div>
       </div>
     </div>
@@ -220,9 +200,7 @@ const WarehouseAddressSection = (document: WarehouseReceiptDocument): JSX.Elemen
           </div>
         </div>
         <div className="w-3/4 border-black border">
-          <div className="p-2">
-            {warehouseAddress}
-          </div>
+          <div className="p-2">{warehouseAddress}</div>
         </div>
       </div>
     </div>
@@ -240,9 +218,7 @@ const MarkingsSection = (document: WarehouseReceiptDocument): JSX.Element => {
           </div>
         </div>
         <div className="w-3/4 border-black border">
-          <div className="p-2">
-            {markings}
-          </div>
+          <div className="p-2">{markings}</div>
         </div>
       </div>
     </div>
@@ -254,9 +230,7 @@ const StorageAndServicesTermsSection = (document: WarehouseReceiptDocument): JSX
   return (
     <div className="flex">
       <div className="p-2">
-        <div style={{ fontSize: "0.8em" }}>
-          {storageAndServicesTerms}
-        </div>
+        <div style={{ fontSize: "0.8em" }}>{storageAndServicesTerms}</div>
       </div>
     </div>
   );
@@ -266,7 +240,8 @@ const SignatureSection = (document: WarehouseReceiptDocument): JSX.Element => {
   const { signature } = document;
   return (
     <div className="flex justify-center items-center">
-      <strong>Signature of Issuer: </strong> {signature && <img data-testid="signature" className="w-[150px]" src={signature} />}
+      <strong>Signature of Issuer: </strong>
+      {signature && <img data-testid="signature" className="w-[150px]" src={signature} />}
     </div>
   );
 };
@@ -276,9 +251,7 @@ const TermsAndConditionsSection = (document: WarehouseReceiptDocument): JSX.Elem
   return (
     <div className="flex">
       <div className="p-2">
-        <div style={{ fontSize: "0.8em" }}>
-          {termsAndConditions}
-        </div>
+        <div style={{ fontSize: "0.8em" }}>{termsAndConditions}</div>
       </div>
     </div>
   );

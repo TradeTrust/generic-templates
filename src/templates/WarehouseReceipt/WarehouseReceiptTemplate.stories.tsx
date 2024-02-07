@@ -11,9 +11,9 @@ export default {
 };
 
 export const WarehouseReceiptEmpty: FunctionComponent = () => {
-  return <WarehouseReceiptTemplate document={{} as any} handleObfuscation={() => { }} />; // when empty, visually should not show any dangling values
+  return <WarehouseReceiptTemplate document={{} as any} handleObfuscation={() => {}} />; // when empty, visually should not show any dangling values
 };
 
 export const WarehouseReceiptV2: FunctionComponent = () => {
-  return <WarehouseReceiptTemplate document={WarehouseReceiptSampleV2} handleObfuscation={() => { }} />;
+  return <WarehouseReceiptTemplate document={WarehouseReceiptSampleV2} handleObfuscation={() => {}} />;
 };

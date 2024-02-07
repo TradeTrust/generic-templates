@@ -32,26 +32,30 @@ export const WarehouseReceiptSampleV2: WarehouseReceiptSchemaV2 = {
     order: "AAA, Singapore Branch",
     account: "ABC Pte Ltd",
   },
-  goods: [{
-    brand: "AAA / Full Plate Cathode",
-    piles: "10",
-    bundles: "100",
-    pieces: "/",
-    netWeight: "249.663",
-    grossWeight: "249.913",
-  },
-  {
-    brand: "BBB / Full Plate Cathode",
-    piles: "20",
-    bundles: "200",
-    pieces: "/",
-    netWeight: "349.663",
-    grossWeight: "349.913",
-  }],
+  goods: [
+    {
+      brand: "AAA / Full Plate Cathode",
+      piles: "10",
+      bundles: "100",
+      pieces: "/",
+      netWeight: "249.663",
+      grossWeight: "249.913",
+    },
+    {
+      brand: "BBB / Full Plate Cathode",
+      piles: "20",
+      bundles: "200",
+      pieces: "/",
+      netWeight: "349.663",
+      grossWeight: "349.913",
+    },
+  ],
   totalNetWeight: "599.326",
   warehouseAddress: "10 Anson Road, Singapore",
   markings: "Commodity: Copper Cathodes",
-  storageAndServicesTerms: "Storage And Services Terms\n1. Lorem ipsum dolor sit, amet consectetur adipisicing elit. At ad rem quae quis, dolorem dicta mollitia accusamus? Reprehenderit et veniam deleniti! Provident et saepe in, excepturi possimus blanditiis consectetur rem.\n2. Lorem ipsum dolor sit, amet consectetur adipisicing elit. At ad rem quae quis, dolorem dicta mollitia accusamus? Reprehenderit et veniam deleniti! Provident et saepe in, excepturi possimus blanditiis consectetur rem.\n3. Lorem ipsum dolor sit, amet consectetur adipisicing elit. At ad rem quae quis, dolorem dicta mollitia accusamus? Reprehenderit et veniam deleniti! Provident et saepe in, excepturi possimus blanditiis consectetur rem.\n4. Lorem ipsum dolor sit, amet consectetur adipisicing elit. At ad rem quae quis, dolorem dicta mollitia accusamus? Reprehenderit et veniam deleniti! Provident et saepe in, excepturi possimus blanditiis consectetur rem.\n5. Lorem ipsum dolor sit, amet consectetur adipisicing elit. At ad rem quae quis, dolorem dicta mollitia accusamus? Reprehenderit et veniam deleniti! Provident et saepe in, excepturi possimus blanditiis consectetur rem.\n6. Lorem ipsum dolor sit, amet consectetur adipisicing elit. At ad rem quae quis, dolorem dicta mollitia accusamus? Reprehenderit et veniam deleniti! Provident et saepe in, excepturi possimus blanditiis consectetur rem.\n7. Lorem ipsum dolor sit, amet consectetur adipisicing elit. At ad rem quae quis, dolorem dicta mollitia accusamus? Reprehenderit et veniam deleniti! Provident et saepe in, excepturi possimus blanditiis consectetur rem.\n8. Lorem ipsum dolor sit, amet consectetur adipisicing elit. At ad rem quae quis, dolorem dicta mollitia accusamus? Reprehenderit et veniam deleniti! Provident et saepe in, excepturi possimus blanditiis consectetur rem.\n\n",
+  storageAndServicesTerms:
+    "Storage And Services Terms\n1. Lorem ipsum dolor sit, amet consectetur adipisicing elit. At ad rem quae quis, dolorem dicta mollitia accusamus? Reprehenderit et veniam deleniti! Provident et saepe in, excepturi possimus blanditiis consectetur rem.\n2. Lorem ipsum dolor sit, amet consectetur adipisicing elit. At ad rem quae quis, dolorem dicta mollitia accusamus? Reprehenderit et veniam deleniti! Provident et saepe in, excepturi possimus blanditiis consectetur rem.\n3. Lorem ipsum dolor sit, amet consectetur adipisicing elit. At ad rem quae quis, dolorem dicta mollitia accusamus? Reprehenderit et veniam deleniti! Provident et saepe in, excepturi possimus blanditiis consectetur rem.\n4. Lorem ipsum dolor sit, amet consectetur adipisicing elit. At ad rem quae quis, dolorem dicta mollitia accusamus? Reprehenderit et veniam deleniti! Provident et saepe in, excepturi possimus blanditiis consectetur rem.\n5. Lorem ipsum dolor sit, amet consectetur adipisicing elit. At ad rem quae quis, dolorem dicta mollitia accusamus? Reprehenderit et veniam deleniti! Provident et saepe in, excepturi possimus blanditiis consectetur rem.\n6. Lorem ipsum dolor sit, amet consectetur adipisicing elit. At ad rem quae quis, dolorem dicta mollitia accusamus? Reprehenderit et veniam deleniti! Provident et saepe in, excepturi possimus blanditiis consectetur rem.\n7. Lorem ipsum dolor sit, amet consectetur adipisicing elit. At ad rem quae quis, dolorem dicta mollitia accusamus? Reprehenderit et veniam deleniti! Provident et saepe in, excepturi possimus blanditiis consectetur rem.\n8. Lorem ipsum dolor sit, amet consectetur adipisicing elit. At ad rem quae quis, dolorem dicta mollitia accusamus? Reprehenderit et veniam deleniti! Provident et saepe in, excepturi possimus blanditiis consectetur rem.\n\n",
   signature: randomSignature,
-  termsAndConditions: "Terms And Conditions\n1. Lorem ipsum dolor sit, amet consectetur adipisicing elit. At ad rem quae quis, dolorem dicta mollitia accusamus? Reprehenderit et veniam deleniti! Provident et saepe in, excepturi possimus blanditiis consectetur rem.\n2. Lorem ipsum dolor sit, amet consectetur adipisicing elit. At ad rem quae quis, dolorem dicta mollitia accusamus? Reprehenderit et veniam deleniti! Provident et saepe in, excepturi possimus blanditiis consectetur rem.\n3. Lorem ipsum dolor sit, amet consectetur adipisicing elit. At ad rem quae quis, dolorem dicta mollitia accusamus? Reprehenderit et veniam deleniti! Provident et saepe in, excepturi possimus blanditiis consectetur rem.\n4. Lorem ipsum dolor sit, amet consectetur adipisicing elit. At ad rem quae quis, dolorem dicta mollitia accusamus? Reprehenderit et veniam deleniti! Provident et saepe in, excepturi possimus blanditiis consectetur rem.\n5. Lorem ipsum dolor sit, amet consectetur adipisicing elit. At ad rem quae quis, dolorem dicta mollitia accusamus? Reprehenderit et veniam deleniti! Provident et saepe in, excepturi possimus blanditiis consectetur rem.\n6. Lorem ipsum dolor sit, amet consectetur adipisicing elit. At ad rem quae quis, dolorem dicta mollitia accusamus? Reprehenderit et veniam deleniti! Provident et saepe in, excepturi possimus blanditiis consectetur rem.\n7. Lorem ipsum dolor sit, amet consectetur adipisicing elit. At ad rem quae quis, dolorem dicta mollitia accusamus? Reprehenderit et veniam deleniti! Provident et saepe in, excepturi possimus blanditiis consectetur rem.\n8. Lorem ipsum dolor sit, amet consectetur adipisicing elit. At ad rem quae quis, dolorem dicta mollitia accusamus? Reprehenderit et veniam deleniti! Provident et saepe in, excepturi possimus blanditiis consectetur rem.\n\n",
-}
+  termsAndConditions:
+    "Terms And Conditions\n1. Lorem ipsum dolor sit, amet consectetur adipisicing elit. At ad rem quae quis, dolorem dicta mollitia accusamus? Reprehenderit et veniam deleniti! Provident et saepe in, excepturi possimus blanditiis consectetur rem.\n2. Lorem ipsum dolor sit, amet consectetur adipisicing elit. At ad rem quae quis, dolorem dicta mollitia accusamus? Reprehenderit et veniam deleniti! Provident et saepe in, excepturi possimus blanditiis consectetur rem.\n3. Lorem ipsum dolor sit, amet consectetur adipisicing elit. At ad rem quae quis, dolorem dicta mollitia accusamus? Reprehenderit et veniam deleniti! Provident et saepe in, excepturi possimus blanditiis consectetur rem.\n4. Lorem ipsum dolor sit, amet consectetur adipisicing elit. At ad rem quae quis, dolorem dicta mollitia accusamus? Reprehenderit et veniam deleniti! Provident et saepe in, excepturi possimus blanditiis consectetur rem.\n5. Lorem ipsum dolor sit, amet consectetur adipisicing elit. At ad rem quae quis, dolorem dicta mollitia accusamus? Reprehenderit et veniam deleniti! Provident et saepe in, excepturi possimus blanditiis consectetur rem.\n6. Lorem ipsum dolor sit, amet consectetur adipisicing elit. At ad rem quae quis, dolorem dicta mollitia accusamus? Reprehenderit et veniam deleniti! Provident et saepe in, excepturi possimus blanditiis consectetur rem.\n7. Lorem ipsum dolor sit, amet consectetur adipisicing elit. At ad rem quae quis, dolorem dicta mollitia accusamus? Reprehenderit et veniam deleniti! Provident et saepe in, excepturi possimus blanditiis consectetur rem.\n8. Lorem ipsum dolor sit, amet consectetur adipisicing elit. At ad rem quae quis, dolorem dicta mollitia accusamus? Reprehenderit et veniam deleniti! Provident et saepe in, excepturi possimus blanditiis consectetur rem.\n\n",
+};
