@@ -21,6 +21,7 @@ import { SimpleCooSampleV3 } from "../src/templates/SimpleCoo/sampleV3";
 import { CertificateOfNonManipulationSampleV2 } from "../src/templates/CertificateOfNonManipulation/sampleV2";
 import { BrochureSampleV2 } from "../src/templates/Brochure/sampleV2";
 import { BrochureSampleV4 } from "../src/templates/Brochure/sampleV4";
+import { WarehouseReceiptSampleV2 } from "../src/templates/WarehouseReceipt/sampleV2";
 import { App } from "./app";
 import "./main.css";
 
@@ -63,6 +64,7 @@ ReactDOM.render(
       },
       { name: "W3C Brochure V2", document: BrochureSampleV2 },
       { name: "W3C Brochure V4", document: BrochureSampleV4 },
+      { name: "Warehouse Receipt V2", document: WarehouseReceiptSampleV2 },
     ]}
   />,
   document.getElementById("root")
