@@ -124,64 +124,64 @@ const GoodsSection = (document: WarehouseReceiptDocument): JSX.Element => {
   return (
     <div className="border-black border">
       <div className="flex">
-        <div className="w-5/12 border-black border">
+        <div style={{ width: "36%" }} className="border-black border">
           <div className="p-2">
             <strong>Brand / Shape</strong>
           </div>
         </div>
-        <div className="w-1/12 border-black border">
+        <div style={{ width: "10%" }} className="border-black border">
           <div className="p-2">
             <strong>Piles</strong>
           </div>
         </div>
-        <div className="w-1/12 border-black border">
+        <div style={{ width: "14%" }} className="border-black border">
           <div className="p-2">
             <strong>Bundles</strong>
           </div>
         </div>
-        <div className="w-1/12 border-black border">
+        <div style={{ width: "12%" }} className="border-black border">
           <div className="p-2">
             <strong>Pieces</strong>
           </div>
         </div>
-        <div className="w-2/12 border-black border">
+        <div style={{ width: "14%" }} className="border-black border">
           <div className="p-2">
             <strong>Net Weight (MT)</strong>
           </div>
         </div>
-        <div className="w-2/12 border-black border">
+        <div style={{ width: "14%" }} className="border-black border">
           <div className="p-2">
             <strong>Gross Weight (MT)</strong>
           </div>
         </div>
       </div>
       <div className="flex">
-        <div className="w-5/12 border-black border divide-y">
+        <div style={{ width: "36%" }} className="border-black border">
           <div className="p-2">{renderedBrand}</div>
         </div>
-        <div className="w-1/12 border-black border">
+        <div style={{ width: "10%" }} className="border-black border">
           <div className="p-2">{renderedPiles}</div>
         </div>
-        <div className="w-1/12 border-black border">
+        <div style={{ width: "14%" }} className="border-black border">
           <div className="p-2">{renderedBundles}</div>
         </div>
-        <div className="w-1/12 border-black border">
+        <div style={{ width: "12%" }} className="border-black border">
           <div className="p-2">{renderedPieces}</div>
         </div>
-        <div className="w-2/12 border-black border">
+        <div style={{ width: "14%" }} className="border-black border">
           <div className="p-2">{renderedNetWeight}</div>
         </div>
-        <div className="w-2/12 border-black border">
+        <div style={{ width: "14%" }} className="border-black border">
           <div className="p-2">{renderedGrossWeight}</div>
         </div>
       </div>
       <div className="flex">
-        <div className="w-7/12 border-black border">
+        <div style={{ width: "60%" }} className="border-black border">
           <div className="p-2">
             <strong>Total Net Weight (MTs)</strong>
           </div>
         </div>
-        <div className="w-5/12 border-black border">
+        <div style={{ width: "40%" }} className="border-black border">
           <div className="p-2">{totalNetWeight}</div>
         </div>
       </div>
