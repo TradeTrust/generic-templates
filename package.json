@@ -34,7 +34,7 @@
     "test:watch": "npm run test -- --watch"
   },
   "dependencies": {
-    "@emotion/react": "^11.8.1",
+    "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.8.1",
     "@tradetrust-tt/decentralized-renderer-react-components": "3.13.0-alpha.3",
     "@tradetrust-tt/tradetrust": "6.8.0-alpha.4",
