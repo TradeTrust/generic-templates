@@ -57,7 +57,7 @@ export const BrochurePage: React.FC<BrochurePageProps> = ({
           </div>
           {footnote && (
             <>
-              <a className="text-sm text-zinc-500 break-all" href={footnote} target="_blank" rel="noreferrer">
+              <a className="text-sm text-zinc-500 break-all" href={footnote} target="_blank" rel="noopener noreferrer">
                 <sup className="text-sky-500">1</sup>
                 {footnote}
               </a>
@@ -85,7 +85,7 @@ export const ParagraphsWithLinks: React.FC<{
       <>
         {links.map((item, i) => (
           <React.Fragment key={i}>
-            <a className={linkClassNames} href={item.url} target="_blank" rel="noreferrer">
+            <a className={linkClassNames} href={item.url} target="_blank" rel="noopener noreferrer">
               {item.title ? item.title : item.url}
             </a>
             {bodies[i] && <span>{bodies[i]}</span>}
@@ -100,7 +100,7 @@ export const ParagraphsWithLinks: React.FC<{
           <React.Fragment key={i}>
             <span>{item}</span>
             {links[i] && (
-              <a className={linkClassNames} href={links[i].url} target="_blank" rel="noreferrer">
+              <a className={linkClassNames} href={links[i].url} target="_blank" rel="noopener noreferrer">
                 {links[i].title ? links[i].title : links[i].url}
               </a>
             )}
@@ -166,7 +166,7 @@ const Page1: React.FC<{ document: BrochureDocument; isMobile: boolean }> = ({ do
         </div>
         {page1Elements}
         <div className="my-6">
-          <a className="text-sm text-zinc-500 break-all" href={footnote} target="_blank" rel="noreferrer">
+          <a className="text-sm text-zinc-500 break-all" href={footnote} target="_blank" rel="noopener noreferrer">
             <sup className="text-sky-500">1</sup>
             {footnote}
           </a>
@@ -388,7 +388,7 @@ const Page4: React.FC<{
                     className="text-white"
                     href={`${link.includes("@") ? `mailto:${link}` : `https://${link}`}`}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                   >
                     {link}
                   </a>
@@ -419,7 +419,7 @@ const Page4: React.FC<{
                         className="text-white"
                         href={`${link.includes("@") ? `mailto:${link}` : `https://${link}`}`}
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
                       >
                         {link}
                       </a>
