@@ -1,9 +1,10 @@
 const path = require("path");
 const toPath = (_path) => path.join(process.cwd(), _path);
+import custom from "../webpack.config.js";
 
 module.exports = {
   stories: ["../src/**/*.stories.@(tsx)"],
-  addons: ["@storybook/addon-essentials"],
+  addons: ["@storybook/addon-essentials", "@storybook/addon-webpack5-compiler-babel"],
   webpackFinal: (config) => {
     return {
       ...config,
@@ -16,7 +17,20 @@ module.exports = {
           "@emotion/styled": toPath("node_modules/@emotion/styled"),
           "emotion-theming": toPath("node_modules/@emotion/react"),
         },
+        fallback: {
+          ...config.resolve.fallback,
+          ...custom.resolve.fallback,
+        }
       },
     };
+  },
+
+  framework: {
+    name: "@storybook/react-webpack5",
+    options: {}
+  },
+
+  docs: {
+    autodocs: true
   },
 };
