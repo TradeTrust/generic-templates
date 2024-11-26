@@ -1,6 +1,5 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
-const BrotliPlugin = require("brotli-webpack-plugin");
 const webpack = require("webpack");
 const path = require("path");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
@@ -55,7 +54,6 @@ module.exports = {
     ...(IS_PROD
       ? [
           new CompressionPlugin({ test: /\.(js|css|html|svg)$/ }),
-          new BrotliPlugin({ test: /\.(js|css|html|svg)$/ }),
           new CopyWebpackPlugin({
             patterns: [{ from: "static/images", to: "static/images" }],
           }),
