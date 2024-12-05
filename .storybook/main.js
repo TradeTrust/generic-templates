@@ -20,17 +20,17 @@ module.exports = {
         fallback: {
           ...config.resolve.fallback,
           ...custom.resolve.fallback,
-        }
+        },
       },
     };
   },
 
   framework: {
     name: "@storybook/react-webpack5",
-    options: {}
+    options: {},
   },
 
   docs: {
-    autodocs: true
+    autodocs: true,
   },
 };
