@@ -46,6 +46,12 @@ module.exports = {
     new webpack.ProvidePlugin({
       Buffer: ["buffer", "Buffer"],
     }),
+    new webpack.ProvidePlugin({
+      os: "os-browserify/browser",
+    }),
+    new webpack.ProvidePlugin({
+      process: "process/browser",
+    }),
     new webpack.EnvironmentPlugin(["NODE_ENV"]),
     new HtmlWebpackPlugin({
       filename: "index.html",
@@ -53,11 +59,11 @@ module.exports = {
     }),
     ...(IS_PROD
       ? [
-          new CompressionPlugin({ test: /\.(js|css|html|svg)$/ }),
-          new CopyWebpackPlugin({
-            patterns: [{ from: "static/images", to: "static/images" }],
-          }),
-        ]
+        new CompressionPlugin({ test: /\.(js|css|html|svg)$/ }),
+        new CopyWebpackPlugin({
+          patterns: [{ from: "static/images", to: "static/images" }],
+        }),
+      ]
       : []),
   ],
   optimization: {
@@ -83,12 +89,19 @@ module.exports = {
     modules: ["node_modules", path.resolve(__dirname, "src")],
     alias: {
       react: path.resolve("./node_modules/react"),
+      process: "process/browser",
     },
     fallback: {
-      crypto: require.resolve("crypto-browserify"),
+      vm: require.resolve("vm-browserify"),
       stream: require.resolve("stream-browserify"),
-      timers: require.resolve("timers-browserify"),
+      os: require.resolve("os-browserify/browser"),
+      crypto: require.resolve("crypto-browserify"),
+      path: require.resolve("path-browserify"),
       buffer: require.resolve("buffer"),
+      timers: require.resolve("timers-browserify"),
+      "process/browser": require.resolve("process/browser"),
+      util: require.resolve("util/"),
+      events: require.resolve("events/"),
     },
   },
   bail: true,
