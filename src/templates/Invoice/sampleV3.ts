@@ -5,7 +5,7 @@ export const InvoiceSampleV3: InvoiceDocumentSchemaV3 = {
   "@context": [
     "https://www.w3.org/2018/credentials/v1",
     "https://schemata.openattestation.com/com/openattestation/1.0/OpenAttestation.v3.json",
-    "https://schemata.openattestation.com/io/tradetrust/Invoice/1.0/invoice-context.json",
+    "https://schemata.openattestation.com/io/tradetrust/invoice/1.0/invoice-context.json",
   ],
   type: ["VerifiableCredential", "OpenAttestationCredential"],
   issuanceDate: "2010-01-01T19:23:24Z",
