@@ -1,5 +1,8 @@
 import React from "react";
-import { addDecorator } from "@storybook/react";
 import "../src/main.css";
 
-addDecorator((storyFn) => <>{storyFn()}</>);
+const preview = {
+  decorators: [(storyFn) => <>{storyFn()}</>],
+};
+
+export default preview;
