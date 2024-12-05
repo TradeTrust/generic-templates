@@ -59,11 +59,11 @@ module.exports = {
     }),
     ...(IS_PROD
       ? [
-        new CompressionPlugin({ test: /\.(js|css|html|svg)$/ }),
-        new CopyWebpackPlugin({
-          patterns: [{ from: "static/images", to: "static/images" }],
-        }),
-      ]
+          new CompressionPlugin({ test: /\.(js|css|html|svg)$/ }),
+          new CopyWebpackPlugin({
+            patterns: [{ from: "static/images", to: "static/images" }],
+          }),
+        ]
       : []),
   ],
   optimization: {
