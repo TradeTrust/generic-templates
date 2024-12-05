@@ -37,7 +37,8 @@
     "react-hooks/exhaustive-deps": "error",
     "react-hooks/rules-of-hooks": "error",
     "react/prop-types": "off",
-    "react/self-closing-comp": "error"
+    "react/self-closing-comp": "error",
+    "react/no-unknown-property": ["error", { "ignore": ["css"] }]
   },
   "overrides": [
     {
@@ -55,13 +56,14 @@
       "files": ["*.test.ts", "*.test.tsx"],
       "extends": ["plugin:jest/all"],
       "rules": {
-        "jest/prefer-expect-assertions": "off"
+        "jest/prefer-expect-assertions": "off",
+        "jest/max-expects": "off"
       }
     },
     {
       "files": ["*.spec.ts", "*.spec.tsx"],
-      "plugins": ["testcafe-community"],
-      "extends": "plugin:testcafe-community/recommended"
+      "plugins": ["testcafe"],
+      "extends": "plugin:testcafe/recommended"
     }
   ]
 }
