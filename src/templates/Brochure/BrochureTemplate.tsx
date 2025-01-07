@@ -10,7 +10,6 @@ import oaLogo from "/static/images/logo-oa.png";
 import govtechCurve from "/static/images/pattern-waves-vertical.png";
 import QRCode from "qrcode.react";
 import { IconRedact, PrivacyFilter } from "../../core/PrivacyFilter";
-import { utils } from "@tradetrust-tt/tradetrust";
 
 export const BrochureHeader: React.FC = () => (
   <>
