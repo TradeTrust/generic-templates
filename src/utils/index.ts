@@ -1,7 +1,7 @@
-import { OpenAttestationDocument, utils } from "@tradetrust-tt/tradetrust";
+import { OpenAttestationDocument, isRawV3Document, vc } from "@trustvc/trustvc";
 
 export const getDocumentData = (document: OpenAttestationDocument): any => {
-  if (utils.isRawV3Document(document) || utils.isRawOAV4Document(document) || utils.isRawTTV4Document(document)) {
+  if (isRawV3Document(document) || vc.isSignedDocument(document)) {
     return document.credentialSubject;
   } else {
     return document;
