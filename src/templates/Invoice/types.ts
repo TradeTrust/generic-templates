@@ -1,4 +1,4 @@
-import { v2, v3, TTv4 } from "@tradetrust-tt/tradetrust";
+import { v2, v3 } from "@tradetrust-tt/tradetrust";
 
 export type InvoiceDocumentSchemaV2 = v2.OpenAttestationDocument & InvoiceDocument;
 
@@ -6,11 +6,7 @@ export type InvoiceDocumentSchemaV3 = v3.OpenAttestationDocument & {
   credentialSubject: InvoiceDocument;
 };
 
-export type InvoiceDocumentSchemaTTV4 = TTv4.TradeTrustDocument & {
-  credentialSubject: InvoiceDocument;
-};
-
-export type InvoiceDocumentSchema = InvoiceDocumentSchemaV2 | InvoiceDocumentSchemaV3 | InvoiceDocumentSchemaTTV4;
+export type InvoiceDocumentSchema = InvoiceDocumentSchemaV2 | InvoiceDocumentSchemaV3;
 
 export interface InvoiceDocument {
   id?: string;
