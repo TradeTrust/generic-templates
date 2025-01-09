@@ -1,12 +1,8 @@
-import { v2, OAv4 as v4 } from "@tradetrust-tt/tradetrust";
+import { v2 } from "@tradetrust-tt/tradetrust";
 
 export type BrochureSchemaV2 = v2.OpenAttestationDocument & BrochureDocument;
 
-export type BrochureSchemaV4 = v4.OpenAttestationDocument & {
-  credentialSubject: BrochureDocument;
-};
-
-export type BrochureSchema = BrochureSchemaV2 | BrochureSchemaV4;
+export type BrochureSchema = BrochureSchemaV2;
 
 interface content {
   subheader?: string;

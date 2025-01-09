@@ -10,7 +10,6 @@ import oaLogo from "/static/images/logo-oa.png";
 import govtechCurve from "/static/images/pattern-waves-vertical.png";
 import QRCode from "qrcode.react";
 import { IconRedact, PrivacyFilter } from "../../core/PrivacyFilter";
-import { utils } from "@tradetrust-tt/tradetrust";
 
 export const BrochureHeader: React.FC = () => (
   <>
@@ -448,7 +447,6 @@ const Page4: React.FC<{
 
 export const BrochureTemplate: FunctionComponent<TemplateProps<BrochureSchema>> = ({ document, handleObfuscation }) => {
   const documentData = getDocumentData(document) as BrochureDocument;
-  const isV4 = utils.isRawOAV4Document(document);
   const [editable, setEditable] = useState(false);
   const [width, setWidth] = useState<number>(window.innerWidth);
   const updateWidth = (): void => setWidth(window.innerWidth);
@@ -481,7 +479,7 @@ export const BrochureTemplate: FunctionComponent<TemplateProps<BrochureSchema>> 
           editable={editable}
           handleObfuscation={handleObfuscation}
           isMobile={isMobile(width)}
-          isV4={isV4}
+          isV4={false}
         />
       </div>
     </Wrapper>

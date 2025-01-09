@@ -41,6 +41,7 @@ module.exports = {
         use: ["style-loader", "css-loader"],
       },
     ],
+    exprContextCritical: false,
   },
   plugins: [
     new webpack.ProvidePlugin({

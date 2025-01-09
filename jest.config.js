@@ -5,6 +5,10 @@ module.exports = {
       "<rootDir>/__mocks__/fileMock.js",
     "\\.(css|less)$": "<rootDir>/__mocks__/fileMock.js",
     "\\.*?inline$": "<rootDir>/__mocks__/fileMock.js",
+    "@tradetrust-tt/tradetrust-utils/constants/network":
+      "<rootDir>/node_modules/@tradetrust-tt/tradetrust-utils/dist/cjs/constants/network.js",
+    "@tradetrust-tt/tradetrust-utils/constants/supportedChains":
+      "<rootDir>/node_modules/@tradetrust-tt/tradetrust-utils/dist/cjs/constants/supportedChains.js",
   },
   setupFilesAfterEnv: ["./jest.setup.ts"],
   testEnvironment: "jest-environment-jsdom",

@@ -6,3 +6,10 @@ import "@testing-library/jest-dom/extend-expect";
 
 // https://github.com/zpao/qrcode.react/issues/134
 jest.spyOn(HTMLCanvasElement.prototype, "getContext").mockImplementation();
+
+import { TextEncoder, TextDecoder } from "util";
+
+Object.assign(global, {
+  TextDecoder,
+  TextEncoder,
+});
