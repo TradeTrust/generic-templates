@@ -36,7 +36,7 @@
   "dependencies": {
     "@emotion/react": "^11.8.1",
     "@emotion/styled": "^11.8.1",
-    "@tradetrust-tt/decentralized-renderer-react-components": "^3.15.3",
+    "@tradetrust-tt/decentralized-renderer-react-components": "^3.15.4",
     "@tradetrust-tt/tradetrust": "6.10.0",
     "@tradetrust-tt/tradetrust-ui-components": "^3.2.1",
     "@trustvc/trustvc": "^1.1.3",
