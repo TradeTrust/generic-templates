@@ -83,7 +83,7 @@ module.exports = {
     compress: true,
     historyApiFallback: true,
     hot: true,
-    // port: 3000,
+    port: 3000,
   },
   resolve: {
     extensions: [".js", ".ts", ".tsx"],
