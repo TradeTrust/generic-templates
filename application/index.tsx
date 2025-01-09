@@ -13,14 +13,11 @@ import { CoveringLetterSampleV2malformed } from "../src/templates/CoveringLetter
 import { CoveringLetterSampleV3 } from "../src/templates/CoveringLetter/sampleV3";
 import { InvoiceSampleV2 } from "../src/templates/Invoice/sampleV2";
 import { InvoiceSampleV3 } from "../src/templates/Invoice/sampleV3";
-import { InvoiceSampleV4 } from "../src/templates/Invoice/sampleV4";
-import { InvoiceSampleIDVCV4 } from "../src/templates/Invoice/sampleIDVCV4";
 import { XMLRendererSampleData } from "../src/templates/XmlRenderer/sample";
 import { SimpleCooSampleV2 } from "../src/templates/SimpleCoo/sampleV2";
 import { SimpleCooSampleV3 } from "../src/templates/SimpleCoo/sampleV3";
 import { CertificateOfNonManipulationSampleV2 } from "../src/templates/CertificateOfNonManipulation/sampleV2";
 import { BrochureSampleV2 } from "../src/templates/Brochure/sampleV2";
-import { BrochureSampleV4 } from "../src/templates/Brochure/sampleV4";
 import { WarehouseReceiptSampleV2 } from "../src/templates/WarehouseReceipt/sampleV2";
 import { App } from "./app";
 import "./main.css";
@@ -53,8 +50,6 @@ ReactDOM.render(
       { name: "Covering Letter V3", document: CoveringLetterSampleV3 },
       { name: "InvoiceV2", document: InvoiceSampleV2 },
       { name: "InvoiceV3", document: InvoiceSampleV3 },
-      { name: "InvoiceV4", document: InvoiceSampleV4 },
-      { name: "InvoiceIDVCV4", document: InvoiceSampleIDVCV4 },
       { name: "XML Renderer", document: XMLRendererSampleData },
       { name: "Simple COO V2", document: SimpleCooSampleV2 },
       { name: "Simple COO V3", document: SimpleCooSampleV3 },
@@ -63,7 +58,6 @@ ReactDOM.render(
         document: CertificateOfNonManipulationSampleV2,
       },
       { name: "W3C Brochure V2", document: BrochureSampleV2 },
-      { name: "W3C Brochure V4", document: BrochureSampleV4 },
       { name: "Warehouse Receipt V2", document: WarehouseReceiptSampleV2 },
     ]}
   />,
