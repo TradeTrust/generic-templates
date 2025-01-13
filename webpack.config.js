@@ -41,9 +41,13 @@ module.exports = {
         use: ["style-loader", "css-loader"],
       },
     ],
-    exprContextCritical: false,
   },
   plugins: [
+    new webpack.ContextReplacementPlugin(
+      /(.+)?(@mattrglobal\/node-bbs-signatures)/,
+      `${__dirname}/node_modules/$2`,
+      {}
+    ),
     new webpack.ProvidePlugin({
       Buffer: ["buffer", "Buffer"],
     }),
