@@ -32,7 +32,7 @@ type ObfuscationHandling = {
 type ChaftaCooDocumentWithObfuscation = ChaftaCooDocument & ObfuscationHandling;
 type ChaftaCooTemplateProps = TemplateProps<ChaftaCooDocumentSchema>;
 
-const UnderlineDashed: FunctionComponent<React.ReactNode> = () => <div className="border-dashed border-b-2 my-2" />;
+const UnderlineDashed: FunctionComponent = () => <div className="border-dashed border-b-2 my-2" />;
 
 export const PrivacyButton: FunctionComponent<PrivacyButtonProps> = ({
   isPrivacyOn,
