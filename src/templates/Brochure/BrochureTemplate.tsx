@@ -1,15 +1,15 @@
-import React, { FunctionComponent, useEffect, useState } from "react";
 import { RedactableValue, TemplateProps } from "@tradetrust-tt/decentralized-renderer-react-components";
-import { getDocumentData } from "../../utils";
+import { QRCodeSVG } from "qrcode.react";
+import React, { FunctionComponent, useEffect, useState } from "react";
+import { IconRedact, PrivacyFilter } from "../../core/PrivacyFilter";
 import { Wrapper } from "../../core/Wrapper";
-import { BrochureSchema, BrochureDocument } from "./types";
+import { getDocumentData } from "../../utils";
+import { BrochureDocument, BrochureSchema } from "./types";
 import govtechLogo from "/static/images/logo-govtech.png";
 import imdaLogo from "/static/images/logo-imda.png";
-import ttLogo from "/static/images/logo-tradetrust.png";
 import oaLogo from "/static/images/logo-oa.png";
+import ttLogo from "/static/images/logo-tradetrust.png";
 import govtechCurve from "/static/images/pattern-waves-vertical.png";
-import QRCode from "qrcode.react";
-import { IconRedact, PrivacyFilter } from "../../core/PrivacyFilter";
 
 export const BrochureHeader: React.FC = () => (
   <>
@@ -30,6 +30,7 @@ interface BrochurePageProps {
   header?: string;
   footnote?: string;
   footer?: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 export const BrochurePage: React.FC<BrochurePageProps> = ({
@@ -405,7 +406,7 @@ const Page4: React.FC<{
           <>
             <div className="h-0.5 w-full bg-gradient-to-r from-green-700 to-sky-400 my-4 mb-2" />
             <div className="flex flex-row items-center h-fit w-full bg-gradient-to-r from-green-700 to-sky-400 rounded-lg p-7 mb-16">
-              <QRCode includeMargin={true} value={footer.qrUrl} level="M" size={200} />
+              <QRCodeSVG marginSize={4} value={footer.qrUrl} level="M" size={200} />
               <div className="w-48 ml-4 text-white text-sm">{footer.qrPrompt}</div>
               <div className="grow" />
               <div className="flex flex-col text-right text-white text-sm">
