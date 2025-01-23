@@ -26,10 +26,10 @@ module.exports = {
       plugins: [
         ...config.plugins,
         new webpack.ProvidePlugin({
-          process: 'process/browser',
-          Buffer: ['buffer', 'Buffer'],
-        })
-      ]
+          process: "process/browser",
+          Buffer: ["buffer", "Buffer"],
+        }),
+      ],
     };
   },
 
