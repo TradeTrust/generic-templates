@@ -1,4 +1,5 @@
 const path = require("path");
+const webpack = require("webpack");
 const toPath = (_path) => path.join(process.cwd(), _path);
 import custom from "../webpack.config.js";
 
@@ -22,6 +23,13 @@ module.exports = {
           ...custom.resolve.fallback,
         },
       },
+      plugins: [
+        ...config.plugins,
+        new webpack.ProvidePlugin({
+          process: "process/browser",
+          Buffer: ["buffer", "Buffer"],
+        }),
+      ],
     };
   },
 
