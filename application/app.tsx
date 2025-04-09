@@ -122,6 +122,7 @@ export const App: React.FunctionComponent<AppProps> = ({ documents }): React.Rea
                   onConnected={fn}
                   className={`w-full ${height !== 0 ? "border" : ""}`}
                   style={{ height: `${height}px` }}
+                  useFallbackRenderer={true}
                 />
               </>
             ) : (
