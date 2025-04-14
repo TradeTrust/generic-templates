@@ -18,20 +18,6 @@ export const App: React.FunctionComponent<AppProps> = ({ documents }): React.Rea
   const [templates, setTemplates] = useState<{ id: string; label: string }[]>([]);
   const [document, setDocument] = useState<{ name: string; document: any }>();
   const [selectedTemplate, setSelectedTemplate] = useState<string>("");
-  const fn = useCallback((toFrame: HostActionsHandler) => {
-    // wrap into a function otherwise toFrame function will be executed
-    setToFrame(() => toFrame);
-  }, []);
-
-  const fromFrame = (action: FrameActions): void => {
-    if (action.type === "UPDATE_HEIGHT") {
-      setHeight(action.payload);
-    }
-    if (action.type === "UPDATE_TEMPLATES") {
-      setTemplates(action.payload);
-      setSelectedTemplate(action.payload[0].id);
-    }
-  };
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
@@ -45,16 +31,38 @@ export const App: React.FunctionComponent<AppProps> = ({ documents }): React.Rea
       });
     }
   };
-  useEffect(() => {
-    if (toFrame && document) {
-      toFrame({
-        type: "RENDER_DOCUMENT",
-        payload: {
-          document: document.document,
-        },
-      });
+
+  const fn = useCallback((frame) => {
+    setToFrame(() => frame);
+  }, []);
+
+  function fromFrame(action: FrameActions): void {
+    if (action.type === "UPDATE_HEIGHT") {
+      setHeight(action.payload + 20);
     }
-  }, [toFrame, document]);
+    if (action.type === "OBFUSCATE") {
+      alert("Privacy filter not available in preview mode");
+    }
+    if (action.type === "TIMEOUT") {
+      alert(`Connection timeout on renderer.\nPlease contact the administrator of.`);
+    }
+  }
+
+  useEffect(
+    () => {
+      if (toFrame && document) {
+        toFrame({
+          type: "RENDER_DOCUMENT",
+          payload: {
+            document: document.document,
+          },
+        });
+      }
+    },
+    // eslint-disable-next-line
+    [toFrame, document]
+  );
+
   useEffect(() => {
     if (toFrame && selectedTemplate) {
       toFrame({
