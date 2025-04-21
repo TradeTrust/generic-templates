@@ -19,6 +19,8 @@ import { SimpleCooSampleV3 } from "../src/templates/SimpleCoo/sampleV3";
 import { CertificateOfNonManipulationSampleV2 } from "../src/templates/CertificateOfNonManipulation/sampleV2";
 import { BrochureSampleV2 } from "../src/templates/Brochure/sampleV2";
 import { WarehouseReceiptSampleV2 } from "../src/templates/WarehouseReceipt/sampleV2";
+import { eApostilleSample } from "../src/templates/eApostille/sampleW3C";
+import { eApostilleSampleInvalidW3C } from "../src/templates/eApostille/sampleInvalidV2";
 import { App } from "./app";
 import "./main.css";
 
@@ -59,6 +61,8 @@ ReactDOM.render(
       },
       { name: "W3C Brochure V2", document: BrochureSampleV2 },
       { name: "Warehouse Receipt V2", document: WarehouseReceiptSampleV2 },
+      { name: "eApostille W3C", document: eApostilleSample },
+      { name: "eApostille Invalid W3C", document: eApostilleSampleInvalidW3C },
     ]}
   />,
   document.getElementById("root")

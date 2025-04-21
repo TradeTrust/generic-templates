@@ -1,18 +1,19 @@
 import { TemplateRegistry } from "@tradetrust-tt/decentralized-renderer-react-components";
 import { BillOfLadingTemplates } from "./BillOfLading";
-import { BillOfLadingMaerskPilotTemplates } from "./BillOfLadingMaerskPilot";
+import { BillOfLadingV1BimcoStandardTemplates } from "./BillOfLadingBimcoStandard";
 import { BillOfLadingCarrierTemplates } from "./BillOfLadingCarrierTemplate";
+import { BillOfLadingGenericTemplates } from "./BillOfLadingGeneric";
+import { BillOfLadingMaerskPilotTemplates } from "./BillOfLadingMaerskPilot";
 import { BillOfLadingMaerskTpacTemplates } from "./BillOfLadingMaerskTpac";
+import { BrochureTemplates } from "./Brochure";
+import { CertificateOfNonManipulationTemplates } from "./CertificateOfNonManipulation";
 import { ChaftaCooTemplates } from "./ChaftaCoo";
 import { CoveringLetterTemplates } from "./CoveringLetter";
 import { InvoiceTemplates } from "./Invoice";
-import { BillOfLadingGenericTemplates } from "./BillOfLadingGeneric";
-import { XMLRendererTemplate } from "./XmlRenderer";
 import { SimpleCooTemplates } from "./SimpleCoo";
-import { CertificateOfNonManipulationTemplates } from "./CertificateOfNonManipulation";
-import { BrochureTemplates } from "./Brochure";
-import { BillOfLadingV1BimcoStandardTemplates } from "./BillOfLadingBimcoStandard";
 import { WarehouseReceiptTemplates } from "./WarehouseReceipt";
+import { XMLRendererTemplate } from "./XmlRenderer";
+import { eApostilleTemplates } from "./eApostille";
 
 export const registry: TemplateRegistry<any> = {
   BILL_OF_LADING: BillOfLadingTemplates,
@@ -29,4 +30,5 @@ export const registry: TemplateRegistry<any> = {
   CERTIFICATE_OF_NON_MANIPULATION: CertificateOfNonManipulationTemplates,
   W3C_BROCHURE: BrochureTemplates,
   WAREHOUSE_RECEIPT: WarehouseReceiptTemplates,
+  apostilleTemplate: eApostilleTemplates,
 };
