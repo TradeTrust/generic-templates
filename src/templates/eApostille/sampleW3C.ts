@@ -1,6 +1,4 @@
-import { EApostilleSchemaW3C } from "./types";
-
-export const eApostilleSample: EApostilleSchemaW3C = {
+export const eApostilleSample: any = {
   "@context": [
     "https://www.w3.org/2018/credentials/v1",
     {
