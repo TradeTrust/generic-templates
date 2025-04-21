@@ -22,4 +22,3 @@ export const EApostilleFilled: FunctionComponent = () => {
 export const EApostilleInvalid: FunctionComponent = () => {
   return <EApostilleTemplate document={eApostilleSampleInvalidW3C} handleObfuscation={() => {}} />;
 };
-
