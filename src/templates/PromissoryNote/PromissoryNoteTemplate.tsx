@@ -44,9 +44,9 @@ const PartyDetailsSection = (document: PromissoryNoteDocument): JSX.Element => {
   return (
     <div className="p-5 text-sm">
       <p className="font-semibold mb-2">Party Details</p>
-      <div className="flex">
+      <div className="flex flex-wrap">
         {/* Drawer column */}
-        <div className="w-1/2 pr-4">
+        <div className="w-full md:w-1/2 pr-0 md:pr-4 break-words whitespace-normal">
           <span className="font-semibold">(Drawer)</span>
           <p>
             <span className="font-semibold">Company Name:</span> {drawerCompanyName}
@@ -68,7 +68,7 @@ const PartyDetailsSection = (document: PromissoryNoteDocument): JSX.Element => {
           </p>
         </div>
         {/* Drawee column */}
-        <div className="w-1/2 pl-4">
+        <div className="w-full md:w-1/2 pl-0 md:pl-4 break-words whitespace-normal">
           <span className="font-semibold">(Drawee)</span>
           <p>
             <span className="font-semibold">Company Name:</span> {draweeCompanyName}
@@ -164,8 +164,8 @@ const DigitalSignatureSection = (document: PromissoryNoteDocument): JSX.Element 
   return (
     <div className="text-sm p-5">
       <p className="font-semibold text-red-600">Digitally Signed By:</p>
-      <div className="flex">
-        <div className="w-1/4 pr-4">
+      <div className="flex flex-wrap">
+        <div className="w-full md:w-1/4 pr-0 md:pr-4 break-words whitespace-normal">
           <p>
             <span className="font-semibold text-red-600">Name:</span> {signerName}
           </p>
@@ -173,7 +173,7 @@ const DigitalSignatureSection = (document: PromissoryNoteDocument): JSX.Element 
             <span className="font-semibold text-red-600">Position:</span> {signerPosition}
           </p>
         </div>
-        <div className="w-3/4 pl-4">
+        <div className="w-full md:w-3/4 pl-0 md:pl-4 break-words whitespace-normal">
           <p>
             <span className="font-semibold text-red-600">Email:</span> {signerEmail}
           </p>
@@ -201,9 +201,9 @@ export const PromissoryNoteTemplate: FunctionComponent<TemplateProps<PromissoryN
   const documentData = getDocumentData(document) as PromissoryNoteDocument;
   return (
     <Wrapper data-testid="promissory-note-template">
-      <div className="flex flex-row justify-between items-start mb-8">
-        <div className="w-3/4">{HeaderSection(documentData)}</div>
-        <div className="w-1/4 flex justify-end">{LogoSection(documentData)}</div>
+      <div className="flex flex-col md:flex-row justify-between items-start mb-8 gap-4">
+        <div className="w-full md:w-3/4 break-words whitespace-normal">{HeaderSection(documentData)}</div>
+        <div className="w-full md:w-1/4 flex">{LogoSection(documentData)}</div>
       </div>
       <PartyDetailsSection {...documentData} />
       <PaymentPromiseSection {...documentData} />
