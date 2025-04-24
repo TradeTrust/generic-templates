@@ -15,7 +15,7 @@ describe("promissoryNoteTemplate", () => {
     render(<PromissoryNoteTemplate document={PromissoryNoteSampleV2} handleObfuscation={() => {}} />);
     expect(screen.getByText("(Drawer)")).toBeInTheDocument();
     expect(screen.getByText("(Drawee)")).toBeInTheDocument();
-    expect(screen.getByText(/Company Name:/)).toBeInTheDocument();
+    expect(screen.getAllByText(/Company Name:/)).toHaveLength(2);
     expect(screen.getAllByText(/Jurisdiction of Incorporation:/)).toHaveLength(2);
   });
 
