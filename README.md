@@ -13,6 +13,7 @@ _Note: These are just some rendering templates that are made available for users
 | Bill of Lading (Carrier)        | EMBEDDED_RENDERER | BILL_OF_LADING_CARRIER           | &cross;    | &check;      | -             | -              |
 | Bill of Lading BIMCO V1         | EMBEDDED_RENDERER | BILL_OF_LADING_V1_BIMCO_STANDARD | &cross;    | &check;      | -             | -              |
 | Warehouse Receipt               | EMBEDDED_RENDERER | WAREHOUSE_RECEIPT                | &cross;    | &check;      | -             | -              |
+| Promissory Note                 | EMBEDDED_RENDERER | PROMISSORY_NOTE                  | &cross;    | &check;      | -             | -              |
 | Chafta COO                      | EMBEDDED_RENDERER | CHAFTA_COO                       | &check;    | &cross;      | -             | -              |
 | Covering Letter                 | EMBEDDED_RENDERER | COVERING_LETTER                  | &check;    | &cross;      | &check;       | -              |
 | Invoice                         | EMBEDDED_RENDERER | INVOICE                          | &check;    | &cross;      | &check;       | &check;        |
