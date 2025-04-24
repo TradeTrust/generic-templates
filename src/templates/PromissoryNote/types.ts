@@ -13,6 +13,7 @@ export type PromissoryNoteSchema = PromissoryNoteSchemaV2 | PromissoryNoteSchema
 
 export interface PromissoryNoteDocument {
   logo?: string;
+  backgroundImage?: string;
   pNoteId?: string;
   commitmentDate?: string;
   drawerCompanyName?: string;

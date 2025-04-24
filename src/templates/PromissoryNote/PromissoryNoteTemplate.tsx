@@ -3,6 +3,32 @@ import React, { FunctionComponent } from "react";
 import { Wrapper } from "../../core/Wrapper";
 import { formatCurrency, formatDate, formatDateTime, getDocumentData, toTitleCaseWords } from "../../utils";
 import { PromissoryNoteDocument, PromissoryNoteSchema } from "./types";
+import backgroundImage from "./background.jpg";
+
+const getBackgroundImage = (document: PromissoryNoteDocument): string => {
+  return document.backgroundImage || backgroundImage;
+};
+
+const containerStyle = (document: PromissoryNoteDocument): React.CSSProperties => ({
+  backgroundImage: `url(${getBackgroundImage(document)})`,
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  padding: "6rem 6rem",
+  boxShadow: "inset 0 0 40px rgba(0,0,0,0.6)",
+});
+
+const overlayStyle: React.CSSProperties = {
+  position: "absolute",
+  inset: 0,
+  backgroundColor: "rgba(255, 255, 255, 0.4)",
+  zIndex: 0,
+};
+
+const contentWrapperStyle: React.CSSProperties = {
+  position: "relative",
+  zIndex: 1,
+  backgroundColor: "rgba(255, 255, 255, 0.6)",
+};
 
 const HeaderSection = (document: PromissoryNoteDocument): JSX.Element => {
   const { pNoteId, commitmentDate } = document;
@@ -201,16 +227,21 @@ export const PromissoryNoteTemplate: FunctionComponent<TemplateProps<PromissoryN
   const documentData = getDocumentData(document) as PromissoryNoteDocument;
   return (
     <Wrapper data-testid="promissory-note-template">
-      <div className="flex flex-col md:flex-row justify-between items-start mb-8 gap-4">
-        <div className="w-full md:w-3/4 break-words whitespace-normal">{HeaderSection(documentData)}</div>
-        <div className="w-full md:w-1/4 flex">{LogoSection(documentData)}</div>
+      <div style={containerStyle(documentData)}>
+        <div style={overlayStyle} />
+        <div style={contentWrapperStyle}>
+          <div className="flex flex-col md:flex-row justify-between items-start mb-8 gap-4">
+            <div className="w-full md:w-3/4 break-words whitespace-normal">{HeaderSection(documentData)}</div>
+            <div className="w-full md:w-1/4 flex">{LogoSection(documentData)}</div>
+          </div>
+          <PartyDetailsSection {...documentData} />
+          <PaymentPromiseSection {...documentData} />
+          <LawAndArbitrationSection {...documentData} />
+          <ExecutionStatementSection />
+          <DigitalSignatureSection {...documentData} />
+          <DisclaimerSection />
+        </div>
       </div>
-      <PartyDetailsSection {...documentData} />
-      <PaymentPromiseSection {...documentData} />
-      <LawAndArbitrationSection {...documentData} />
-      <ExecutionStatementSection />
-      <DigitalSignatureSection {...documentData} />
-      <DisclaimerSection />
     </Wrapper>
   );
 };
