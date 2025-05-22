@@ -3,7 +3,8 @@ import React, { FunctionComponent } from "react";
 import { DocumentQrCode } from "../../core/DocumentQrCode";
 import { Wrapper } from "../../core/Wrapper";
 import { getDocumentData } from "../../utils";
-import { BillOfLadingCarrierDocument, BillOfLadingCarrierSchema } from "./types";
+import { BillOfLadingCarrierDocument, BillOfLadingCarrierSchema, PackageItem, W3CPackageItem } from "./types";
+import { vc } from "@trustvc/trustvc";
 
 const smallText = (text: string): JSX.Element => <p style={{ fontSize: "0.8em" }}>{text}</p>;
 const smallStrongText = (text: string): JSX.Element => (
@@ -822,13 +823,19 @@ const Section3 = (document: BillOfLadingCarrierDocument): JSX.Element => {
 
 const Section2 = (document: BillOfLadingCarrierDocument): JSX.Element => {
   const packages = document.packages || [];
+  const isW3C = vc.isSignedDocument(document);
+
   const renderedKindOfPackage = packages.map((pkg, index) => (
     <pre key={index} className="whitespace-pre-line font-sans">
-      {pkg.description}
+      {isW3C ? (pkg as W3CPackageItem).packagesDescription : (pkg as PackageItem).description}
     </pre>
   ));
-  const renderedWeight = packages.map((pkg, index) => <p key={index}>{pkg.weight}</p>);
-  const renderedMeasurement = packages.map((pkg, index) => <p key={index}>{pkg.measurement}</p>);
+  const renderedWeight = packages.map((pkg, index) => (
+    <p key={index}>{isW3C ? (pkg as W3CPackageItem).packagesWeight : (pkg as PackageItem).weight}</p>
+  ));
+  const renderedMeasurement = packages.map((pkg, index) => (
+    <p key={index}>{isW3C ? (pkg as W3CPackageItem).packagesMeasurement : (pkg as PackageItem).measurement}</p>
+  ));
 
   return (
     <div className="border-black border">
@@ -861,7 +868,25 @@ const Section2 = (document: BillOfLadingCarrierDocument): JSX.Element => {
 };
 
 const Section1 = (document: BillOfLadingCarrierDocument): JSX.Element => {
-  const { logo, shipper = {}, scac, blNumber, onwardInlandRouting, consignee = {}, notifyParty = {} } = document;
+  const { logo, scac, blNumber, onwardInlandRouting } = document;
+
+  const shipper = document.shipper ?? {
+    name: document.shipperName,
+    address: {
+      street: document.shipperAddressStreet,
+      country: document.shipperAddressCountry,
+    },
+  };
+
+  const consignee = document.consignee ?? {
+    toOrderOfText: document.toOrderOfText,
+    name: document.consigneeName,
+  };
+
+  const notifyParty = document.notifyParty ?? {
+    name: document.notifyPartyName,
+  };
+
   return (
     <div className="border-black border">
       <div className="flex">

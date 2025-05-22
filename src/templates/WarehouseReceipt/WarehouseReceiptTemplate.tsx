@@ -26,7 +26,17 @@ const LogoSection = (document: WarehouseReceiptDocument): JSX.Element => {
 };
 
 const WarehouseReceiptDetailsSection = (document: WarehouseReceiptDocument): JSX.Element => {
-  const { warehouseReceiptDetails } = document;
+  const warehouseReceiptDetails = document.warehouseReceiptDetails ?? {
+    warehouseReceipt: document.warehouseReceipt,
+    issuanceDate: document.issuanceDate,
+    ourRef: document.ourRef,
+    rentStartDate: document.rentStartDate,
+    yourRef: document.yourRef,
+    commodity: document.commodity,
+    documentType: document.documentType,
+    order: document.order,
+    account: document.account,
+  };
   return (
     <div className="border-black border">
       <div className="flex">
