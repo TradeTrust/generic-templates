@@ -6,7 +6,8 @@ import { DocumentQrCode } from "../../core/DocumentQrCode";
 import { Wrapper } from "../../core/Wrapper";
 import { IconRedact, PrivacyFilter } from "../../core/PrivacyFilter";
 import { getDocumentData } from "../../utils";
-import { InvoiceDocument, InvoiceDocumentSchema } from "./types";
+import { InvoiceDocument, InvoiceDocumentSchema, InvoiceItem, W3CInvoiceItem } from "./types";
+import { vc } from "@trustvc/trustvc";
 
 const CustomStyles = styled.div`
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
@@ -46,23 +47,33 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<InvoiceDocumentSch
 }) => {
   const [editable, setEditable] = useState(false);
   const documentData = getDocumentData(document) as InvoiceDocument;
-  const {
-    id,
-    date,
-    customerId,
-    terms,
-    billFrom,
-    billTo,
-    billableItems,
-    subtotal = 0,
-    tax = 0,
-    taxTotal = 0,
-    total = 0,
-  } = documentData;
-  const qrCodeUrl = documentData?.links?.self.href;
+  const isW3C = vc.isSignedDocument(document);
+  const { date, customerId, terms, billableItems, subtotal = 0, tax = 0, taxTotal = 0, total = 0 } = documentData;
+  const id = documentData.id ?? documentData.invoiceId;
+  const billFrom = documentData.billFrom ?? {
+    name: documentData.billFromName,
+    streetAddress: documentData.billFromStreetAddress,
+    city: documentData.billFromCity,
+    postalCode: documentData.billFromPostalCode,
+    phoneNumber: documentData.billFromPhoneNumber,
+  };
+  const billTo = documentData.billTo ?? {
+    name: documentData.billToName,
+    email: documentData.billToEmail,
+    company: {
+      name: documentData.billToCompanyName,
+      streetAddress: documentData.billToCompanyStreetAddress,
+      city: documentData.billToCompanyCity,
+      postalCode: documentData.billToCompanyPostalCode,
+      phoneNumber: documentData.billToCompanyPhoneNumber,
+    },
+  };
+
+  const qrCodeUrl = typeof documentData?.links === "string" ? documentData.links : documentData?.links?.self?.href;
+
   return (
     <Wrapper data-testid="invoice-template">
-      <PrivacyFilter editable={editable} onToggleEditable={() => setEditable(!editable)} />
+      {!isW3C && <PrivacyFilter editable={editable} onToggleEditable={() => setEditable(!editable)} />}
       <CustomStyles>
         <div className="flex flex-wrap">
           <div className="w-full md:w-5/12 mb-4 md:mb-0 md:ml-auto md:order-2">
@@ -211,10 +222,18 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<InvoiceDocumentSch
               {billableItems?.map((item, index) => {
                 return (
                   <tr key={index}>
-                    <td className="border px-4 py-2">{item.description}</td>
-                    <td className="border px-4 py-2 text-center">{item.quantity}</td>
-                    <td className="border px-4 py-2 text-right">{item.unitPrice}</td>
-                    <td className="border px-4 py-2 text-right"> {item.amount}</td>
+                    <td className="border px-4 py-2">
+                      {isW3C ? (item as W3CInvoiceItem).billableItemsDescription : (item as InvoiceItem).description}
+                    </td>
+                    <td className="border px-4 py-2 text-center">
+                      {isW3C ? (item as W3CInvoiceItem).billableItemsQuantity : (item as InvoiceItem).quantity}
+                    </td>
+                    <td className="border px-4 py-2 text-right">
+                      {isW3C ? (item as W3CInvoiceItem).billableItemsUnitPrice : (item as InvoiceItem).unitPrice}
+                    </td>
+                    <td className="border px-4 py-2 text-right">
+                      {isW3C ? (item as W3CInvoiceItem).billableItemsAmount : (item as InvoiceItem).amount}
+                    </td>
                   </tr>
                 );
               })}

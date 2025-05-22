@@ -3,9 +3,19 @@ import { format } from "date-fns";
 import React, { FunctionComponent, useState } from "react";
 import { DocumentQrCode } from "../../core/DocumentQrCode";
 import { Wrapper } from "../../core/Wrapper";
-import { ChaftaCooDocumentSchema, ChaftaCooDocument } from "./types";
+import {
+  ChaftaCooDocumentSchema,
+  ChaftaCooDocument,
+  W3CConsignmentItem,
+  ConsignmentItem,
+  W3CTradeLineItem,
+  TradeLineItem,
+  W3CTransportPackage,
+  TransportPackage,
+} from "./types";
 import { getDocumentData } from "./../../utils";
 import { secondSignatoryAuthentication } from "../../core/Signatures";
+import { vc } from "@trustvc/trustvc";
 
 const getValue = (id?: string): string | undefined => {
   if (!id) return undefined;
@@ -27,6 +37,7 @@ interface PrivacyButtonProps {
 type ObfuscationHandling = {
   handleObfuscation: (path: string) => void;
   isPrivacyOn: boolean;
+  isW3C: boolean;
 };
 
 type ChaftaCooDocumentWithObfuscation = ChaftaCooDocument & ObfuscationHandling;
@@ -59,10 +70,30 @@ export const PrivacyButton: FunctionComponent<PrivacyButtonProps> = ({
 
 export const ExporterSection: FunctionComponent<ChaftaCooDocumentWithObfuscation> = ({
   supplyChainConsignment,
+  exporterId,
+  exporterName,
+  exporterLine1,
+  exporterLine2,
+  exporterCityName,
+  exporterPostcode,
+  exporterCountrySubDivisionName,
+  exporterCountryCode,
   handleObfuscation,
   isPrivacyOn,
+  isW3C,
 }) => {
-  const exporter = supplyChainConsignment?.exporter;
+  const exporter = supplyChainConsignment?.exporter ?? {
+    iD: exporterId,
+    name: exporterName,
+    postalAddress: {
+      line1: exporterLine1,
+      line2: exporterLine2,
+      cityName: exporterCityName,
+      postcode: exporterPostcode,
+      countrySubDivisionName: exporterCountrySubDivisionName,
+      countryCode: exporterCountryCode,
+    },
+  };
   const postalAddress = exporter?.postalAddress;
   const privacyPath = ["supplyChainConsignment.exporter"];
 
@@ -70,7 +101,9 @@ export const ExporterSection: FunctionComponent<ChaftaCooDocumentWithObfuscation
     <div className="border p-2 flex-1">
       <h5 className="mb-2">
         1. Exporter’s name, address and country:{" "}
-        <PrivacyButton isPrivacyOn={isPrivacyOn} handleObfuscation={handleObfuscation} paths={privacyPath} />
+        {!isW3C && (
+          <PrivacyButton isPrivacyOn={isPrivacyOn} handleObfuscation={handleObfuscation} paths={privacyPath} />
+        )}
       </h5>
       <p>{exporter?.name}</p>
       <p>{postalAddress?.line1}</p>
@@ -86,12 +119,35 @@ export const ExporterSection: FunctionComponent<ChaftaCooDocumentWithObfuscation
 
 export const ProducerSection: FunctionComponent<ChaftaCooDocumentWithObfuscation> = ({
   supplyChainConsignment,
+  includedConsignmentItems,
   handleObfuscation,
   isPrivacyOn,
+  isW3C,
 }) => {
-  const consignmentItem = supplyChainConsignment?.includedConsignmentItems;
-  const firstConsignmentItem = consignmentItem ? consignmentItem[0] : undefined;
-  const manufacturer = firstConsignmentItem?.manufacturer;
+  const consignmentItem = supplyChainConsignment?.includedConsignmentItems ?? includedConsignmentItems;
+
+  const firstConsignmentItem = consignmentItem?.[0];
+
+  const manufacturer = isW3C
+    ? (() => {
+        const item = firstConsignmentItem as W3CConsignmentItem | undefined;
+        if (!item) return undefined;
+
+        return {
+          iD: item.manufacturerId,
+          name: item.manufacturerName,
+          postalAddress: {
+            line1: item.manufacturerLine1,
+            line2: item.manufacturerLine2,
+            cityName: item.manufacturerCityName,
+            postcode: item.manufacturerPostcode,
+            countrySubDivisionName: item.manufacturerCountrySubDivisionName,
+            countryCode: item.manufacturerCountryCode,
+          },
+        };
+      })()
+    : (firstConsignmentItem as ConsignmentItem | undefined)?.manufacturer;
+
   const postalAddress = manufacturer?.postalAddress;
   const privacyPath = consignmentItem?.map(
     (_item, index) => `supplyChainConsignment.includedConsignmentItems[${index}].manufacturer`
@@ -101,7 +157,9 @@ export const ProducerSection: FunctionComponent<ChaftaCooDocumentWithObfuscation
     <div className="border p-2 flex-1">
       <h5 className="mb-2">
         2. Producer’s name and address (if known):{" "}
-        <PrivacyButton isPrivacyOn={isPrivacyOn} handleObfuscation={handleObfuscation} paths={privacyPath} />
+        {!isW3C && (
+          <PrivacyButton isPrivacyOn={isPrivacyOn} handleObfuscation={handleObfuscation} paths={privacyPath} />
+        )}
       </h5>
       <p>{manufacturer?.name}</p>
       <p>
@@ -116,10 +174,10 @@ export const ProducerSection: FunctionComponent<ChaftaCooDocumentWithObfuscation
   );
 };
 
-export const SummarySection: FunctionComponent<ChaftaCooDocument> = ({ iD }) => {
+export const SummarySection: FunctionComponent<ChaftaCooDocument> = ({ iD, cooId }) => {
   return (
     <div className="border p-2 h-full">
-      <h5 className="mb-2">Certificate No.: {getValue(iD)}</h5>
+      <h5 className="mb-2">Certificate No.: {getValue(iD ?? cooId)}</h5>
       <div className="text-center">
         <div className="py-4">
           <p className="font-bold">CERTIFICATE OF ORIGIN</p>
@@ -144,10 +202,28 @@ export const OfficialUseSection: FunctionComponent = () => {
 
 export const ImporterSection: FunctionComponent<ChaftaCooDocumentWithObfuscation> = ({
   supplyChainConsignment,
+  importerName,
+  importerLine1,
+  importerLine2,
+  importerCityName,
+  importerPostcode,
+  importerCountrySubDivisionName,
+  importerCountryCode,
   handleObfuscation,
   isPrivacyOn,
+  isW3C,
 }) => {
-  const importer = supplyChainConsignment?.importer;
+  const importer = supplyChainConsignment?.importer ?? {
+    name: importerName,
+    postalAddress: {
+      line1: importerLine1,
+      line2: importerLine2,
+      cityName: importerCityName,
+      postcode: importerPostcode,
+      countrySubDivisionName: importerCountrySubDivisionName,
+      countryCode: importerCountryCode,
+    },
+  };
   const postalAddress = importer?.postalAddress;
   const privacyPath = ["supplyChainConsignment.importer"];
 
@@ -155,33 +231,46 @@ export const ImporterSection: FunctionComponent<ChaftaCooDocumentWithObfuscation
     <div className="border p-2 h-full">
       <h5 className="mb-2">
         3. Importer’s name, address and country (if known):{" "}
-        <PrivacyButton isPrivacyOn={isPrivacyOn} handleObfuscation={handleObfuscation} paths={privacyPath} />
+        {!isW3C && (
+          <PrivacyButton isPrivacyOn={isPrivacyOn} handleObfuscation={handleObfuscation} paths={privacyPath} />
+        )}
       </h5>
-      <p>{importer?.name}</p>
-      <p>{postalAddress?.line1}</p>
-      <p>{postalAddress?.line2}</p>
-      <p>{postalAddress?.cityName}</p>
+      <p>{importer?.name ?? importerName}</p>
+      <p>{postalAddress?.line1 ?? importerLine1}</p>
+      <p>{postalAddress?.line2 ?? importerLine2}</p>
+      <p>{postalAddress?.cityName ?? importerCityName}</p>
       <p>
-        {postalAddress?.countrySubDivisionName} {postalAddress?.postcode} {postalAddress?.countryCode}
+        {postalAddress?.countrySubDivisionName ?? importerCountrySubDivisionName}{" "}
+        {postalAddress?.postcode ?? importerPostcode} {postalAddress?.countryCode ?? importerCountryCode}
       </p>
     </div>
   );
 };
 
-export const RemarksSection: FunctionComponent<ChaftaCooDocument> = ({ supplyChainConsignment }) => {
-  const consignmentItems = supplyChainConsignment?.includedConsignmentItems;
-
+export const RemarksSection: FunctionComponent<ChaftaCooDocument & { isW3C?: boolean }> = ({
+  supplyChainConsignment,
+  supplyChainConsignmentId,
+  supplyChainConsignmentInformation,
+  includedConsignmentItems,
+  isW3C,
+}) => {
+  const consignmentItems = supplyChainConsignment?.includedConsignmentItems ?? includedConsignmentItems;
+  const id = supplyChainConsignment?.iD ?? supplyChainConsignmentId;
+  const information = supplyChainConsignment?.information ?? supplyChainConsignmentInformation;
   return (
     <div className="border p-2 h-full">
       <h5 className="mb-2">5. Remarks:</h5>
-      {supplyChainConsignment?.iD && <p>Consignment Ref: {getValue(supplyChainConsignment?.iD)}</p>}
-      <p>{supplyChainConsignment?.information}</p>
+      {id && <p>Consignment Ref: {getValue(id)}</p>}
+      <p>{information}</p>
       {consignmentItems && consignmentItems?.length > 0 && (
         <ul className="list-disc pl-4">
           {consignmentItems?.map((item, index) => {
+            const info = isW3C
+              ? (item as W3CConsignmentItem).includedConsignmentItemsInformation
+              : (item as ConsignmentItem).information;
             return (
               <li key={index}>
-                <p>{item.information}</p>
+                <p>{info}</p>
               </li>
             );
           })}
@@ -193,12 +282,26 @@ export const RemarksSection: FunctionComponent<ChaftaCooDocument> = ({ supplyCha
 
 export const TransportSection: FunctionComponent<ChaftaCooDocumentWithObfuscation> = ({
   supplyChainConsignment,
+  loadingBaseportLocationId,
+  unloadingBaseportLocationId,
+  usedTransportMeansId,
+  departureDateTime,
   handleObfuscation,
   isPrivacyOn,
+  isW3C,
 }) => {
-  const loadingPortLocation = supplyChainConsignment?.loadingBaseportLocation;
-  const unloadingBaseportLocation = supplyChainConsignment?.unloadingBaseportLocation;
-  const transportMovement = supplyChainConsignment?.mainCarriageTransportMovement;
+  const loadingPortLocation = supplyChainConsignment?.loadingBaseportLocation ?? { iD: loadingBaseportLocationId };
+  const unloadingBaseportLocation = supplyChainConsignment?.unloadingBaseportLocation ?? {
+    iD: unloadingBaseportLocationId,
+  };
+  const transportMovement = supplyChainConsignment?.mainCarriageTransportMovement ?? {
+    usedTransportMeans: {
+      iD: usedTransportMeansId,
+    },
+    departureEvent: {
+      departureDateTime: departureDateTime,
+    },
+  };
   const departureEvent = transportMovement?.departureEvent;
   const privacyPath = [
     "supplyChainConsignment.loadingBaseportLocation",
@@ -209,7 +312,9 @@ export const TransportSection: FunctionComponent<ChaftaCooDocumentWithObfuscatio
     <div className="border p-2 h-full">
       <h5 className="mb-2">
         4. Means of transport and route (if known):{" "}
-        <PrivacyButton isPrivacyOn={isPrivacyOn} handleObfuscation={handleObfuscation} paths={privacyPath} />
+        {!isW3C && (
+          <PrivacyButton isPrivacyOn={isPrivacyOn} handleObfuscation={handleObfuscation} paths={privacyPath} />
+        )}
       </h5>
       <p>Departure Date: {printDate(departureEvent?.departureDateTime)}</p>
       <p>Vessel/Flight/Train/Vehicle No.: {getValue(transportMovement?.usedTransportMeans?.iD)}</p>
@@ -230,29 +335,75 @@ interface TradeLineItemData {
   invoiceDate?: string;
 }
 
-export const TradeLineItemsSection: FunctionComponent<ChaftaCooDocument> = ({ supplyChainConsignment }) => {
-  const consignmentItems = supplyChainConsignment?.includedConsignmentItems;
+export const TradeLineItemsSection: FunctionComponent<ChaftaCooDocument & { isW3C?: boolean }> = ({
+  supplyChainConsignment,
+  includedConsignmentItems,
+  isW3C,
+}) => {
+  const consignmentItems = supplyChainConsignment?.includedConsignmentItems ?? includedConsignmentItems;
   const lineItems: TradeLineItemData[] = [];
 
   consignmentItems?.forEach((consignmentItem) => {
     const { tradeLineItems } = consignmentItem;
+
     tradeLineItems?.forEach((tradeLineItem) => {
       let firstLineItem = true;
-      const { transportPackages, tradeProduct } = tradeLineItem;
+
+      // W3C and non-W3C branching
+      const transportPackages = tradeLineItem.transportPackages;
+
+      const description = isW3C
+        ? (tradeLineItem as W3CTradeLineItem).tradeProductDescription
+        : (tradeLineItem as TradeLineItem).tradeProduct?.description;
+
+      const code = isW3C
+        ? (tradeLineItem as W3CTradeLineItem).harmonisedTariffclassCode
+        : (tradeLineItem as TradeLineItem).tradeProduct?.harmonisedTariffCode?.classCode;
+
+      const invoiceDate = isW3C
+        ? (tradeLineItem as W3CTradeLineItem).formattedIssueDateTime
+        : printDate((tradeLineItem as TradeLineItem).invoiceReference?.formattedIssueDateTime);
+
+      const invoiceNo = isW3C
+        ? (tradeLineItem as W3CTradeLineItem).invoiceReferenceId
+        : getValue((tradeLineItem as TradeLineItem).invoiceReference?.iD);
+
       transportPackages?.forEach((transportPackage) => {
         function showIfFirstItemInTradeLineItem<T>(value: T): T | undefined {
-          if (firstLineItem) return value;
+          return firstLineItem ? value : undefined;
         }
+
+        const marks = getValue(
+          isW3C
+            ? (transportPackage as W3CTransportPackage).transportPackagesId
+            : (transportPackage as TransportPackage).iD
+        );
+        const quantity = `${
+          isW3C
+            ? (transportPackage as W3CTransportPackage).transportPackagesGrossVolume
+            : (transportPackage as TransportPackage).grossVolume
+        }, ${
+          isW3C
+            ? (transportPackage as W3CTransportPackage).transportPackagesGrossWeight
+            : (transportPackage as TransportPackage).grossWeight
+        }`;
+        const origin = showIfFirstItemInTradeLineItem(
+          isW3C
+            ? (consignmentItem as W3CConsignmentItem).originCriteriaText
+            : (consignmentItem as ConsignmentItem).crossBorderRegulatoryProcedure.originCriteriaText
+        );
+
         lineItems.push({
           sn: showIfFirstItemInTradeLineItem(tradeLineItem.sequenceNumber),
-          marks: getValue(transportPackage.iD),
-          description: showIfFirstItemInTradeLineItem(tradeProduct?.description),
-          code: showIfFirstItemInTradeLineItem(tradeProduct?.harmonisedTariffCode?.classCode),
-          origin: showIfFirstItemInTradeLineItem(consignmentItem.crossBorderRegulatoryProcedure.originCriteriaText),
-          quantity: `${transportPackage.grossVolume}, ${transportPackage.grossWeight}`,
-          invoiceDate: printDate(tradeLineItem.invoiceReference?.formattedIssueDateTime),
-          invoiceNo: getValue(tradeLineItem.invoiceReference?.iD),
+          marks,
+          description: showIfFirstItemInTradeLineItem(description),
+          code: showIfFirstItemInTradeLineItem(code),
+          origin,
+          quantity,
+          invoiceDate,
+          invoiceNo,
         });
+
         firstLineItem = false;
       });
     });
@@ -316,9 +467,15 @@ export const TradeLineItemsSection: FunctionComponent<ChaftaCooDocument> = ({ su
 export const DeclarationSection: FunctionComponent<ChaftaCooDocument> = ({
   supplyChainConsignment,
   firstSignatoryAuthentication,
+  importerName,
+  loadingBaseportLocationName,
+  signature,
 }) => {
-  const importer = supplyChainConsignment?.importer;
-
+  const importer = supplyChainConsignment?.importer ?? { name: importerName };
+  const loadingBaseportLocation = supplyChainConsignment?.loadingBaseportLocation ?? {
+    name: loadingBaseportLocationName,
+  };
+  const firstSignatory = firstSignatoryAuthentication ?? { signature: signature };
   return (
     <div className="border p-2 h-full">
       <h5 className="mb-2">13. Declaration by the exporter or producer</h5>
@@ -331,14 +488,12 @@ export const DeclarationSection: FunctionComponent<ChaftaCooDocument> = ({
       <p>comply with the origin requirements specified in the China-Australia Free Trade Agreement.</p>
       <div className="my-4">
         <p>
-          {supplyChainConsignment?.loadingBaseportLocation?.name}
-          {supplyChainConsignment?.loadingBaseportLocation?.name &&
-            firstSignatoryAuthentication?.actualDateTime &&
-            `, `}
-          {printDate(firstSignatoryAuthentication?.actualDateTime)}
+          {loadingBaseportLocation.name}
+          {loadingBaseportLocation.name && firstSignatory.actualDateTime && `, `}
+          {printDate(firstSignatory.actualDateTime)}
         </p>
         <div style={{ minHeight: "80px" }}>
-          <img className="w-1/2 mx-auto" data-testid="signature" src={firstSignatoryAuthentication?.signature} />
+          <img className="w-1/2 mx-auto" data-testid="signature" src={firstSignatory.signature} />
         </div>
       </div>
       <UnderlineDashed />
@@ -371,24 +526,27 @@ export const ChaftaCooTemplate: FunctionComponent<ChaftaCooTemplateProps> = (pro
   const { document, handleObfuscation } = props;
   const documentData = getDocumentData(document);
   const qrCodeUrl = documentData.links?.self.href;
+  const isW3C = vc.isSignedDocument(document);
 
   return (
     <Wrapper data-testid="chafta-coo-template">
       <div style={{ fontSize: "0.8em", width: "210mm" }} className="mx-auto">
-        <div className="flex items-center">
-          <div className="w-auto mr-2">
-            <input
-              className="align-middle"
-              type="checkbox"
-              id="privacySwitch"
-              checked={isPrivacyOn}
-              onChange={(e) => setIsPrivacyOn(e.target.checked)}
-            />
+        {!isW3C && (
+          <div className="flex items-center">
+            <div className="w-auto mr-2">
+              <input
+                className="align-middle"
+                type="checkbox"
+                id="privacySwitch"
+                checked={isPrivacyOn}
+                onChange={(e) => setIsPrivacyOn(e.target.checked)}
+              />
+            </div>
+            <div className="w-auto">
+              <label htmlFor="privacySwitch">Privacy Filter</label>
+            </div>
           </div>
-          <div className="w-auto">
-            <label htmlFor="privacySwitch">Privacy Filter</label>
-          </div>
-        </div>
+        )}
         <div className="text-center mt-4">
           <h1 style={{ fontSize: "0.9em" }} className="font-bold mb-4">
             CERTIFICATE OF ORIGIN
@@ -398,8 +556,18 @@ export const ChaftaCooTemplate: FunctionComponent<ChaftaCooTemplateProps> = (pro
           <div className="flex">
             <div className="w-1/2">
               <div className="flex flex-col h-full">
-                <ExporterSection {...documentData} handleObfuscation={handleObfuscation} isPrivacyOn={isPrivacyOn} />
-                <ProducerSection {...documentData} handleObfuscation={handleObfuscation} isPrivacyOn={isPrivacyOn} />
+                <ExporterSection
+                  {...documentData}
+                  handleObfuscation={handleObfuscation}
+                  isPrivacyOn={isPrivacyOn}
+                  isW3C={isW3C}
+                />
+                <ProducerSection
+                  {...documentData}
+                  handleObfuscation={handleObfuscation}
+                  isPrivacyOn={isPrivacyOn}
+                  isW3C={isW3C}
+                />
               </div>
             </div>
             <div className="w-1/2">
@@ -408,7 +576,12 @@ export const ChaftaCooTemplate: FunctionComponent<ChaftaCooTemplateProps> = (pro
           </div>
           <div className="flex">
             <div className="w-1/2">
-              <ImporterSection {...documentData} handleObfuscation={handleObfuscation} isPrivacyOn={isPrivacyOn} />
+              <ImporterSection
+                {...documentData}
+                handleObfuscation={handleObfuscation}
+                isPrivacyOn={isPrivacyOn}
+                isW3C={isW3C}
+              />
             </div>
             <div className="w-1/2">
               <OfficialUseSection />
@@ -416,14 +589,19 @@ export const ChaftaCooTemplate: FunctionComponent<ChaftaCooTemplateProps> = (pro
           </div>
           <div className="flex">
             <div className="w-1/2">
-              <TransportSection {...documentData} handleObfuscation={handleObfuscation} isPrivacyOn={isPrivacyOn} />
+              <TransportSection
+                {...documentData}
+                handleObfuscation={handleObfuscation}
+                isPrivacyOn={isPrivacyOn}
+                isW3C={isW3C}
+              />
             </div>
             <div className="w-1/2">
-              <RemarksSection {...documentData} />
+              <RemarksSection {...documentData} isW3C={isW3C} />
             </div>
           </div>
           <div>
-            <TradeLineItemsSection {...documentData} />
+            <TradeLineItemsSection {...documentData} isW3C={isW3C} />
           </div>
           <div className="flex">
             <div className="w-1/2">
