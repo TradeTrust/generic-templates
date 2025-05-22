@@ -2,7 +2,7 @@ import { OpenAttestationDocument, SignedVerifiableCredential, isRawV3Document, v
 import { toWords } from "number-to-words";
 
 export const getDocumentData = (document: OpenAttestationDocument | SignedVerifiableCredential): any => {
-  if (isRawV3Document(document) || vc.isSignedDocument(document)) {
+  if (isRawV3Document(document) || vc.isSignedDocument(document) || vc.isRawDocument(document)) {
     return document.credentialSubject;
   } else {
     return document;
