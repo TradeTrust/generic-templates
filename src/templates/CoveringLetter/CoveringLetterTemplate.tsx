@@ -4,7 +4,7 @@ import React, { FunctionComponent } from "react";
 import { DocumentQrCode } from "../../core/DocumentQrCode";
 import { Wrapper } from "../../core/Wrapper";
 import { CoveringLetter, CoveringLetterSchema } from "./types";
-import { getDocumentData } from "../../utils";
+import { getDocumentData, getQRCodeURL } from "../../utils";
 
 const CustomStyles = styled.div`
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
@@ -22,10 +22,10 @@ const CustomStyles = styled.div`
 `;
 
 export const CoveringLetterTemplate: FunctionComponent<TemplateProps<CoveringLetterSchema>> = ({ document }) => {
-  const { logo, title, remarks, backgroundColor, titleColor, remarksColor, links } = getDocumentData(
+  const { logo, title, remarks, backgroundColor, titleColor, remarksColor } = getDocumentData(
     document
   ) as CoveringLetter;
-  const qrCodeUrl = links?.self.href;
+  const qrCodeUrl = getQRCodeURL(document);
 
   return (
     <Wrapper data-testid="covering-letter-template">

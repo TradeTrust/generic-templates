@@ -5,7 +5,7 @@ import React, { FunctionComponent, useState } from "react";
 import { DocumentQrCode } from "../../core/DocumentQrCode";
 import { Wrapper } from "../../core/Wrapper";
 import { IconRedact, PrivacyFilter } from "../../core/PrivacyFilter";
-import { getDocumentData } from "../../utils";
+import { getDocumentData, getQRCodeURL } from "../../utils";
 import { InvoiceDocument, InvoiceDocumentSchema, InvoiceItem, W3CInvoiceItem } from "./types";
 import { vc } from "@trustvc/trustvc";
 
@@ -69,8 +69,7 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<InvoiceDocumentSch
     },
   };
 
-  const qrCodeUrl = typeof documentData?.links === "string" ? documentData.links : documentData?.links?.self?.href;
-
+  const qrCodeUrl = getQRCodeURL(document);
   return (
     <Wrapper data-testid="invoice-template">
       {!isW3C && <PrivacyFilter editable={editable} onToggleEditable={() => setEditable(!editable)} />}
