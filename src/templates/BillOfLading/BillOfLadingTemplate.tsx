@@ -2,9 +2,10 @@ import { TemplateProps } from "@tradetrust-tt/decentralized-renderer-react-compo
 import React, { FunctionComponent } from "react";
 import { DocumentQrCode } from "../../core/DocumentQrCode";
 import { Wrapper } from "../../core/Wrapper";
-import { getDocumentData } from "../../utils";
+import { getDocumentData, getQRCodeURL } from "../../utils";
 import { BillOfLadingDocument, BillOfLadingSchema } from "./types";
 import logo from "/static/images/logo-tradetrust.svg";
+import { vc } from "@trustvc/trustvc";
 
 const smallText = (text: string): JSX.Element => <p style={{ fontSize: "0.8em" }}>{text}</p>;
 const smallStrongText = (text: string): JSX.Element => (
@@ -263,7 +264,7 @@ const Section1 = (document: BillOfLadingDocument): JSX.Element => {
 
 export const BillOfLadingTemplate: FunctionComponent<TemplateProps<BillOfLadingSchema>> = ({ document }) => {
   const documentData = getDocumentData(document) as BillOfLadingDocument;
-  const qrCodeUrl = documentData?.links?.self.href;
+  const qrCodeUrl = getQRCodeURL(document);
   return (
     <Wrapper data-testid="bill-of-lading-template">
       <div className="mb-8">{Section1(documentData)}</div>

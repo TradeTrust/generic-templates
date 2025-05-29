@@ -36,4 +36,7 @@ export interface BillOfLadingDocument {
       href: string;
     };
   };
+  qrCode?: {
+    uri: string;
+  };
 }

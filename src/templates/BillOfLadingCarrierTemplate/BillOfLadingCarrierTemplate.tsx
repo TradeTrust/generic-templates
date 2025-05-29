@@ -2,7 +2,7 @@ import { TemplateProps } from "@tradetrust-tt/decentralized-renderer-react-compo
 import React, { FunctionComponent } from "react";
 import { DocumentQrCode } from "../../core/DocumentQrCode";
 import { Wrapper } from "../../core/Wrapper";
-import { getDocumentData } from "../../utils";
+import { getDocumentData, getQRCodeURL } from "../../utils";
 import { BillOfLadingCarrierDocument, BillOfLadingCarrierSchema } from "./types";
 
 const smallText = (text: string): JSX.Element => <p style={{ fontSize: "0.8em" }}>{text}</p>;
@@ -994,7 +994,7 @@ export const BillOfLadingCarrierTemplate: FunctionComponent<TemplateProps<BillOf
   document,
 }) => {
   const documentData = getDocumentData(document) as BillOfLadingCarrierDocument;
-  const qrCodeUrl = documentData?.links?.self.href;
+  const qrCodeUrl = getQRCodeURL(document);
   const termsOfCarriage = documentData?.termsOfCarriage;
   return (
     <Wrapper data-testid="bill-of-lading-carrier-template">

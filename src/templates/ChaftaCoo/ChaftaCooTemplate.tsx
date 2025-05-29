@@ -4,7 +4,7 @@ import React, { FunctionComponent, useState } from "react";
 import { DocumentQrCode } from "../../core/DocumentQrCode";
 import { Wrapper } from "../../core/Wrapper";
 import { ChaftaCooDocumentSchema, ChaftaCooDocument } from "./types";
-import { getDocumentData } from "./../../utils";
+import { getDocumentData, getQRCodeURL } from "./../../utils";
 import { secondSignatoryAuthentication } from "../../core/Signatures";
 
 const getValue = (id?: string): string | undefined => {
@@ -370,7 +370,7 @@ export const ChaftaCooTemplate: FunctionComponent<ChaftaCooTemplateProps> = (pro
   const [isPrivacyOn, setIsPrivacyOn] = useState(false);
   const { document, handleObfuscation } = props;
   const documentData = getDocumentData(document);
-  const qrCodeUrl = documentData.links?.self.href;
+  const qrCodeUrl = getQRCodeURL(document);
 
   return (
     <Wrapper data-testid="chafta-coo-template">

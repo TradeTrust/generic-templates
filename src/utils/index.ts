@@ -1,4 +1,10 @@
-import { OpenAttestationDocument, SignedVerifiableCredential, isRawV3Document, vc } from "@trustvc/trustvc";
+import {
+  OpenAttestationDocument,
+  SignedVerifiableCredential,
+  isRawV2Document,
+  isRawV3Document,
+  vc,
+} from "@trustvc/trustvc";
 import { toWords } from "number-to-words";
 
 export const getDocumentData = (document: OpenAttestationDocument | SignedVerifiableCredential): any => {
@@ -37,3 +43,17 @@ export const toTitleCaseWords = (amount?: string | number): string =>
     .split(" ")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
+
+export const getQRCodeURL = (document: OpenAttestationDocument | SignedVerifiableCredential): any => {
+  const documentData = getDocumentData(document);
+  if (vc.isSignedDocument(document)) {
+    const { qrCode } = document;
+    return qrCode.uri;
+  } else if (isRawV3Document(document)) {
+    const { links } = documentData.credentialSubject;
+    return links?.self?.href;
+  } else if (isRawV2Document(document)) {
+    const { links } = documentData;
+    return links?.self?.href;
+  }
+};

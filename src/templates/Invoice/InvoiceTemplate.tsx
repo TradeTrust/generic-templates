@@ -5,7 +5,7 @@ import React, { FunctionComponent, useState } from "react";
 import { DocumentQrCode } from "../../core/DocumentQrCode";
 import { Wrapper } from "../../core/Wrapper";
 import { IconRedact, PrivacyFilter } from "../../core/PrivacyFilter";
-import { getDocumentData } from "../../utils";
+import { getDocumentData, getQRCodeURL } from "../../utils";
 import { InvoiceDocument, InvoiceDocumentSchema } from "./types";
 
 const CustomStyles = styled.div`
@@ -59,7 +59,7 @@ export const InvoiceTemplate: FunctionComponent<TemplateProps<InvoiceDocumentSch
     taxTotal = 0,
     total = 0,
   } = documentData;
-  const qrCodeUrl = documentData?.links?.self.href;
+  const qrCodeUrl = getQRCodeURL(document);
   return (
     <Wrapper data-testid="invoice-template">
       <PrivacyFilter editable={editable} onToggleEditable={() => setEditable(!editable)} />
