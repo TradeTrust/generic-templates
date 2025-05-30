@@ -71,11 +71,9 @@ describe("promissoryNoteTemplate w3c vc", () => {
     expect(screen.getByText(/We promise to pay/i)).toBeInTheDocument();
   });
 
-  it("should render default law and arbitration section if clause is not provided", () => {
+  it("should render clause if present", () => {
     render(<PromissoryNoteTemplate document={PromissoryNoteSampleW3C} handleObfuscation={() => {}} />);
-    expect(screen.getByText("Law and Arbitration")).toBeInTheDocument();
-    expect(screen.getByText(/Singapore law/)).toBeInTheDocument();
-    expect(screen.getByText(/No presentation \/ Notice \/ Protest Required/i)).toBeInTheDocument();
+    expect(screen.getByText(/The liability of the members/)).toBeInTheDocument();
   });
 
   it("should display the digital signature section", () => {
