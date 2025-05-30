@@ -49,7 +49,7 @@ export const toTitleCaseWords = (amount?: string | number): string =>
 
 export const getQRCodeURL = (document: OpenAttestationDocument | SignedVerifiableCredential): any => {
   const documentData = getDocumentData(document);
-  if (vc.isSignedDocument(document)) {
+  if (vc.isSignedDocument(document) || vc.isRawDocument(document)) {
     const { qrCode } = document;
     return qrCode.uri;
   } else if (isRawV3Document(document)) {
