@@ -2,8 +2,9 @@ import { TemplateProps } from "@tradetrust-tt/decentralized-renderer-react-compo
 import React, { FunctionComponent } from "react";
 import { Wrapper } from "../../core/Wrapper";
 import { SimpleCooDocumentSchema } from "./types";
-import { getDocumentData } from "./../../utils";
+import { getDocumentData, getQRCodeURL } from "./../../utils";
 import { secondSignatoryAuthentication } from "../../core/Signatures";
+import { DocumentQrCode } from "../../core/DocumentQrCode";
 
 export const SimpleCooTemplate: FunctionComponent<TemplateProps<SimpleCooDocumentSchema>> = ({ document }) => {
   const documentData = getDocumentData(document);
@@ -126,7 +127,7 @@ export const SimpleCooTemplate: FunctionComponent<TemplateProps<SimpleCooDocumen
       </>
     );
   };
-
+  const qrCodeUrl = getQRCodeURL(document);
   return (
     <Wrapper>
       <h3 className="text-center text-2xl mb-3 text-cloud-900">Certificate of Origin</h3>
@@ -203,6 +204,7 @@ export const SimpleCooTemplate: FunctionComponent<TemplateProps<SimpleCooDocumen
           </div>
         </div>
       </div>
+      {qrCodeUrl && <DocumentQrCode url={qrCodeUrl} />}
     </Wrapper>
   );
 };

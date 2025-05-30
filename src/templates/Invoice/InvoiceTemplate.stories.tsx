@@ -2,6 +2,7 @@ import React, { FunctionComponent } from "react";
 import { InvoiceTemplate } from "./InvoiceTemplate";
 import { InvoiceSampleV2 } from "./sampleV2";
 import { InvoiceSampleV3 } from "./sampleV3";
+import { InvoiceSampleW3C } from "./sampleW3C";
 
 export default {
   title: "Invoice",
@@ -17,4 +18,7 @@ export const InvoiceV2: FunctionComponent = () => {
 
 export const InvoiceV3: FunctionComponent = () => {
   return <InvoiceTemplate document={InvoiceSampleV3} handleObfuscation={() => {}} />;
+};
+export const InvoiceW3C: FunctionComponent = () => {
+  return <InvoiceTemplate document={InvoiceSampleW3C} handleObfuscation={() => {}} />;
 };

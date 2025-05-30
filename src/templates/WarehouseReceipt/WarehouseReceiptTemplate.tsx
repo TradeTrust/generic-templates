@@ -1,8 +1,9 @@
 import { TemplateProps } from "@tradetrust-tt/decentralized-renderer-react-components";
 import React, { FunctionComponent } from "react";
 import { Wrapper } from "../../core/Wrapper";
-import { getDocumentData } from "../../utils";
+import { getDocumentData, getQRCodeURL } from "../../utils";
 import { WarehouseReceiptDocument, WarehouseReceiptSchema } from "./types";
+import { DocumentQrCode } from "../../core/DocumentQrCode";
 
 const HeaderSection = (document: WarehouseReceiptDocument): JSX.Element => {
   const { spl } = document;
@@ -269,6 +270,7 @@ const TermsAndConditionsSection = (document: WarehouseReceiptDocument): JSX.Elem
 
 export const WarehouseReceiptTemplate: FunctionComponent<TemplateProps<WarehouseReceiptSchema>> = ({ document }) => {
   const documentData = getDocumentData(document) as WarehouseReceiptDocument;
+  const qrCodeUrl = getQRCodeURL(document);
   return (
     <Wrapper data-testid="warehouse-receipt-template">
       {HeaderSection(documentData)}
@@ -284,6 +286,7 @@ export const WarehouseReceiptTemplate: FunctionComponent<TemplateProps<Warehouse
       <div className="break-before-page">
         <pre className="font-sans whitespace-pre-line">{TermsAndConditionsSection(documentData)}</pre>
       </div>
+      {qrCodeUrl && <DocumentQrCode url={qrCodeUrl} />}
     </Wrapper>
   );
 };

@@ -1,9 +1,17 @@
 import { TemplateProps } from "@tradetrust-tt/decentralized-renderer-react-components";
 import React, { FunctionComponent } from "react";
 import { Wrapper } from "../../core/Wrapper";
-import { formatCurrency, formatDate, formatDateTime, getDocumentData, toTitleCaseWords } from "../../utils";
+import {
+  formatCurrency,
+  formatDate,
+  formatDateTime,
+  getDocumentData,
+  getQRCodeURL,
+  toTitleCaseWords,
+} from "../../utils";
 import { PromissoryNoteDocument, PromissoryNoteSchema } from "./types";
 import backgroundImage from "./background.jpg";
+import { DocumentQrCode } from "../../core/DocumentQrCode";
 
 const getBackgroundImage = (document: PromissoryNoteDocument): string => {
   return document.backgroundImage || backgroundImage;
@@ -225,6 +233,7 @@ const DisclaimerSection = (): JSX.Element => {
 
 export const PromissoryNoteTemplate: FunctionComponent<TemplateProps<PromissoryNoteSchema>> = ({ document }) => {
   const documentData = getDocumentData(document) as PromissoryNoteDocument;
+  const qrCodeUrl = getQRCodeURL(document);
   return (
     <Wrapper data-testid="promissory-note-template">
       <div style={containerStyle(documentData)}>
@@ -241,6 +250,7 @@ export const PromissoryNoteTemplate: FunctionComponent<TemplateProps<PromissoryN
           <DigitalSignatureSection {...documentData} />
           <DisclaimerSection />
         </div>
+        {qrCodeUrl && <DocumentQrCode url={qrCodeUrl} />}
       </div>
     </Wrapper>
   );
