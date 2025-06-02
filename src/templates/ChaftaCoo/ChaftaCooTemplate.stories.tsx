@@ -2,6 +2,7 @@ import React, { FunctionComponent } from "react";
 import { ChaftaCooTemplate } from "./ChaftaCooTemplate";
 import { ChaftaCooSampleV2 } from "./sampleV2";
 import { ChaftaCooSampleV3 } from "./sampleV3";
+import { ChaftaCooSampleW3C } from "./sampleW3C";
 
 export default {
   title: "ChaftaCoo",
@@ -21,4 +22,8 @@ export const ChaftaCooV2: FunctionComponent = () => {
 
 export const ChaftaCooV3: FunctionComponent = () => {
   return <ChaftaCooTemplate document={ChaftaCooSampleV3} handleObfuscation={() => {}} />;
+};
+
+export const ChaftaCooW3C: FunctionComponent = () => {
+  return <ChaftaCooTemplate document={ChaftaCooSampleW3C} handleObfuscation={() => {}} />;
 };

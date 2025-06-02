@@ -2,7 +2,7 @@ import { TemplateProps } from "@tradetrust-tt/decentralized-renderer-react-compo
 import React, { FunctionComponent } from "react";
 import { DocumentQrCode } from "../../core/DocumentQrCode";
 import { Wrapper } from "../../core/Wrapper";
-import { getDocumentData } from "../../utils";
+import { getDocumentData, getQRCodeURL } from "../../utils";
 import { BillOfLadingMaerskPilotDocument, BillOfLadingMaerskPilotSchema } from "./types";
 
 const smallText = (text: string): JSX.Element => <p style={{ fontSize: "0.8em" }}>{text}</p>;
@@ -987,7 +987,7 @@ export const BillOfLadingMaerskPilotTemplate: FunctionComponent<TemplateProps<Bi
   document,
 }) => {
   const documentData = getDocumentData(document) as BillOfLadingMaerskPilotDocument;
-  const qrCodeUrl = documentData?.links?.self.href;
+  const qrCodeUrl = getQRCodeURL(document);
   return (
     <Wrapper data-testid="bill-of-lading-maersk-pilot-template">
       <div className="mb-8">{Section1(documentData)}</div>

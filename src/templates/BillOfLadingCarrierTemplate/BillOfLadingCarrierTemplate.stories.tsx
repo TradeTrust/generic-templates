@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from "react";
 import { BillOfLadingCarrierTemplate } from "./BillOfLadingCarrierTemplate";
 import { BillOfLadingCarrierSampleV2 } from "./sampleV2";
+import { BillOfLadingCarrierW3C } from "./sampleW3C";
 
 export default {
   title: "BillOfLadingCarrier",
@@ -16,4 +17,8 @@ export const BillOfLadingV2CarrierEmpty: FunctionComponent = () => {
 
 export const BillOfLadingV2Carrier: FunctionComponent = () => {
   return <BillOfLadingCarrierTemplate document={BillOfLadingCarrierSampleV2} handleObfuscation={() => {}} />;
+};
+
+export const BillOfLadingW3CCarrier: FunctionComponent = () => {
+  return <BillOfLadingCarrierTemplate document={BillOfLadingCarrierW3C} handleObfuscation={() => {}} />;
 };

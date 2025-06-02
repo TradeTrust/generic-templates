@@ -13,7 +13,7 @@ import {
   W3CTransportPackage,
   TransportPackage,
 } from "./types";
-import { getDocumentData } from "./../../utils";
+import { getDocumentData, getQRCodeURL } from "./../../utils";
 import { secondSignatoryAuthentication } from "../../core/Signatures";
 import { vc } from "@trustvc/trustvc";
 
@@ -525,7 +525,7 @@ export const ChaftaCooTemplate: FunctionComponent<ChaftaCooTemplateProps> = (pro
   const [isPrivacyOn, setIsPrivacyOn] = useState(false);
   const { document, handleObfuscation } = props;
   const documentData = getDocumentData(document);
-  const qrCodeUrl = documentData.links?.self.href;
+  const qrCodeUrl = getQRCodeURL(document);
   const isW3C = vc.isSignedDocument(document);
 
   return (

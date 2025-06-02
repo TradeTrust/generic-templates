@@ -3,7 +3,7 @@ import React, { FunctionComponent, useState } from "react";
 import { DocumentQrCode } from "../../core/DocumentQrCode";
 import { PrivacyFilter, IconRedact } from "../../core/PrivacyFilter";
 import { Wrapper } from "../../core/Wrapper";
-import { getDocumentData } from "../../utils";
+import { getDocumentData, getQRCodeURL } from "../../utils";
 import { BillOfLadingMaerskTpacDocument, BillOfLadingMaerskTpacSchema } from "./types";
 
 interface SectionProps {
@@ -1184,7 +1184,7 @@ export const BillOfLadingMaerskTpacTemplate: FunctionComponent<TemplateProps<Bil
 }) => {
   const [editable, setEditable] = useState(false);
   const documentData = getDocumentData(document) as BillOfLadingMaerskTpacDocument;
-  const qrCodeUrl = documentData?.links?.self.href;
+  const qrCodeUrl = getQRCodeURL(document);
   const props = { document: documentData, editable, handleObfuscation };
   return (
     <Wrapper data-testid="bill-of-lading-maersk-pilot-template">

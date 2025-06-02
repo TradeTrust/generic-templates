@@ -3,6 +3,8 @@ import React from "react";
 import { utils, wrapDocument } from "@tradetrust-tt/tradetrust";
 import { BillOfLadingCarrierTemplate } from "./BillOfLadingCarrierTemplate";
 import { BillOfLadingCarrierSampleV2 } from "./sampleV2";
+import { BillOfLadingCarrierW3C } from "./sampleW3C";
+import { vc } from "@trustvc/trustvc";
 
 describe("bill of lading V2 (Carrier)", () => {
   it("should render ebl id in B/L number and Booking number respectively", () => {
@@ -49,5 +51,37 @@ describe("bill of lading V2 (Carrier)", () => {
   it("should be able to wrap v2", () => {
     const wrappedDocument = wrapDocument(BillOfLadingCarrierSampleV2);
     expect(utils.isWrappedV2Document(wrappedDocument)).toBe(true);
+  });
+});
+
+describe("bill of lading (Carrier) W3C", () => {
+  it("should render ebl id in B/L number and Booking number respectively", () => {
+    render(<BillOfLadingCarrierTemplate document={BillOfLadingCarrierW3C} handleObfuscation={() => {}} />);
+    expect(screen.getAllByText("12345")).toHaveLength(2);
+    expect(screen.getAllByText("abcde")).toHaveLength(1);
+  });
+  it("should not render logo, carrier signature if both not provided", () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    render(<BillOfLadingCarrierTemplate document={BillOfLadingCarrierW3C} handleObfuscation={() => {}} />);
+    expect(screen.queryByTestId("logo")).not.toBeInTheDocument();
+    expect(screen.queryByTestId("carrier-signature")).not.toBeInTheDocument();
+  });
+  it("should not render free text fields, with Number of original B/L defaulting to ONE/1", () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
+    render(<BillOfLadingCarrierTemplate document={BillOfLadingCarrierW3C} handleObfuscation={() => {}} />);
+    expect(screen.queryByTestId("carrier-receipt")).not.toBeInTheDocument();
+    expect(screen.queryByTestId("place-of-issue-bl")).not.toBeInTheDocument();
+    expect(screen.getByTestId("number-of-original-bl")).toHaveTextContent("ONE/1");
+    expect(screen.queryByTestId("date-of-issue-bl")).not.toBeInTheDocument();
+  });
+  it("should have qr code", () => {
+    render(<BillOfLadingCarrierTemplate document={BillOfLadingCarrierW3C} handleObfuscation={() => {}} />);
+    const qrCode = screen.getByTestId("document-qrcode");
+    expect(qrCode).toBeInTheDocument();
+    expect(qrCode.querySelector("path")).toBeInTheDocument();
+  });
+  it("should be able verify w3c", () => {
+    expect(vc.isSignedDocument(BillOfLadingCarrierW3C)).toBe(true);
   });
 });
