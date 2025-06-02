@@ -57,6 +57,6 @@ export const getQRCodeURL = (document: OpenAttestationDocument | SignedVerifiabl
     return links?.self?.href;
   } else if (vc.isSignedDocument(document) || vc.isRawDocument(document)) {
     const { qrCode } = document;
-    return qrCode.uri;
+    return qrCode?.uri;
   }
 };
