@@ -40,7 +40,7 @@
     "@tradetrust-tt/decentralized-renderer-react-components": "^3.16.8",
     "@tradetrust-tt/tradetrust": "6.10.1",
     "@tradetrust-tt/tradetrust-ui-components": "^3.3.2",
-    "@trustvc/trustvc": "^1.2.1",
+    "@trustvc/trustvc": "^1.5.4",
     "date-fns": "^2.28.0",
     "debug": "^4.3.4",
     "escape-goat": "3.0.0",
