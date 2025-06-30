@@ -1,8 +1,12 @@
-import { v2, v3 } from "@tradetrust-tt/tradetrust";
+import { v2, v3, SignedVerifiableCredential } from "@trustvc/trustvc";
+import { CredentialSubject } from "@trustvc/trustvc/w3c/vc";
 
 export type BillOfLadingSchemaV2 = v2.OpenAttestationDocument & BillOfLadingDocument;
 export type BillOfLadingSchemaV3 = v3.OpenAttestationDocument & {
   credentialSubject: BillOfLadingDocument;
+};
+export type BillOfLadingSchemaW3C = SignedVerifiableCredential & {
+  credentialSubject: CredentialSubject & BillOfLadingDocument;
 };
 
 export type BillOfLadingSchema = BillOfLadingSchemaV2 | BillOfLadingSchemaV3;
@@ -10,10 +14,10 @@ export type BillOfLadingSchema = BillOfLadingSchemaV2 | BillOfLadingSchemaV3;
 export interface BillOfLadingDocument {
   scac: string;
   blNumber: string;
-  vessel: string;
-  voyageNo: string;
-  portOfLoading: string;
-  portOfDischarge: string;
+  vessel?: string;
+  voyageNo?: string;
+  portOfLoading?: string;
+  portOfDischarge?: string;
   carrierName?: string;
   packages?: {
     description: string;
@@ -36,4 +40,11 @@ export interface BillOfLadingDocument {
       href: string;
     };
   };
+
+  // W3C only
+  shipperName?: string;
+  shipperAddressStreet?: string;
+  shipperAddressCountry?: string;
+  consigneeName?: string;
+  notifyPartyName?: string;
 }
