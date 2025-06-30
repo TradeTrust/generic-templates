@@ -66,7 +66,10 @@ module.exports = {
       ? [
           new CompressionPlugin({ test: /\.(js|css|html|svg)$/ }),
           new CopyWebpackPlugin({
-            patterns: [{ from: "static/images", to: "static/images" }],
+            patterns: [
+              { from: "static/fonts", to: "static/fonts" },
+              { from: "static/images", to: "static/images" }
+            ],
           }),
         ]
       : []),

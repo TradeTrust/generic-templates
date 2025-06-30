@@ -1,6 +1,6 @@
-import { Button } from "@tradetrust-tt/tradetrust-ui-components";
 import React, { FunctionComponent } from "react";
 import patternWaves from "/static/images/pattern-waves.png";
+import { Button } from "../Button";
 
 interface PrivacyFilterProps {
   editable: boolean;
