@@ -68,7 +68,7 @@ module.exports = {
           new CopyWebpackPlugin({
             patterns: [
               { from: "static/fonts", to: "static/fonts" },
-              { from: "static/images", to: "static/images" }
+              { from: "static/images", to: "static/images" },
             ],
           }),
         ]
