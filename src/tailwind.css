@@ -1,12 +1,12 @@
 @font-face {
   font-family: "Gilroy-Medium";
-  src: url("https://ui.tradetrust.io/static/fonts/GilroyMedium/font.woff2") format("woff2"),
-    url("https://ui.tradetrust.io/static/fonts/GilroyMedium/font.woff") format("woff");
+  src: url("/static/fonts/GilroyMedium/font.woff2") format("woff2"),
+    url("/static/fonts/GilroyMedium/font.woff") format("woff");
 }
 @font-face {
   font-family: "Gilroy-Bold";
-  src: url("https://ui.tradetrust.io/static/fonts/GilroyBold/font.woff2") format("woff2"),
-    url("https://ui.tradetrust.io/static/fonts/GilroyBold/font.woff") format("woff");
+  src: url("/static/fonts/GilroyBold/font.woff2") format("woff2"),
+    url("/static/fonts/GilroyBold/font.woff") format("woff");
 }
 
 @tailwind base;
