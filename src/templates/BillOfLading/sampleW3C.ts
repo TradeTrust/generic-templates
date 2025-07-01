@@ -16,7 +16,7 @@ export const BillOfLadingSampleW3C: BillOfLadingSchemaW3C = {
       chain: "MATIC",
       chainId: "80002",
     },
-    tokenRegistry: "0x3652efbc80ace560844afc932d2bf8b452a96c6d"
+    tokenRegistry: "0x3652efbc80ace560844afc932d2bf8b452a96c6d",
   },
   renderMethod: [
     {
@@ -36,5 +36,5 @@ export const BillOfLadingSampleW3C: BillOfLadingSchemaW3C = {
   issuanceDate: "2025-06-30T13:49:59.352Z",
   expirationDate: "2025-09-30T13:49:59.352Z",
   issuer: "did:web:did.trustvc.io",
-  id: "urn:bnid:_:0197c11a-0cbb-7bb0-ac68-24b564c4eca0"
+  id: "urn:bnid:_:0197c11a-0cbb-7bb0-ac68-24b564c4eca0",
 };
