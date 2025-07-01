@@ -20,7 +20,7 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
     return { hasError: true, error };
   }
 
-  render(): ReactNode {
+  render(): JSX.Element {
     if (this.state.hasError) {
       // You can render any custom fallback UI
       return (
@@ -36,6 +36,6 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
       );
     }
 
-    return this.props.children;
+    return <>{this.props.children}</>;
   }
 }

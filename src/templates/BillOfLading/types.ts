@@ -9,7 +9,7 @@ export type BillOfLadingSchemaW3C = SignedVerifiableCredential & {
   credentialSubject: CredentialSubject & BillOfLadingDocument;
 };
 
-export type BillOfLadingSchema = BillOfLadingSchemaV2 | BillOfLadingSchemaV3;
+export type BillOfLadingSchema = BillOfLadingSchemaV2 | BillOfLadingSchemaV3 | BillOfLadingSchemaW3C;
 
 export interface BillOfLadingDocument {
   scac: string;
@@ -19,11 +19,7 @@ export interface BillOfLadingDocument {
   portOfLoading?: string;
   portOfDischarge?: string;
   carrierName?: string;
-  packages?: {
-    description: string;
-    weight: string;
-    measurement: string;
-  }[];
+  packages?: PackageItem[] | W3CPackageItem[];
   shipper?: {
     name?: string;
     address?: {
@@ -47,4 +43,16 @@ export interface BillOfLadingDocument {
   shipperAddressCountry?: string;
   consigneeName?: string;
   notifyPartyName?: string;
+}
+
+export interface PackageItem {
+  description: string;
+  weight: string;
+  measurement: string;
+}
+
+export interface W3CPackageItem {
+  packagesDescription: string;
+  packagesWeight: string;
+  packagesMeasurement: string;
 }

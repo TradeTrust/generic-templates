@@ -3,8 +3,9 @@ import React, { FunctionComponent } from "react";
 import { DocumentQrCode } from "../../core/DocumentQrCode";
 import { Wrapper } from "../../core/Wrapper";
 import { getDocumentData, getQRCodeURL } from "../../utils";
-import { BillOfLadingDocument, BillOfLadingSchema } from "./types";
+import { BillOfLadingDocument, BillOfLadingSchema, PackageItem, W3CPackageItem } from "./types";
 import logo from "/static/images/logo-tradetrust.svg";
+import { vc } from "@trustvc/trustvc";
 
 const smallText = (text: string): JSX.Element => <p style={{ fontSize: "0.8em" }}>{text}</p>;
 const smallStrongText = (text: string): JSX.Element => (
@@ -97,9 +98,19 @@ const Section3 = (document: BillOfLadingDocument): JSX.Element => {
 
 const Section2 = (document: BillOfLadingDocument): JSX.Element => {
   const packages = document.packages || [];
-  const renderedKindOfPackage = packages.map((pkg, index) => <p key={index}>{pkg.description}</p>);
-  const renderedWeight = packages.map((pkg, index) => <p key={index}>{pkg.weight}</p>);
-  const renderedMeasurement = packages.map((pkg, index) => <p key={index}>{pkg.measurement}</p>);
+  const isW3C = vc.isSignedDocument(document);
+
+  const renderedKindOfPackage = packages.map((pkg, index) => (
+    <pre key={index} className="whitespace-pre-line font-sans">
+      {isW3C ? (pkg as W3CPackageItem).packagesDescription : (pkg as PackageItem).description}
+    </pre>
+  ));
+  const renderedWeight = packages.map((pkg, index) => (
+    <p key={index}>{isW3C ? (pkg as W3CPackageItem).packagesWeight : (pkg as PackageItem).weight}</p>
+  ));
+  const renderedMeasurement = packages.map((pkg, index) => (
+    <p key={index}>{isW3C ? (pkg as W3CPackageItem).packagesMeasurement : (pkg as PackageItem).measurement}</p>
+  ));
 
   return (
     <div className="border-black border">
