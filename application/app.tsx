@@ -90,8 +90,8 @@ export const App: React.FunctionComponent<AppProps> = ({ documents }): React.Rea
                 <div
                   key={index}
                   data-testid={`${d.name}`}
-                  className={`bg-sky-50 p-2 border-t-4 border-sky-500 cursor-pointer hover:bg-sky-100 document ${
-                    document === d ? "active" : ""
+                  className={`p-2 border-t-4 border-sky-500 cursor-pointer hover:bg-sky-100 document ${
+                    document === d ? "active bg-sky-300" : "bg-sky-50"
                   }`}
                   onClick={() => setDocument(d)}
                 >
