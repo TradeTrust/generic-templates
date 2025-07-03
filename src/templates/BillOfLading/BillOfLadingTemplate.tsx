@@ -143,7 +143,24 @@ const Section2 = (document: BillOfLadingDocument): JSX.Element => {
 };
 
 const Section1 = (document: BillOfLadingDocument): JSX.Element => {
-  const { shipper = {}, scac, blNumber, consignee = {}, notifyParty = {} } = document;
+  const { scac, blNumber } = document;
+
+  const shipper = document.shipper ?? {
+    name: document.shipperName,
+    address: {
+      street: document.shipperAddressStreet,
+      country: document.shipperAddressCountry,
+    },
+  };
+
+  const consignee = document.consignee ?? {
+    name: document.consigneeName,
+  };
+
+  const notifyParty = document.notifyParty ?? {
+    name: document.notifyPartyName,
+  };
+
   return (
     <div className="border-black border">
       <div className="flex">
