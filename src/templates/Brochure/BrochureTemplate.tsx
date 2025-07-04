@@ -322,8 +322,7 @@ const Page4: React.FC<{
   editable: boolean;
   handleObfuscation: (field: string) => void;
   isMobile: boolean;
-  isV4: boolean;
-}> = ({ document, editable, handleObfuscation, isMobile, isV4 }) => {
+}> = ({ document, editable, handleObfuscation, isMobile }) => {
   const contents = document.page4.contents;
   const footer = document.page4.footer;
   const page4Elements = (
@@ -355,11 +354,7 @@ const Page4: React.FC<{
                   <RedactableValue
                     editable={editable}
                     value={item.description}
-                    onRedactionRequested={() =>
-                      handleObfuscation(
-                        `${isV4 ? "credentialSubject." : ""}page4.contents[1].listItems[${i}].description`
-                      )
-                    }
+                    onRedactionRequested={() => handleObfuscation(`page4.contents[1].listItems[${i}].description`)}
                     iconRedact={<IconRedact />}
                     noValueMessage="[Data has been redacted.]"
                   />
@@ -480,7 +475,6 @@ export const BrochureTemplate: FunctionComponent<TemplateProps<BrochureSchema>> 
           editable={editable}
           handleObfuscation={handleObfuscation}
           isMobile={isMobile(width)}
-          isV4={false}
         />
       </div>
     </Wrapper>
