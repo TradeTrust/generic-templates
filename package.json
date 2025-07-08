@@ -116,5 +116,8 @@
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.0.0",
     "webpack-env": "^0.8.0"
+  },
+  "overrides": {
+    "glob": "^9.3.5"
   }
 }
