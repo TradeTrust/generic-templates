@@ -1,6 +1,5 @@
 import { v2 } from "@tradetrust-tt/tradetrust";
 import { WarehouseReceiptSchemaV2 } from "./types";
-import logo from "/static/images/logo-tradetrust.svg";
 import { firstSignatoryAuthentication as randomSignature } from "../../core/Signatures";
 
 export const WarehouseReceiptSampleV2: WarehouseReceiptSchemaV2 = {
