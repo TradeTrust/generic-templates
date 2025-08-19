@@ -16,4 +16,7 @@ module.exports = {
   setupFilesAfterEnv: ["./jest.setup.ts"],
   testEnvironment: "jest-environment-jsdom",
   testRegex: "(/__tests__/.*|(\\.|/)(test))\\.tsx?$",
+  transformIgnorePatterns: [
+    "node_modules/(?!(@digitalbazaar|@trustvc|@mattrglobal|base64url-universal|base58-universal|cborg|multiformats|uint8arrays)/)",
+  ],
 };
