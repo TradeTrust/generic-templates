@@ -12,16 +12,11 @@ module.exports = {
     "@tradetrust-tt/token-registry-v5/contracts":
       "<rootDir>/node_modules/@tradetrust-tt/token-registry-v5/dist/contracts",
     "@tradetrust-tt/token-registry/contracts": "<rootDir>/node_modules/@tradetrust-tt/token-registry-v5/dist/contracts",
-
-    "^cborg$": "<rootDir>/node_modules/cborg/cborg.js",
   },
   setupFilesAfterEnv: ["./jest.setup.ts"],
   testEnvironment: "jest-environment-jsdom",
   testRegex: "(/__tests__/.*|(\\.|/)(test))\\.tsx?$",
-  transform: {
-    "^.+\\.[jt]sx?$": "babel-jest",
-  },
   transformIgnorePatterns: [
-    "node_modules/(?!(@digitalbazaar|@trustvc|@mattrglobal|base64url-universal|base58-universal|cborg|multiformats|uint8arrays)/)",
+    "node_modules/(?!(@digitalbazaar|base64url-universal|base58-universal|cborg)/)",
   ],
 };
