@@ -23,3 +23,10 @@ if (!globalThis.fetch) {
   globalThis.Request = Request as any;
   globalThis.Response = Response as any;
 }
+
+// Add setImmediate polyfill for Node.js compatibility
+if (!globalThis.setImmediate) {
+  (globalThis as any).setImmediate = (callback: (...args: any[]) => void, ...args: any[]) => {
+    return setTimeout(callback, 0, ...args);
+  };
+}
