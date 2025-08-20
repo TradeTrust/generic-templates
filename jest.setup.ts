@@ -8,7 +8,6 @@ import "@testing-library/jest-dom/extend-expect";
 jest.spyOn(HTMLCanvasElement.prototype, "getContext").mockImplementation();
 
 import { TextEncoder, TextDecoder } from "util";
-import { Crypto } from "@peculiar/webcrypto";
 
 Object.assign(global, {
   TextDecoder,
@@ -24,10 +23,6 @@ if (!globalThis.fetch) {
   globalThis.Request = Request as any;
   globalThis.Response = Response as any;
 }
-// Polyfill Web Crypto
-const cryptoInstance = new Crypto();
-(globalThis as any).crypto = cryptoInstance;
-(global as any).crypto.subtle = cryptoInstance.subtle;
 
 // Add setImmediate polyfill for Node.js compatibility
 if (!globalThis.setImmediate) {
@@ -35,6 +30,3 @@ if (!globalThis.setImmediate) {
     return setTimeout(callback, 0, ...args);
   };
 }
-
-// Simple webpack chunk mock for decentralized-renderer-react-components
-(global as any).webpackChunkdecentralizedRenderer = [];
