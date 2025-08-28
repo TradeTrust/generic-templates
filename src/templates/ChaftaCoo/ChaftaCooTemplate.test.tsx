@@ -4,7 +4,7 @@ import { utils, wrapDocument } from "@tradetrust-tt/tradetrust";
 import { ChaftaCooTemplate } from "./ChaftaCooTemplate";
 import { ChaftaCooSampleV2 } from "./sampleV2";
 import { ChaftaCooSampleV3 } from "./sampleV3";
-import { ChaftaCooSampleW3C } from "./sampleW3C";
+import { ChaftaCooSampleW3C, ChaftaCooSampleW3C_V2 } from "./sampleW3C";
 import { vc } from "@trustvc/trustvc";
 
 describe("chafta coo v2", () => {
@@ -42,25 +42,65 @@ describe("chafta coo v3", () => {
   // }); // TODO: v3 schema fields did not tally at schemata yet
 });
 
-describe("chafta coo w3c", () => {
-  it("should render titles correctly", () => {
-    render(<ChaftaCooTemplate document={ChaftaCooSampleW3C} handleObfuscation={() => {}} />);
-    expect(screen.getAllByText("CERTIFICATE OF ORIGIN")).toHaveLength(2);
+// W3C test configurations
+const w3cTestConfigurations = [
+  {
+    name: "w3c v1.1",
+    document: ChaftaCooSampleW3C,
+    verificationFn: (doc: any) => vc.isSignedDocumentV1_1(doc),
+  },
+  {
+    name: "w3c v2",
+    document: ChaftaCooSampleW3C_V2,
+    verificationFn: (doc: any) => vc.isSignedDocumentV2_0(doc),
+  },
+];
+
+const renderW3CTemplate = (document: any): ReturnType<typeof render> => {
+  return render(<ChaftaCooTemplate document={document} handleObfuscation={() => {}} />);
+};
+
+describe("w3C ChaftaCoo tests", () => {
+  describe(`chafta coo w3c v1.1`, () => {
+    const config = w3cTestConfigurations[0];
+
+    it("should render titles correctly", () => {
+      renderW3CTemplate(config.document);
+      expect(screen.getAllByText("CERTIFICATE OF ORIGIN")).toHaveLength(2);
+    });
+
+    it("should render a signature", () => {
+      renderW3CTemplate(config.document);
+      expect(screen.getByTestId("signature")).toBeInTheDocument();
+    });
+
+    it("should be able to verify w3c document", () => {
+      expect(config.verificationFn(config.document)).toBe(true);
+    });
   });
 
-  it("should render a signature", () => {
-    render(<ChaftaCooTemplate document={ChaftaCooSampleW3C} handleObfuscation={() => {}} />);
-    expect(screen.getByTestId("signature")).toBeInTheDocument();
-  });
+  describe(`chafta coo w3c v2`, () => {
+    const config = w3cTestConfigurations[1];
 
-  it("should be able verify w3c", () => {
-    expect(vc.isSignedDocument(ChaftaCooSampleW3C)).toBe(true);
-  });
+    it("should render titles correctly", () => {
+      renderW3CTemplate(config.document);
+      expect(screen.getAllByText("CERTIFICATE OF ORIGIN")).toHaveLength(2);
+    });
 
-  it("has valid qrcode", async () => {
-    render(<ChaftaCooTemplate document={ChaftaCooSampleW3C} handleObfuscation={() => {}} />);
-    const qrCode = screen.getByTestId("document-qrcode");
-    expect(qrCode).toBeInTheDocument();
-    expect(qrCode.querySelector("path")).toBeInTheDocument();
+    it("should render a signature", () => {
+      renderW3CTemplate(config.document);
+      expect(screen.getByTestId("signature")).toBeInTheDocument();
+    });
+
+    it("should be able to verify w3c document", () => {
+      expect(config.verificationFn(config.document)).toBe(true);
+    });
+
+    it("has valid qrcode", async () => {
+      renderW3CTemplate(config.document);
+      const qrCode = screen.getByTestId("document-qrcode");
+      expect(qrCode).toBeInTheDocument();
+      expect(qrCode.querySelector("path")).toBeInTheDocument();
+    });
   });
 });

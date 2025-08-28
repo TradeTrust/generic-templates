@@ -5,7 +5,7 @@ import React from "react";
 import { utils, wrapDocument } from "@tradetrust-tt/tradetrust";
 import { WarehouseReceiptSampleV2 } from "./sampleV2";
 import { WarehouseReceiptTemplate } from "./WarehouseReceiptTemplate";
-import { WarehouseReceiptSampleW3C } from "./sampleW3C";
+import { WarehouseReceiptSampleW3C, WarehouseReceiptSampleW3C_V2 } from "./sampleW3C";
 import { vc } from "@trustvc/trustvc";
 
 describe("warehouse receipt V2", () => {
@@ -14,6 +14,7 @@ describe("warehouse receipt V2", () => {
     expect(utils.isWrappedV2Document(wrappedDocument)).toBe(true);
   });
 });
+
 describe("WarehouseReceiptTemplate", () => {
   it("should render the template with SPL number in header", () => {
     render(<WarehouseReceiptTemplate document={WarehouseReceiptSampleV2} handleObfuscation={() => {}} />);
@@ -120,85 +121,192 @@ describe("WarehouseReceiptTemplate", () => {
   });
 });
 
-describe("WarehouseReceiptTemplate (W3C version)", () => {
-  it("should render the template with SPL number from credentialSubject", () => {
-    render(<WarehouseReceiptTemplate document={WarehouseReceiptSampleW3C} handleObfuscation={() => {}} />);
-    expect(screen.getByTestId("warehouse-receipt-template")).toBeInTheDocument();
-  });
+// W3C test configurations
+const w3cTestConfigurations = [
+  {
+    name: "W3C v1.1",
+    document: WarehouseReceiptSampleW3C,
+    verificationFn: (doc: any) => vc.isSignedDocumentV1_1(doc),
+  },
+  {
+    name: "W3C v2",
+    document: WarehouseReceiptSampleW3C_V2,
+    verificationFn: (doc: any) => vc.isSignedDocumentV2_0(doc),
+  },
+];
 
-  describe("Warehouse Receipt Details section (W3C)", () => {
-    beforeEach(() => {
-      render(<WarehouseReceiptTemplate document={WarehouseReceiptSampleW3C} handleObfuscation={() => {}} />);
+const renderW3CTemplate = (document: any): ReturnType<typeof render> => {
+  return render(<WarehouseReceiptTemplate document={document} handleObfuscation={() => {}} />);
+};
+
+describe("W3C WarehouseReceipt tests", () => {
+  describe(`WarehouseReceiptTemplate (W3C v1.1)`, () => {
+    const config = w3cTestConfigurations[0];
+
+    it("should render the template with SPL number from credentialSubject", () => {
+      renderW3CTemplate(config.document);
+      expect(screen.getByTestId("warehouse-receipt-template")).toBeInTheDocument();
     });
 
-    it("should display warehouse receipt number from credentialSubject", () => {
+    describe("Warehouse Receipt Details section (W3C)", () => {
+      beforeEach(() => {
+        renderW3CTemplate(config.document);
+      });
+
+      it("should display warehouse receipt number from credentialSubject", () => {
+        expect(screen.getByText(/Warehouse Receipt/)).toBeInTheDocument();
+        expect(screen.getByText("12345")).toBeInTheDocument();
+      });
+
+      it("should display issuance date from W3C credential", () => {
+        expect(screen.getByText("Issuance Date")).toBeInTheDocument();
+      });
+    });
+
+    describe("Goods section (W3C)", () => {
+      beforeEach(() => {
+        renderW3CTemplate(config.document);
+      });
+
+      it("should display total net weight from credentialSubject", () => {
+        expect(screen.getByText(/Total Net Weight \(MTs\)/)).toBeInTheDocument();
+        expect(screen.getByText("50")).toBeInTheDocument();
+      });
+    });
+
+    describe("Location and markings (W3C)", () => {
+      beforeEach(() => {
+        renderW3CTemplate(config.document);
+      });
+
+      it("should display warehouse address from credentialSubject", () => {
+        expect(screen.getByText("Warehouse Address")).toBeInTheDocument();
+        expect(screen.getByText("Abc street")).toBeInTheDocument();
+      });
+
+      it("should display markings from credentialSubject", () => {
+        expect(screen.getByText(/Markings \/ Remarks/)).toBeInTheDocument();
+        expect(screen.getByText("fragile")).toBeInTheDocument();
+      });
+    });
+
+    describe("Terms sections (W3C)", () => {
+      beforeEach(() => {
+        renderW3CTemplate(config.document);
+      });
+
+      it("should display storage and services terms from credentialSubject", () => {
+        expect(screen.getByText("test terms")).toBeInTheDocument();
+      });
+    });
+
+    it("should render QR code from W3C document", () => {
+      renderW3CTemplate(config.document);
+      const qrCode = screen.getByTestId("document-qrcode");
+      expect(qrCode).toBeInTheDocument();
+      expect(qrCode.querySelector("path")).toBeInTheDocument();
+    });
+
+    it("should handle missing optional fields gracefully", () => {
+      const minimalDoc = {
+        ...config.document,
+        credentialSubject: {
+          type: ["WarehouseReceipt"],
+          warehouseReceipt: "12345",
+        },
+      };
+      render(<WarehouseReceiptTemplate document={minimalDoc} handleObfuscation={() => {}} />);
+
       expect(screen.getByText(/Warehouse Receipt/)).toBeInTheDocument();
-      expect(screen.getByText("12345")).toBeInTheDocument();
     });
 
-    it("should display issuance date from W3C credential", () => {
-      expect(screen.getByText("Issuance Date")).toBeInTheDocument();
-    });
-  });
-
-  describe("Goods section (W3C)", () => {
-    beforeEach(() => {
-      render(<WarehouseReceiptTemplate document={WarehouseReceiptSampleW3C} handleObfuscation={() => {}} />);
-    });
-
-    it("should display total net weight from credentialSubject", () => {
-      expect(screen.getByText(/Total Net Weight \(MTs\)/)).toBeInTheDocument();
-      expect(screen.getByText("50")).toBeInTheDocument();
+    it("should be able to verify w3c document", () => {
+      expect(config.verificationFn(config.document)).toBe(true);
     });
   });
 
-  describe("Location and markings (W3C)", () => {
-    beforeEach(() => {
-      render(<WarehouseReceiptTemplate document={WarehouseReceiptSampleW3C} handleObfuscation={() => {}} />);
+  describe(`WarehouseReceiptTemplate (W3C v2)`, () => {
+    const config = w3cTestConfigurations[1];
+
+    it("should render the template with SPL number from credentialSubject", () => {
+      renderW3CTemplate(config.document);
+      expect(screen.getByTestId("warehouse-receipt-template")).toBeInTheDocument();
     });
 
-    it("should display warehouse address from credentialSubject", () => {
-      expect(screen.getByText("Warehouse Address")).toBeInTheDocument();
-      expect(screen.getByText("Abc street")).toBeInTheDocument();
+    describe("Warehouse Receipt Details section (W3C)", () => {
+      beforeEach(() => {
+        renderW3CTemplate(config.document);
+      });
+
+      it("should display warehouse receipt number from credentialSubject", () => {
+        expect(screen.getByText(/Warehouse Receipt/)).toBeInTheDocument();
+        expect(screen.getByText("12345")).toBeInTheDocument();
+      });
+
+      it("should display issuance date from W3C credential", () => {
+        expect(screen.getByText("Issuance Date")).toBeInTheDocument();
+      });
     });
 
-    it("should display markings from credentialSubject", () => {
-      expect(screen.getByText(/Markings \/ Remarks/)).toBeInTheDocument();
-      expect(screen.getByText("fragile")).toBeInTheDocument();
+    describe("Goods section (W3C)", () => {
+      beforeEach(() => {
+        renderW3CTemplate(config.document);
+      });
+
+      it("should display total net weight from credentialSubject", () => {
+        expect(screen.getByText(/Total Net Weight \(MTs\)/)).toBeInTheDocument();
+        expect(screen.getByText("50")).toBeInTheDocument();
+      });
     });
-  });
 
-  describe("Terms sections (W3C)", () => {
-    beforeEach(() => {
-      render(<WarehouseReceiptTemplate document={WarehouseReceiptSampleW3C} handleObfuscation={() => {}} />);
+    describe("Location and markings (W3C)", () => {
+      beforeEach(() => {
+        renderW3CTemplate(config.document);
+      });
+
+      it("should display warehouse address from credentialSubject", () => {
+        expect(screen.getByText("Warehouse Address")).toBeInTheDocument();
+        expect(screen.getByText("Abc street")).toBeInTheDocument();
+      });
+
+      it("should display markings from credentialSubject", () => {
+        expect(screen.getByText(/Markings \/ Remarks/)).toBeInTheDocument();
+        expect(screen.getByText("fragile")).toBeInTheDocument();
+      });
     });
 
-    it("should display storage and services terms from credentialSubject", () => {
-      expect(screen.getByText("test terms")).toBeInTheDocument();
+    describe("Terms sections (W3C)", () => {
+      beforeEach(() => {
+        renderW3CTemplate(config.document);
+      });
+
+      it("should display storage and services terms from credentialSubject", () => {
+        expect(screen.getByText("test terms")).toBeInTheDocument();
+      });
     });
-  });
 
-  it("should render QR code from W3C document", () => {
-    render(<WarehouseReceiptTemplate document={WarehouseReceiptSampleW3C} handleObfuscation={() => {}} />);
-    const qrCode = screen.getByTestId("document-qrcode");
-    expect(qrCode).toBeInTheDocument();
-    expect(qrCode.querySelector("path")).toBeInTheDocument();
-  });
+    it("should render QR code from W3C document", () => {
+      renderW3CTemplate(config.document);
+      const qrCode = screen.getByTestId("document-qrcode");
+      expect(qrCode).toBeInTheDocument();
+      expect(qrCode.querySelector("path")).toBeInTheDocument();
+    });
 
-  it("should handle missing optional fields gracefully", () => {
-    const minimalDoc = {
-      ...WarehouseReceiptSampleW3C,
-      credentialSubject: {
-        type: ["WarehouseReceipt"],
-        warehouseReceipt: "12345",
-      },
-    };
-    render(<WarehouseReceiptTemplate document={minimalDoc} handleObfuscation={() => {}} />);
+    it("should handle missing optional fields gracefully", () => {
+      const minimalDoc = {
+        ...config.document,
+        credentialSubject: {
+          type: ["WarehouseReceipt"],
+          warehouseReceipt: "12345",
+        },
+      };
+      render(<WarehouseReceiptTemplate document={minimalDoc} handleObfuscation={() => {}} />);
 
-    expect(screen.getByText(/Warehouse Receipt/)).toBeInTheDocument();
-  });
+      expect(screen.getByText(/Warehouse Receipt/)).toBeInTheDocument();
+    });
 
-  it("should be able verify w3c", () => {
-    expect(vc.isSignedDocument(WarehouseReceiptSampleW3C)).toBe(true);
+    it("should be able to verify w3c document", () => {
+      expect(config.verificationFn(config.document)).toBe(true);
+    });
   });
 });
