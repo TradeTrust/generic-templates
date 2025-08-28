@@ -3,6 +3,7 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import "@testing-library/jest-dom/extend-expect";
+import { Crypto } from "@peculiar/webcrypto";
 
 // https://github.com/zpao/qrcode.react/issues/134
 jest.spyOn(HTMLCanvasElement.prototype, "getContext").mockImplementation();
@@ -23,6 +24,11 @@ if (!globalThis.fetch) {
   globalThis.Request = Request as any;
   globalThis.Response = Response as any;
 }
+
+// Polyfill Web Crypto
+const cryptoInstance = new Crypto();
+(globalThis as any).crypto = cryptoInstance;
+(global as any).crypto.subtle = cryptoInstance.subtle;
 
 // Add setImmediate polyfill for Node.js compatibility
 if (!globalThis.setImmediate) {
