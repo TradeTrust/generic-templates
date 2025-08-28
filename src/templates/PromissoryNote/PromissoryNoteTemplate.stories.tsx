@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from "react";
 import { PromissoryNoteTemplate } from "./PromissoryNoteTemplate";
 import { PromissoryNoteSampleV2 } from "./sampleV2";
-import { PromissoryNoteSampleW3C } from "./sampleW3C";
+import { PromissoryNoteSampleW3C, PromissoryNoteSampleW3C_V2 } from "./sampleW3C";
 
 export default {
   title: "PromissoryNote",
@@ -21,4 +21,8 @@ export const PromissoryNoteV2: FunctionComponent = () => {
 
 export const PromissoryNoteW3C: FunctionComponent = () => {
   return <PromissoryNoteTemplate document={PromissoryNoteSampleW3C} handleObfuscation={() => {}} />;
+};
+
+export const PromissoryNoteW3C_V2: FunctionComponent = () => {
+  return <PromissoryNoteTemplate document={PromissoryNoteSampleW3C_V2} handleObfuscation={() => {}} />;
 };

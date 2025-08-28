@@ -3,7 +3,7 @@ import React, { FunctionComponent } from "react";
 import { BillOfLadingTemplate } from "./BillOfLadingTemplate";
 import { BillOfLadingSampleV2 } from "./sampleV2";
 import { BillOfLadingSampleV3 } from "./sampleV3";
-import { BillOfLadingSampleW3C } from "./sampleW3C";
+import { BillOfLadingSampleW3C, BillOfLadingSampleW3C_V2 } from "./sampleW3C";
 import { BillOfLadingDocument } from "./types";
 
 export default {
@@ -28,6 +28,10 @@ export const BillOfLadingV3: FunctionComponent = () => {
 
 export const BillOfLadingW3C: FunctionComponent = () => {
   return <BillOfLadingTemplate document={BillOfLadingSampleW3C} handleObfuscation={() => {}} />;
+};
+
+export const BillOfLadingW3C_V2: FunctionComponent = () => {
+  return <BillOfLadingTemplate document={BillOfLadingSampleW3C_V2} handleObfuscation={() => {}} />;
 };
 
 const Template_: StoryFn<BillOfLadingDocument> = (args) => {

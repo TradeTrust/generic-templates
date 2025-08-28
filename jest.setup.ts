@@ -30,3 +30,16 @@ if (!globalThis.setImmediate) {
     return setTimeout(callback, 0, ...args);
   };
 }
+
+// Fix Uint8Array instanceof issues with Buffer in jsdom
+// Override Uint8Array Symbol.hasInstance to recognize Buffers
+Object.defineProperty(Uint8Array, Symbol.hasInstance, {
+  value: function (obj: any) {
+    return (
+      ArrayBuffer.isView(obj) &&
+      (obj.constructor === Uint8Array ||
+        Buffer.isBuffer(obj) ||
+        Object.prototype.toString.call(obj) === "[object Uint8Array]")
+    );
+  },
+});

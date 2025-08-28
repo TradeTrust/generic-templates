@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from "react";
 import { WarehouseReceiptTemplate } from "./WarehouseReceiptTemplate";
 import { WarehouseReceiptSampleV2 } from "./sampleV2";
-import { WarehouseReceiptSampleW3C } from "./sampleW3C";
+import { WarehouseReceiptSampleW3C, WarehouseReceiptSampleW3C_V2 } from "./sampleW3C";
 
 export default {
   title: "WarehouseReceipt",
@@ -21,4 +21,8 @@ export const WarehouseReceiptV2: FunctionComponent = () => {
 
 export const WarehouseReceiptW3C: FunctionComponent = () => {
   return <WarehouseReceiptTemplate document={WarehouseReceiptSampleW3C} handleObfuscation={() => {}} />;
+};
+
+export const WarehouseReceiptW3C_V2: FunctionComponent = () => {
+  return <WarehouseReceiptTemplate document={WarehouseReceiptSampleW3C_V2} handleObfuscation={() => {}} />;
 };
