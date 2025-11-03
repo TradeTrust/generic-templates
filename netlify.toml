@@ -11,8 +11,8 @@
     Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=(), payment=(), usb=(), bluetooth=(), magnetometer=(), gyroscope=(), accelerometer=(), autoplay=(), encrypted-media=(), fullscreen=(self), picture-in-picture=()"
     
     # Cross-origin protection (CORP + COOP for Spectre mitigation)
-    Cross-Origin-Resource-Policy = "cross-origin"
-    Cross-Origin-Opener-Policy = "unsafe-none"
+    Cross-Origin-Resource-Policy = "same-origin"
+    Cross-Origin-Opener-Policy = "same-origin"
     # Cross-Origin-Embedder-Policy omitted - would break embedding functionality
     
     # Additional security headers
