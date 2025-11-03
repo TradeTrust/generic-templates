@@ -25,6 +25,6 @@ jobs:
       - name: Setup Chrome 140
         uses: browser-actions/setup-chrome@latest
         with:
-          chrome-version: '140'
+          chrome-version: "140"
       - name: Integration Test
         run: npm run integration:concurrently:headless
