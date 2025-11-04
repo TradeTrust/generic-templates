@@ -1,4 +1,21 @@
 [[headers]]
   for = "/*"
   [headers.values]
-    Content-Security-Policy = "frame-ancestors *;"
+    # Clickjacking protection - ALLOW EMBEDDING (templates designed to be embedded)
+    # X-Frame-Options intentionally omitted to allow embedding
+    
+    # Content Security Policy - Comprehensive XSS protection with embedding support
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; frame-src https://app.netlify.com; worker-src 'self' blob:; frame-ancestors *; base-uri 'self'; form-action 'self'"
+    
+    # Permissions Policy - Browser feature access control
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=(), payment=(), usb=(), bluetooth=(), magnetometer=(), gyroscope=(), accelerometer=(), autoplay=(), encrypted-media=(), fullscreen=(self), picture-in-picture=()"
+    
+    # Cross-origin protection (CORP + COOP for Spectre mitigation)
+    Cross-Origin-Resource-Policy = "same-origin"
+    Cross-Origin-Opener-Policy = "same-origin"
+    # Cross-Origin-Embedder-Policy omitted - would break embedding functionality
+    
+    # Additional security headers
+    X-Content-Type-Options = "nosniff"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+    Referrer-Policy = "strict-origin-when-cross-origin"
