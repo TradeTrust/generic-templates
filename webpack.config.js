@@ -99,7 +99,6 @@ module.exports = {
       react: path.resolve("./node_modules/react"),
       process: "process/browser",
       "@trustvc/trustvc": path.resolve(__dirname, "node_modules/@trustvc/trustvc"),
-      // Nested @trustvc/trustvc copies don't declare dotenv as a dependency
       dotenv: path.resolve(__dirname, "node_modules/dotenv"),
       "dotenv/config": path.resolve(__dirname, "node_modules/dotenv/config.js"),
     },

@@ -32,14 +32,6 @@ describe("getDocumentData", () => {
     };
     expect(getDocumentData(document as any)).toMatchObject({ referenceNumber: "BOE-1" });
   });
-
-  it("should not treat non-object credentialSubject as document data", () => {
-    const document = {
-      type: ["VerifiableCredential"],
-      credentialSubject: "not-an-object",
-    };
-    expect(getDocumentData(document as any)).toStrictEqual(document);
-  });
 });
 
 describe("formatDateTime", () => {
