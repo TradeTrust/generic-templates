@@ -23,6 +23,8 @@ import { CertificateOfNonManipulationSampleV2 } from "../src/templates/Certifica
 import { BrochureSampleV2 } from "../src/templates/Brochure/sampleV2";
 import { WarehouseReceiptSampleV2 } from "../src/templates/WarehouseReceipt/sampleV2";
 import { WarehouseReceiptSampleW3C } from "../src/templates/WarehouseReceipt/sampleW3C";
+import { BillOfExchangeSampleV2 } from "../src/templates/BillOfExchange/sampleV2";
+import { BillOfExchangeSampleW3C } from "../src/templates/BillOfExchange/sampleW3C";
 import { App } from "./app";
 import "./main.css";
 
@@ -67,6 +69,8 @@ ReactDOM.render(
       { name: "W3C Brochure V2", document: BrochureSampleV2 },
       { name: "Warehouse Receipt V2", document: WarehouseReceiptSampleV2 },
       { name: "Warehouse Receipt W3C", document: WarehouseReceiptSampleW3C },
+      { name: "Bill of Exchange V2", document: BillOfExchangeSampleV2 },
+      { name: "Bill of Exchange W3C", document: BillOfExchangeSampleW3C },
     ]}
   />,
   document.getElementById("root")

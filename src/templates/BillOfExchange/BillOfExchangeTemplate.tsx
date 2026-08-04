@@ -130,7 +130,8 @@ const SignatureImageCell = ({
 );
 
 export const BillOfExchangeTemplate: FunctionComponent<TemplateProps<BillOfExchangeSchema>> = ({ document }) => {
-  const data = getDocumentData(document) as BillOfExchangeDocument;
+  // Match classic BoE extractData: never crash on missing/partial document payloads.
+  const data = (getDocumentData(document) ?? {}) as BillOfExchangeDocument;
   const qrCodeUrl = getQRCodeURL(document);
   const {
     referenceNumber,

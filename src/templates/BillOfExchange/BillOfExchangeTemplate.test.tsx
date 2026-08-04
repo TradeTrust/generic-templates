@@ -41,10 +41,36 @@ describe("billOfExchangeTemplate", () => {
     expect(signatures.length).toBeGreaterThanOrEqual(2);
   });
 
+  it("should not render remote signature URLs", () => {
+    const document = {
+      ...BillOfExchangeSampleV2,
+      drawee: {
+        ...BillOfExchangeSampleV2.drawee,
+        signature: "https://evil.example/track.png",
+      },
+      drawer: {
+        ...BillOfExchangeSampleV2.drawer,
+        signature: "https://evil.example/track.png",
+      },
+    };
+    render(<BillOfExchangeTemplate document={document as any} handleObfuscation={() => {}} />);
+    expect(screen.queryByAltText("Signature image")).not.toBeInTheDocument();
+  });
+
   it("should not render dangling values when document is empty", () => {
     render(<BillOfExchangeTemplate document={{} as any} handleObfuscation={() => {}} />);
     expect(screen.getByTestId("bill-of-exchange-template")).toBeInTheDocument();
     expect(screen.queryByText("BOE-2026-00147")).not.toBeInTheDocument();
+  });
+
+  it("should render safely when credentialSubject is missing on a W3C-shaped document", () => {
+    render(
+      <BillOfExchangeTemplate
+        document={{ type: ["VerifiableCredential"], credentialSubject: undefined } as any}
+        handleObfuscation={() => {}}
+      />
+    );
+    expect(screen.getByTestId("bill-of-exchange-template")).toBeInTheDocument();
   });
 });
 

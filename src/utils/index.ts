@@ -11,11 +11,11 @@ import {
 } from "@trustvc/trustvc";
 import { toWords } from "number-to-words";
 
-const hasCredentialSubject = (document: unknown): document is { credentialSubject: unknown } =>
-  !!document &&
-  typeof document === "object" &&
-  "credentialSubject" in document &&
-  (document as { credentialSubject?: unknown }).credentialSubject != null;
+const hasCredentialSubject = (document: unknown): document is { credentialSubject: Record<string, unknown> } => {
+  if (!document || typeof document !== "object" || !("credentialSubject" in document)) return false;
+  const subject = (document as { credentialSubject?: unknown }).credentialSubject;
+  return !!subject && typeof subject === "object" && !Array.isArray(subject);
+};
 
 /**
  * Prefer TrustVC/OA detectors; also unwrap W3C VCs that carry credentialSubject
