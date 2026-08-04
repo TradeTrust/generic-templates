@@ -11,6 +11,16 @@ import {
 } from "@trustvc/trustvc";
 import { toWords } from "number-to-words";
 
+const hasCredentialSubject = (document: unknown): document is { credentialSubject: unknown } =>
+  !!document &&
+  typeof document === "object" &&
+  "credentialSubject" in document &&
+  (document as { credentialSubject?: unknown }).credentialSubject != null;
+
+/**
+ * Prefer TrustVC/OA detectors; also unwrap W3C VCs that carry credentialSubject
+ * but fail `vc.isSignedDocument` (e.g. ObligationRecords / obligationRegistry status).
+ */
 export const getDocumentData = (
   document: OpenAttestationDocument | SignedVerifiableCredential | RawVerifiableCredential
 ): any => {
@@ -18,9 +28,10 @@ export const getDocumentData = (
     isWrappedV3Document(document) ||
     isRawV3Document(document) ||
     vc.isSignedDocument(document) ||
-    vc.isRawDocument(document)
+    vc.isRawDocument(document) ||
+    hasCredentialSubject(document)
   ) {
-    return document.credentialSubject;
+    return (document as { credentialSubject: unknown }).credentialSubject;
   } else if (isWrappedV2Document(document)) {
     return getDataV2(document);
   } else return document;
@@ -65,7 +76,7 @@ export const getQRCodeURL = (
   } else if (isRawV3Document(document) || isWrappedV3Document(document)) {
     const { links } = documentData;
     return links?.self?.href;
-  } else if (vc.isSignedDocument(document) || vc.isRawDocument(document)) {
+  } else if (vc.isSignedDocument(document) || vc.isRawDocument(document) || hasCredentialSubject(document)) {
     const { qrCode } = document as SignedVerifiableCredential;
     return qrCode?.uri;
   }
