@@ -9,10 +9,21 @@ import { Crypto } from "@peculiar/webcrypto";
 jest.spyOn(HTMLCanvasElement.prototype, "getContext").mockImplementation();
 
 import { TextEncoder, TextDecoder } from "util";
+import { ReadableStream, TransformStream, WritableStream } from "node:stream/web";
 
+Object.assign(globalThis, {
+  TextDecoder,
+  TextEncoder,
+  ReadableStream,
+  TransformStream,
+  WritableStream,
+});
 Object.assign(global, {
   TextDecoder,
   TextEncoder,
+  ReadableStream,
+  TransformStream,
+  WritableStream,
 });
 
 // Add fetch polyfill for Headers support

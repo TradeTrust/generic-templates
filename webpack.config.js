@@ -98,6 +98,7 @@ module.exports = {
     alias: {
       react: path.resolve("./node_modules/react"),
       process: "process/browser",
+      "@trustvc/trustvc": path.resolve(__dirname, "node_modules/@trustvc/trustvc"),
     },
     fallback: {
       vm: require.resolve("vm-browserify"),
@@ -110,6 +111,10 @@ module.exports = {
       "process/browser": require.resolve("process/browser"),
       util: require.resolve("util/"),
       events: require.resolve("events/"),
+      fs: false,
+      net: false,
+      tls: false,
+      child_process: false,
     },
   },
   bail: true,
