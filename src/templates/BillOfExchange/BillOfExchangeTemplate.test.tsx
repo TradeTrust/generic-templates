@@ -37,8 +37,8 @@ describe("billOfExchangeTemplate", () => {
 
   it("should render inline signature images when valid data URIs are present", () => {
     render(<BillOfExchangeTemplate document={BillOfExchangeSampleV2} handleObfuscation={() => {}} />);
-    const signatures = screen.getAllByAltText("Signature image");
-    expect(signatures.length).toBeGreaterThanOrEqual(2);
+    expect(screen.getByAltText("Drawee signature image")).toBeInTheDocument();
+    expect(screen.getByAltText("Drawer signature image")).toBeInTheDocument();
   });
 
   it("should not render remote signature URLs", () => {
@@ -54,7 +54,8 @@ describe("billOfExchangeTemplate", () => {
       },
     };
     render(<BillOfExchangeTemplate document={document as any} handleObfuscation={() => {}} />);
-    expect(screen.queryByAltText("Signature image")).not.toBeInTheDocument();
+    expect(screen.queryByAltText("Drawee signature image")).not.toBeInTheDocument();
+    expect(screen.queryByAltText("Drawer signature image")).not.toBeInTheDocument();
   });
 
   it("should not render dangling values when document is empty", () => {

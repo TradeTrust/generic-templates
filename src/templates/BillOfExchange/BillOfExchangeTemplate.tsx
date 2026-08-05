@@ -250,8 +250,8 @@ export const BillOfExchangeTemplate: FunctionComponent<TemplateProps<BillOfExcha
               />
             </tr>
             <tr>
-              <SignatureImageCell label="Signature" signature={drawee?.signature} colSpan={2} />
-              <SignatureImageCell label="Signature" signature={drawer?.signature} colSpan={2} />
+              <SignatureImageCell label="Signature" partyName="Drawee" signature={drawee?.signature} colSpan={2} />
+              <SignatureImageCell label="Signature" partyName="Drawer" signature={drawer?.signature} colSpan={2} />
             </tr>
           </tbody>
         </table>
