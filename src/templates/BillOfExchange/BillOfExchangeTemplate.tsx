@@ -100,34 +100,42 @@ const PartySignedCell = ({
 const SignatureImageCell = ({
   label,
   signature,
+  partyName,
   colSpan,
 }: {
   label: string;
   signature?: string;
+  /** Party-specific accessible name (e.g. "Drawee"/"Drawer") — disambiguates the
+   * alt text and test id when multiple signature cells share the same visible label. */
+  partyName?: string;
   colSpan?: number;
-}): JSX.Element => (
-  <td colSpan={colSpan} style={{ ...cellStyle, height: 120 }}>
-    <div style={labelStyle}>{label}</div>
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        marginTop: 8,
-        minHeight: 72,
-      }}
-    >
-      {isValidInlineImage(signature) ? (
-        <img
-          src={signature}
-          alt={`${label} image`}
-          data-testid={`signature-image-${label.toLowerCase().replace(/\s+/g, "-")}`}
-          style={{ maxHeight: 64, maxWidth: "100%", objectFit: "contain" }}
-        />
-      ) : null}
-    </div>
-  </td>
-);
+}): JSX.Element => {
+  const altText = partyName ? `${partyName} ${label.toLowerCase()} image` : `${label} image`;
+  const testIdSuffix = (partyName ?? label).toLowerCase().replace(/\s+/g, "-");
+  return (
+    <td colSpan={colSpan} style={{ ...cellStyle, height: 120 }}>
+      <div style={labelStyle}>{label}</div>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          marginTop: 8,
+          minHeight: 72,
+        }}
+      >
+        {isValidInlineImage(signature) ? (
+          <img
+            src={signature}
+            alt={altText}
+            data-testid={`signature-image-${testIdSuffix}`}
+            style={{ maxHeight: 64, maxWidth: "100%", objectFit: "contain" }}
+          />
+        ) : null}
+      </div>
+    </td>
+  );
+};
 
 export const BillOfExchangeTemplate: FunctionComponent<TemplateProps<BillOfExchangeSchema>> = ({ document }) => {
   // Match classic BoE extractData: never crash on missing/partial document payloads.
