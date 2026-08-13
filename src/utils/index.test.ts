@@ -12,6 +12,26 @@ describe("getDocumentData", () => {
     const documentData = getDocumentData(ChaftaCooSampleV3);
     expect(documentData).toMatchObject(ChaftaCooSampleV3.credentialSubject);
   });
+
+  it("should unwrap W3C credentialSubject when status uses obligationRegistry", () => {
+    const document = {
+      "@context": ["https://www.w3.org/ns/credentials/v2"],
+      type: ["VerifiableCredential"],
+      issuer: "did:web:example",
+      credentialSubject: { referenceNumber: "BOE-1", type: ["BillOfExchange"] },
+      credentialStatus: {
+        type: "TransferableRecords",
+        tokenNetwork: { chain: "Sepolia", chainId: 11155111 },
+        obligationRegistry: "0x9aAEfa502D0d975b9eECdBc280704F2D52029d10",
+        tokenId: "abc",
+      },
+      proof: {
+        type: "DataIntegrityProof",
+        proofValue: "uEXAMPLE",
+      },
+    };
+    expect(getDocumentData(document as any)).toMatchObject({ referenceNumber: "BOE-1" });
+  });
 });
 
 describe("formatDateTime", () => {
