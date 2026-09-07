@@ -25,17 +25,41 @@ const Print = styled.div`
   }
 `;
 
+/**
+ * Unlike `Print`, this renders in normal flow at all times (not hidden until
+ * print, not forced onto its own page) so the QR stays exactly where it sits
+ * on screen when printed, instead of being relocated to a separate page.
+ */
+const Inline = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  break-inside: avoid;
+  page-break-inside: avoid;
+`;
+
 interface DocumentQrCode {
   url: string;
+  /** Render always-visible and in-place (screen + print) instead of the default print-only, own-page behavior. */
+  inline?: boolean;
 }
 
-export const DocumentQrCode: FunctionComponent<DocumentQrCode> = ({ url }) => {
+export const DocumentQrCode: FunctionComponent<DocumentQrCode> = ({ url, inline }) => {
   const imageSettings = {
     src: qrcodeImg,
-    height: 90,
-    width: 100,
+    height: inline ? 27 : 90,
+    width: inline ? 30 : 100,
     excavate: true,
   };
+
+  if (inline) {
+    return (
+      <Inline>
+        <QRCodeSVG data-testid="document-qrcode" value={url} level="M" size={120} imageSettings={imageSettings} />
+        <div style={{ fontSize: 11, marginTop: 4, textAlign: "center", color: "#000" }}>Scan to verify / re-import</div>
+      </Inline>
+    );
+  }
 
   return (
     <Print>
