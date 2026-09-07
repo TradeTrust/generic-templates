@@ -214,7 +214,7 @@ export const BillOfExchangeTemplate: FunctionComponent<TemplateProps<BillOfExcha
               <FieldCell label="At" value={tenor} colSpan={4} style={{ height: 52 }} />
             </tr>
             <tr>
-              <FieldCell label="PAY TO THE ORDER OF" value={payee} colSpan={4} style={{ height: 52 }} />
+              <FieldCell label="Pay to the order of" value={payee} colSpan={4} style={{ height: 52 }} />
             </tr>
             <tr>
               <FieldCell
