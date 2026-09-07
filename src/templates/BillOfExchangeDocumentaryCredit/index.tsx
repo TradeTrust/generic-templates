@@ -3,7 +3,7 @@ import { BillOfExchangeDocumentaryCreditTemplate } from "./BillOfExchangeDocumen
 export const BillOfExchangeDocumentaryCreditTemplates = [
   {
     id: "bill-of-exchange-documentary-credit-template",
-    label: "Bill of Exchange (Documentary Credit)",
+    label: "Bill of Exchange",
     template: BillOfExchangeDocumentaryCreditTemplate,
   },
 ];

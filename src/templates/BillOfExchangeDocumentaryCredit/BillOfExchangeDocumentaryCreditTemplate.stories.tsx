@@ -9,7 +9,7 @@ export default {
   title: "BillOfExchangeDocumentaryCredit",
   component: BillOfExchangeDocumentaryCreditTemplate,
   parameters: {
-    componentSubtitle: "Bill of Exchange (Documentary Credit / ObligationRecords) template. W3C VC only.",
+    componentSubtitle: "Bill of Exchange (ObligationRecords) template. W3C VC only.",
   },
 };
 

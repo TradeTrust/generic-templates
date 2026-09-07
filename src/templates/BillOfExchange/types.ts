@@ -19,7 +19,11 @@ export interface BillOfExchangeParty {
   signature?: string;
 }
 
-/** Fields aligned with https://trustvc.io/context/bill-of-exchange.json */
+/**
+ * Fields aligned with https://trustvc.io/context/bill-of-exchange.json
+ * @deprecated Superseded by BillOfExchangeDocumentaryCreditDocument (BILL_OF_EXCHANGE_DOCUMENTARY_CREDIT).
+ * Kept as-is for already-issued documents — do not remove.
+ */
 export interface BillOfExchangeDocument {
   type?: string[];
   electronicDocumentIdentifier?: string;
