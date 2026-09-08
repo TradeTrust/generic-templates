@@ -179,9 +179,9 @@ const formatAmountInFigures = (currencyCode?: string, amountInFigures?: string):
   if (!amountInFigures && !currencyCode) return "";
   const amount = amountInFigures
     ? amountInFigures.replace(
-        /^([+-]?\d+)(\.\d+)?$/,
-        (_: string, whole: string, fraction = "") => `${whole.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}${fraction}`
-      )
+      /^([+-]?\d+)(\.\d+)?$/,
+      (_: string, whole: string, fraction = "") => `${whole.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}${fraction}`
+    )
     : "";
   return [currencyCode, amount].filter(Boolean).join(" ");
 };
@@ -370,12 +370,10 @@ export const BillOfExchangeDocumentaryCreditTemplate: FunctionComponent<
               >
                 Indorsement
               </div>
-              {indorsement?.payee && (
-                <div style={{ fontSize: "var(--value-size, 15px)", fontWeight: 400, color: "#000" }}>
-                  PAY TO THE ORDER OF{" "}
-                  <span style={{ fontWeight: 700, textTransform: "uppercase" }}>{indorsement.payee}</span>
-                </div>
-              )}
+              <div style={{ fontSize: "var(--value-size, 15px)", fontWeight: 400, color: "#000" }}>
+                PAY TO THE ORDER OF{" "}
+                <span style={{ fontWeight: 700, textTransform: "uppercase" }}>{indorsement?.payee}</span>
+              </div>
             </IndorsementBlock>
 
             {qrCodeUrl && (
