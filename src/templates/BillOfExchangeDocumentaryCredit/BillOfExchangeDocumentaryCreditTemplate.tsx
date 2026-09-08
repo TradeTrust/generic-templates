@@ -179,9 +179,9 @@ const formatAmountInFigures = (currencyCode?: string, amountInFigures?: string):
   if (!amountInFigures && !currencyCode) return "";
   const amount = amountInFigures
     ? amountInFigures.replace(
-      /^([+-]?\d+)(\.\d+)?$/,
-      (_: string, whole: string, fraction = "") => `${whole.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}${fraction}`
-    )
+        /^([+-]?\d+)(\.\d+)?$/,
+        (_: string, whole: string, fraction = "") => `${whole.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}${fraction}`
+      )
     : "";
   return [currencyCode, amount].filter(Boolean).join(" ");
 };
