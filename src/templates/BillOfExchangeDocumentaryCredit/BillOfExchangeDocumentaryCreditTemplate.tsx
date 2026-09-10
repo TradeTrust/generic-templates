@@ -40,6 +40,22 @@ const PageGutter = styled.div`
     display: flex;
     justify-content: center;
   }
+
+  /*
+   * The card below keeps its fixed desktop layout/width at every screen
+   * size (same look on mobile as on desktop, nothing reflows or shrinks).
+   * On a narrow viewport that card is wider than the screen, so this
+   * container scrolls both ways: horizontally to pan across the full-width
+   * card, and vertically (bounded to the viewport height) so it stays
+   * reachable inside any fixed-height mobile embedding instead of relying
+   * on the host page to scroll.
+   */
+  @media screen and (max-width: 640px) {
+    max-height: 100vh;
+    max-height: 100dvh;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 `;
 
 /**
@@ -67,6 +83,15 @@ const Card = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 760px;
+  /*
+   * Never shrink narrower than this on screen, even on a mobile viewport —
+   * that's what keeps the two-column rows below from squeezing/wrapping and
+   * looking different from desktop. PageGutter's horizontal scroll (above)
+   * is what makes the rest of this fixed-width card reachable on mobile.
+   * (Comfortably below the ~864px desktop content width, so it never
+   * affects desktop rendering.)
+   */
+  min-width: 700px;
 
   @media print {
     --label-size: 9px;
@@ -83,6 +108,7 @@ const Card = styled.div`
 
     width: 190mm;
     max-width: 100%;
+    min-width: 0;
     min-height: 0;
     padding: 10px 14px;
   }
@@ -246,9 +272,10 @@ const Field = ({
 );
 
 /** Lays out two Fields (or two blocks) side by side, each taking half the card width. */
-const Row = ({ children }: { children: ReactNode }): JSX.Element => (
-  <div style={{ display: "flex", gap: "var(--row-gap, 48px)" }}>{children}</div>
-);
+const Row = styled.div`
+  display: flex;
+  gap: var(--row-gap, 48px);
+`;
 
 const PartyBlock = ({ label, party }: { label: string; party?: BillOfExchangeDocumentaryCreditParty }): JSX.Element => (
   <div style={{ flex: 1 }}>
