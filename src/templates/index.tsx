@@ -15,6 +15,7 @@ import { BillOfLadingV1BimcoStandardTemplates } from "./BillOfLadingBimcoStandar
 import { WarehouseReceiptTemplates } from "./WarehouseReceipt";
 import { PromissoryNoteTemplates } from "./PromissoryNote";
 import { BillOfExchangeTemplates } from "./BillOfExchange";
+import { BillOfExchangeDocumentaryCreditTemplates } from "./BillOfExchangeDocumentaryCredit";
 
 export const registry: TemplateRegistry<any> = {
   BILL_OF_LADING: BillOfLadingTemplates,
@@ -33,4 +34,5 @@ export const registry: TemplateRegistry<any> = {
   WAREHOUSE_RECEIPT: WarehouseReceiptTemplates,
   PROMISSORY_NOTE: PromissoryNoteTemplates,
   BILL_OF_EXCHANGE: BillOfExchangeTemplates,
+  BILL_OF_EXCHANGE_DOCUMENTARY_CREDIT: BillOfExchangeDocumentaryCreditTemplates,
 };
