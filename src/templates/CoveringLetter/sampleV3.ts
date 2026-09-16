@@ -4,8 +4,8 @@ import { CoveringLetterSchemaV3 } from "./types";
 export const CoveringLetterSampleV3: CoveringLetterSchemaV3 = {
   "@context": [
     "https://www.w3.org/2018/credentials/v1",
-    "https://schemata.openattestation.com/io/tradetrust/cover-letter/1.0/cover-letter-context.json",
-    "https://schemata.openattestation.com/com/openattestation/1.0/OpenAttestation.v3.json",
+    "https://schemata.tradetrust.io/io/tradetrust/cover-letter/1.0/cover-letter-context.json",
+    "https://schemata.tradetrust.io/com/openattestation/1.0/OpenAttestation.v3.json",
   ],
   type: ["VerifiableCredential", "OpenAttestationCredential"],
   issuanceDate: "2010-01-01T19:23:24Z",

@@ -47,7 +47,7 @@ describe("simple coo v3", () => {
   // it("should be able to wrap v3", async () => {
   //   const wrappedDocument = await wrapDocumentV3(SimpleCooSampleV3);
   //   expect(utils.isWrappedV3Document(wrappedDocument)).toBe(true);
-  // }); // TODO: simple coo has no v3 schema defined at schemata yet -> https://schemata.openattestation.com
+  // }); // TODO: simple coo has no v3 schema defined at schemata yet -> https://schemata.tradetrust.io
 });
 
 describe("simple coo empty", () => {
